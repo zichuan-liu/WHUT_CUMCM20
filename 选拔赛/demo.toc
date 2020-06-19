@@ -19,11 +19,15 @@
 \contentsline {subsubsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}带约束的多旅行商模型}{5}{subsubsection.5.2.1}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{6}{subsection.5.3}% 
 \contentsline {subsubsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}插板式编码遗传算法}{6}{subsubsection.5.3.1}% 
-\contentsline {section}{\numberline {六、}灵敏度分析}{7}{section.6}% 
-\contentsline {section}{\numberline {七、}模型的评价}{7}{section.7}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{7}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{7}{subsection.7.2}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{7}{subsection.7.3}% 
-\contentsline {section}{\numberline {附录A}模型的代码实现}{9}{appendix.A}% 
-\contentsline {subsection}{\numberline {A.1}数据可视化--python源代码}{9}{subsection.A.1}% 
+\contentsline {section}{\numberline {六、}问题三模型的建立与求解}{7}{section.6}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的求解}{7}{subsection.6.1}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}启发式调度算法}{7}{subsubsection.6.1.1}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}结果分析}{8}{subsection.6.2}% 
+\contentsline {section}{\numberline {七、}灵敏度分析}{8}{section.7}% 
+\contentsline {section}{\numberline {八、}模型的评价}{8}{section.8}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{8}{subsection.8.1}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{8}{subsection.8.2}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{8}{subsection.8.3}% 
+\contentsline {section}{\numberline {附录A}模型的代码实现}{10}{appendix.A}% 
+\contentsline {subsection}{\numberline {A.1}数据可视化--python源代码}{10}{subsection.A.1}% 
 \contentsfinish 
