@@ -24,15 +24,15 @@
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的求解}{14}{subsection.6.1}% 
 \contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}启发式调度算法}{14}{subsubsection.6.1.1}% 
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}结果分析}{15}{subsection.6.2}% 
-\contentsline {section}{\numberline {七、}模型的评价}{15}{section.7}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{15}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{15}{subsection.7.2}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{15}{subsection.7.3}% 
-\contentsline {section}{\numberline {附录A}模型的代码实现}{17}{appendix.A}% 
-\contentsline {subsection}{\numberline {A.1}GATSP--matlab源代码}{17}{subsection.A.1}% 
-\contentsline {subsection}{\numberline {A.2}MGATSP--matlab源代码}{18}{subsection.A.2}% 
-\contentsline {subsection}{\numberline {A.3}distan--matlab源代码}{20}{subsection.A.3}% 
-\contentsline {section}{\numberline {附录B}数据可视化的实现}{21}{appendix.B}% 
-\contentsline {subsection}{\numberline {B.1}第一问画图--python源代码}{21}{subsection.B.1}% 
-\contentsline {subsection}{\numberline {B.2}第二问画图--python源代码}{22}{subsection.B.2}% 
+\contentsline {section}{\numberline {七、}模型的评价}{18}{section.7}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{18}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{18}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{18}{subsection.7.3}% 
+\contentsline {section}{\numberline {附录A}模型的代码实现}{20}{appendix.A}% 
+\contentsline {subsection}{\numberline {A.1}GATSP--matlab源代码}{20}{subsection.A.1}% 
+\contentsline {subsection}{\numberline {A.2}MGATSP--matlab源代码}{21}{subsection.A.2}% 
+\contentsline {subsection}{\numberline {A.3}distan--matlab源代码}{23}{subsection.A.3}% 
+\contentsline {section}{\numberline {附录B}数据可视化的实现}{24}{appendix.B}% 
+\contentsline {subsection}{\numberline {B.1}第一问画图--python源代码}{24}{subsection.B.1}% 
+\contentsline {subsection}{\numberline {B.2}第二问画图--python源代码}{25}{subsection.B.2}% 
 \contentsfinish 
