@@ -76,6 +76,8 @@
 
 	\section{问题一模型的建立与求解}
     \subsection{问题描述与分析}
+问题一要求规划大型运输车的行驶路径，使得货物运输时间达到最短。该问题本质是旅行商问题，基于街道方向均平行于坐标轴，我们求解任意两点间的曼哈顿距离作为其间的距离，并设计动态赌轮遗传算法对其进行求解。
+
 
     其思维流程图如图~\ref{lct}~所示：
 
@@ -87,39 +89,76 @@
 
    
 	    \subsection{模型的建立}
-	    \subsubsection{灰度预测GM(1,1)}
-	    设2004-2016年总发病人数为时间序列：
-	     \begin{gather*}
-	    X^{(0)}=[x^{(0)}(1),x^{(0)}(2),\cdots,x^{(0)}(13)]
-	    \end{gather*}
-	    
-	    
-
-	  其误差状态区间如表~\ref{ff}~所示：
-	  	 \begin{table}[H]
-	  	\centering\caption{发病人数状态区间划分}\label{ff}
-	  	\begin{tabular}{cccc}
-	  		\toprule[1.5pt]
-	  		\multicolumn{1}{m{2cm}}{\centering 状态}
-	  		& \multicolumn{1}{m{3cm}}{\centering $E_{1}$}
-	  		& \multicolumn{1}{m{3cm}}{\centering $E_{2}$}
-	  		& \multicolumn{1}{m{3cm}}{\centering $E_{3}$}
-	  		\\
-	  		\midrule[0.5pt]
-	  		残差区间 &  $[-66389,-22130]$  &$(-22130,22130]$ & $(22130,66389]$   \\ 
-	  		\bottomrule[1.5pt]	
-	  	\end{tabular}
-	  \end{table}  
-
-	  
+	    \subsubsection{经典旅行商模型}
+	    分析问题一，由于大型运输车的行驶速度固定，优化行驶路径使得运输车行驶路程最短时，即可求得最小运输时间。遍历路径可表示为二维有限序列如下：
+	     \begin{gather}
+	    P_n=[p_{1},p_{2},\cdots,p_{i},\cdots,p_{19}]
+	    \end{gather}
+	    其中$p_{i}(1\leqslant i \leqslant 19 ,i\in Z)$表示处运输起点外的的仓库坐标,且对于$\forall i \neq j$都有$p_i \neq p_j $。任意两坐标点$p_i(x_i,y_i)$,$p_j(x_j,y_j)$间的曼哈顿距离可表示为：
+	     \begin{gather}
+	     d(p_i,p_j)=\left | x_i-x_j \right |+\left | y_i-y_j \right |
+	     \end{gather}
+	    将运输车行驶路程作为优化目标即可得到目标函数如下：
+	    \begin{gather}
+	    f(P_n)=d(p_0,p_{1})+d(p_0,p_{19})+\sum_{i=1}^{18}d(p_i,p_{i+1})
+	    \end{gather}
+	    即可得到整体优化模型如下：
+	    \begin{gather}
+	    f(P_n)=d(p_0,p_{1})+d(p_0,p_{19})+\sum_{i=1}^{18}d(p_i,p_{i+1})\\
+	    \left\{\begin{matrix}1\leqslant i \leqslant 19 ,i\in Z
+	    \\ \forall i \neq j,p_i \neq p_j 
+	    \end{matrix}\right.
+        \end{gather}
+        \subsection{模型的求解}
+        \subsubsection{遗传算法}
+        \paragraph{初始化编码}
+        对于表示为二维有限序列的遍历路径$P_n$，对其进行整数编码为
+        \begin{gather}
+        A_n=[a_{n1},a_{n2},\cdots,a_{ni},\cdots,a_{n19}], \\
+        1\leqslant a_i \leqslant 19 ,i\in Z ;\forall i, \neq j\Rightarrow p_i \neq p_j 
+        \end{gather}
+        定义$A_n$为解序列$P_{n}$，其中$a_{ni}$表式对应仓库的访问顺序，例如 $a{i}=7$表示第$i$次访问7号仓库。即随机生成初始解集$A=\left \{A_n\right \}$其中$n=1,2,\cdots,w$,w为的种群容量。
+        \paragraph{交叉}
+        在原染色解集 $\left \{ A_n \right \}$中的染色体按照随机顺序配对，按照以下的方式交叉(补全)，生成交叉解集$\left \{H_n\right \}$
+         \begin{figure}[H]
+        	\centering
+        	\includegraphics[width=\textwidth]{figures/2121.png}
+        	\caption{交叉}\label{lct}
+        \end{figure}
+         \paragraph{变异}
+         鉴于序列式染色体的特殊性，为了在变异阶段内尽可能不破坏原有的基因段，采取改良圈算法的思路进行变异操作。即在染色体$A$中随机选取$a_{i}$与$a_{j}(1\leqslant i<j\leqslant j )$，颠倒$a_{ni}$与$a_{nj}$间顺序的顺序，即：
+          \begin{gather}
+          M=[a_{1},\cdots,a_{i},a_{j-1},a_{j-2},\cdots,a_{i+1},a_{i},\cdots,a_{19}]
+          \end{gather}
+          $M$为染色体$A$对应的变异染色体，对于每个染色体$A_n$,都设定相同的变异概率$\gamma$去执行上述的变异操作。 
+         \subsubsection{动态赌轮}
+         将第g代的染色体与其交叉和变异产生的子代并入同一解集$G_g=\left \{A,H,M\right \}$。$k$表示原解集$A$,交叉解集$H$和变异解集$M$中解的数量之和，即为$G_g$中的解的数目。设置$G_g$第$i$个解$G_g(i)$被选择进入下一代的概率为：
+         \begin{gather}
+          P(G_{g}(i))=\frac{wf^{-g/\gamma }(G_{g}(i))}{\sum_{j=1}^{k}f^{-g/\gamma }(G_{g}(j))}
+         \end{gather}
+         $f^{-g/\gamma }(G_{g}(i))$为$G_{g}(i)$对应的目标函数值，即为$G_{g}(i)$对应的适应度。其中参数$\gamma$为衰减系数，$w$为种群容量。即适应度值相对较小的解保留概率将逐渐增大，
+         即算法初始阶段将保留丰富度尽可能多的解，而愈到算法后期，策略就越接近于精英策略，加快算法的收敛速度，即有：
+           \begin{gather}
+           \lim_{g\rightarrow \infty } P(G_{g}(min))=\lim_{g\rightarrow \infty }\frac{wf^{-g/\gamma }(min)}{\sum_{j=1}^{k}f^{-g/\gamma }(G_{g}(j))}\rightarrow 1
+         \end{gather}
+         该式表明当迭代次数$g$足够大时，选择策略将趋近于为精英策略，将加速算法的收敛。
+         
+         
+         
 	  \section{问题二模型的建立与求解}
 	  \subsection{问题描述与分析}
-
-	
+	  问题二要求设计小型运输车的调度方案，从而使得总体调度效率最高。我们将时间限制设置为约束，着重优化方案的经济效率。在问题一的基础上重新建立模型，鉴于第二问的决策变量是多段序列的和，我们设计了插板编码对决策变量进行编码，并基于问题一中的动态赌轮遗传算法以运输总成本为目标进行优化。
 	  \subsection{模型的建立}
-	  
-	     
-    \subsection{模型的求解}
+	  \subsubsection{带约束的多旅行商模型}
+	  当雇佣$b$辆小型运输车时，总决策序列可表示为
+	  \begin{gather}
+	  P_n=\left \{[p_{1},p_{2}]_1,[\cdots,p_{i}]_j,[\cdots]_{b-1},[p_{19}]_b\right \}
+	  \end{gather}
+	  即将类似于模型一中的坐标序列分割为多段，每一段分别由一辆小型运输车单独完成，定义
+	  \begin{gather}
+	  B_j=
+	  \end{gather}
+      \subsection{模型的求解}
 
  
   
