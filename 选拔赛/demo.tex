@@ -16,7 +16,7 @@
 	colorlinks=true,
 	linkcolor=black
 }
-
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 \title{基于xx模型}
 \tihao{1} 
 
@@ -40,7 +40,7 @@
    往是企业期望达到的目标，为了解决这些类似问题，有必
    要对物资调运的过程进行数学模型的建立，以期通过模型
    来理解和分析物资调运的过程，并为其找到解决的方法。
-   现以具体的食品调运案例进行分析研究。
+   现以具体的食品调运案例进行分析研究\upcite{bib:one}。
     
     某食品公司有19个食品销售点，销售点的地理坐标和每天的需求量见附件。每天凌晨都要从仓库（第20号站点）出发将食品运至每个销售点，运送物品后最终返回仓库。现有运送食品的运输车，每台车每日工作 4小时，运输车重载运费2元/吨公里，并且假定街道方向均平行于坐标轴，任意两站点间都可以通过一次拐弯到达。
 
@@ -56,9 +56,10 @@
 
 	
 	\section{模型假设}
+	
 	\begin{itemize}                                             
-		\item [(1)] 为保证预测结果精确性，假设题目所给出数据真实可信。
-		\item [(2)] 假设重点防控的区域和人群中，发病、死亡人数的增长率比其基数更加重要
+		\item [(1)] 假设汽车速度均匀，不会随载重而发生变化。
+		\item [(2)] 假定街道方向均平行于坐标轴，任意两站点间都可以通过一次拐弯到达。
 	\end{itemize}
 		
 	\section{符号说明}
@@ -68,9 +69,11 @@
 		\toprule[1.5pt]
 		\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
 		\midrule[0.5pt]		
-		$X^{(i)}$  & 人数时间序列  \\ 
-		$a$  &  发展灰度 \\ 
-		$u$  &  内生控制灰度\\
+		$P_n$  & 20个站点  \\ 
+		$d$  &  曼哈顿距离 \\ 
+		$f$  &  最短路径\\
+		$\left \{ A_n \right \}$  &  原始染色解集\\
+		$\left \{ H_n \right \}$  & 交叉染色解集\\
 		\bottomrule[1.5pt]
 	\end{tabular}
 \end{table}
@@ -84,7 +87,7 @@
 
        \begin{figure}[H]
 	   	\centering
-	   	\includegraphics[width=\textwidth]{figures/sanrenf.png}
+	   	\includegraphics[width=\textwidth]{figures/abab.png}
 	   	\caption{问题一思维流程图}\label{lct}
 	   \end{figure}
 
@@ -136,7 +139,26 @@
         	对于两个父代个体$ A_n=[a_{n1},a_{n2},\cdots,a_{ni},\cdots,a_{n19}]$和	$H_n=[a_{n1}',a_{n2}',\cdots,a_{ni}',\cdots,a_{n19}']$，随机选取$a_{k}''\in [a_{k},a_{k}']$得到子代基因。
         \end{itemize}
         再选取交叉个体时采用混合分组的方法，将父代均匀混合后选取所有编号为奇数的个体，与其相邻对应编号为偶数的个体，通过两种交叉方式产生处两种类型的子代。
-    
+    	其过程如下表所示：
+    	  	\begin{table}[H]
+    		\centering		\caption{各个小型运输车对应运输路径方案}\label{zhuansasgggggzai}
+    		\begin{tabular}{cc}
+    			\toprule[2pt]
+    			\multicolumn{1}{m{3cm}}{\centering 交叉片段编号}
+    			& \multicolumn{1}{m{8cm}}{\centering 对应运输路线}
+    			\\
+    			\midrule[1pt]
+    			基因序列$A_1$ &  [1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	13,	14,	15,	16,	17,	18,	19] \\ 
+    			基因序列$A_2$ &  [13,	11,	12,	19,	14,	15,	18,	16,	17,	10,	9,	1,	2,	5,	6,	7,	4,	3,	8] \\ 
+    			基因序列$A_3$ &  [13,	19,	12,	11	,6	,7,	5,	2	,4	,1	,3	,8	,9,	10,	17,	16,	18	,15,	14] \\ 
+    			$\cdots$ & [$\cdots, \cdots, \cdots, \cdots$] \\ 
+    			基因序列$A_{19}$ &  [20,8,3,4,5,2,1,9,10,17,16,18,14,15,19,13,11,12,6,7,20]\\ 
+    			基因序列$A_{20}$ &  [20,8,3,4,5,2,1,9,10,17,16,18,15,14,19,13,12,11,6,7,20] \\ 
+    			\bottomrule[2pt]	
+    		\end{tabular}
+    	\end{table}
+    	
+    	
          \paragraph{变异}
          鉴于序列式染色体的特殊性，为了在变异阶段内尽可能不破坏原有的基因段，采取改良圈算法的思路进行变异操作。即在染色体$A$中随机选取$a_{i}$与$a_{j}(1\leqslant i<j\leqslant j )$，颠倒$a_{ni}$与$a_{nj}$间顺序的顺序，即：
           \begin{gather}
@@ -146,21 +168,42 @@
          \subsubsection{动态赌轮}
          将第g代的染色体与其交叉和变异产生的子代并入同一解集$G_g=\left \{A,H,M\right \}$。$k$表示原解集$A$,交叉解集$H$和变异解集$M$中解的数量之和，即为$G_g$中的解的数目。设置$G_g$第$i$个解$G_g(i)$被选择进入下一代的概率为：
          \begin{gather}
-          P(G_{g}(i))=\frac{wf^{-g/\gamma }(G_{g}(i))}{\sum_{j=1}^{k}f^{-g/\gamma }(G_{g}(j))}
+          P(G_{g}(i))=\frac{wf^{-g/\gamma }(G_{g}(i))}{\sum_{j=1}^{k}f^{-g/\gamma }(G_{g}(j))},
          \end{gather}
          $f^{-g/\gamma }(G_{g}(i))$为$G_{g}(i)$对应的目标函数值，即为$G_{g}(i)$对应的适应度。其中参数$\gamma$为衰减系数，$w$为种群容量。即适应度值相对较小的解保留概率将逐渐增大，
          即算法初始阶段将保留丰富度尽可能多的解，而愈到算法后期，策略就越接近于精英策略，加快算法的收敛速度，即有：
            \begin{gather}
-           \lim_{g\rightarrow \infty } P(G_{g}(min))=\lim_{g\rightarrow \infty }\frac{wf^{-g/\gamma }(min)}{\sum_{j=1}^{k}f^{-g/\gamma }(G_{g}(j))}\rightarrow 1
+           \lim_{g\rightarrow \infty } P(G_{g}(min))=\lim_{g\rightarrow \infty }\frac{wf^{-g/\gamma }(min)}{\sum_{j=1}^{k}f^{-g/\gamma }(G_{g}(j))}\rightarrow 1 ,
          \end{gather}
-         该式表明当迭代次数$g$足够大时，选择策略将趋近于为精英策略，将加速算法的收敛。
+         该式表明当迭代次数$g$足够大时，选择策略将趋近于为精英策略，将加速算法的收敛。重复上述进化过程，当进化代数足够多时，求解得到全局最优解。
          
-      \subsection{结果分析}
-                \begin{figure}[H]
+         
+      \subsection{实验结果及分析}
+      遗传算法的算法收敛图如图\ref{llsffssl}所示：
+               \begin{figure}[H]
+      	\centering
+      	\includegraphics[width=\textwidth]{figures/y1.png}
+      	\caption{遗传算法收敛图
+      	}\label{llsffssl}
+      \end{figure}
+      
+      
+      
+      由算法收敛图可知算法收敛速度较快，早熟问题解决的较好，全局搜素能力较强， 求得最短距离为116km，其最优个体基因为：
+               \begin{gather*}
+      route = [20,8,3,4,5,2,1,9,10,17,16,18,15,14,19,13,12,11,6,7,20].
+      \end{gather*}
+
+      
+      其对应大型运输车运输方案为route的路径如图 \ref{llsssl}所示:
+  
+         \begin{figure}[H]
          	\centering
          	\includegraphics[width=\textwidth]{figures/11.jpg}
-         	\caption{大型运输车运输方案}\label{111}
+         	\caption{大型运输车运输方案路径}\label{llsssl}
          \end{figure}
+     
+     则大型送完所有食品并回到仓库，最少需要2.9时间，总费用为。
      
 	  \section{问题二模型的建立与求解}
 	  \subsection{问题描述与分析}
@@ -179,7 +222,43 @@
 
  
   
+        \subsection{实验结果及分析}
+%  遗传算法的算法收敛图如图 ????所示：
+%  
+%  
   
+  由算法收敛图可知算法收敛速度较快，早熟问题解决的较好，全局搜素能力较强， 求得所需要9量小型运输车，并给出最优个体基因如表\ref{zhuansasgzai}所示：%为$routes = [[0, 14, 0], [0, 18, 15, 0], [0, 10, 9, 0], [0, 17, 16, 0], [0, 12, 11, 0], [0, 4, 2, 3, 8, 0], [0, 5, 1, 0], [0, 19, 0], [0, 6, 7, 0]]$。
+  
+  	\begin{table}[H]
+  	\centering		\caption{各个小型运输车对应运输路径方案}\label{zhuansasgzai}
+  	\begin{tabular}{cc}
+  		\toprule[2pt]
+  		\multicolumn{1}{m{5cm}}{\centering 运输车编号}
+  		& \multicolumn{1}{m{5cm}}{\centering 对应运输路线}
+  		\\
+  		\midrule[1pt]
+  		1号运输车 &  [20, 14, 20] \\ 
+  		2号运输车 &  [20, 18, 15, 20] \\ 
+  		3号运输车 &  [20, 10, 9, 20] \\ 
+  		4号运输车 &  [20, 17, 16, 20] \\ 
+  		5号运输车 &   [20, 12, 11, 20]\\ 
+  		6号运输车 & [20, 4, 2, 3, 8, 20] \\ 
+  		7号运输车 & [20, 5, 1, 20] \\ 
+  		8号运输车 &  [20, 19, 20] \\ 
+  		9号运输车 &   [20, 6, 7, 20] \\ 
+  		\bottomrule[2pt]	
+  	\end{tabular}
+  \end{table}
+  
+  其对应各量小型运输车运输方案为routes的路径如图 \ref{ssssssss}所示，其中箭头表述运输的方向:
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=\textwidth]{figures/22.jpg}
+  	\caption{小型运输车运输方案图}\label{ssssssss}
+  \end{figure}
+  
+  它送完所有食品并回到仓库，最少需要？？？？时间(需要给出运输方案，及其对应的总距离，总运费) ？
   
   \section{灵敏度分析}
   
@@ -188,15 +267,18 @@
   \section{模型的评价}
   \subsection{模型的优点}
   \begin{itemize}                                             
-  	\item [(1)] 利用马尔可夫模型改进后的灰度预测值与实际值拟合度更高，波动性保持一致，预测的效果更好。
+  	\item [(1)] 使用遗传算法，具有很强的全局搜索能力和鲁棒性，运算时间远小于全遍历算法。
+  	
   	\item [(2)] 针对支持向量回归参数选取，利用灰色关联度筛选合适指标，相较于主观选取指标具有客观性、严谨性。	
   \end{itemize}
   \subsection{模型的缺点}
   
-  问题一、二中的灰色预测模型只能做短期预测，并不适用于长期预测。
+多目标遗传算法初始解由卡特蒙洛法随机生成，每次搜索结果不完全相同，可能引起结果 的偏差，需要多搜索几次选择才能得到最优结果。
+
   \subsection{模型改进}
   
-  可以通过序列最小优化算法(Sequential Minimal Optimization,SMO)作为样本的训练算法，进而建立序列最小优化支持向量回归模型，从而减小算法复杂度，提高算法的求解速度。
+可使用改进的生命遗传算法，加强算法的局部搜索能力，解决算法早熟的问题。
+
   
   
   
