@@ -377,8 +377,29 @@ F(P_n)= \Gamma (P_n)+\theta(P_n)M_1+max(\underset{B_k\in P_n}{max} W (B_k)-6 ,0)
 	\label{fisg}
 \end{figure}
 
+    \section{问题三模型的建立与求解}
+  针对第三问，我们在第二问模型的基础上，引入启发式算法以决策每个任务需要派遣何种类型的小车。首先沿用第二问模型的插板式编码方法，在适应度计算时分析每个小车的负载情况，并由此作为依据派遣小车。再通过交叉，变异及动态赌轮选择操作，优化出最合理的小车调度方案。  
+  \subsection{模型的求解}
+  \subsubsection{启发式调度算法}
+  在计算总运费时，针对运输车$k$的任务$B_k$,使得：
+  \begin{gather}
+  \alpha (B_k)=\left\{\begin{matrix}0.2,0<W(B_k)\leqslant4
+  \\ 0.4,4<W(B_k)\leqslant6
+  \end{matrix}\right.
+  \end{gather}
+  其中$\alpha (B_k)$为任务$B_k$中的空载运输费用。即将成本目标函数修改为：
+  \begin{gather}
+  \Gamma '(P_n)=\sum _{k=1}^b[\sum _{j=1}^{size(B_k))}(\alpha (B_k)+2\sum _{i=1}^jw(p_i))\times d(p_i,p_{i+1})_{pi\in B_k}]
+  \end{gather}
+  其对应的优化目标函数可表示为：
+  \begin{gather}
+  F(P_n)'= \Gamma '(P_n)+\theta(P_n)M_1+\sum_{B_k\in P_n}max( W (B_k)-6 ,0) M_2+max(\underset{B_k\in P_n}{max}T (B_k)-4,0)M_3
+  \end{gather}
+  以  $F(P_n)'$为目标函数进行动态赌轮遗传算法即可得到最终的最优调度方案。
+  \subsection{结果分析}
   
-  \section{灵敏度分析}
+  
+%  \section{灵敏度分析}
   
   
   

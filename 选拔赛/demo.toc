@@ -20,16 +20,19 @@
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{8}{subsection.5.3}% 
 \contentsline {subsubsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}插板式编码遗传算法}{8}{subsubsection.5.3.1}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{9}{subsection.5.4}% 
-\contentsline {section}{\numberline {六、}灵敏度分析}{12}{section.6}% 
-\contentsline {section}{\numberline {七、}模型的评价}{12}{section.7}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{12}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{12}{subsection.7.2}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{12}{subsection.7.3}% 
-\contentsline {section}{\numberline {附录A}模型的代码实现}{14}{appendix.A}% 
-\contentsline {subsection}{\numberline {A.1}GATSP--matlab源代码}{14}{subsection.A.1}% 
-\contentsline {subsection}{\numberline {A.2}MGATSP--matlab源代码}{15}{subsection.A.2}% 
-\contentsline {subsection}{\numberline {A.3}distan--matlab源代码}{17}{subsection.A.3}% 
-\contentsline {section}{\numberline {附录B}数据可视化的实现}{18}{appendix.B}% 
-\contentsline {subsection}{\numberline {B.1}第一问画图--python源代码}{18}{subsection.B.1}% 
-\contentsline {subsection}{\numberline {B.2}第二问画图--python源代码}{19}{subsection.B.2}% 
+\contentsline {section}{\numberline {六、}问题三模型的建立与求解}{12}{section.6}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的求解}{12}{subsection.6.1}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}启发式调度算法}{12}{subsubsection.6.1.1}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}结果分析}{13}{subsection.6.2}% 
+\contentsline {section}{\numberline {七、}模型的评价}{13}{section.7}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{13}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{13}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{13}{subsection.7.3}% 
+\contentsline {section}{\numberline {附录A}模型的代码实现}{15}{appendix.A}% 
+\contentsline {subsection}{\numberline {A.1}GATSP--matlab源代码}{15}{subsection.A.1}% 
+\contentsline {subsection}{\numberline {A.2}MGATSP--matlab源代码}{16}{subsection.A.2}% 
+\contentsline {subsection}{\numberline {A.3}distan--matlab源代码}{18}{subsection.A.3}% 
+\contentsline {section}{\numberline {附录B}数据可视化的实现}{19}{appendix.B}% 
+\contentsline {subsection}{\numberline {B.1}第一问画图--python源代码}{19}{subsection.B.1}% 
+\contentsline {subsection}{\numberline {B.2}第二问画图--python源代码}{20}{subsection.B.2}% 
 \contentsfinish 
