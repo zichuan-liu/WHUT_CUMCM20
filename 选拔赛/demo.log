@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  19 JUN 2020 18:27
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  19 JUN 2020 18:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1236,15 +1236,9 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 765.
  (./demo.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 765.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 765.
+Package rerunfilecheck Info: File `demo.out' has not changed.
+(rerunfilecheck)             Checksum: 68A77CA343F5EA83018B2A3A41600A5D.
 
-
-Package rerunfilecheck Warning: File `demo.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `demo.out':
-(rerunfilecheck)             Before: DDDC6755C810A0C21C28E27E406A939B
-(rerunfilecheck)             After:  68A77CA343F5EA83018B2A3A41600A5D.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1253,7 +1247,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 765.
 Here is how much of TeX's memory you used:
  29350 strings out of 492922
  564039 string characters out of 6136751
- 861553 words of memory out of 5000000
+ 861552 words of memory out of 5000000
  33006 multiletter control sequences out of 15000+600000
  540645 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
