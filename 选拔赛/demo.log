@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  18 JUN 2020 00:42
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  19 JUN 2020 12:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1180,28 +1180,38 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 187.
 
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 187.
+[5] [6] [7] [8] (e:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/02/27 1.8b listings language file
+)
+[9] [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 487.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 487.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 187.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 187.
-Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 05D5EA7936F40050A1D9E14CE410B5DE.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 487.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 487.
 
+
+Package rerunfilecheck Warning: File `demo.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `demo.out':
+(rerunfilecheck)             Before: B8D85EE37B588B3C3A6E9063D3936FD5
+(rerunfilecheck)             After:  F797535AFB8DA3E4386CEEB8B7F51234.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 187.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 487.
  ) 
 Here is how much of TeX's memory you used:
- 28676 strings out of 492922
- 555739 string characters out of 6136751
- 824114 words of memory out of 5000000
- 32346 multiletter control sequences out of 15000+600000
+ 29280 strings out of 492922
+ 562957 string characters out of 6136751
+ 860221 words of memory out of 5000000
+ 32948 multiletter control sequences out of 15000+600000
  540645 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 61i,13n,81p,391b,1263s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,13n,81p,391b,2346s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (6 pages).
+Output written on demo.pdf (12 pages).

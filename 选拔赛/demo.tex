@@ -166,22 +166,322 @@
 
 \section{模型的代码实现}
 
-\subsection{数据可视化--python源代码}
-\begin{lstlisting}[language=python]
-
-_xtick_labels = ["{}年".format(int(i)) for i in x]
-plt.xticks(x, _xtick_labels, fontproperties=my_font)
-# plt.yticks(range(0, 9))
-
-# 绘制网格
-plt.grid(alpha=0.3, linestyle="--")  # alpha为透明度 0-1
-plt.title("三种重点检测职业分析图", fontproperties=my_font)
-plt.xlabel("年份", fontproperties=my_font)
-plt.ylabel("患病人数", fontproperties=my_font)
-# 标注图例
-plt.legend(prop=my_font, loc=0)
-plt.show()
+\subsection{GATSP--matlab源代码}
+\begin{lstlisting}[language=matlab]
+clear;
+w=20;g=100;d=19;%w为种群数，g代数,d维数
+G(1:w,1:d)=0;%初始化空间
+for i=1:w%初始化
+c=randperm(d);
+for t=1:20
+flag=0;
+for t1=1:d-1
+for t2=t1+1:d
+cl=c;
+cl(t1:t2)=cl(t2:-1:t1);
+if distan(cl)<distan(c)
+c=cl;
+flag=1;
+end
+end
+end
+if flag==0
+G(i,1:d)=c;break
+end
+end
+end
+for k=1:g %进入遗传循环
+A=G;%预备交叉阵
+c=randperm(w);%配对序列
+%c=1:w;
+for i=1:2:w %交叉
+F1=ceil(rand*d);%交叉点1
+F2=ceil(rand*d);%交叉点2
+while(F1==F2)
+F2=ceil(rand*d);
+end
+if(F1>F2)%交叉地址调序
+tem=F1;
+F1=F2;
+F2=tem;
+end
+j=0;t=1;%计数标值
+while(j~=d+F1-F2-1)%如果剩余基因没完全插入就继续
+if(isempty(find(A(c(i),F1:F2)==G(c(i+1),t),1))) %目标基因于交换片段中都不同
+j=j+1;
+if j<F1 %前半段基因交换
+A(c(i),j)=G(c(i+1),t);
+A(c(i+1),t)= G(c(i),j);
+else %后半段基因交换
+A(c(i),j+F2-F1+1)=G(c(i+1),t);
+A(c(i+1),t)=G(c(i),j+F2-F1+1);
+end
+end
+t=t+1;
+end
+end
+by=[];
+while isempty(by)
+by=find(rand(1,w)<0.3);%变异地址
+end
+B=G(by,1:d);%预备变异阵
+for j=1:length(by)
+bw=sort(ceil(rand(1,2)*d));%变异基因节点
+B(j,bw(1))=G(j,bw(2));%单点基因交换
+B(j,bw(2))=G(j,bw(1));
+end
+GG=[G;A;B];%GG为选择阵    
+clear A; clear B;%清除数据防止规格保存
+m=size(G,1);%选择阵个体数
+long(1:m)=0;%目标函数初始化
+for i=1:m%计算函数
+long(i)=distan(GG(i,:));
+end
+[slong,ind]=sort(long(1:m));%目标函数排序
+for i=1:w%精英选择
+G(i,:)=GG(ind(i),:);
+end
+clear GG;%清除数据防止规格保存
+end      
 \end{lstlisting}
 
 
+\subsection{MGATSP--matlab源代码}
+\begin{lstlisting}[language=matlab]
+clear;
+for pp=6:13 %6:13
+for ppp=1:100
+n=pp;w=20;g=100;d=19+n-1;%n为车数，w为种群数，g代数,d维数
+G(1:w,1:d)=0;%初始化空间
+for i=1:w%初始化
+c=randperm(d);
+for t=1:20
+flag=0;
+for t1=1:d-1
+for t2=t1+1:d
+cl=c;
+cl(t1:t2)=cl(t2:-1:t1);
+if price(cl)<price(c)
+c=cl;
+flag=1;
+end
+end
+end
+if flag==0
+G(i,1:d)=c;break
+end
+end
+end
+for k=1:g %进入遗传循环
+A=G;%预备交叉阵
+c=randperm(w);%配对序列
+%c=1:w;
+for i=1:2:w %交叉
+F1=ceil(rand*d);%交叉点1
+F2=ceil(rand*d);%交叉点2
+while(F1==F2)
+F2=ceil(rand*d);
+end
+if(F1>F2)%交叉地址调序
+tem=F1;
+F1=F2;
+F2=tem;
+end
+j=0;t=1;%计数标值
+while(j~=d+F1-F2-1)%如果剩余基因没完全插入就继续
+if(isempty(find(A(c(i),F1:F2)==G(c(i+1),t),1))) %目标基因于交换片段中都不同
+j=j+1;
+if j<F1 %前半段基因交换
+A(c(i),j)=G(c(i+1),t);
+A(c(i+1),t)= G(c(i),j);
+else %后半段基因交换
+A(c(i),j+F2-F1+1)=G(c(i+1),t);
+A(c(i+1),t)=G(c(i),j+F2-F1+1);
+end
+end
+t=t+1;
+end
+end
+by=[];
+while isempty(by)
+by=find(rand(1,w)<0.3);%变异地址
+end
+B=G(by,1:d);%预备变异阵
+for j=1:length(by)
+bw=sort(ceil(rand(1,2)*d));%变异基因节点
+B(j,bw(1))=G(j,bw(2));%单点基因交换
+B(j,bw(2))=G(j,bw(1));
+end
+GG=[G;A;B];%GG为选择阵    
+clear A; clear B;%清除数据防止规格保存
+m=size(G,1);%选择阵个体数
+long(1:m)=0;%目标函数初始化
+for i=1:m%计算函数
+long(i)=price(GG(i,:));
+end
+[slong,ind]=sort(long(1:m));%目标函数排序
+for i=1:w%精英选择
+G(i,:)=GG(ind(i),:);
+end
+clear GG;%清除数据防止规格保存
+end 
+result(pp-5,ppp)=long(1);
+XXX(pp-5,ppp,1:d)=G(1,1:d);
+end
+end
+\end{lstlisting}
+\subsection{distan--matlab源代码}
+\begin{lstlisting}[language=matlab]
+function f=distan(X)
+n=size(X,2);
+a=[3	2
+1	5
+5	4
+4	7
+0	8
+3	11
+7	9
+9	6
+10	2
+14	0
+2	16
+6	18
+11	17
+15	12
+19	9
+22	5
+21	0
+27	9
+15	19];
+f=sum(abs(a(X(1),:)-10));%距离值初始化
+for i=1:n-1%计算距离和
+f=f+sum(abs(a(X(i+1),:)-a(X(i),:)));
+end
+f=f+sum(abs(a(X(n),:)-10));%头尾固定
+\end{lstlisting}
+
+\subsection{第一问画图--python源代码}
+\begin{lstlisting}[language=python]
+from pylab import *
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+
+dict = {"1":[3,2], "2":[1,5], "3":[5,4],"4":[4,7], "5":[0,8],"6":[3,11],"7":[7,9],
+"8":[9,6],"9":[10,2], "10":[14,0],"11":[2,16], "12":[6,18],"13":[11,17],"14":[15,12],
+"15":[19,9],"16":[22,5], "17":[21,0],"18":[27,9], "19":[15,19],"20":[10,10],}
+x_axis_data = []
+y_axis_data = []
+road = [20,8,3,4,5,2,1,9,10,17,16,18,15,14,19,13,12,11,6,7,20]
+x_tem = []
+y_tem = []
+for i in range(len(road)):
+x = str(road[i])
+print(dict[x])
+x_axis_data.append(dict[x][0])
+y_axis_data.append(dict[x][1])
+
+try:
+x_tem.append(dict[str(road[i+1])][0])
+y_tem.append(dict[str(road[i])][1])
+except:
+pass
+
+x_ = []
+y_ = []
+
+for i in range(len(x_tem)):
+x_.append(x_axis_data[i])
+y_.append(y_axis_data[i])
+x_.append(x_tem[i])
+y_.append(y_tem[i])
+
+x_.append(x_axis_data[i+1])
+y_.append(y_axis_data[i+1])
+
+plt.plot(x_, y_, 'ro-', color='#4169E1', alpha=0.8, label='路径')
+
+for x, y in zip(x_axis_data, y_axis_data):
+plt.text(x, y+0.3, '({},{})'.format(x,y), ha='center', va='bottom', fontsize=10.5)
+
+# plt.legend(loc="road")
+plt.xlabel('X轴/km')
+plt.ylabel('Y轴/km')
+
+# plt.show()
+plt.savefig('demo.jpg')  # 保存该图片
+\end{lstlisting}
+\subsection{第二问画图--python源代码}
+\begin{lstlisting}[language=python]
+from pylab import *
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+# import matplotlib.pyplot as plt
+import numpy
+import matplotlib.colors as colors
+import matplotlib.cm as cmx
+
+dicts = {"1":[3,2], "2":[1,5], "3":[5,4],"4":[4,7], "5":[0,8],"6":[3,11],"7":[7,9],
+"8":[9,6],"9":[10,2], "10":[14,0],"11":[2,16], "12":[6,18],"13":[11,17],"14":[15,12],
+"15":[19,9],"16":[22,5], "17":[21,0],"18":[27,9], "19":[15,19],"0":[10,10],}
+x_axis_data = []
+y_axis_data = []
+
+cars = [14,0,18,15,0,10,9,0,17,16,0,12,11,0,4,2,3,8,0,5,1,0,19,0,6,7,0,13]
+
+c_ = []
+x = [0]
+for j in range(len(cars)):
+x.append(cars[j])
+if cars[j]==0:
+c_.append(x)
+x = [0]
+
+print(c_)
+cmap = plt.cm.jet
+cNorm = colors.Normalize(vmin=0, vmax=len(c_))
+scalarMap = cmx.ScalarMappable(norm=cNorm, cmap=cmap)
+for fff in range(len(c_)):
+###########
+x_axis_data = []
+y_axis_data = []
+road = c_[fff]
+x_tem = []
+y_tem = []
+for i in range(len(road)):
+x = str(road[i])
+x_axis_data.append(dicts[x][0])
+y_axis_data.append(dicts[x][1])
+
+try:
+x_tem.append(dicts[str(road[i + 1])][0])
+y_tem.append(dicts[str(road[i])][1])
+except:
+pass
+
+x_ = []
+y_ = []
+
+for i in range(len(x_tem)):
+x_.append(x_axis_data[i])
+y_.append(y_axis_data[i])
+x_.append(x_tem[i])
+y_.append(y_tem[i])
+
+
+colorVal = scalarMap.to_rgba(fff)
+x_.append(x_axis_data[i + 1])
+y_.append(y_axis_data[i + 1])
+plt.plot(x_, y_, 'o-', alpha=0.8)
+for i in range(0,len(x_)-1):
+plt.arrow(x_[i], y_[i], x_[i+1] - x_[i], y_[i+1] - y_[i],
+length_includes_head=True, head_width=0.3, lw=2,
+color=colorVal)
+
+for x, y in zip(x_axis_data, y_axis_data):
+plt.text(x, y + 0.3, '({},{})'.format(x, y),)
+
+plt.xlabel('X轴/km')
+plt.ylabel('Y轴/km')
+
+# plt.show()
+plt.savefig('demo.jpg')  # 保存该图片
+\end{lstlisting}
 \end{document}

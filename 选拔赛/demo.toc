@@ -17,5 +17,9 @@
 \contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{3}{subsection.7.2}% 
 \contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{3}{subsection.7.3}% 
 \contentsline {section}{\numberline {附录A}模型的代码实现}{5}{appendix.A}% 
-\contentsline {subsection}{\numberline {A.1}数据可视化--python源代码}{5}{subsection.A.1}% 
+\contentsline {subsection}{\numberline {A.1}GATSP--matlab源代码}{5}{subsection.A.1}% 
+\contentsline {subsection}{\numberline {A.2}MGATSP--matlab源代码}{6}{subsection.A.2}% 
+\contentsline {subsection}{\numberline {A.3}distan--matlab源代码}{8}{subsection.A.3}% 
+\contentsline {subsection}{\numberline {A.4}第一问画图--python源代码}{9}{subsection.A.4}% 
+\contentsline {subsection}{\numberline {A.5}第二问画图--python源代码}{10}{subsection.A.5}% 
 \contentsfinish 
