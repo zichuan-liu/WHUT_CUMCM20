@@ -16,20 +16,20 @@
 \contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{5}{subsection.4.4}% 
 \contentsline {section}{\numberline {五、}问题二模型的建立与求解}{6}{section.5}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{6}{subsection.5.1}% 
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{7}{subsection.5.2}% 
-\contentsline {subsubsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}带约束的多旅行商模型}{7}{subsubsection.5.2.1}% 
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{7}{subsection.5.3}% 
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{7}{subsection.5.4}% 
-\contentsline {section}{\numberline {六、}灵敏度分析}{8}{section.6}% 
-\contentsline {section}{\numberline {七、}模型的评价}{8}{section.7}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{8}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{8}{subsection.7.2}% 
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{9}{subsection.7.3}% 
-\contentsline {section}{\numberline {附录A}模型的代码实现}{11}{appendix.A}% 
-\contentsline {subsection}{\numberline {A.1}GATSP--matlab源代码}{11}{subsection.A.1}% 
-\contentsline {subsection}{\numberline {A.2}MGATSP--matlab源代码}{12}{subsection.A.2}% 
-\contentsline {subsection}{\numberline {A.3}distan--matlab源代码}{14}{subsection.A.3}% 
-\contentsline {section}{\numberline {附录B}数据可视化的实现}{15}{appendix.B}% 
-\contentsline {subsection}{\numberline {B.1}第一问画图--python源代码}{15}{subsection.B.1}% 
-\contentsline {subsection}{\numberline {B.2}第二问画图--python源代码}{16}{subsection.B.2}% 
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}带约束的多旅行商模型}{7}{subsection.5.2}% 
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{8}{subsection.5.3}% 
+\contentsline {subsubsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}插板式编码遗传算法}{8}{subsubsection.5.3.1}% 
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{9}{subsection.5.4}% 
+\contentsline {section}{\numberline {六、}灵敏度分析}{12}{section.6}% 
+\contentsline {section}{\numberline {七、}模型的评价}{12}{section.7}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{12}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{12}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{12}{subsection.7.3}% 
+\contentsline {section}{\numberline {附录A}模型的代码实现}{14}{appendix.A}% 
+\contentsline {subsection}{\numberline {A.1}GATSP--matlab源代码}{14}{subsection.A.1}% 
+\contentsline {subsection}{\numberline {A.2}MGATSP--matlab源代码}{15}{subsection.A.2}% 
+\contentsline {subsection}{\numberline {A.3}distan--matlab源代码}{17}{subsection.A.3}% 
+\contentsline {section}{\numberline {附录B}数据可视化的实现}{18}{appendix.B}% 
+\contentsline {subsection}{\numberline {B.1}第一问画图--python源代码}{18}{subsection.B.1}% 
+\contentsline {subsection}{\numberline {B.2}第二问画图--python源代码}{19}{subsection.B.2}% 
 \contentsfinish 

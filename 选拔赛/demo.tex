@@ -3,6 +3,7 @@
 \usepackage{float}
 \usepackage{subfigure} 
 \usepackage{url}
+\usepackage{setspace}
 \usepackage{booktabs}
 \bibliographystyle{unsrt}
 \team{23}
@@ -30,6 +31,7 @@
 	\setcounter{page}{0}                                               
 	\newpage	%换页符
 	
+
 	
 	\section{问题重述}	
 	\subsection{问题背景}
@@ -73,7 +75,11 @@
 		$d$  &  曼哈顿距离 \\ 
 		$f$  &  最短路径\\
 		$\left \{ A_n \right \}$  &  原始染色解集\\
-		$\left \{ H_n \right \}$  & 交叉染色解集\\
+				$W(B_k)$  & 小车k的总重量和\\
+						$T(B_k)$  & 货运总时间\\
+		$\Gamma (P_n)$  & 运输成本目标函数\\
+		$B_k$  & k量小型运输车路径\\
+		$\theta$&惩罚因子\\
 		\bottomrule[1.5pt]
 	\end{tabular}
 \end{table}
@@ -141,7 +147,9 @@
         再选取交叉个体时采用混合分组的方法，将父代均匀混合后选取所有编号为奇数的个体，与其相邻对应编号为偶数的个体，通过两种交叉方式产生处两种类型的子代。
     	其过程如下表所示：
     	  	\begin{table}[H]
-    		\centering		\caption{各个小型运输车对应运输路径方案}\label{zhuansasgggggzai}
+    		\centering	
+    		  		\setstretch{1.5}  %设置表的行间距
+    		  			\caption{各个小型运输车对应运输路径方案}\label{zhuansasgggggzai}
     		\begin{tabular}{cc}
     			\toprule[2pt]
     			\multicolumn{1}{m{3cm}}{\centering 交叉片段编号}
@@ -203,34 +211,130 @@
          	\caption{大型运输车运输方案路径}\label{llsssl}
          \end{figure}
      
-     则大型送完所有食品并回到仓库，最少需要2.9时间，总费用为3664.6元。
+     则大型送完所有食品并回到仓库，最少需要2.9时间，总费用为7695.2元。
      
-	  \section{问题二模型的建立与求解}
-	  \subsection{问题描述与分析}
-	  问题二要求设计小型运输车的调度方案，从而使得总体调度效率最高。我们将时间限制设置为约束，着重优化方案的经济效率。在问题一的基础上重新建立模型，鉴于第二问的决策变量是多段序列的和，我们设计了插板编码对决策变量进行编码，并基于问题一中的动态赌轮遗传算法以运输总成本为目标进行优化。
-	  \subsection{模型的建立}
-	  \subsubsection{带约束的多旅行商模型}
-	  当雇佣$b$辆小型运输车时，总决策序列可表示为
-	  \begin{gather}
-	  P_n=\left \{[p_{1},p_{2}]_1,[\cdots,p_{i}]_j,[\cdots]_{b-1},[p_{19}]_b\right \}
-	  \end{gather}
-	  即将类似于模型一中的坐标序列分割为多段，每一段分别由一辆小型运输车单独完成，定义
-	  \begin{gather}
-	  B_j=
-	  \end{gather}
-      \subsection{模型的求解}
+ \section{问题二模型的建立与求解}
+ 
+\subsection{问题描述与分析}
+问题二要求设计小型运输车的调度方案，从而使得总体调度效率最高。我们将时间限制设置为约束，着重优化方案的经济效率。在问题一的基础上重新建立模型，鉴于第二问的决策变量是多段序列的和，我们设计了插板编码对决策变量进行编码，并基于问题一中的动态赌轮遗传算法以运输总成本为目标进行优化。
 
+    其思维流程图如图~\ref{lssssct}~所示：
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{figures/abab.png}
+	\caption{问题二思维流程图}\label{lssssct}
+\end{figure}
+
+\subsection{带约束的多旅行商模型}
+当雇佣$b$辆小型运输车时，总决策序列可表示为
+\begin{gather*}
+P_n=\left \{[p_{1},p_{2}]_1,[\cdots,p_{i}]_k,[\cdots]_{b-1},[p_{19}]_b\right \},
+\end{gather*}
+
+即将类似于模型一中的坐标序列分割为多段，每一段分别由一辆小型运输车单独完成，定义小型运输车$k$的运输路径为：
+\begin{gather*}
+B_k=[p_{i},p_{i+1},\cdots,p_{j-1},p_{j}]_k,
+\end{gather*}
+即总路径决策变量可表示为：
+\begin{gather*}
+P_n=\left \{B_1,B_2,\cdots,B_b\right \}.
+\end{gather*}
+
+小车$k$的载重总和可表示为：
+\begin{gather}
+W (B_k)=\sum_{p_i\in B_k}w(p_{i}),
+\end{gather}
+
+其中$w(p_{i})$为仓库$p_{i}$的订货量。其货运总时间可表示为：
+\begin{gather}
+T (B_k)=L(B_k)/50+size(B_k)/12,
+\end{gather}
+
+将运输成本作为目标函数可表示为：
+\begin{gather*}
+\Gamma (P_n)=\sum _{k=1}^b[\sum _{j=1}^{size(B_k))}(0.4+2\sum _{i=1}^jw(p_i))\times d(p_i,p_{i+1})_{pi\in B_k}].
+\end{gather*}
+
+小型运输车的负载量约束可表示为：
+\begin{gather*}
+\underset{B_k\in P_n}{max}  W (B_k) \leqslant 6,
+\end{gather*}
+
+其运输时间约束可表示为时间约束可表示为：
+\begin{gather*}
+\underset{B_k\in P_n}{max}  T (B_k) \leqslant 4,
+\end{gather*}
+即整体模型可以表示为
+\begin{gather}
+\Gamma (P_n)=\sum _{k=1}^b[\sum _{j=1}^{size(B_k))}(0.4+2\sum _{i=1}^jw(p_i))\times d(p_i,p_{i+1})_{pi\in B_k}]\\
+\left\{\begin{matrix}\underset{B_k\in P_n}{max}  W (B_k) \leqslant 6
+\\ \underset{B_k\in P_n}{max}  T (B_k) \leqslant 4
+\end{matrix}\right.
+\end{gather}
+\subsection{模型的求解}
+\subsubsection{插板式编码遗传算法}
+由于问题中的决策变量$P_n$表示多个不同小型运输车的运输路径，我们将染色体变量中插入无意义基因作为隔板，例如在派遣两辆运输车时，决策变量可表示为
+\begin{gather*}
+P_n=\left \{[p_{1},p_{2},\cdots,p_{i}]_1,[p_{i+1}\cdots,p_{19}]_{2}\right \},
+\end{gather*}
+
+即在染色体中插入一个无意义基因作为挡板即可表示出染色体：
+\begin{gather*}
+A_n=[a_{n1},a_{n2},\cdots,a_{ni},\varphi ,a_{ni+1},\cdots,a_{n19}].
+\end{gather*}
+
+其中$\varphi$为无意义挡板基因。当雇佣小型运输车数量为$N$时，在染色体中插入$N-1$个挡板基因即可将染色体分成$N$段，即能分别代表每辆小车的行驶的路径。之后将无意义挡板基因作为普通基因进行交叉，变异即可优化求解每一辆小车的行驶路径。引入冗余惩罚因子$\theta$ :
+\begin{gather}
+\theta(P_n)=\left\{\begin{matrix}1,(\exists (Loc(\varphi_i )+1)=Loc(\varphi_{i+1} ))\vee  (\exists (Loc(\varphi_i )=0)\vee (\exists (Loc(\varphi_i )=size(A_n))
+\\ 0,otherwise
+\end{matrix}\right.
+\end{gather}
+
+其中$Loc(\varphi_i )$表示无意义挡板基因$\varphi_i$在染色体$A_n$中的位置，$size(A_n)$表示染色体$A_n$的维数。即当决策变量$P_n$中的挡板基因存在于其开头或末尾时，或者当两个挡板基因相邻时，表明有被雇佣车辆并没有参加运输工作，此时将惩罚因子$\theta(P_n)$置一，否决置零。
+
+求解第二问时，我们沿用第一问的动态赌轮遗传算法进行优化计算。即将目标函数替换为：
+\begin{gather}
+F(P_n)= \Gamma (P_n)+\theta(P_n)M_1+max(\underset{B_k\in P_n}{max} W (B_k)-6 ,0) M_2+max(\underset{B_k\in P_n}{max}T (B_k)-4,0)M_3
+\end{gather}
+其中$M_1$、$M_2$和$M_3$为较大的正系数，即可达到罚函数约束功能。
  
   
         \subsection{实验结果及分析}
 %  遗传算法的算法收敛图如图 ????所示：
 %  
-%  
+%  909.800000000000	852.600000000000	850.000000000000	815.300000000000	800.700000000000	842.600000000000	810.000000000000	856.200000000000
+实验从六量车到十三量车每个模型计算了100次迭代之后，其各自费用为：
+
+  	\begin{table}[H]
+	  		\setstretch{1.5}  %设置表的行间距
+	\centering		
+	\caption{每组小型运输车对应运输路径总费用}\label{zhuanssssasgzai}
+	\begin{tabular}{cc}
+		\toprule[2pt]
+		\multicolumn{1}{m{5cm}}{\centering 运输车数量}
+		& \multicolumn{1}{m{5cm}}{\centering 对应运输路径总费用}
+		\\
+		\midrule[1pt]
+		6量运输车 &   909.80\\ 
+		7量运输车 & 	852.60\\ 
+		8量运输车 &  	850.00 \\ 
+		9量运输车 &  815.30 \\ 
+		10量运输车 &   800.70\\ 
+	11量运输车 & 	842.60 \\ 
+		12量运输车 &810.00\\ 
+		13量运输车 & 	856.20\\ 
+		\bottomrule[2pt]	
+	\end{tabular}
+\end{table}
   
-  由算法收敛图可知算法收敛速度较快，早熟问题解决的较好，全局搜素能力较强， 求得所需要9量小型运输车，并给出最优个体基因如表\ref{zhuansasgzai}所示：%为$routes = [[0, 14, 0], [0, 18, 15, 0], [0, 10, 9, 0], [0, 17, 16, 0], [0, 12, 11, 0], [0, 4, 2, 3, 8, 0], [0, 5, 1, 0], [0, 19, 0], [0, 6, 7, 0]]$。
+  由表\ref{zhuanssssasgzai}可知求得所需要10量小型运输车时，调运方案所需要的运输费用最小，并给出最优个体基因如表\ref{zhuansassgzai}所示：%为$routes = [[0, 14, 0], [0, 18, 15, 0], [0, 10, 9, 0], [0, 17, 16, 0], [0, 12, 11, 0], [0, 4, 2, 3, 8, 0], [0, 5, 1, 0], [0, 19, 0], [0, 6, 7, 0], [0, 13, 0]]$。
   
   	\begin{table}[H]
-  	\centering		\caption{各个小型运输车对应运输路径方案}\label{zhuansasgzai}
+
+  	\centering		
+  	\caption{各个小型运输车对应运输路径方案}\label{zhuansassgzai}
+  		\setstretch{1.5}  %设置表的行间距
   	\begin{tabular}{cc}
   		\toprule[2pt]
   		\multicolumn{1}{m{5cm}}{\centering 运输车编号}
@@ -246,19 +350,33 @@
   		7号运输车 & [20, 5, 1, 20] \\ 
   		8号运输车 &  [20, 19, 20] \\ 
   		9号运输车 &   [20, 6, 7, 20] \\ 
+  		10号运输车 & [20, 13, 20] \\
   		\bottomrule[2pt]	
   	\end{tabular}
   \end{table}
   
-  其对应各量小型运输车运输方案为routes的路径如图 \ref{ssssssss}所示，其中箭头表述运输的方向:
+  其对应各量小型运输车运输方案为routes的路径如图 \ref{ssssssss}所示，每一辆运输车的对应运输均用两点间哈曼吨距离表示，其中箭头表述运输的方向，得到10量小型运输车的运输方案路径图如下:
   
   \begin{figure}[H]
   	\centering
   	\includegraphics[width=\textwidth]{figures/22.jpg}
   	\caption{小型运输车运输方案图}\label{ssssssss}
   \end{figure}
-  
-  它送完所有食品并回到仓库，最少需要？？？？时间(需要给出运输方案，及其对应的总距离，总运费) ？
+
+其各个小车的运输细节图下图所示：
+\begin{figure}[H]
+	\centering
+	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/1.png}}
+	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/2.png}}
+\end{figure}	
+\begin{figure}[H]	
+	\centering
+	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/3.png}}
+	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/4.png}}
+	\caption{各个小车的运输细节图}
+	\label{fisg}
+\end{figure}
+
   
   \section{灵敏度分析}
   
