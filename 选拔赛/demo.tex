@@ -28,7 +28,7 @@
 	%目录
 	\thispagestyle{empty}
 	\tableofcontents
-	\setcounter{page}{0}                                               
+%	\setcounter{page}{0}                                               
 	\newpage	%换页符
 	
 
@@ -60,9 +60,12 @@
 	\section{模型假设}
 	
 	\begin{itemize}                                             
-		\item [(1)] 假设汽车速度均匀，不会随载重而发生变化。
-		\item [(2)] 假定街道方向均平行于坐标轴，任意两站点间都可以通过一次拐弯到达。
-	\end{itemize}
+	\item [(1)] 假设汽车按平均速度行驶，速度不会随载重或转弯而发生变化，不考虑起步加速与卸货减速过程，忽略行驶过程空气阻力、路面摩擦阻力的影响。
+	\item [(2)] 相邻两个路口节点之间的道路认为是直线且无其他小道，并且各处的路况是相同的，不考虑交通意外（如汽车抛锚、堵塞、路口停顿等）、气候的影响，。
+	\item [(3)] 假设连续驾驶，不会引起驾驶疲劳等影响。
+	\item [(4)] 假定街道方向均平行于平面直角坐标轴，驾驶路面为理想平面，任意两站点间都可以通过一次拐弯到达。
+\end{itemize}
+
 		
 	\section{符号说明}
 	\begin{table}[H]
@@ -304,10 +307,9 @@ F(P_n)= \Gamma (P_n)+\theta(P_n)M_1+max(\underset{B_k\in P_n}{max} W (B_k)-6 ,0)
 %  遗传算法的算法收敛图如图 ????所示：
 %  
 %  909.800000000000	852.600000000000	850.000000000000	815.300000000000	800.700000000000	842.600000000000	810.000000000000	856.200000000000
-实验从六量车到十三量车每个模型计算了100次迭代之后，其各自费用为：
-
+  设定雇佣车辆数为n，在$n=6,7,8\cdots,13$的情况下运行算法各100次，取其中运输费用最低的调配方案，结果如下表\ref{zhuanssssasgzai}所示：
   	\begin{table}[H]
-	  		\setstretch{1.5}  %设置表的行间距
+	  		\setstretch{1.4}  %设置表的行间距
 	\centering		
 	\caption{每组小型运输车对应运输路径总费用}\label{zhuanssssasgzai}
 	\begin{tabular}{cc}
@@ -379,36 +381,104 @@ F(P_n)= \Gamma (P_n)+\theta(P_n)M_1+max(\underset{B_k\in P_n}{max} W (B_k)-6 ,0)
 
     \section{问题三模型的建立与求解}
   针对第三问，我们在第二问模型的基础上，引入启发式算法以决策每个任务需要派遣何种类型的小车。首先沿用第二问模型的插板式编码方法，在适应度计算时分析每个小车的负载情况，并由此作为依据派遣小车。再通过交叉，变异及动态赌轮选择操作，优化出最合理的小车调度方案。  
-    \subsection{模型的求解}
-     \subsubsection{启发式调度算法}
-    在计算总运费时，针对运输车$k$的任务$B_k$,使得
-    \begin{gather}
-    \alpha (B_k)=\left\{\begin{matrix}0.2,0<W(B_k)\leqslant4
-    \\ 0.4,4<W(B_k)\leqslant6
-    \end{matrix}\right.
-    \end{gather}
-    其中$\alpha (B_k)$为任务$B_k$中的空载运输费用。即将成本目标函数修改为：
-    \begin{gather}
-    \Gamma '(P_n)=\sum _{k=1}^b[\sum _{j=1}^{size(B_k))}(\alpha (B_k)+2\sum _{i=1}^jw(p_i))\times d(p_i,p_{i+1})_{pi\in B_k}]
-    \end{gather}
-    其对应的优化目标函数可表示为：
-      \begin{gather}
-    F(P_n)'= \Gamma '(P_n)+\theta(P_n)M_1+\sum_{B_k\in P_n}max( W (B_k)-6 ,0) M_2+max(\underset{B_k\in P_n}{max}T (B_k)-4,0)M_3
-    \end{gather}
-    以  $F(P_n)'$为目标函数进行动态赌轮遗传算法即可得到最终的最优调度方案。
+  \subsection{模型的求解}
+  \subsubsection{启发式调度算法}
+  在计算总运费时，针对运输车$k$的任务$B_k$,使得：
+  \begin{gather}
+  \alpha (B_k)=\left\{\begin{matrix}0.2,0<W(B_k)\leqslant4
+  \\ 0.4,4<W(B_k)\leqslant6
+  \end{matrix}\right.
+  \end{gather}
+  其中$\alpha (B_k)$为任务$B_k$中的空载运输费用。即将成本目标函数修改为：
+  \begin{gather}
+  \Gamma '(P_n)=\sum _{k=1}^b[\sum _{j=1}^{size(B_k))}(\alpha (B_k)+2\sum _{i=1}^jw(p_i))\times d(p_i,p_{i+1})_{pi\in B_k}]
+  \end{gather}
+  其对应的优化目标函数可表示为：
+  \begin{gather}
+  F(P_n)'= \Gamma '(P_n)+\theta(P_n)M_1+\sum_{B_k\in P_n}max( W (B_k)-6 ,0) M_2+max(\underset{B_k\in P_n}{max}T (B_k)-4,0)M_3
+  \end{gather}
+  以  $F(P_n)'$为目标函数进行动态赌轮遗传算法即可得到最终的最优调度方案。
+  \subsection{结果分析}
+  设定雇佣车辆数为n，在$n=6,7,8\cdots,13$的情况下运行算法各100次，取其中运输费用最低的调配方案，结果如下表\ref{zhussanssssasgzai}所示：
+  
+  %933.200000000000	826.200000000000	794.600000000000	806.500000000000	783.800000000000	800.700000000000	818.200000000000	840.200000000000
+  	\begin{table}[H]
+	\setstretch{1.5}  %设置表的行间距
+	\centering		
+	\caption{不同小型运输车对应运输路径总费用}\label{zhussanssssasgzai}
+	\begin{tabular}{cc}
+		\toprule[2pt]
+		\multicolumn{1}{m{5cm}}{\centering 运输车数量}
+		& \multicolumn{1}{m{5cm}}{\centering 对应运输路径总费用}
+		\\
+		\midrule[1pt]
+		6量运输车 &   933.20\\ 
+		7量运输车 & 	826.20\\ 
+		8量运输车 &  806.50 \\ 
+		9量运输车 &  783.80\\ 
+		10量运输车 &  	800.70\\ 
+		11量运输车 & 818.20 \\ 
+		12量运输车 &810.00\\ 
+		13量运输车 & 840.20\\ 
+		\bottomrule[2pt]	
+	\end{tabular}
+\end{table}
+  
+    由表\ref{zhuanssssasgzai}可知求得所需要10辆小型运输车时，调运方案所需要的运输费用最小，其载重量为4吨、6吨两种运输车分别为9辆和1辆，并给出最优个体基因如表\ref{zhuansssssassgzai}所示：
+    %[[0, 12, 11, 0], [0, 15, 16, 0], [0, 5, 2, 0], [0, 14, 19, 13, 0], [0, 4, 6, 0], [0, 18, 0], [0, 17, 10, 0], [0, 3, 8, 0], [0, 7, 0], [0, 9, 1, 0]]
+    
+    %3.3，3.6，2.85，4，2.5，1.4，3.6，4.8，1.2，3.9
+    
 
-       \subsection{结果分析}
-
-  \section{灵敏度分析}
-  
-  
-  
+    \begin{table}[H]
+    	
+    	\centering		
+    	\caption{两种小型运输车对应运输路径方案}\label{zhuansssssassgzai}
+    	\setstretch{1.5}  %设置表的行间距
+    	\begin{tabular}{ccc}
+    		\toprule[2pt]
+    		\multicolumn{1}{m{5cm}}{\centering 运输车编号}
+    		& \multicolumn{1}{m{5cm}}{\centering 对应运输路线 }
+    		&\multicolumn{1}{m{5cm}}{\centering 最大载货量}
+    		\\
+    		\midrule[1pt]
+    		4吨两种运输车 & [0, 12, 11, 0]&3.3 \\ 
+    		4吨两种运输车 &   [0, 15, 16, 0]& 3.6\\ 
+    		4吨两种运输车 &  [0, 5, 2, 0]& 2.85\\ 
+    		4吨两种运输车 &  [0, 14, 19, 13, 0]& 4\\ 
+    		4吨两种运输车 &  [0, 4, 6, 0]&2.5\\ 
+    		4吨两种运输车 &  [0, 18, 0] &1.4\\ 
+    		4吨两种运输车 & [0, 17, 10, 0] &3.6\\ 
+    		6吨两种运输车 &  [0, 3, 8, 0]&4.8\\ 
+    		  4吨两种运输车 & [0, 7, 0]&1.2\\ 
+    		4吨两种运输车 &   [0, 9, 1, 0]& 3.9\\ 
+    		\bottomrule[2pt]	
+    	\end{tabular}
+    \end{table}
+    
+    其对应各量小型运输车运输方案为routes的路径如图 \ref{ssssssssss}所示，每一辆运输车的对应运输均用两点间哈曼吨距离表示，其中箭头表述运输的方向，得到九辆四吨和一辆六吨小型运输车的运输方案路径图如下:
+    
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=\textwidth]{figures/ss.png}
+    	\caption{小型运输车运输方案图}\label{ssssssssss}
+    \end{figure}
+    
+    其各个小车的运输细节图下图所示：
+    	
+    \begin{figure}[H]	
+    	\centering
+    	\subfigure[4吨运输车]{\includegraphics[height=8cm,width=7.5cm]{figures/444.png}}
+    	\subfigure[6吨运输车]{\includegraphics[height=8cm,width=7.5cm]{figures/666.png}}
+    	\caption{各种小车的运输细节图}
+    	\label{fissssg}
+    \end{figure}
   \section{模型的评价}
   \subsection{模型的优点}
   \begin{itemize}                                             
-  	\item [(1)] 使用遗传算法，具有很强的全局搜索能力和鲁棒性，运算时间远小于全遍历算法。
+  	\item [(1)]使用插板式的编码方式求解多旅行商模型，设计模式较为新颖，最终能快速优化出最合理的小车调度方案，使用船支数量少。
   	
-  	\item [(2)] 针对支持向量回归参数选取，利用灰色关联度筛选合适指标，相较于主观选取指标具有客观性、严谨性。	
+  	\item [(2)] 利用遗传算法，具有很强的全局搜索能力和鲁棒性，运算时间远小于全遍历算法。	
   \end{itemize}
   \subsection{模型的缺点}
   
