@@ -20,5 +20,6 @@
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{7}{subsection.8.1}% 
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{7}{subsection.8.2}% 
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{7}{subsection.8.3}% 
-\contentsline {section}{\numberline {附录A}数据可视化的实现}{9}{appendix.A}% 
+\contentsline {section}{\numberline {附录A}问题一、二代码及其可视化}{9}{appendix.A}% 
+\contentsline {section}{\numberline {附录B}问题三代码及其可视化}{13}{appendix.B}% 
 \contentsfinish 
