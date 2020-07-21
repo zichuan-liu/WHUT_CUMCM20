@@ -13,8 +13,10 @@
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{5}{subsection.5.2}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{5}{subsection.5.3}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{5}{subsection.5.4}% 
-\contentsline {section}{\numberline {六、}问题三模型的建立与求解}{7}{section.6}% 
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}结果分析}{7}{subsection.6.1}% 
+\contentsline {section}{\numberline {六、}问题三模型的建立与求解}{6}{section.6}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题三描述与分析}{6}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题一模型的改进}{7}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}结果分析}{7}{subsection.6.3}% 
 \contentsline {section}{\numberline {七、}灵敏度分析}{7}{section.7}% 
 \contentsline {section}{\numberline {八、}模型的评价}{7}{section.8}% 
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{7}{subsection.8.1}% 
