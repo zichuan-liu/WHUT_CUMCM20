@@ -3,7 +3,7 @@
 \contentsline {subsection}{\numberline {1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题概述}{3}{subsection.1.2}% 
 \contentsline {section}{\numberline {二、}模型假设}{3}{section.2}% 
 \contentsline {section}{\numberline {三、}符号说明}{4}{section.3}% 
-\contentsline {section}{\numberline {四、}问题一模型的建立与求解}{4}{section.4}% 
+\contentsline {section}{\numberline {四、}问题一型的建立与求解}{4}{section.4}% 
 \contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{4}{subsection.4.1}% 
 \contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{5}{subsection.4.2}% 
 \contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}经典旅行商模型}{5}{subsubsection.4.2.1}% 
