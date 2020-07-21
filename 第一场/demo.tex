@@ -130,7 +130,7 @@
 		\begin{gather}
 		cost_{k}(v_a(i_1),v_b(i_2))=\left | v_a(i_1)-v_b(i_2) \right |,
 		\end{gather}
-		其中$a,b=0,1,2$，分别表示中心与一、二级供水站。$k=1,2$分别表示I型与II型管道，既有
+		其中$a,b=0,1,2$，分别表示中心与一、二级供水站。$k=1,2$分别表示I型与II型管道，即有
 			\begin{gather}
 			k=\left\{\begin{matrix}1,a+b\leqslant 2
 			\\ 2,a+b>2
@@ -169,7 +169,7 @@
 			
 			此问题的约束条件为问题一中的二级供水站生成树优化不能先于一级供水站的最小连通树生成，即对应总模型的数学描述为：
 			\begin{gather}
-			min	\sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
+			min \left\{ \sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
 			\end{gather}
 			\begin{gather*}
 			s.t.\left\{\begin{matrix}
@@ -203,28 +203,35 @@
        \end{figure}
      图中的$168$个小节点即为二级供水站，解得II型管道铺设里程为$403.40km$、I型管道与II型管道的最小铺设总和为$524.34km$。二阶Prim算法的基本原理基于经典图论算法Prim算法，其求解值可被证明为该模型最优解。(????????????????????引用文献)
 	\section{问题二模型的建立与求解}
-		\subsection{问题描述与分析}
+		\subsection{问题描述与分析}	
 			问题二要求升级两个II级供水站为I级供水站，使得II级管道里程数最少。
 			
+			\subsection{模型的建立}
 			其中，第一层更新后的决策变量仍是最优节点序列，用最优序列矩阵表示为：
 			\begin{gather}
-			A_1'=
+			E(T_1')=
 			\begin{bmatrix}
-				v_{11} &v_{12} \\ 
-				v_{21} &v_{22} \\ 
-				...&...\\
-				v_{\left | E _{1}\right |,1}&v_{\left | E _{1}\right |,2}\\
-				v_{\left | E' _{1}\right |,1}&v_{\left | E'_{1}\right |,2}\\
-			\end{bmatrix} ,|E_1'|=|E_1|+1
+			(v_{\left | E(T_{1}')\right |,1},v_{\left | E(T_{1}')\right |,2})
+			\end{bmatrix}
 			\end{gather}
-			其中，$A'$是更新后的最优序列矩阵。$|E_1'|$,$|E_1|$分别是更新后和更新前的边集合的模，即边数。升级两个II级供水站为I级后，增加一条边，故满足$|E_1'|=|E_1|+1$。$v_{i1}, v_{i2}(1\leq i \leq|E_{k}|)$分别代表边$e_i$的起始节点和终止节点。
-			
+			其中，$v_{\left | E(T_{1}')\right |,1},v_{\left | E(T_{1}')\right |,2}$是由II级供水站升级成的I级供水站。此时约束条件仍是生成树$T_1$优先生成并满足
+			\begin{gather}
+			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
+			\end{gather}
 			目标函数为II级管道的总里程
 			\begin{gather}
-			F_{2}(E)=\sum_{i=1}^{|E_{2}|'}cost(v_{i1},v_{i2}),
+			\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})=min\left \{\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})\right\}
 			\end{gather}
-			决策变量是需要升级的两个II供水站，
-			
+			结合上述决策变量、目标函数、约束条件，得到以两个升级后的I级供水站为决策变量，以II级管道的总里程为目标函数，生成树$T_1$优先生成为约束条件的优化模型：
+			\begin{gather}
+			min \left\{ \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
+			\end{gather}
+			\begin{gather*}
+			s.t.\left\{\begin{matrix}
+			E(T_{1})\subseteq  E(T_{2})\\ 
+			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
+			\end{matrix}\right.
+			\end{gather*}
     		其思维流程图如图~\ref{lssssct}~所示：
 
 			\begin{figure}[H]
@@ -233,7 +240,7 @@
 				\caption{问题二思维流程图}\label{lssssct}
 			\end{figure}
 
-		\subsection{模型的建立}
+
 		
 		\subsection{模型的求解}
 
@@ -273,6 +280,16 @@
 			\end{figure}
 
     \section{问题三模型的建立与求解}
+   		\subsection{问题三描述与分析}
+   		针对问题三，在问题一的基础上分析得出，
+    	\subsection{问题一模型的改进}
+    	在问题一的基础上，问题三限制了从I级供水站输送的总里程最大为$40km$，即约束了
+    	\begin{gather*}
+    	\sum_{i=1}^{|E_2|}|e_2^i|\leq 40,e_2^i\in E_2
+    	\end{gather*}
+    	其中$E_2$是第二层边的集合，$e_2^i(i=1,2,...,|E_2|)$是其中的边元素。因此，每次执行Prim算法后需要使用上式检验新加入的边是否满足该约束条件。
+    	
+    	
   		\subsection{结果分析}
   
   	\section{灵敏度分析}
