@@ -118,7 +118,7 @@
 		\begin{gather*}
 		T_{1}=(V(T_{1}),E(T_{1})),
 		\end{gather*}
-		其中$T_{1}$代表一级生成树，其中$V_{i}(T_{1})=V_0\cup  V_1$,即一级生成树中的节点只包含中心供水站和一级供水站。
+		其中$T_{1}$代表一级生成树，其中$V(T_{1})=V_0\cup V_1$,即一级生成树中的节点只包含中心供水站和一级供水站。
 		
 		在一级生成树生成树$T_1$的基础上引入二级站点$V_2$构成二级生成树:
 		\begin{gather*}	
@@ -178,17 +178,30 @@
 						\end{matrix}\right.
 			\end{gather*}
 		\subsection{模型的求解}
-		为求取管道最小里程和最优路径，我们需要求解每一层的最优序列矩阵。针对问题一，我们采用Prim算法，分别实现由中心供水站到I级供水站、由I级供水站到II级供水站的最小生成树，可以求得每一层的最优序列矩阵$A_k$。
+		为求取管道最小里程和最优路径，需要搜索每一层生成树边集合$E(T_k),k=1,2$。针对该二阶最小生成树问题，我们设计了二阶Prim算法，分别实现由中心供水站到I级供水站、由I级供水站到II级供水站的最小生成树，即可求得最终的边集合$E(T_2)$。
 		
-		Prim算法的流程流程图如图~\ref{dsf}~所示
+		二阶Prim算法的流程流程图如图~\ref{asd}~所示
 		\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth]{figures/a1.png}
-		\caption{问题二思维流程图}\label{dsf}
+		\caption{二阶Prim算法流程图}\label{asd}
 	\end{figure}
 		
         \subsection{实验结果及分析}
-  1.灵敏度分析；（2.对比分析）；3.算法收敛性分析；4.算法时间复杂度分析。。。
+ % 1.灵敏度分析；（2.对比分析）；3.算法收敛性分析；4.算法时间复杂度分析。。。
+       以中心供水站作为根节点运行二阶Prim算法，首先生成由中心供水站与一级供水站构成的供水网络如图~\ref{sdfb}~所示
+       	\begin{figure}[H]
+       	\centering
+       	\includegraphics[width=\textwidth]{figures/444.png}
+       	\caption{一阶最小生成树}\label{sdfb}
+       \end{figure}
+       图中$0$节点为中心供水站点，$1~12$节点是一级供水站点，其构成的连通图即为其最小生成树。解得所需的I型管道的最小铺设距离为$120.94km$。此时，将二级供水站并入节点集，在该生成树的基础上继续运行Prim算法，求解得到整体管道网络铺设如图~\ref{gfhd}~所示
+       	\begin{figure}[H]
+       	\centering
+       	\includegraphics[width=\textwidth]{figures/222.png}
+       	\caption{二阶阶最小生成树}\label{gfhd}
+       \end{figure}
+     图中的$168$个小节点即为二级供水站，解得II型管道铺设里程为$403.40km$、I型管道与II型管道的最小铺设总和为$524.34km$。二阶Prim算法的基本原理基于经典图论算法Prim算法，其求解值可被证明为该模型最优解。(????????????????????引用文献)
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
 			问题二要求升级两个II级供水站为I级供水站，使得II级管道里程数最少。
