@@ -104,9 +104,9 @@
 
 	\section{问题一模型的建立与求解}
 		\subsection{问题描述与分析}
-			问题一要求给出总里程最少的管道铺设方案。在村村通自来水工程的连通图$G=(V(G),E(G))$中，每个供水站可以视作一个节点$v \in V$，节点间的供水管道看作边$e \in E$，那么由中心供水站到I级供水站、由I级供水站到II级供水站分别构成了生成树$T_{i}=(V_{i}(T_{i}),E_{i}(T_{i}))$，其中$V_{i}(G)=V_{i}(T_{i})$，$E_{i}(T_{i}) \subset E_{i}(G) , (i=1,2)$，且根据定理（这里引用一下！！！！！），$|E_{i}|=|V_{i}|-1$。由于I级和II级供水站的本质区别是II级供水站不能与中心供水站直接相连，故本问题实质上是一个二阶最小生成树问题。
-			我们以两节点间的欧式距离作为边的代价，应用改进的Prim算法（二阶的，想个名字！！！！！！）求解模型。
-			其思维流程图如图~\ref{lct}~所示：
+			问题一要求分析一级供水站与二级供水站的分布情况，并根据分析结果，设计从中心供水站出发总里程最少的管道铺设方案。该问题本质是一个带特殊约束的最小生成树问题，即在不考虑二级供水站的情况下，一级供水站要相互连通。针对该问题，本组将供水站间的距离关系转化为权重矩阵，并设计二阶Prim算法以求解管道使用总里程最小的铺设方案。
+			
+		
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=\textwidth]{figures/whut.jpg}
@@ -114,6 +114,20 @@
 			\end{figure}
 			
 		\subsection{模型的建立}
+			
+		在村村通自来水工程的连通图$G=(V(G),E(G))$中，每个供水站可以视作一个节点$v \in V$，节点间的供水管道看作边$e \in E$，那么由中心供水站于I级供水站间可构成生成树：
+		\begin{gather*}
+		T_{1}=(V_{i}(T_{1}),E_{i}(T_{1}))
+		\end{gather*}
+		其中$T_{1}$代表一级生成树其中
+		
+		、由I级供水站到II级供水站分别构成了生成树
+		其中$V_{i}(G)=V_{i}(T_{i})$，$E_{i}(T_{i}) \subset E_{i}(G) , (i=1,2)$，
+		
+		且根据定理（这里引用一下！！！！！），$|E_{i}|=|V_{i}|-1$。由于I级和II级供水站的本质区别是II级供水站不能与中心供水站直接相连，故本问题实质上是一个二阶最小生成树问题。
+		我们以两节点间的欧式距离作为边的代价，应用改进的Prim算法（二阶的，想个名字！！！！！！）求解模型。
+		其思维流程图如图~\ref{lct}~所示：
+		
 			同一般的最小生成树问题不同，问题一中的II级供水站生成树优化需待I级供水站的最小连通树生成后才能开始进行。因此，问题一的模型（取个屌点的名字？？？？？）分为两部分，I级供水站和II级供水站先后进行目标优化。
 			本问题中，边$e$的代价是两节点$v_i(x_i,y_i), v_j(x_j,y_j)$间的欧式距离,可表示为：
 		\begin{gather}
@@ -154,39 +168,13 @@
 		\subsection{模型的求解}
 		为求取管道最小里程和最优路径，我们需要求解每一层的最优序列矩阵。针对问题一，我们采用Prim算法，分别实现由中心供水站到I级供水站、由I级供水站到II级供水站的最小生成树，可以求得每一层的最优序列矩阵$A_k$。
 		
-		Prim算法的伪代码如下。
+		Prim算法的流程流程图如图~\ref{dsf}~所示
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{figures/a1.png}
+		\caption{问题二思维流程图}\label{dsf}
+	\end{figure}
 		
-			\begin{algorithm}[H]
-			 	\caption{Procedure of Apriori}  
-			 	\LinesNumbered  
-			 	\setstretch{0.9}   %设置表的行间距
-			 	\KwIn{item data base: $D$\newline
-			 		minimum Support threshold: $Sup_{min}$\newline
-			 		minimum Confidence threshold: $Conf_{min}$
-			 	}
-			 	\KwOut{frequent item sets $F$}  
-			 	\textbf{Initialize} \newline
-			 	iteration $t\leftarrow 1$ \newline
-			 	The candidate FIS:$C_{t}=\varnothing$ \newline
-			 	The length of FIS:$length=1$ \newline
-			 	\For{i=1 to sizeof(D)}
-			 	{$I_{i}$=D(i)\newline
-			 		n=sizeof($I_{i}$)\newline
-			 		\For{j=1 to n}{
-			 			\If{$I_{i}(j)\notin C_{t}$ }
-			 			{$C_{t}=C_{t}\cup I_{i}(j) $}
-			 		}
-			 	}
-			 	$F_{t}=\left \{ f|f\in C_{t},Sup(f)>Sup_{min}\right \}$\newline
-			 	\While{$F\neq \varnothing$}
-			 	{ t=t+1\newline 
-			 		length=length+1\newline	
-			 		$C_{t}\leftarrow $ all candidate of FIS in $F_{t-1}$\newline
-			 		$F_{t}=\left \{ f|f\in C_{t},(Sup(f)>Sup_{min})\bigcap (Comf(f)>Conf_{min}) \right\}$\newline
-			 	}	
-			 	\Return{$F_{t-1}$} 
-			\end{algorithm} 
-		结果在这里放一些。。。。。。
         \subsection{实验结果及分析}
   1.灵敏度分析；（2.对比分析）；3.算法收敛性分析；4.算法时间复杂度分析。。。
 	\section{问题二模型的建立与求解}
