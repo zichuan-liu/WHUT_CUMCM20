@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.28)  21 JUL 2020 19:55
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.11.28)  21 JUL 2020 21:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1023,7 +1023,26 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 14.
 Package: xeCJK-listings 2019/04/07 v3.7.2 xeCJK patch file for listings
 \l__xeCJK_listings_max_char_int=\count348
 \l__xeCJK_listings_flag_int=\count349
-) (./demo.aux)
+) (./demo.aux
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46 <
+      <<<<<< HEAD
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Label `biao1' multiply defined.
+
+
+LaTeX Warning: Label `fisg' multiply defined.
+
+)
 \openout1 = `demo.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
@@ -1046,8 +1065,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
-
-ABD: EverySelectfont initializing macros
+ ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 22.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
@@ -1168,6 +1186,9 @@ LaTeX Info: Redefining \nameref on input line 22.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
+ [1
+
+]
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 
@@ -1208,9 +1229,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 24.
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-]
+) [1]
 Underfull \hbox (badness 10000) in paragraph at lines 47--47
 
  []
@@ -1274,7 +1293,10 @@ File: figures/whut.jpg Graphic file (type bmp)
 LaTeX Font Warning: Font shape `TU/SimSun(1)/bx/n' undefined
 (Font)              using `TU/SimSun(1)/m/n' instead on input line 113.
 
-[2] [3] [4]
+[2] [3]
+File: figures/a1.png Graphic file (type bmp)
+<figures/a1.png>
+ [4]
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 
@@ -1333,16 +1355,19 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
  )
 (\end occurred when \iftrue on line 24 was incomplete) 
 Here is how much of TeX's memory you used:
- 29961 strings out of 494857
- 587588 string characters out of 6176223
- 850916 words of memory out of 5000000
- 33448 multiletter control sequences out of 15000+600000
- 544860 words of font info for 144 fonts, out of 8000000 for 9000
+ 29889 strings out of 494857
+ 582631 string characters out of 6176223
+ 847368 words of memory out of 5000000
+ 33377 multiletter control sequences out of 15000+600000
+ 544836 words of font info for 141 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 61i,20n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,16n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (12 pages).
+Output written on demo.pdf (13 pages).
