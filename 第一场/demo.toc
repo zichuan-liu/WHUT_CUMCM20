@@ -15,12 +15,18 @@
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{5}{subsection.5.4}% 
 \contentsline {section}{\numberline {六、}问题三模型的建立与求解}{7}{section.6}% 
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题三描述与分析}{7}{subsection.6.1}% 
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题一模型的改进}{7}{subsection.6.2}% 
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}结果分析}{8}{subsection.6.3}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题三模型的建立}{7}{subsection.6.2}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}约束条件的描述}{7}{subsubsection.6.2.1}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}孤立点}{8}{subsubsection.6.2.2}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}决策变量}{8}{subsubsection.6.2.3}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}目标函数}{8}{subsubsection.6.2.4}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}问题三模型的求解}{8}{subsection.6.3}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}结果分析}{8}{subsection.6.4}% 
 \contentsline {section}{\numberline {七、}灵敏度分析}{8}{section.7}% 
 \contentsline {section}{\numberline {八、}模型的评价}{8}{section.8}% 
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{8}{subsection.8.1}% 
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{8}{subsection.8.2}% 
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{8}{subsection.8.3}% 
-\contentsline {section}{\numberline {附录A}数据可视化的实现}{10}{appendix.A}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{9}{subsection.8.2}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{9}{subsection.8.3}% 
+\contentsline {section}{\numberline {附录A}问题一、二代码及其可视化}{11}{appendix.A}% 
+\contentsline {section}{\numberline {附录B}问题三代码及其可视化}{15}{appendix.B}% 
 \contentsfinish 
