@@ -257,18 +257,39 @@
         图中红点表示升级为一级供水站的二级供水站，红线表示新增设的I型管道。其中II型管道使用量为？？？，相对于问题一方案减少了？？？。
 	
 
-
     \section{问题三模型的建立与求解}
    		\subsection{问题三描述与分析}
    		问题三在基础管道铺设的条件下考虑了供水站的功率限制，要求针对该限制重新制定管道铺设方案。在深入分析了模型三新增的约束条件后，本组针对其新增约束改进了二阶Prim算法，以求解该类带约束的生成树问题。之后我们引入了免疫遗传算法，搜索最佳升级方案，使得在升级二级供水站数量最少的情况下，实现对所有的供水站供水。
-    	\subsection{问题一模型的改进}
-    	在问题一的基础上，问题三限制了从I级供水站输送的总里程最大为$40km$，即约束了
-    	\begin{gather*}
-    	\sum_{i=1}^{|E_2|}|e_2^i|\leq 40,e_2^i\in E_2
-    	\end{gather*}
-    	其中$E_2$是第二层边的集合，$e_2^i(i=1,2,...,|E_2|)$是其中的边元素。因此，每次执行Prim算法后需要使用上式检验新加入的边是否满足该约束条件。
+    	\subsection{模型的建立}
+    	问题三中，将$168$个二级供水站转化为按顺序构成的$0-1$行向量作为决策变量
+    	\begin{gather}
+    	A=
+    	\begin{bmatrix}
+    	a_1&a_2&...&a_{168}
+    	\end{bmatrix}
+    	\end{gather}
+    	其中，$a_i=1(i=1,2,...,168)$表示将第$i$个II级供水站升级成I级供水站；$a_i=0$表示第$i$个II级供水站不升级。根据题目要求，优化目标为是需要升级的二级供水站个数，即
+    	\begin{gather}
+    	min\sum_{i=1}^{168}a_i
+    	\end{gather}
+    	在问题一的基础上，问题三中的功率条件限制了从I级供水站输送的总里程最大为$40km$，即约束了
+    	\begin{gather}
+    	\sum_{e_i\in E(T_{2k})}|e_i|\leq 40,
+    	\end{gather}
+    	其中$T_{2k}$是以一级站点$v_1(k)$为根节点所衍生出的二阶生成树， $E(T_{2k})$是该分支中边的集合。 结合前两问与上述决策变量、目标函数、约束条件，得到以二级供水站序列向量为决策变量，以需要升级的二级供水站个数为目标函数，以功率限制等为约束条件的优化模型：
+    	\begin{gather}
+    	\min \sum_{i=1}^{168}a_i\\
+    	s.t.
+    	\left\{\begin{matrix}
+    	E(T_{1})\subseteq  E(T_{2})\\ 
+    	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} \\ 
+    	\sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+cost_2(v_{i1},v_{i2}) =\min \left\{ \sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+cost_2(v_{i1},v_{i2}) \right \}	\\
+    	\sum_{e_i\in E(T_{2k})}|e_i|\leq 40
+    	\end{matrix}\right.
+    	\end{gather}
     	\subsection{模型的求解}
-    	\subsubsection{改进二阶Prim算法}
+    	在问题一的基础上分析得出，要实现全面供水，必须消除所有无法与其他供水站相连的孤立点。本组对二级供水站进行编码，对无法满足约束条件的二级供水站附加一个与孤立点个数成正比的罚函数，定义惩罚因子为常数，并引入免疫遗传算法，通过优化需要升级的二级供水站个数最小，实现全面供水。
+    	  	\subsubsection{改进二阶Prim算法}
     	阵对带约束的生成树问题，本组在二阶Prim算法的基础上加入边权重判定机制，即将某一个解纳入生成树后，若权重和超过了限制条件则退回到上一步，并将该路径的边权值修改为无穷大。在此基础上，若某个二级节点的所有边权重值都被修改为无穷大则将其定义为孤立节点。
     	
     	改进Prim算法的流程图如下图所示：
@@ -279,14 +300,31 @@
         \end{figure}
         
     		
-  		\subsection{结果分析}
+  	
   	\subsubsection{免疫遗传算法}
-  	\paragraph{0-1编码与}
+  	\paragraph{0-1编码}
   	执行改进二阶Prim算法，即可求得所有未能被供水的节点$\left \{ v_i^{aban} \right \}$，其中$i=1,2,\cdots,n$，$n$表示孤立节点数量，即染色体可对应编码为：
   		\begin{gather}
   		\Gamma =[\gamma_1,\gamma_2,\cdots, \gamma_n]
   		\end{gather}
     其中$\Gamma$表示升级站点的决策变量，即染色体。 $\gamma_i=\left \{ 0,1 \right \}$为孤立节点$v_i^{aban}$对应的决策值，当$\gamma_i=0$时表示函数值孤立节点$v_i^{aban}$不做修改；当$\gamma_i=1$时表示$v_i^{aban}$对应的二级供水站被升级为一级供水站。
+    	\paragraph{变异与交叉}
+    	在第g次迭代中，将染色体间两两配对,对其执行断点交叉，对其中一组染色体
+    		\begin{gather*}
+    \Gamma_i=[\gamma_1^i,\gamma_2^i,\cdots, \gamma_p^i,\gamma_{p+1}^i,\cdots,\gamma_q^i,\cdots,\gamma_n^i],\\
+    \Gamma_j=[\gamma_1^j,\gamma_2^j,\cdots, \gamma_p^j,\gamma_{p+1}^j\cdots,\gamma_q^j,\cdots,\gamma_n^j]
+    		\end{gather*}
+    	执行交叉操作，交换其中随机的一段基因片段$\left \{ \gamma_p,\gamma_{p+1},\cdots,\gamma_q\right \}$得
+    		\begin{gather*}
+    	\Gamma_i=[\gamma_1^i,\gamma_2^i,\cdots, \gamma_p^j,\gamma_{p+1}^j,\cdots,\gamma_q^j,\cdots,\gamma_n^i],\\
+    	\Gamma_j=[\gamma_1^j,\gamma_2^j,\cdots, \gamma_p^i,\gamma_{p+1}^i,\cdots,\gamma_q^i,\cdots,\gamma_n^j]
+    	\end{gather*}
+    	其中$p,q$为随机数，且有$0\leqslant p<q\leqslant n$。且生成的任意染色体 $\Gamma_i$，都存在$\varphi $的概率执行变异操作，此时选择其中随机位置的基因$\gamma_r^i$执行变异操作，使得
+    	\begin{gather*}
+       \gamma_r^i=\overline{\gamma_r^i}
+    	\end{gather*}
+    	其中$r$为随机数，且有$0\leqslant r\leqslant n$。
+
      	\paragraph{适应度计算}
     将决策变量$\Gamma$所表征的升级操作执行后，即可得到升级后点集$V_{\Gamma}$，将其带入改进后的二阶Prim算法可求得生成孤立点数量$\varphi(V_{\Gamma})$。若$\varphi(V_{\Gamma})>0$则说明任然存在孤立节点，即没有实现完全供水。基于此我们将$\varphi(V_{\Gamma})$作为惩罚因子代换功率约束条件，即决策变量$\Gamma$的抗原适应度为：
     	\begin{gather}
@@ -306,7 +344,16 @@
   	\end{gather}
   	\paragraph{精英库保留策略}
   	先将染色体$\left \{ \Gamma_i \right \}$以抗原适应度$F(\Gamma_i)$大小降序排列，并优先保留其前$\alpha$个染色体进入下一代，由此防止目标函数值最优的个体被舍去。之后，将剩余染色体以综合适应度$P(\Gamma_i)$排序，并将前$N-\alpha$个染色体放入下一代。
-  	
+	  
+	  免疫遗传算法流程图如图~\ref{bgrs}~
+	  \begin{figure}[H]
+		\centering
+	
+		 
+		 \includegraphics[width=\textwidth]{figures/a31.png}
+		 \caption{	免疫遗传算法流程图}\label{bgrs}
+	 \end{figure}
+
   	\subsection{实验结果及分析}
   	利用改进Prim算法求出最大总里程为40km时候的孤立点如图\ref{gld}所示，其中紫色方块表述孤立点：
   	 \begin{figure}[H]
