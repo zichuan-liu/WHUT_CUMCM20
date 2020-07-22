@@ -158,7 +158,7 @@
 			\end{gather}
 			其中，$v_{i1}, v_{i2}(i =1,2,\cdots,|E(T_k)|)$分别代表边$e_i$的端点，且满足$E(T_1)\subseteq E(T_2)$，即生成树$T_1$优先生成并满足：
 			\begin{gather}
-			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
+			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
 			\end{gather}
 			即必须确保I型管道铺设距离最短，即保证一级生成树$T_1$为中心供水站和一级供水站构成的最小生成树。
 			 %分别将I、II管道总里程作为优化目标，可知总里程是所有边的代价之和，而代价可以表示成节点间的距离，最佳节点序列已经存放在最优序列矩阵中，这些节点距离可以通过节点序列取出。
@@ -169,12 +169,12 @@
 			
 			此问题的约束条件为问题一中的二级供水站生成树优化不能先于一级供水站的最小连通树生成，即对应总模型的数学描述为：
 			\begin{gather}
-			min \left\{ \sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
+			\min \left\{ \sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
 			\end{gather}
 			\begin{gather*}
 			s.t.\left\{\begin{matrix}
 			E(T_{1})\subseteq  E(T_{2})\\ 
-				\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
+				\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
 						\end{matrix}\right.
 			\end{gather*}
 		\subsection{模型的求解}
