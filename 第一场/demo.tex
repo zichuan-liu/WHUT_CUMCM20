@@ -25,17 +25,21 @@
 	\thispagestyle{empty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%摘要%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{abstract}
-		控制高压油管的压力变化对减小燃油量偏差，提高发动机工作效率具有重要意义。本文建立了基于质量守恒定理的微分方程稳压模型，采用二分法、试探法以及自适应权重的蝙蝠算法对模型进行求解。
-		//
+		供水管道路线优化对农村供水工程设计和农村供水管理体系改革意义重大。本文建立了基于图论的最小生成树模型，采用改进的二阶Prim算法、免疫遗传算法对模型进行求解。
+		%控制高压油管的压力变化对减小燃油量偏差，提高发动机工作效率具有重要意义。本文建立了基于质量守恒定理的微分方程稳压模型，采用二分法、试探法以及自适应权重的蝙蝠算法对模型进行求解。
+		\\
 	
-		针对问题一，建立基于质量守恒定律的燃油流动模型，考察单向阀开启时间对压力稳定性的影响。综合考虑压力与弹性模量、密度之间的关系，提出燃油压力-密度微分方程模型和燃油流动方程。本文采用改进的欧拉方法对燃油压力-密度微分方程求得数值解；利用二分法求解压力分布。综合考虑平均绝对偏差等反映压力稳定程度的统计量，求得直接稳定于100MPa的开启时长为\textbf{0.2955ms} ，在2s、5s内到达并稳定于150MPa时开启时长为\textbf{0.7795ms}、\textbf{0.6734ms}，10s到达并稳定于150MPa的开启时长存在多解。最后对求解结果进行灵敏度分析、误差分析。
-		//
-	
-		针对问题二，建立基于质量守恒定律的泵-管-嘴系统动态稳压模型，将燃油进入和喷出的过程动态化处理。考虑柱塞和针阀升程的动态变动，建立喷油嘴流量方程和质量守恒方程。为提高角速度求解精度，以凸轮转动角度为固定步长，转动时间变动步长，采用试探法粗略搜索与二分法精细搜索的方法求解，求得凸轮最优转动角速度\textbf{0.0283rad/ms（转速270.382转/分钟）}，并得到该角速度下高压油管的密度、压力周期性变化图。对求解结果进行误差分析与灵敏度分析，考察柱塞腔残余容积变动对高压油管压力稳态的影响。
-		//
-	
-		针对问题三，对于增加一个喷油嘴的情况，改变质量守恒方程并沿用问题二的模型调整供、喷油策略，得到最优凸轮转动角速度为\textbf{0.0522rad/ms（498.726转/分钟）}；对于既增加喷油嘴又增加减压阀的情况，建立基于自适应权重的蝙蝠算法的多变量优化模型，以凸轮转动角速度、减压阀开启时长和关闭时长为参数，平均绝对偏差MAD为目标，在泵-管-嘴系统动态稳压模型的基础上进行求解，得到最优参数：\textbf{角速度0.0648 rad/ms（619.109转/分钟）}、减压阀的开启时长\textbf{2.4ms}和减压阀的关闭时长\textbf{97.6ms}。
-		//
+	    针对问题一，本组将供水站间的距离关系转化为权重矩阵，并设计二阶Prim算法以求解管道使用总里程最小的铺设方案。求得II型管道铺设里程为$\mathbf{403.40}$\textbf{km}、I型管道与II型管道的最小铺设总和为$\mathbf{524.34}$\textbf{km}。最后对求解结果进行灵敏度分析。
+		%针对问题一，建立基于质量守恒定律的燃油流动模型，考察单向阀开启时间对压力稳定性的影响。综合考虑压力与弹性模量、密度之间的关系，提出燃油压力-密度微分方程模型和燃油流动方程。本文采用改进的欧拉方法对燃油压力-密度微分方程求得数值解；利用二分法求解压力分布。综合考虑平均绝对偏差等反映压力稳定程度的统计量，求得直接稳定于100MPa的开启时长为\textbf{0.2955ms} ，在2s、5s内到达并稳定于150MPa时开启时长为\textbf{0.7795ms}、\textbf{0.6734ms}，10s到达并稳定于150MPa的开启时长存在多解。最后对求解结果进行灵敏度分析、误差分析。
+		\\
+		
+		问题二要求升级两个II级供水站为I级供水站，使得II级管道里程数最少。求得需要将序号为？？？和？？？的两个二级供水站升级为一级供水站，II型管道使用量为？？？，相对于问题一方案减少了？？？。
+		%针对问题二，建立基于质量守恒定律的泵-管-嘴系统动态稳压模型，将燃油进入和喷出的过程动态化处理。考虑柱塞和针阀升程的动态变动，建立喷油嘴流量方程和质量守恒方程。为提高角速度求解精度，以凸轮转动角度为固定步长，转动时间变动步长，采用试探法粗略搜索与二分法精细搜索的方法求解，求得凸轮最优转动角速度\textbf{0.0283rad/ms（转速270.382转/分钟）}，并得到该角速度下高压油管的密度、压力周期性变化图。对求解结果进行误差分析与灵敏度分析，考察柱塞腔残余容积变动对高压油管压力稳态的影响。
+		\\
+		
+		针对问题三，提出了孤立点的概念，深入探讨了孤立点对农村供水的影响，在问题一的基础上分析得出，要实现全面供水，必须消除所有无法与其他供水站相连的孤立点。本组对II级供水站进行编码，设计免疫遗传算法，通过优化需要升级的II级供水站个数最小，实现全面供水。求得最少需要升级一个二级供水站？？？，这种配置下铺设管道的总里程最少是？？？。最后对求解结果进行灵敏度分析。
+		%针对问题三，对于增加一个喷油嘴的情况，改变质量守恒方程并沿用问题二的模型调整供、喷油策略，得到最优凸轮转动角速度为\textbf{0.0522rad/ms（498.726转/分钟）}；对于既增加喷油嘴又增加减压阀的情况，建立基于自适应权重的蝙蝠算法的多变量优化模型，以凸轮转动角速度、减压阀开启时长和关闭时长为参数，平均绝对偏差MAD为目标，在泵-管-嘴系统动态稳压模型的基础上进行求解，得到最优参数：\textbf{角速度0.0648 rad/ms（619.109转/分钟）}、减压阀的开启时长\textbf{2.4ms}和减压阀的关闭时长\textbf{97.6ms}。
+		\\
 	
 		本文的优点为：1. 采用试探法粗略搜索与二分法精细搜索结合的方法，降低了问题的求解难度。2.以凸轮转动角度为固定步长，对不同角速度按照不同精度的时间步长求解，大大提高了求解的精确度。 3.针对智能算法求解精度方面，采用改进的蝙蝠算法，使速度权重系数自适应调整，兼顾局部搜索与全局搜索能力。
 		
@@ -77,10 +81,10 @@
 	
 	\section{模型假设}
 		\begin{itemize}                                             
-		\item [(1)] 
-		\item [(2)]
-		\item [(3)] 
-		\item [(4)] 
+		\item [(1)]忽略水管的直径、负压能力、耐腐蚀性、工艺等物理参数和单价、材料等经济效益参数，将供水站理想化为图上离散的节点，相邻两供水站之间的水管理想化为边。
+		\item [(2)]所有供水站和各级管道构成图，在一个理想的平面内。
+		\item[(3)]每个供水站能连接的供水站个数不受限制，保证用水在满足功率里程要求的情况下的充分供应。
+		\item [(4)]I、II级供水管道除了连接供水站的区别外没有其他不同。
 		\end{itemize}
 
 		
@@ -92,8 +96,18 @@
 			\toprule[1.5pt]
 			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
 			\midrule[1pt]		
-			$P_n$  & 20个站点  \\ 
-			$P_n$  & 20个站点  \\ 
+			$T_1,T_2$  & 第一、第二生成树  \\ 
+			$V_0,V_1,V_2$  & 中心、一级、二级供水站节点集合  \\ 
+			$v_0,v_1,v_2$  & 中心、一级、二级供水站节点元素  \\ 
+			$V(T_1),V(T_2)$  & 第一、第二生成树的节点集合 \\ 
+		   	$E(T1),E(T_2)$  &第一、第二生成树的边集合\\ 
+		   	$|E(T1)|,|E(T_2)|$  & 第一、第二生成树的边的模长 \\ 
+		   	$k$  & 供水管类型 \\
+		   	$cost_k(v_i,v_j)$  & 第k类供水管中$v_i$和$v_j$节点间的代价 \\ 
+		   	$G(T_1),G(T_2)$  &第一、第二生成树的图集合  \\ 
+		   	$L_j$  & $v_j$到子树$T$的最短距离  \\ 
+		   	$P_n$  & 20个站点  \\ 
+		   	$P_n$  & 20个站点  \\ 
 		   	$P_n$  & 20个站点  \\ 
 			\bottomrule[1.5pt]
 		\end{tabular}
@@ -176,7 +190,7 @@
 			\begin{gather*}
 			s.t.\left\{\begin{matrix}
 			E(T_{1})\subseteq  E(T_{2})\\ 
-				\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
+			\displaystyle	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ \displaystyle	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
 						\end{matrix}\right.
 			\end{gather*}
 		\subsection{模型的求解}
@@ -215,7 +229,11 @@
 				\begin{gather}
 				\theta =\left \{ v_2(i),v_2(j) \right \}
 				\end{gather}
-			其中$\theta$为决策变量，$v_2(i),v_2(j)$ 分别为将被升级的二级供水站。完成升级操作后根据问题一模型即可得到一级、二级生成树$T_{1}'=(V(T_{1}'),E(T_{1})'),T_{2}'=(V(T_{2}'),E(T_{2}'))$其中生成树的边集合任可以表示为：
+			其中$\theta$为决策变量，$v_2(i),v_2(j)$ 分别为将被升级的二级供水站。完成升级操作后根据问题一模型即可得到一级、二级生成树$T_{1}'=(V(T_{1}'),E(T_{1})'),T_{2}'=(V(T_{2}'),E(T_{2}'))$其中生成树的边集合仍可以表示为：
+			\begin{gather}
+			\displaystyle \sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
+			\end{gather}
+			
 			\begin{gather}
 			E(T_k')=
 		\begin{bmatrix}
@@ -225,15 +243,15 @@
 		(v_{|E(T_k')|,1},v_{|E(T_k')|,2})\\
 		\end{bmatrix},k=1,2
 			\end{gather}
-			其任必须满足$E(T_1')\subseteq E(T_2')$，目标函数为II型管铺设总里程，即：
+			其仍必须满足$E(T_1')\subseteq E(T_2')$，目标函数为II型管铺设总里程，即：
 			\begin{gather}
 			\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
 			\end{gather}
 			结合上述决策变量、目标函数、约束条件，得到以将两个升级的一级供水站为决策变量，以II级管道的总里程为目标函数，生成树$T_1$优先生成为约束条件的优化模型：
-			\begin{gather}
-			min  \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
-			\end{gather}
 			\begin{gather*}
+			min  \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
+			\end{gather*}
+						\begin{gather*}
 			s.t.\left\{\begin{matrix}
 			E(T_{1}')\subseteq  E(T_{2}')\\ 
 			\sum_{i\in E(T_1') }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1') }cost_1(v_{i1},v_{i2}) \right \} 
@@ -338,17 +356,17 @@
     	\begin{gather}
     	F(\Gamma_i)=\sum_{j=1}^{n}\gamma_j+ M\cdot  \varphi(V_{\Gamma i})
     	\end{gather}
-    其中$\sum_{i=1}^{n}\gamma_i$表示升级的二级站点数量和。$M$为较大的正数，与$\varphi(V_{\Gamma})$构成罚函数。同时计算抗体亲和力：
+    其中$\displaystyle \sum_{i=1}^{n}\gamma_i$表示升级的二级站点数量和。$M$为较大的正数，与$\varphi(V_{\Gamma})$构成罚函数。同时计算抗体亲和力：
     	\begin{gather}
     	S(\Gamma_1,\Gamma_2)=(\frac{k(\Gamma_1,\Gamma_2)}{n}>T)
         \end{gather}
     $k(\Gamma_1,\Gamma_2)$表示染色体相同的位数，$n$为抗体长度。$T$为可设定的阈值，即当相同的位数的比例大于$T$时，$S(\Gamma_1,\Gamma_2)=1$；否则$S(\Gamma_1,\Gamma_2)=0$。抗体与抗体之间的亲和力反映了抗体之间的相似程度。定义抗体浓度$C(\Gamma_i)$表示群体中与$\Gamma_i$相似抗体所占的比例,即可计算如下：
      \begin{gather}
-     C(\Gamma_i)=\frac{\sum _{j=1,j\neq i}^N k(\Gamma_i,\Gamma_j)}{N}
+     C(\Gamma_i)=\displaystyle \frac{\displaystyle \sum _{j=1,j\neq i}^N k(\Gamma_i,\Gamma_j)}{N}
      \end{gather}
      即综合适应度可表示为：
   	 \begin{gather}
-  min	P(\Gamma_i)=\lambda \frac{F(\Gamma_i)}{\sum _{i=1}^N F(\Gamma_i)}+(1-\lambda )\frac{C(\Gamma_i)}{\sum _{i=1}^N C(\Gamma_i)}
+  \min	P(\Gamma_i)=\lambda \frac{F(\Gamma_i)}{\displaystyle \sum _{i=1}^N F(\Gamma_i)}+(1-\lambda )\frac{C(\Gamma_i)}{\displaystyle \sum _{i=1}^N C(\Gamma_i)}
   	\end{gather}
   	\paragraph{精英库保留策略}
   	先将染色体$\left \{ \Gamma_i \right \}$以抗原适应度$F(\Gamma_i)$大小降序排列，并优先保留其前$\alpha$个染色体进入下一代，由此防止目标函数值最优的个体被舍去。之后，将剩余染色体以综合适应度$P(\Gamma_i)$排序，并将前$N-\alpha$个染色体放入下一代。
@@ -385,8 +403,12 @@
 	% \setlength{\itemsep}{-2mm}
 	\nocite{*}		%排版未引用的参考文献
 	\begin{thebibliography}{9}%宽度9
-		\bibitem{1}张斯嘉, 郭建胜, 钟夫, 等. 基于蝙蝠算法的多目标战备物资调运决策优化[J]. 火力与指挥控制, 2016, 41(1): 58-61.
-	
+		\bibitem{1}Jiang B, Zhang L. Research on minimum spanning tree based on prim algorithm[J]. Computer Engineering and Design, 2009, 13.
+		\bibitem{2}Graham R L, Hell P. On the history of the minimum spanning tree problem[J]. Annals of the History of Computing, 1985, 7(1): 43-57.
+		\bibitem{3}丁建立, 陈增强, 袁著祉. 遗传算法与蚂蚁算法的融合[J]. 计算机研究与发展, 2003, 40(9): 1351-1356.
+		\bibitem{4}贺毅朝, 刘坤起, 张翠军, 等. 求解背包问题的贪心遗传算法及其应用[J]. 计算机工程与设计, 2007, 28(11): 2655-2657.
+		\bibitem{5}王磊, 潘进, 焦李成. 免疫算法[D]. , 2000.
+		\bibitem{6}卢开澄, 卢华明. 图论及其应用[M]. 清华大学出版社有限公司, 20004.
 	\end{thebibliography}
 
 	\newpage
@@ -403,12 +425,13 @@
 			from tqdm.notebook import tqdm
 			
 			class Graph(object):
-			def __init__(self, Matrix, add_edge=None):
+			def __init__(self, Matrix, add_edge=None, add_node=None):
 			self.Matrix = Matrix
 			self.nodenum = len(self.Matrix)
 			self.edgenum = self.get_edgenum()
 			self._weight_ = np.zeros((self.nodenum, self.nodenum))
 			self.add_edge = add_edge
+			self.add_node = add_node
 			
 			def get_edgenum(self):
 			count = 0
@@ -435,6 +458,7 @@
 			for j in range(self.nodenum):
 			if self._weight_[i, j]!= 0:
 			G_nx.add_edge(i, j)
+			
 			if self.add_edge!=None:
 			nx.draw_networkx(G_nx, pos[:len(self.add_edge)+1], alpha=0.85)
 			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
@@ -449,8 +473,22 @@
 			
 			def _get_edge(self):
 			edge = self.prim()
+			if self.add_node!=None:
+			for i in edge:
+			for id_j, j in enumerate(self.add_node):
+			if i[0]==j:
+			i[0] = 13+id_j
+			if i[1]==j:
+			i[1] = 13+id_j
 			for k in edge:
 			self._weight_[k[0],k[1]] = self.Matrix[k[0],k[1]]
+			if self.add_node!=None:
+			for i in edge:
+			for id_j, j in enumerate(self.add_node):
+			if i[0]==13+id_j:
+			i[0] = j
+			if i[1]==13+id_j:
+			i[1] = j
 			return self._weight_
 			
 			def prim(self, first_node = 0):
@@ -461,6 +499,7 @@
 			candidate.remove(first_node)
 			if self.add_edge!=None:
 			node = []
+			select.remove(first_node)
 			for i in self.add_edge:
 			if i[0] not in node:
 			node.append(i[0])
@@ -489,6 +528,13 @@
 			edge.append([v, u])
 			select.append(u)
 			candidate.remove(u)
+			if self.add_node!=None:
+			for i in edge:
+			for id_j, j in enumerate(self.add_node):
+			if i[0]==13+id_j:
+			i[0] = j
+			if i[1]==13+id_j:
+			i[1] = j
 			return edge
 			\end{lstlisting}
 			
@@ -502,9 +548,15 @@
 			return 0
 			return 1 if x.startswith('V') else 2
 			
-			def get_xy(i,j=0):
+			def get_xy(i,j=0, add_node = None):
 			pos = []   # 元组中的两个数字是第i（从0开始计数）个点的坐标
+			if add_node==None:
 			for k in range(j, i):
+			pos.append((data['X坐标'].loc[k], data['Y坐标'].loc[k]))
+			else:
+			for k in range(j, i):
+			pos.append((data['X坐标'].loc[k], data['Y坐标'].loc[k]))
+			for k in add_node:
 			pos.append((data['X坐标'].loc[k], data['Y坐标'].loc[k]))
 			return pos
 			
@@ -595,8 +647,184 @@
 			\end{lstlisting}
 			
 		\section{问题三代码及其可视化}
+			\subsection*{改进prim算法}
 			\begin{lstlisting}[language=python]
-
+			def prim_pro(Matrix, add_edge, first_node=0, cost=40):
+			nodenum = len(Matrix)
+			
+			select = [first_node]
+			candidate = list(range(0, nodenum))
+			candidate.remove(first_node)
+			node = []
+			for i in add_edge:
+			if i[0] not in node:
+			node.append(i[0])
+			if i[1] not in node:
+			node.append(i[1]) 
+			node_A = {}
+			for i in node:
+			node_A[i] = [0,[i]]  # 存储形式是[dis, [v,u1,u2...]]
+			for i in node:
+			select.append(i)
+			if i in candidate:
+			candidate.remove(i)
+			# 存储每次搜索到的最小生成树的边
+			edge = []+add_edge
+			loss = []
+			def min_edge(select, candidate, graph):
+			min_weight = np.inf
+			v, u = 0, 0
+			for i in select:
+			for j in candidate:
+			if min_weight > graph[i][j] and (i,j) not in loss:
+			min_weight = graph[i][j]
+			v, u = i, j
+			for x in node:
+			if v in node_A[x][1]:
+			if node_A[x][0]+min_weight<=cost:
+			node_A[x][0] = node_A[x][0]+min_weight
+			node_A[x][1].append(u)
+			else:
+			loss.append((v,u))
+			return False, v, u
+			return True, v, u
+			
+			num = len(add_edge)+1
+			test = 0
+			while test<num*(nodenum-num):
+			flag, v, u = min_edge(select, candidate, Matrix)
+			if flag:
+			edge.append([v, u])
+			select.append(u)
+			candidate.remove(u)
+			else:
+			test = test+1
+			return edge, candidate, node_A
+			\end{lstlisting}
+			\subsection*{免疫遗传算法及其可视化}
+			\begin{lstlisting}[language=python]
+			COST = 40
+			e, c, node_A = prim_pro(weight_array, edge_A, cost=COST)
+			_size = len(c)
+			_size#, c
+			
+			_weight_ = np.zeros((181,181))
+			for k in e:
+			_weight_[k[0],k[1]] = weight_array[k[0],k[1]]
+			plt.figure(figsize=(12,9)) 
+			G_nx = nx.Graph()
+			G_nx2 = nx.Graph()
+			G_nx3 = nx.Graph()
+			
+			for i in range(181):
+			for j in range(181):
+			if _weight_[i, j]!=0 and i<13 and j<13:
+			G_nx.add_edge(i, j)
+			if _weight_[i, j]!=0 and i>0 and j>0:
+			G_nx2.add_edge(i, j)
+			nx.draw_networkx(G_nx, pos[:len(edge_A)+1], alpha=0.85)
+			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
+			node_shape=".", node_size=100, style='dashed')
+			GG = nx.Graph()
+			GG.add_node(0)
+			nx.draw_networkx(GG, {0:pos[0]}, node_color='r',node_shape='*', node_size=1200
+			,label='Central pipeline')
+			p = {}
+			for i in c:
+			G_nx3.add_node(i)
+			p[i] = pos[i]
+			nx.draw_networkx(G_nx3, p, node_color='purple', node_size=120,with_labels=False,
+			node_shape=",",label='Isolated point')
+			
+			plt.show() # display
+			
+			def fun(node_B, learning = 100):
+			node_B_index = []
+			for i in range(_size):
+			if node_B[i]:
+			node_B_index.append(i+13)
+			node_A_index = list(range(0, 13))+node_B_index
+			weight_array_A = np.zeros((len(node_A_index),len(node_A_index)))
+			for id_i,i in enumerate(node_A_index):
+			for id_j,j in enumerate(node_A_index):
+			weight_array_A[id_i][id_j] = weight_array[i][j]
+			G_A = Graph(weight_array_A)
+			edge_AA = G_A.prim(first_node=0)
+			e, c, node_A = prim_pro(weight_array, edge_AA, cost=COST)
+			return np.sum(node_B)+learning*len(c)
+			
+			def mutate(node_B1, mu = 0.05):
+			l = len(node_B1)
+			for i in range(l):
+			p = np.random.random()
+			if p < mu:
+			node_B1[i] = 0 if node_B1[i]==1 else 0 
+			return node_B1
+			
+			def cross(node_B1,node_B2):
+			le = round(len(node_B1)/3)
+			temp = node_B1[:le].copy()
+			node_B1[:le] = node_B2[:le]
+			node_B2[:le] = temp
+			return node_B1,node_B2
+			
+			def select(geti):
+			sss = []
+			for i in tqdm(geti):
+			sss.append(fun(i))
+			idx = [i for i,v in sorted(enumerate(sss), key=lambda x:x[1])]
+			geti2 = []
+			for i in idx:
+			geti2.append(geti[i])
+			le = round(len(geti)*3/4)
+			# le = len(geti)-1
+			g = []
+			for i in range(le):
+			g.append(geti2[i])
+			return g, sss, idx
+			
+			add_node = [89]
+			node_A_index = list(range(0, 13))+add_node
+			weight_array_A = np.zeros((len(node_A_index),len(node_A_index)))
+			for id_i,i in enumerate(node_A_index):
+			for id_j,j in enumerate(node_A_index):
+			weight_array_A[id_i][id_j] = weight_array[i][j]
+			G_A = Graph(weight_array_A,add_node=add_node)
+			edge_AA = G_A.prim(first_node=0)
+			
+			pos_A = get_xy(13,add_node=add_node)
+			G_A.plot_matrix(pos_A)
+			e, c, node_A = prim_pro(weight_array, edge_AA, cost=COST)
+			
+			_weight_ = np.zeros((181,181))
+			for k in e:
+			_weight_[k[0],k[1]] = weight_array[k[0],k[1]]
+			plt.figure(figsize=(12,9)) 
+			G_nx = nx.Graph()
+			G_nx2 = nx.Graph()
+			G_nx3 = nx.Graph()
+			pos_A = get_xy(13,add_node=add_node)
+			for i in range(181):
+			for j in range(181):
+			if _weight_[i, j]!=0 and i<13 and j<13:
+			G_nx.add_edge(i, j)
+			if _weight_[i, j]!=0 and i>0 and j>0:
+			G_nx2.add_edge(i, j)
+			nx.draw_networkx(G_nx, pos_A, alpha=0.85)
+			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
+			node_shape=".", node_size=100, style='dashed')
+			GG = nx.Graph()
+			GG.add_node(0)
+			nx.draw_networkx(GG, {0:pos[0]}, node_color='r',node_shape='*', node_size=1200
+			,label='Central pipeline')
+			p = {}
+			for i in add_node:
+			G_nx3.add_node(i)
+			p[i] = pos[i]
+			nx.draw_networkx(G_nx3, p, node_color='gold', node_size=150,with_labels=False,
+			node_shape=",",label='Isolated point')
+			
+			plt.show() # display
 			\end{lstlisting}
 %			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
 %			rulesepcolor=\color{red!20!green!20!blue!20},  
