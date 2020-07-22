@@ -90,6 +90,7 @@
 		\begin{table}[H]
 		\centering
 		\setlength{\tabcolsep}{12mm}
+		\setstretch{1.3}   %设置表的行间距
 		\begin{tabular}{cc}
 			\toprule[1.5pt]
 			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
@@ -104,16 +105,22 @@
 		   	$cost_k(v_i,v_j)$  & 第k类供水管中$v_i$和$v_j$节点间的代价 \\ 
 		   	$G(T_1),G(T_2)$  &第一、第二生成树的图集合  \\ 
 		   	$L_j$  & $v_j$到子树$T$的最短距离  \\ 
-		   	$P_n$  & 20个站点  \\ 
-		   	$P_n$  & 20个站点  \\ 
-		   	$P_n$  & 20个站点  \\ 
+		   	$\Gamma$  & 升级站点的染色体  \\ 
+		   	$\gamma_i$  & 第i个孤立点  \\ 
+		   	$M$  & 惩罚因子  \\ 
+			$\varphi(V_{\Gamma})$  & 惩罚函数  \\ 
+		  $S(\Gamma_1,\Gamma_2)$  & 亲和力  \\ 
+		  		  $g$  & 迭代次数  \\ 
+		  	 $C$  & 抗体浓度 \\ 
+		  	 $n$  & 抗体长度 \\ 
+		  		  	 $r$  & 随机数种子 \\ 
 			\bottomrule[1.5pt]
 		\end{tabular}
 		\begin{tablenotes}
 		\item 注：表中未说明的符号以首次出现处为准
 		\end{tablenotes}
 		\end{table}
-
+\newpage
 	\section{问题一模型的建立与求解}
 		\subsection{问题描述与分析}
 			问题一要求分析一级供水站与二级供水站的分布情况，并根据分析结果，设计从中心供水站出发总里程最少的管道铺设方案。由于供水必须从中心供水站出发，流入一级供水站，再流入二级供水站。故一级供水站与中心供水站必须优先联连通，再此之基础之上才能铺设二级供水网络。
@@ -191,11 +198,12 @@
 			\displaystyle	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ \displaystyle	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
 						\end{matrix}\right.
 			\end{gather*}
+%		\newpage
 		\subsection{模型的求解}
 			\subsubsection{二阶Prim算法}
 		为求取管道最小里程和最优路径，需要搜索每一层生成树边集合$E(T_k),k=1,2$。针对该二阶最小生成树问题，我们设计了二阶Prim算法，分别实现由中心供水站到I级供水站、由I级供水站到II级供水站的最小生成树，即可求得最终的边集合$E(T_2)$。
 		
-		二阶Prim算法的流程流程图如图~\ref{awwwsd}~所示
+		二阶Prim算法的流程流程图如图~\ref{awwwsd}~所示：
 		\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth]{figures/a1.png}
@@ -204,10 +212,10 @@
 		
         \subsection{实验结果及分析}
  % 1.灵敏度分析；（2.对比分析）；3.算法收敛性分析；4.算法时间复杂度分析。。。
-       以中心供水站作为根节点运行二阶Prim算法，首先生成由中心供水站与一级供水站构成的供水网络如图~\ref{sdfb}~所示
+       以中心供水站作为根节点运行二阶Prim算法，首先生成由中心供水站与一级供水站构成的供水网络如图~\ref{sdfb}~所示：
        	\begin{figure}[H]
        	\centering
-       	\includegraphics[width=\textwidth]{figures/444.png}
+       	\includegraphics[width=.7\textwidth]{figures/444.png}
        	\caption{一阶最小生成树}\label{sdfb}
        \end{figure}
        图中$0$节点为中心供水站点，$1~12$节点是一级供水站点，其构成的连通图即为其最小生成树。解得所需的I型管道的最小铺设距离为$120.94km$。此时，将二级供水站并入节点集，在该生成树的基础上继续运行Prim算法，求解得到整体管道网络铺设如图~\ref{sgfhd}~所示：
@@ -217,6 +225,8 @@
        	\caption{二阶阶最小生成树}\label{sgfhd}
        \end{figure}
      图中的$168$个小节点即为二级供水站，解得II型管道铺设里程为$403.40km$、I型管道与II型管道的最小铺设总和为$524.34km$。二阶Prim算法的基本原理基于经典图论算法Prim算法，其求解值可被证明为该模型最优解\upcite{1,2}。
+     
+     \newpage
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}	
 			问题二要求在考虑市场因素的条件下尽可能减少II型管道的使用量，即将两个II级供水站升级为I级供水站，使得II级管道里程数最少。本组认为可以基于第一问建立的二阶生成树模型，以需要升级的二级站点为决策变量，并将II型管道的总里程作为目标函数构建优化模型。
@@ -279,7 +289,7 @@
 		\end{figure}
         图中红点表示升级为一级供水站的二级供水站，红线表示新增设的I型管道。其中II型管道使用量为392.001km，相对于问题一方案减少了11.403km。
 	
-
+\newpage
     \section{问题三模型的建立与求解}
    		\subsection{问题三描述与分析}
    		问题三在基础管道铺设的条件下考虑了供水站的功率限制，要求针对该限制重新制定管道铺设方案。在深入分析了模型三新增的约束条件后，本组针对其新增约束改进了二阶Prim算法，以求解该类带约束的生成树问题。
@@ -376,16 +386,15 @@
 	  免疫遗传算法流程图如图~\ref{bgrs}~所示：
 	  \begin{figure}[H]
 		\centering
-	
-		 \includegraphics[width=.8\textwidth]{figures/a31.png}
+		 \includegraphics[width=.6\textwidth]{figures/a31.png}
 		 \caption{	免疫遗传算法流程图}\label{bgrs}
 	 \end{figure}
-\newpage
+%\newpage
   	\subsection{实验结果及分析}
   	利用改进Prim算法求出最大总里程为40km时候的孤立点如图\ref{gld}所示，其中紫色方块表述孤立点：
   	 \begin{figure}[H]
   		\centering
-  		\includegraphics[width=.7\textwidth]{figures/gld.png}
+  		\includegraphics[width=.65\textwidth]{figures/gld.png}
   		\caption{改进Prime算法求解孤立点}\label{gld}
   	\end{figure}
     每个一级管道对应的二极管道树枝总里程如表所示：
@@ -413,10 +422,10 @@
   	
   	\begin{figure}[H]
   		\centering
-  		\includegraphics[width=.7\textwidth]{figures/ssss.png}
+  		\includegraphics[width=\textwidth]{figures/ssss.png}
   		\caption{升级后的二级管道分布图}\label{glsssd}
   	\end{figure}
-  
+  \newpage
   每个一级管道对应的二极管道树枝总里程如表所示：
   			\begin{table}[H]
   		\centering
@@ -458,7 +467,7 @@
  	
  			  \begin{figure}[H]
  		\centering
- 		\includegraphics[width=\textwidth]{figures/quxian.png}
+ 		\includegraphics[width=.9\textwidth]{figures/quxian.png}
  		\caption{各个最大里程的免疫遗传算法收敛图}
  	\end{figure}
  	由算法收敛图可知算法收敛速度较快，当代价取较小时早熟问题解决的较好，全局搜素能力较强， 算法复杂度远低于遍历求解。
