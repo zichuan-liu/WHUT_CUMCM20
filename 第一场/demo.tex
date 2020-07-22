@@ -95,8 +95,18 @@
 			\toprule[1.5pt]
 			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
 			\midrule[1pt]		
-			$P_n$  & 20个站点  \\ 
-			$P_n$  & 20个站点  \\ 
+			$T_1,T_2$  & 第一、第二生成树  \\ 
+			$V_0,V_1,V_2$  & 中心、一级、二级供水站节点集合  \\ 
+			$v_0,v_1,v_2$  & 中心、一级、二级供水站节点元素  \\ 
+			$V(T_1),V(T_2)$  & 第一、第二生成树的节点集合 \\ 
+		   	$E(T1),E(T_2)$  &第一、第二生成树的边集合\\ 
+		   	$|E(T1)|,|E(T_2)|$  & 第一、第二生成树的边的模长 \\ 
+		   	$k$  & 供水管类型 \\
+		   	$cost_k(v_i,v_j)$  & 第k类供水管中$v_i$和$v_j$节点间的代价 \\ 
+		   	$G(T_1),G(T_2)$  &第一、第二生成树的图集合  \\ 
+		   	$L_j$  & $v_j$到子树$T$的最短距离  \\ 
+		   	$P_n$  & 20个站点  \\ 
+		   	$P_n$  & 20个站点  \\ 
 		   	$P_n$  & 20个站点  \\ 
 			\bottomrule[1.5pt]
 		\end{tabular}
@@ -121,7 +131,7 @@
 		\begin{gather*}
 		T_{1}=(V(T_{1}),E(T_{1})),
 		\end{gather*}
-		其中$T_{1}$代表一级生成树，其中$V(T_{1})=V_0\cup  V_1$,即一级生成树中的节点只包含中心供水站和一级供水站。
+		其中$T_{1}$代表一级生成树，其中$V(T_{1})=V_0\cup V_1$,即一级生成树中的节点只包含中心供水站和一级供水站。
 		
 		在一级生成树生成树$T_1$的基础上引入二级站点$V_2$构成二级生成树:
 		\begin{gather*}	
@@ -148,7 +158,7 @@
 		
 			%同一般的最小生成树问题不同，问题一中的II级供水站生成树优化需待I级供水站的最小连通树生成后才能开始进行。因此，问题一的模型（取个屌点的名字？？？？？）分为两部分，I级供水站和II级供水站先后进行目标优化。
 			%本问题中，
-			在此二阶最小生成树问题中，已知节点和边的关系为$|E(T)|=|V(T)|-1, $。即决策变量可表示为生成树的边集合：
+			在此二阶最小生成树问题中，已知节点和边的关系为$|E(T)|=|V(T)|-1 $。即决策变量可表示为生成树的边集合：
 			%生成树节点对应的序列作为决策变量，以序列矩阵的形式表示，每一层的最优序列矩阵可以表示为
 			\begin{gather}
 			E(T_k)=
@@ -181,38 +191,59 @@
 						\end{matrix}\right.
 			\end{gather*}
 		\subsection{模型的求解}
-		为求取管道最小里程和最优路径，我们需要求解每一层的最优序列矩阵。针对问题一，我们采用Prim算法，分别实现由中心供水站到I级供水站、由I级供水站到II级供水站的最小生成树，可以求得每一层的最优序列矩阵$E(T_k)$。
+			\subsubsection{二阶Prim算法}
+		为求取管道最小里程和最优路径，需要搜索每一层生成树边集合$E(T_k),k=1,2$。针对该二阶最小生成树问题，我们设计了二阶Prim算法，分别实现由中心供水站到I级供水站、由I级供水站到II级供水站的最小生成树，即可求得最终的边集合$E(T_2)$。
 		
-		Prim算法的流程流程图如图~\ref{dsf}~所示
+		二阶Prim算法的流程流程图如图~\ref{asd}~所示
 		\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth]{figures/a1.png}
-		\caption{问题二思维流程图}\label{dsf}
+		\caption{二阶Prim算法流程图}\label{asd}
 	\end{figure}
 		
         \subsection{实验结果及分析}
-  1.灵敏度分析；（2.对比分析）；3.算法收敛性分析；4.算法时间复杂度分析。。。
+ % 1.灵敏度分析；（2.对比分析）；3.算法收敛性分析；4.算法时间复杂度分析。。。
+       以中心供水站作为根节点运行二阶Prim算法，首先生成由中心供水站与一级供水站构成的供水网络如图~\ref{sdfb}~所示
+       	\begin{figure}[H]
+       	\centering
+       	\includegraphics[width=\textwidth]{figures/444.png}
+       	\caption{一阶最小生成树}\label{sdfb}
+       \end{figure}
+       图中$0$节点为中心供水站点，$1~12$节点是一级供水站点，其构成的连通图即为其最小生成树。解得所需的I型管道的最小铺设距离为$120.94km$。此时，将二级供水站并入节点集，在该生成树的基础上继续运行Prim算法，求解得到整体管道网络铺设如图~\ref{gfhd}~所示
+       	\begin{figure}[H]
+       	\centering
+       	\includegraphics[width=\textwidth]{figures/222.png}
+       	\caption{二阶阶最小生成树}\label{gfhd}
+       \end{figure}
+     图中的$168$个小节点即为二级供水站，解得II型管道铺设里程为$403.40km$、I型管道与II型管道的最小铺设总和为$524.34km$。二阶Prim算法的基本原理基于经典图论算法Prim算法，其求解值可被证明为该模型最优解。(????????????????????引用文献)
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}	
-			问题二要求升级两个II级供水站为I级供水站，使得II级管道里程数最少。
-			
+			问题二要求在考虑市场因素的条件下尽可能减少II型管道的使用量，即将两个II级供水站升级为I级供水站，使得II级管道里程数最少。基于第一问建立的二阶生成树模型，以需要升级的二级站点为决策变量，并将II型管道的总里程作为目标函数构建优化模型。在深度分析分析生成树优化原理后，设计启发式算法用于搜索须升级的二级供水站。
 			\subsection{模型的建立}
-			其中，第一层更新后的决策变量仍是最优节点序列，用最优序列矩阵表示为：
+			分析问题可知，该模型决策变量可表示为须要升级的二级供水站，即：
+				\begin{gather}
+				\theta =\left \{ v_2(i),v_2(j) \right \}
+				\end{gather}
+			其中$\theta$为决策变量，$v_2(i),v_2(j)$ 分别为将被升级的二级供水站。完成升级操作后根据问题一模型即可得到一级、二级生成树$T_{1}'=(V(T_{1}'),E(T_{1})'),T_{2}'=(V(T_{2}'),E(T_{2}'))$其中生成树的边集合仍可以表示为：
 			\begin{gather}
-			E(T_1')=
-			\begin{bmatrix}
-			(v_{\left | E(T_{1}')\right |,1},v_{\left | E(T_{1}')\right |,2})
-			\end{bmatrix}
+			\displaystyle \sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
 			\end{gather}
-			其中，$v_{\left | E(T_{1}')\right |,1},v_{\left | E(T_{1}')\right |,2}$是由II级供水站升级成的I级供水站。此时约束条件仍是生成树$T_1$优先生成并满足
+			
 			\begin{gather}
-			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
+			E(T_k')=
+		\begin{bmatrix}
+		(v_{11} ,v_{12}) \\ 
+		(v_{21} ,v_{22} )\\ 
+		...,...\\
+		(v_{|E(T_k')|,1},v_{|E(T_k')|,2})\\
+		\end{bmatrix},k=1,2
 			\end{gather}
-			目标函数为II级管道的总里程
+			其仍必须满足$E(T_1')\subseteq E(T_2')$，目标函数为II型管铺设总里程，即：
 			\begin{gather}
-			\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})=\min\left \{\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})\right\}
+			\displaystyle \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})=\min\left \{\displaystyle \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})\right\}
+			\displaystyle \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
 			\end{gather}
-			结合上述决策变量、目标函数、约束条件，得到以两个升级后的I级供水站为决策变量，以II级管道的总里程为目标函数，生成树$T_1$优先生成为约束条件的优化模型：
+			结合上述决策变量、目标函数、约束条件，得到以将两个升级的一级供水站为决策变量，以II级管道的总里程为目标函数，生成树$T_1$优先生成为约束条件的优化模型：
 			\begin{gather}
 			\min \left\{ \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
 			\end{gather}
@@ -220,38 +251,37 @@
 			s.t.\left\{\begin{matrix}
 			E(T_{1})\subseteq  E(T_{2})\\ 
 			\displaystyle\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\displaystyle\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
+			min  \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
 			\end{matrix}\right.
 			\end{gather*}
-    		其思维流程图如图~\ref{lssssct}~所示：
-
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题二思维流程图}\label{lssssct}
-			\end{figure}
-
-
-		
+			\begin{gather*}
+			s.t.\left\{\begin{matrix}
+			E(T_{1}')\subseteq  E(T_{2}')\\ 
+			\displaystyle\sum_{i\in E(T_1') }cost_1(v_{i1},v_{i2})=\min\left \{ 	\displaystyle \sum_{i\in E(T_1') }cost_1(v_{i1},v_{i2}) \right \} 
+			\end{matrix}\right.
+			\end{gather*}
 		\subsection{模型的求解}
-
+		深度分析问题二要求可知，问题二目标仅需要减小II级管道的使用量，当某一个二级供水站升级为一级供水站后：
+			\begin{gather*}
+			|V(T_{1}')|= |V(T_{1})|+1\\
+			|V(T_{2}')|=|V(T_{2})|
+	        \end{gather*}
+	    即一级生成树的节点数加一，且二级生成树的节点数不变。且根据式$|E(T)|=|V(T)|-1 $可知，I型管道数量加，同时II型管道数量减一。由此本组设计启发式算法，在问题一结果的基础上，断开最长的二级管道，将原生成树分割为两个生成树。分割后的两个生成树中必有一个不包含一级供水站，将该生成树中的任意一个二级站点升级为一级站点并连接该站点与一级供水网络，即可使II型管道的铺设减小量最大化，其流程图如下图~\ref{gfhd}~所示
+	        \begin{figure}[H]
+	        	\centering
+	        	\includegraphics[width=\textwidth]{figures/2163.png}
+	        	\caption{启发式算法}\label{gfhd}
+	        \end{figure}
         \subsection{实验结果及分析}
-        
-			结果如下表\ref{zhuanssssasgzai}所示：
-			\begin{table}[H]
-			\setstretch{1.4}  %设置表的行间距
-			\centering		
-			\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-			\begin{tabular}{cc}
-			\toprule[2pt]
-				\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				\\
-				\midrule[1pt]
-				xxxxxxx &   909.80\\ 
-				xxxxxxx & 	852.60\\ 
-			\bottomrule[2pt]	
-			\end{tabular}
-			\end{table}
+        连续两次执行启发式算法后，升级后的管道网络如图~\ref{vwrhbu}~所示
+		  \begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{figures/333.png}
+			\caption{升级后的二阶最小生成树}\label{gfhd}
+		\end{figure}
+        图中红点表示升级为一级供水站的二级供水站，红线表示新增设的I型管道。其中II型管道使用量为？？？，相对于问题一方案减少了？？？。
+	
+		\subsection{实验结果及分析}
   
   			由表\ref{biao1}可知
 
@@ -270,6 +300,7 @@
 			\end{figure}
 
     \section{问题三模型的建立与求解}
+
    		
     \subsection{问题三描述与分析}
     针对问题三，在问题一的基础上分析得出，要实现全面供水，必须消除所有无法与其他供水站相连的孤立点。本组对II级供水站进行编码，对无法满足约束条件的II级供水站附加一个与孤立点个数成正比的罚函数，定义惩罚因子为常数，设计免疫遗传算法，通过优化需要升级的II级供水站个数最小，实现全面供水。
@@ -324,8 +355,57 @@
         \end{matrix}\right.
         \end{gather}
         \subsection{问题三模型的求解}
+
+   		\subsection{问题三描述与分析}
+   		问题三在基础管道铺设的条件下考虑了供水站的功率限制，要求针对该限制重新制定管道铺设方案。在深入分析了模型三新增的约束条件后，本组针对其新增约束改进了二阶Prim算法，以求解该类带约束的生成树问题。之后我们引入了免疫遗传算法，搜索最佳升级方案，使得在升级二级供水站数量最少的情况下，实现对所有的供水站供水。
+    	\subsection{问题一模型的改进}
+    	在问题一的基础上，问题三限制了从I级供水站输送的总里程最大为$40km$，即约束了
+    	\begin{gather*}
+    	\sum_{i=1}^{|E_2|}|e_2^i|\leq 40,e_2^i\in E_2
+    	\end{gather*}
+    	其中$E_2$是第二层边的集合，$e_2^i(i=1,2,...,|E_2|)$是其中的边元素。因此，每次执行Prim算法后需要使用上式检验新加入的边是否满足该约束条件。
+    	\subsection{模型的求解}
+    	\subsubsection{改进二阶Prim算法}
+    	阵对带约束的生成树问题，本组在二阶Prim算法的基础上加入边权重判定机制，即将某一个解纳入生成树后，若权重和超过了限制条件则退回到上一步，并将该路径的边权值修改为无穷大。在此基础上，若某个二级节点的所有边权重值都被修改为无穷大则将其定义为孤立节点。
+    	
+    	改进Prim算法的流程图如下图所示：
+        \begin{figure}[H]
+        	\centering
+        	\includegraphics[width=\textwidth]{figures/a3.png}
+        	\caption{改进二阶Prim算法流程图}\label{asd}
+        \end{figure}
+        
+    		
+
   		\subsection{结果分析}
-  
+  	\subsubsection{免疫遗传算法}
+  	\paragraph{0-1编码与}
+  	执行改进二阶Prim算法，即可求得所有未能被供水的节点$\left \{ v_i^{aban} \right \}$，其中$i=1,2,\cdots,n$，$n$表示孤立节点数量，即染色体可对应编码为：
+  		\begin{gather}
+  		\Gamma =[\gamma_1,\gamma_2,\cdots, \gamma_n]
+  		\end{gather}
+    其中$\Gamma$表示升级站点的决策变量，即染色体。 $\gamma_i=\left \{ 0,1 \right \}$为孤立节点$v_i^{aban}$对应的决策值，当$\gamma_i=0$时表示函数值孤立节点$v_i^{aban}$不做修改；当$\gamma_i=1$时表示$v_i^{aban}$对应的二级供水站被升级为一级供水站。
+     	\paragraph{适应度计算}
+    将决策变量$\Gamma$所表征的升级操作执行后，即可得到升级后点集$V_{\Gamma}$，将其带入改进后的二阶Prim算法可求得生成孤立点数量$\varphi(V_{\Gamma})$。若$\varphi(V_{\Gamma})>0$则说明任然存在孤立节点，即没有实现完全供水。基于此我们将$\varphi(V_{\Gamma})$作为惩罚因子代换功率约束条件，即决策变量$\Gamma$的抗原适应度为：
+    	\begin{gather}
+    	F(\Gamma_i)=\sum_{j=1}^{n}\gamma_j+ M\cdot  \varphi(V_{\Gamma i})
+    	\end{gather}
+    其中$\displaystyle \sum_{i=1}^{n}\gamma_i$表示升级的二级站点数量和。$M$为较大的正数，与$\varphi(V_{\Gamma})$构成罚函数。同时计算抗体亲和力：
+    	\begin{gather}
+    	S(\Gamma_1,\Gamma_2)=(\frac{k(\Gamma_1,\Gamma_2)}{n}>T)
+        \end{gather}
+    $k(\Gamma_1,\Gamma_2)$表示染色体相同的位数，$n$为抗体长度。$T$为可设定的阈值，即当相同的位数的比例大于$T$时，$S(\Gamma_1,\Gamma_2)=1$；否则$S(\Gamma_1,\Gamma_2)=0$。抗体与抗体之间的亲和力反映了抗体之间的相似程度。定义抗体浓度$C(\Gamma_i)$表示群体中与$\Gamma_i$相似抗体所占的比例,即可计算如下：
+     \begin{gather}
+     C(\Gamma_i)=\displaystyle \frac{\displaystyle \sum _{j=1,j\neq i}^N k(\Gamma_i,\Gamma_j)}{N}
+     \end{gather}
+     即综合适应度可表示为：
+  	 \begin{gather}
+  \min	P(\Gamma_i)=\lambda \frac{F(\Gamma_i)}{\displaystyle \sum _{i=1}^N F(\Gamma_i)}+(1-\lambda )\frac{C(\Gamma_i)}{\displaystyle \sum _{i=1}^N C(\Gamma_i)}
+  	\end{gather}
+  	\paragraph{精英库保留策略}
+  	先将染色体$\left \{ \Gamma_i \right \}$以抗原适应度$F(\Gamma_i)$大小降序排列，并优先保留其前$\alpha$个染色体进入下一代，由此防止目标函数值最优的个体被舍去。之后，将剩余染色体以综合适应度$P(\Gamma_i)$排序，并将前$N-\alpha$个染色体放入下一代。
+  	
+  	
   	\section{灵敏度分析}
  
   	\section{模型的评价}
