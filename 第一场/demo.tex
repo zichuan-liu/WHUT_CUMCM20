@@ -196,11 +196,11 @@
        	\includegraphics[width=\textwidth]{figures/444.png}
        	\caption{一阶最小生成树}\label{sdfb}
        \end{figure}
-       图中$0$节点为中心供水站点，$1~12$节点是一级供水站点，其构成的连通图即为其最小生成树。解得所需的I型管道的最小铺设距离为$120.94km$。此时，将二级供水站并入节点集，在该生成树的基础上继续运行Prim算法，求解得到整体管道网络铺设如图~\ref{gfhd}~所示
+       图中$0$节点为中心供水站点，$1~12$节点是一级供水站点，其构成的连通图即为其最小生成树。解得所需的I型管道的最小铺设距离为$120.94km$。此时，将二级供水站并入节点集，在该生成树的基础上继续运行Prim算法，求解得到整体管道网络铺设如图~\ref{sgfhd}~所示
        	\begin{figure}[H]
        	\centering
        	\includegraphics[width=\textwidth]{figures/222.png}
-       	\caption{二阶阶最小生成树}\label{gfhd}
+       	\caption{二阶阶最小生成树}\label{sgfhd}
        \end{figure}
      图中的$168$个小节点即为二级供水站，解得II型管道铺设里程为$403.40km$、I型管道与II型管道的最小铺设总和为$524.34km$。二阶Prim算法的基本原理基于经典图论算法Prim算法，其求解值可被证明为该模型最优解。(????????????????????引用文献)
 	\section{问题二模型的建立与求解}
@@ -241,39 +241,22 @@
 			|V(T_{1}')|= |V(T_{1})|+1\\
 			|V(T_{2}')|=|V(T_{2})|
 	        \end{gather*}
-	    即一级生成树的节点数加一，且二级生成树的节点数不变。且根据式$|E(T)|=|V(T)|-1 $可知，I型管道数量加，同时II型管道数量减一。由此本组设计启发式算法，在问题一结果的基础上，断开最长的二级管道，将原生成树分割为两个生成树。分割后的两个生成树中必有一个不包含一级供水站，将该生成树中的任意一个二级站点升级为一级站点并连接该站点与一级供水网络，即可使II型管道的铺设减小量最大化，其流程图如下图~\ref{gfhd}~所示
+	    即一级生成树的节点数加一，且二级生成树的节点数不变。且根据式$|E(T)|=|V(T)|-1 $可知，I型管道数量加，同时II型管道数量减一。由此本组设计启发式算法，在问题一结果的基础上，断开最长的二级管道，将原生成树分割为两个生成树。分割后的两个生成树中必有一个不包含一级供水站，将该生成树中的任意一个二级站点升级为一级站点并连接该站点与一级供水网络，即可使II型管道的铺设减小量最大化，其流程图如下图~\ref{gfhssssd}~所示
 	        \begin{figure}[H]
 	        	\centering
 	        	\includegraphics[width=\textwidth]{figures/2163.png}
-	        	\caption{启发式算法}\label{gfhd}
+	        	\caption{启发式算法}\label{gfhssssd}
 	        \end{figure}
         \subsection{实验结果及分析}
         连续两次执行启发式算法后，升级后的管道网络如图~\ref{vwrhbu}~所示
 		  \begin{figure}[H]
 			\centering
 			\includegraphics[width=\textwidth]{figures/333.png}
-			\caption{升级后的二阶最小生成树}\label{gfhd}
+			\caption{升级后的二阶最小生成树}\label{vwrhbu}
 		\end{figure}
         图中红点表示升级为一级供水站的二级供水站，红线表示新增设的I型管道。其中II型管道使用量为？？？，相对于问题一方案减少了？？？。
 	
-	
-		\subsection{实验结果及分析}
-  
-  			由表\ref{biao1}可知
 
-			其各个小车的运输细节图下图所示：
-			\begin{figure}[H]
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-			\end{figure}	
-			\begin{figure}[H]	
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\caption{xxxxxxxxxxxxxxxxxxxxxxxxx}
-				\label{fisg}
-			\end{figure}
 
     \section{问题三模型的建立与求解}
    		\subsection{问题三描述与分析}
@@ -324,9 +307,88 @@
   	\paragraph{精英库保留策略}
   	先将染色体$\left \{ \Gamma_i \right \}$以抗原适应度$F(\Gamma_i)$大小降序排列，并优先保留其前$\alpha$个染色体进入下一代，由此防止目标函数值最优的个体被舍去。之后，将剩余染色体以综合适应度$P(\Gamma_i)$排序，并将前$N-\alpha$个染色体放入下一代。
   	
+  	\subsection{实验结果及分析}
+  	利用改进Prim算法求出最大总里程为40km时候的孤立点如图\ref{gld}所示，其中紫色方块表述孤立点：
+  	 \begin{figure}[H]
+  		\centering
+  		\includegraphics[width=.7\textwidth]{figures/gld.png}
+  		\caption{改进Prime算法求解孤立点}\label{gld}
+  	\end{figure}
+    每个一级管道对应的二极管道树枝总里程如表所示：
+  \begin{table}[H]
+  	\centering
+  	%  		\setlength{\tabcolsep}{12mm}
+  	\begin{tabular}{cccc}
+  		\toprule[1.5pt]
+  		\multicolumn{1}{m{3cm}}{\centering 一级管序号} & \multicolumn{1}{m{3cm}}{\centering 树枝总里程} &
+  		\multicolumn{1}{m{3cm}}{\centering 一级管序号} &
+  		\multicolumn{1}{m{3cm}}{\centering 树枝总里程} \\
+  		\midrule[0.5pt]		
+  		中心管 & 0 &7&39.953km \\ 
+  		1  & 38.958km &8& 36.067km\\ 
+  		2  & 17.289km &9&37.092km\\ 
+  		3  & 28.798km &10& 38.022km\\ 
+  		4 & 37.527km &11&37.097km \\ 
+  		5  &39.263km &12& 38.381km\\ 
+  		6  &37.728km &&\\ 
+  		\bottomrule[1.5pt]
+  	\end{tabular}
+  \end{table}
+  
+  	将二级管道生成的染色体$\Gamma$带入免疫遗传算法中，求解出最小升级管道数为一个，其x序号为41，再次利用改进Prim算法求出二级管道最短所需要的历程为415.0878km。其管道分布图如下：
+  	
+  	\begin{figure}[H]
+  		\centering
+  		\includegraphics[width=.7\textwidth]{figures/ssss.png}
+  		\caption{升级后的二级管道分布图}\label{glsssd}
+  	\end{figure}
+  
+  每个一级管道对应的二极管道树枝总里程如表所示：
+  			\begin{table}[H]
+  		\centering
+%  		\setlength{\tabcolsep}{12mm}
+  		\begin{tabular}{cccc}
+  			\toprule[1.5pt]
+  			\multicolumn{1}{m{3cm}}{\centering 一级管序号} & \multicolumn{1}{m{3cm}}{\centering 树枝总里程} &
+  			\multicolumn{1}{m{3cm}}{\centering 一级管序号} &
+  			\multicolumn{1}{m{3cm}}{\centering 树枝总里程} \\
+  			\midrule[0.5pt]		
+  			中心管 & 0 &7&39.953km \\ 
+  			1  & 38.957km &8& 36.067km\\ 
+  			2  & 17.289km &9& 38.331km\\ 
+  		  	3  & 9.0km &10& 38.022km\\ 
+  		  	4 & 37.527km &11&37.097km \\ 
+  		  	5  & 39.263km &12& 38.381km\\ 
+  		  	6  & 37.728km &41& 32.634km\\ 
+  			\bottomrule[1.5pt]
+  		\end{tabular}
+  	\end{table}
   	
   	\section{灵敏度分析}
- 
+ 	由于题目中铺设供水代价最大40公里，只能升级一个管道。若降低供水最大长度，使用遍历算法的时间复杂度为$O(2^n)$，n为二级管道个数。而采用免疫遗传算法可以大大降低时间复杂度，搜索升级的最优管道个数。至此，将二级管道铺设最大代价取值为25、30、35、40km时，得到结果分别如图~\ref{fisg}~所示：
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\subfigure[最大25km，升级20个水管]{\includegraphics[height=7cm,width=7.5cm]{figures/s25.png}}
+ 		\subfigure[最大30km，升级11个水管]{\includegraphics[height=7cm,width=7.5cm]{figures/s30.png}}
+ 	\end{figure}	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\subfigure[最大35km，升级7个水管]{\includegraphics[height=7cm,width=7.5cm]{figures/s35.png}}
+ 		\subfigure[最大40km，升级1个水管]{\includegraphics[height=7cm,width=7.5cm]{figures/ssss.png}}
+ 		\caption{不同二级管道铺设最大代价}
+ 		\label{fisg}
+ 	\end{figure}
+ 	
+ 	其遗传算法的算法收敛图如图所示：
+ 	
+ 			  \begin{figure}[H]
+ 		\centering
+ 		\includegraphics[width=\textwidth]{figures/quxian.png}
+ 		\caption{各自遗传算法收敛图}
+ 	\end{figure}
+ 	由算法收敛图可知算法收敛速度较快，当代价取较小时早熟问题解决的较好，全局搜素能力较强， 算法复杂度远低于遍历求解。
+ 	
   	\section{模型的评价}
 		\subsection{模型的优点}
 			\begin{itemize}                                             
