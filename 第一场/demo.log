@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  22 JUL 2020 01:54
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  22 JUL 2020 12:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1030,6 +1030,9 @@ LaTeX Warning: Label `gfhd' multiply defined.
 
 LaTeX Warning: Label `gfhd' multiply defined.
 
+
+LaTeX Warning: Label `asd' multiply defined.
+
 )
 \openout1 = `demo.aux'.
 
@@ -1272,7 +1275,7 @@ Package fontspec Info: Font family 'SimSun(1)' created for font 'SimSun' with
 \tf@toc=\write5
 \openout5 = `demo.toc'.
 
- [0] [1]
+ [0] [1] [2]
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 
@@ -1280,26 +1283,26 @@ File: figures/whut.jpg Graphic file (type bmp)
 LaTeX Font Warning: Font shape `TU/SimSun(1)/bx/n' undefined
 (Font)              using `TU/SimSun(1)/m/n' instead on input line 113.
 
-[2] [3]
+[3] [4]
 File: figures/a1.png Graphic file (type bmp)
 <figures/a1.png>
 File: figures/444.png Graphic file (type bmp)
 <figures/444.png>
- [4]
+ [5]
 File: figures/222.png Graphic file (type bmp)
 <figures/222.png>
- [5] [6]
+ [6] [7]
 File: figures/2163.png Graphic file (type bmp)
 <figures/2163.png>
- [7]
+ [8]
 
-LaTeX Warning: Reference `vwrhbu' on page 8 undefined on input line 251.
+LaTeX Warning: Reference `vwrhbu' on page 9 undefined on input line 251.
 
 File: figures/333.png Graphic file (type bmp)
 <figures/333.png>
-[8]
+[9]
 
-LaTeX Warning: Reference `biao1' on page 9 undefined on input line 262.
+LaTeX Warning: Reference `biao1' on page 10 undefined on input line 262.
 
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
@@ -1309,7 +1312,11 @@ File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
-[9] [10] [11] [12] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+[10] [11]
+File: figures/a3.png Graphic file (type bmp)
+<figures/a3.png>
+ [12] [13] [14] [15]
+(d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
 
@@ -1335,15 +1342,16 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-(./code/demo.py)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
- [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
+ (./code/demo.py)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 369.
+
+[16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 369.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 332.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 332.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 369.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 369.
 Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 34200943F5B8B720BB20A62B77BC93CE.
+(rerunfilecheck)             Checksum: E5D404567625920FF3C6357C83E11D8F.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1354,16 +1362,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 369.
  )
 (\end occurred when \iftrue on line 24 was incomplete) 
 Here is how much of TeX's memory you used:
- 29920 strings out of 492922
- 583775 string characters out of 6136751
- 852990 words of memory out of 5000000
- 33527 multiletter control sequences out of 15000+600000
+ 29926 strings out of 492922
+ 583868 string characters out of 6136751
+ 853178 words of memory out of 5000000
+ 33532 multiletter control sequences out of 15000+600000
  544836 words of font info for 141 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,16n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (16 pages).
+Output written on demo.pdf (19 pages).

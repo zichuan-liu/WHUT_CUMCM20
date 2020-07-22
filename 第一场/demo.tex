@@ -277,17 +277,54 @@
 
     \section{问题三模型的建立与求解}
    		\subsection{问题三描述与分析}
-   		针对问题三，在问题一的基础上分析得出，
+   		问题三在基础管道铺设的条件下考虑了供水站的功率限制，要求针对该限制重新制定管道铺设方案。在深入分析了模型三新增的约束条件后，本组针对其新增约束改进了二阶Prim算法，以求解该类带约束的生成树问题。之后我们引入了免疫遗传算法，搜索最佳升级方案，使得在升级二级供水站数量最少的情况下，实现对所有的供水站供水。
     	\subsection{问题一模型的改进}
     	在问题一的基础上，问题三限制了从I级供水站输送的总里程最大为$40km$，即约束了
     	\begin{gather*}
     	\sum_{i=1}^{|E_2|}|e_2^i|\leq 40,e_2^i\in E_2
     	\end{gather*}
     	其中$E_2$是第二层边的集合，$e_2^i(i=1,2,...,|E_2|)$是其中的边元素。因此，每次执行Prim算法后需要使用上式检验新加入的边是否满足该约束条件。
+    	\subsection{模型的求解}
+    	\subsubsection{改进二阶Prim算法}
+    	阵对带约束的生成树问题，本组在二阶Prim算法的基础上加入边权重判定机制，即将某一个解纳入生成树后，若权重和超过了限制条件则退回到上一步，并将该路径的边权值修改为无穷大。在此基础上，若某个二级节点的所有边权重值都被修改为无穷大则将其定义为孤立节点。
     	
-    	
+    	改进Prim算法的流程图如下图所示：
+        \begin{figure}[H]
+        	\centering
+        	\includegraphics[width=\textwidth]{figures/a3.png}
+        	\caption{改进二阶Prim算法流程图}\label{asd}
+        \end{figure}
+        
+    		
   		\subsection{结果分析}
-  
+  	\subsubsection{免疫遗传算法}
+  	\paragraph{0-1编码与}
+  	执行改进二阶Prim算法，即可求得所有未能被供水的节点$\left \{ v_i^{aban} \right \}$，其中$i=1,2,\cdots,n$，$n$表示孤立节点数量，即染色体可对应编码为：
+  		\begin{gather}
+  		\Gamma =[\gamma_1,\gamma_2,\cdots, \gamma_n]
+  		\end{gather}
+    其中$\Gamma$表示升级站点的决策变量，即染色体。 $\gamma_i=\left \{ 0,1 \right \}$为孤立节点$v_i^{aban}$对应的决策值，当$\gamma_i=0$时表示函数值孤立节点$v_i^{aban}$不做修改；当$\gamma_i=1$时表示$v_i^{aban}$对应的二级供水站被升级为一级供水站。
+     	\paragraph{适应度计算}
+    将决策变量$\Gamma$所表征的升级操作执行后，即可得到升级后点集$V_{\Gamma}$，将其带入改进后的二阶Prim算法可求得生成孤立点数量$\varphi(V_{\Gamma})$。若$\varphi(V_{\Gamma})>0$则说明任然存在孤立节点，即没有实现完全供水。基于此我们将$\varphi(V_{\Gamma})$作为惩罚因子代换功率约束条件，即决策变量$\Gamma$的抗原适应度为：
+    	\begin{gather}
+    	F(\Gamma_i)=\sum_{j=1}^{n}\gamma_j+ M\cdot  \varphi(V_{\Gamma i})
+    	\end{gather}
+    其中$\sum_{i=1}^{n}\gamma_i$表示升级的二级站点数量和。$M$为较大的正数，与$\varphi(V_{\Gamma})$构成罚函数。同时计算抗体亲和力：
+    	\begin{gather}
+    	S(\Gamma_1,\Gamma_2)=(\frac{k(\Gamma_1,\Gamma_2)}{n}>T)
+        \end{gather}
+    $k(\Gamma_1,\Gamma_2)$表示染色体相同的位数，$n$为抗体长度。$T$为可设定的阈值，即当相同的位数的比例大于$T$时，$S(\Gamma_1,\Gamma_2)=1$；否则$S(\Gamma_1,\Gamma_2)=0$。抗体与抗体之间的亲和力反映了抗体之间的相似程度。定义抗体浓度$C(\Gamma_i)$表示群体中与$\Gamma_i$相似抗体所占的比例,即可计算如下：
+     \begin{gather}
+     C(\Gamma_i)=\frac{\sum _{j=1,j\neq i}^N k(\Gamma_i,\Gamma_j)}{N}
+     \end{gather}
+     即综合适应度可表示为：
+  	 \begin{gather}
+  min	P(\Gamma_i)=\lambda \frac{F(\Gamma_i)}{\sum _{i=1}^N F(\Gamma_i)}+(1-\lambda )\frac{C(\Gamma_i)}{\sum _{i=1}^N C(\Gamma_i)}
+  	\end{gather}
+  	\paragraph{精英库保留策略}
+  	先将染色体$\left \{ \Gamma_i \right \}$以抗原适应度$F(\Gamma_i)$大小降序排列，并优先保留其前$\alpha$个染色体进入下一代，由此防止目标函数值最优的个体被舍去。之后，将剩余染色体以综合适应度$P(\Gamma_i)$排序，并将前$N-\alpha$个染色体放入下一代。
+  	
+  	
   	\section{灵敏度分析}
  
   	\section{模型的评价}
