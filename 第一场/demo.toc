@@ -14,22 +14,22 @@
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{8}{subsection.5.2}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{8}{subsection.5.3}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{9}{subsection.5.4}% 
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}5}实验结果及分析}{10}{subsection.5.5}% 
-\contentsline {section}{\numberline {六、}问题三模型的建立与求解}{11}{section.6}% 
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题三描述与分析}{11}{subsection.6.1}% 
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题一模型的改进}{12}{subsection.6.2}% 
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{12}{subsection.6.3}% 
-\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}改进二阶Prim算法}{12}{subsubsection.6.3.1}% 
-\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}免疫遗传算法}{13}{subsubsection.6.3.2}% 
-\contentsline {paragraph}{0-1编码}{13}{section*.12}% 
-\contentsline {paragraph}{变异与交叉}{13}{section*.13}% 
-\contentsline {paragraph}{适应度计算}{13}{section*.14}% 
-\contentsline {paragraph}{精英库保留策略}{14}{section*.15}% 
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}结果分析}{15}{subsection.6.4}% 
-\contentsline {section}{\numberline {七、}灵敏度分析}{15}{section.7}% 
-\contentsline {section}{\numberline {八、}模型的评价}{15}{section.8}% 
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{15}{subsection.8.1}% 
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{16}{subsection.8.2}% 
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{16}{subsection.8.3}% 
-\contentsline {section}{\numberline {附录A}数据可视化的实现}{18}{appendix.A}% 
+\contentsline {section}{\numberline {六、}问题三模型的建立与求解}{10}{section.6}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题三描述与分析}{10}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{10}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{11}{subsection.6.3}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}改进二阶Prim算法}{11}{subsubsection.6.3.1}% 
+\contentsline {subsubsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}免疫遗传算法}{12}{subsubsection.6.3.2}% 
+\contentsline {paragraph}{0-1编码}{12}{section*.10}% 
+\contentsline {paragraph}{变异与交叉}{12}{section*.11}% 
+\contentsline {paragraph}{适应度计算}{13}{section*.12}% 
+\contentsline {paragraph}{精英库保留策略}{13}{section*.13}% 
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}结果分析}{14}{subsection.6.4}% 
+\contentsline {section}{\numberline {七、}灵敏度分析}{14}{section.7}% 
+\contentsline {section}{\numberline {八、}模型的评价}{14}{section.8}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{14}{subsection.8.1}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{15}{subsection.8.2}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{15}{subsection.8.3}% 
+\contentsline {section}{\numberline {附录A}问题一、二代码及其可视化}{17}{appendix.A}% 
+\contentsline {section}{\numberline {附录B}问题三代码及其可视化}{21}{appendix.B}% 
 \contentsfinish 

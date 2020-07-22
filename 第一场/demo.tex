@@ -158,7 +158,7 @@
 			\end{gather}
 			其中，$v_{i1}, v_{i2}(i =1,2,\cdots,|E(T_k)|)$分别代表边$e_i$的端点，且满足$E(T_1)\subseteq E(T_2)$，即生成树$T_1$优先生成并满足：
 			\begin{gather}
-			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
+			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
 			\end{gather}
 			即必须确保I型管道铺设距离最短，即保证一级生成树$T_1$为中心供水站和一级供水站构成的最小生成树。
 			 %分别将I、II管道总里程作为优化目标，可知总里程是所有边的代价之和，而代价可以表示成节点间的距离，最佳节点序列已经存放在最优序列矩阵中，这些节点距离可以通过节点序列取出。
@@ -169,12 +169,12 @@
 			
 			此问题的约束条件为问题一中的二级供水站生成树优化不能先于一级供水站的最小连通树生成，即对应总模型的数学描述为：
 			\begin{gather}
-			min \left\{ \sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
+			\min \left\{ \sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
 			\end{gather}
 			\begin{gather*}
 			s.t.\left\{\begin{matrix}
 			E(T_{1})\subseteq  E(T_{2})\\ 
-				\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
+				\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
 						\end{matrix}\right.
 			\end{gather*}
 		\subsection{模型的求解}
@@ -257,35 +257,41 @@
         图中红点表示升级为一级供水站的二级供水站，红线表示新增设的I型管道。其中II型管道使用量为？？？，相对于问题一方案减少了？？？。
 	
 	
-		\subsection{实验结果及分析}
-  
-  			由表\ref{biao1}可知
-
-			其各个小车的运输细节图下图所示：
-			\begin{figure}[H]
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-			\end{figure}	
-			\begin{figure}[H]	
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\caption{xxxxxxxxxxxxxxxxxxxxxxxxx}
-				\label{fisg}
-			\end{figure}
+	
 
     \section{问题三模型的建立与求解}
    		\subsection{问题三描述与分析}
    		问题三在基础管道铺设的条件下考虑了供水站的功率限制，要求针对该限制重新制定管道铺设方案。在深入分析了模型三新增的约束条件后，本组针对其新增约束改进了二阶Prim算法，以求解该类带约束的生成树问题。之后我们引入了免疫遗传算法，搜索最佳升级方案，使得在升级二级供水站数量最少的情况下，实现对所有的供水站供水。
-    	\subsection{问题一模型的改进}
-    	在问题一的基础上，问题三限制了从I级供水站输送的总里程最大为$40km$，即约束了
-    	\begin{gather*}
-    	\sum_{i=1}^{|E_2|}|e_2^i|\leq 40,e_2^i\in E_2
-    	\end{gather*}
-    	其中$E_2$是第二层边的集合，$e_2^i(i=1,2,...,|E_2|)$是其中的边元素。因此，每次执行Prim算法后需要使用上式检验新加入的边是否满足该约束条件。
+    	\subsection{模型的建立}
+    	问题三中，将$168$个二级供水站转化为按顺序构成的$0-1$行向量作为决策变量
+    	\begin{gather}
+    	A=
+    	\begin{bmatrix}
+    	a_1&a_2&...&a_{168}
+    	\end{bmatrix}
+    	\end{gather}
+    	其中，$a_i=1(i=1,2,...,168)$表示将第$i$个II级供水站升级成I级供水站；$a_i=0$表示第$i$个II级供水站不升级。根据题目要求，优化目标为是需要升级的二级供水站个数，即
+    	\begin{gather}
+    	min\sum_{i=1}^{168}a_i
+    	\end{gather}
+    	在问题一的基础上，问题三中的功率条件限制了从I级供水站输送的总里程最大为$40km$，即约束了
+    	\begin{gather}
+    	\sum_{e_i\in E(T_{2k})}|e_i|\leq 40,
+    	\end{gather}
+    	其中$T_{2k}$是以一级站点$v_1(k)$为根节点所衍生出的二阶生成树， $E(T_{2k})$是该分支中边的集合。 结合前两问与上述决策变量、目标函数、约束条件，得到以二级供水站序列向量为决策变量，以需要升级的二级供水站个数为目标函数，以功率限制等为约束条件的优化模型：
+    	\begin{gather}
+    	\min \sum_{i=1}^{168}a_i\\
+    	s.t.
+    	\left\{\begin{matrix}
+    	E(T_{1})\subseteq  E(T_{2})\\ 
+    	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=\min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} \\ 
+    	\sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+cost_2(v_{i1},v_{i2}) =\min \left\{ \sum_{i\in E(T_2) }cost_1(v_{i1},v_{i2})+cost_2(v_{i1},v_{i2}) \right \}	\\
+    	\sum_{e_i\in E(T_{2k})}|e_i|\leq 40
+    	\end{matrix}\right.
+    	\end{gather}
     	\subsection{模型的求解}
-    	\subsubsection{改进二阶Prim算法}
+    	在问题一的基础上分析得出，要实现全面供水，必须消除所有无法与其他供水站相连的孤立点。本组对二级供水站进行编码，对无法满足约束条件的二级供水站附加一个与孤立点个数成正比的罚函数，定义惩罚因子为常数，并引入免疫遗传算法，通过优化需要升级的二级供水站个数最小，实现全面供水。
+    	  	\subsubsection{改进二阶Prim算法}
     	阵对带约束的生成树问题，本组在二阶Prim算法的基础上加入边权重判定机制，即将某一个解纳入生成树后，若权重和超过了限制条件则退回到上一步，并将该路径的边权值修改为无穷大。在此基础上，若某个二级节点的所有边权重值都被修改为无穷大则将其定义为孤立节点。
     	
     	改进Prim算法的流程图如下图所示：
@@ -344,10 +350,12 @@
   	免疫遗传算法流程图如图~\ref{bgrs}~
   	  \begin{figure}[H]
   		\centering
-  		\includegraphics[width=\textwidth]{figures/a31.png}
-  		\caption{改进二阶Prim算法流程图}\label{bgrs}
-  	\end{figure}
   	
+   		
+   		\includegraphics[width=\textwidth]{figures/a31.png}
+   		\caption{	免疫遗传算法流程图}\label{bgrs}
+   	\end{figure}
+       
   		\subsection{结果分析}
   	
   	\section{灵敏度分析}
@@ -378,17 +386,216 @@
 	\newpage
 	%附录
 	\appendix %%附录
-	\section{数据可视化的实现}
-		\subsection*{第一问画图--python源代码}
+	\section{问题一、二代码及其可视化}
+		\subsection*{Graph类实现最小生成树算法}
 			\begin{lstlisting}[language=python]
+			import pandas as pd
+			import numpy as np
+			import matplotlib.pyplot as plt
+			import copy
+			import networkx as nx
+			from tqdm.notebook import tqdm
 			
+			class Graph(object):
+			def __init__(self, Matrix, add_edge=None):
+			self.Matrix = Matrix
+			self.nodenum = len(self.Matrix)
+			self.edgenum = self.get_edgenum()
+			self._weight_ = np.zeros((self.nodenum, self.nodenum))
+			self.add_edge = add_edge
+			
+			def get_edgenum(self):
+			count = 0
+			for i in range(self.nodenum):
+			for j in range(i):
+			if self.Matrix[i][j] > 0 and self.Matrix[i][j] < 9999:
+			count += 1
+			return count
+			
+			def plot_matrix(self, pos=None, figsize=(15,15), title="Pipeline ONE"):
+			plt.figure(figsize=(12,9)) 
+			self._get_edge()
+			G_nx = nx.Graph()
+			G_nx2 = nx.Graph()
+			if self.add_edge!=None:
+			for i in range(self.nodenum):
+			for j in range(self.nodenum):
+			if self._weight_[i, j]!=0 and i<13 and j<13:
+			G_nx.add_edge(i, j)
+			if self._weight_[i, j]!=0 and i>0 and j>0:
+			G_nx2.add_edge(i, j)
+			else:
+			for i in range(self.nodenum):
+			for j in range(self.nodenum):
+			if self._weight_[i, j]!= 0:
+			G_nx.add_edge(i, j)
+			if self.add_edge!=None:
+			nx.draw_networkx(G_nx, pos[:len(self.add_edge)+1], alpha=0.85)
+			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
+			node_shape=".", node_size=100, style='dashed')
+			else:
+			nx.draw_networkx(G_nx, pos, alpha=0.85)
+			GG = nx.Graph()
+			GG.add_node(0)
+			nx.draw_networkx(GG, {0:pos[0]}, node_color='r',node_shape='*', node_size=1200)
+			plt.title(title)
+			plt.show() # display
+			
+			def _get_edge(self):
+			edge = self.prim()
+			for k in edge:
+			self._weight_[k[0],k[1]] = self.Matrix[k[0],k[1]]
+			return self._weight_
+			
+			def prim(self, first_node = 0):
+			# 存储已选顶点，初始化时可随机选择一个起点
+			select = [first_node]
+			# 存储未选顶点
+			candidate = list(range(0, self.nodenum))
+			candidate.remove(first_node)
+			if self.add_edge!=None:
+			node = []
+			for i in self.add_edge:
+			if i[0] not in node:
+			node.append(i[0])
+			if i[1] not in node:
+			node.append(i[1]) 
+			for i in node:
+			select.append(i)
+			if i in candidate:
+			candidate.remove(i)
+			# 存储每次搜索到的最小生成树的边
+			edge = []+self.add_edge if self.add_edge!=None else []
+			
+			def min_edge(select, candidate, graph):
+			min_weight = np.inf
+			v, u = 0, 0
+			for i in select:
+			for j in candidate:
+			if min_weight > graph[i][j]:
+			min_weight = graph[i][j]
+			v, u = i, j
+			return v, u
+			
+			num = len(self.add_edge)+1 if self.add_edge!=None else 1
+			for i in range(num, self.nodenum):
+			v, u = min_edge(select, candidate, self.Matrix)
+			edge.append([v, u])
+			select.append(u)
+			candidate.remove(u)
+			return edge
 			\end{lstlisting}
 			
-		\subsection*{第二问画图--python源代码}
-			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
-			rulesepcolor=\color{red!20!green!20!blue!20},  
-			keywordstyle=\color{blue!70!black},  
-			commentstyle=\color{blue!90!},  
-			basicstyle=\ttfamily] {./code/demo.py}
+		\subsection*{问题一代码实现及可视化}
+			\begin{lstlisting}[language=python]
+			def distance(x1,y1,x2,y2):
+			return np.sqrt((x1-x2)**2+(y1-y2)**2)
+			
+			def fix(x):
+			if x.startswith('A'):
+			return 0
+			return 1 if x.startswith('V') else 2
+			
+			def get_xy(i,j=0):
+			pos = []   # 元组中的两个数字是第i（从0开始计数）个点的坐标
+			for k in range(j, i):
+			pos.append((data['X坐标'].loc[k], data['Y坐标'].loc[k]))
+			return pos
+			
+			weight_array = np.zeros((181,181))
+			data = pd.read_excel('/content/drive/My Drive/competitions/CMCM/demo1/data.xlsx')
+			data['类型'] = data['类型'].apply(lambda x:fix(x))
+			
+			# 初始化权重矩阵
+			for i in tqdm(range(181)):
+			for j in range(181):
+			point_i = data[data['序号']==i]
+			point_j = data[data['序号']==j]
+			weight_array[i][j] = distance(point_i['X坐标'].values,
+			point_i['Y坐标'].values,
+			point_j['X坐标'].values,
+			point_j['Y坐标'].values)
+			if (i==0 and j>12) or (j==0 and i>12):
+			weight_array[i][j]=0
+			weight_array[weight_array==0] = 10000
+			
+			weight_array_A = weight_array[:13,:13]
+			G_A = Graph(weight_array_A)
+			pos_A = get_xy(G_A.nodenum)
+			edge_A = G_A.prim(first_node=0)
+			G_A.plot_matrix(pos_A)
+			
+			G = Graph(weight_array, edge_A)
+			print('节点数据为%d，边数为%d\n'%(G.nodenum, G.edgenum))
+			pos = get_xy(G.nodenum)
+			edge = G.prim()
+			G.plot_matrix(pos, title="Pipeline TWO")
+			
+			sum = 0
+			for p in edge:
+			i,j=p[0],p[1]
+			sum = sum+weight_array[i][j]
+			sum
+			\end{lstlisting}
+			
+		\subsection*{问题二代码实现及可视化}
+			\begin{lstlisting}[language=python]
+			_max = (0,0,0)
+			_max2 = (0,0,0)
+			for ed in edge:
+			i,j = ed[0],ed[1]
+			if _max[0] < weight_array[i][j] and not (i<13 and j<13):
+			_max = (weight_array[i][j], i, j)
+			for ed in edge:
+			i,j = ed[0],ed[1]
+			if i!=126 and j!=125:
+			if _max2[0] < weight_array[i][j] and not (i<13 and j<13):
+			_max2 = (weight_array[i][j], i, j)
+			
+			_max, _max2
+			
+			_weight_ = G._get_edge()
+			plt.figure(figsize=(12,9)) 
+			G_nx = nx.Graph()
+			G_nx2 = nx.Graph()
+			G_nx3 = nx.Graph()
+			G_nx4 = nx.Graph()
+			GG = nx.Graph()
+			for i in range(G.nodenum):
+			for j in range(G.nodenum):
+			if _weight_[i, j]!=0 and i<13 and j<13:
+			G_nx.add_edge(i, j)
+			if _weight_[i, j]!=0 and i>0 and j>0:
+			G_nx2.add_edge(i, j)
+			# G_nx3.add_edge(126, 125)
+			# G_nx4.add_edge(88, 89)
+			G_nx3.add_node(125)
+			G_nx4.add_node(89)
+			
+			nx.draw_networkx(G_nx3, {125:pos[125],},node_color='r',
+			node_size=300, node_shape='.',with_labels=False, style='dashed')
+			nx.draw_networkx(G_nx4, {89:pos[89],},node_color='r',
+			node_size=300, node_shape='.',with_labels=False, style='dashed')
+			
+			nx.draw_networkx(G_nx, pos[:len(G.add_edge)+1], alpha=0.85)
+			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
+			node_shape=".", node_size=100, style='dashed')
+			GG = nx.Graph()
+			GG.add_node(0)
+			nx.draw_networkx(GG, {0:pos[0]}, node_color='r',node_shape='*', node_size=1200)
+			
+			plt.title("Upgrade Two Secondary Pipes")
+			plt.show() 
+			\end{lstlisting}
+			
+		\section{问题三代码及其可视化}
+			\begin{lstlisting}[language=python]
+
+			\end{lstlisting}
+%			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
+%			rulesepcolor=\color{red!20!green!20!blue!20},  
+%			keywordstyle=\color{blue!70!black},  
+%			commentstyle=\color{blue!90!},  
+%			basicstyle=\ttfamily] {./code/demo.py}
 
 \end{document}
