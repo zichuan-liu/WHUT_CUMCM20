@@ -145,7 +145,7 @@
 		
 			%同一般的最小生成树问题不同，问题一中的II级供水站生成树优化需待I级供水站的最小连通树生成后才能开始进行。因此，问题一的模型（取个屌点的名字？？？？？）分为两部分，I级供水站和II级供水站先后进行目标优化。
 			%本问题中，
-			在此二阶最小生成树问题中，已知节点和边的关系为$|E(T)|=|V(T)|-1, $。即决策变量可表示为生成树的边集合：
+			在此二阶最小生成树问题中，已知节点和边的关系为$|E(T)|=|V(T)|-1 $。即决策变量可表示为生成树的边集合：
 			%生成树节点对应的序列作为决策变量，以序列矩阵的形式表示，每一层的最优序列矩阵可以表示为
 			\begin{gather}
 			E(T_k)=
@@ -178,6 +178,7 @@
 						\end{matrix}\right.
 			\end{gather*}
 		\subsection{模型的求解}
+			\subsubsection{二阶Prim算法}
 		为求取管道最小里程和最优路径，需要搜索每一层生成树边集合$E(T_k),k=1,2$。针对该二阶最小生成树问题，我们设计了二阶Prim算法，分别实现由中心供水站到I级供水站、由I级供水站到II级供水站的最小生成树，即可求得最终的边集合$E(T_2)$。
 		
 		二阶Prim算法的流程流程图如图~\ref{asd}~所示
@@ -204,64 +205,59 @@
      图中的$168$个小节点即为二级供水站，解得II型管道铺设里程为$403.40km$、I型管道与II型管道的最小铺设总和为$524.34km$。二阶Prim算法的基本原理基于经典图论算法Prim算法，其求解值可被证明为该模型最优解。(????????????????????引用文献)
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}	
-			问题二要求升级两个II级供水站为I级供水站，使得II级管道里程数最少。
-			
+			问题二要求在考虑市场因素的条件下尽可能减少II型管道的使用量，即将两个II级供水站升级为I级供水站，使得II级管道里程数最少。基于第一问建立的二阶生成树模型，以需要升级的二级站点为决策变量，并将II型管道的总里程作为目标函数构建优化模型。在深度分析分析生成树优化原理后，设计启发式算法用于搜索须升级的二级供水站。
 			\subsection{模型的建立}
-			其中，第一层更新后的决策变量仍是最优节点序列，用最优序列矩阵表示为：
+			分析问题可知，该模型决策变量可表示为须要升级的二级供水站，即：
+				\begin{gather}
+				\theta =\left \{ v_2(i),v_2(j) \right \}
+				\end{gather}
+			其中$\theta$为决策变量，$v_2(i),v_2(j)$ 分别为将被升级的二级供水站。完成升级操作后根据问题一模型即可得到一级、二级生成树$T_{1}'=(V(T_{1}'),E(T_{1})'),T_{2}'=(V(T_{2}'),E(T_{2}'))$其中生成树的边集合任可以表示为：
 			\begin{gather}
-			E(T_1')=
-			\begin{bmatrix}
-			(v_{\left | E(T_{1}')\right |,1},v_{\left | E(T_{1}')\right |,2})
-			\end{bmatrix}
+			E(T_k')=
+		\begin{bmatrix}
+		(v_{11} ,v_{12}) \\ 
+		(v_{21} ,v_{22} )\\ 
+		...,...\\
+		(v_{|E(T_k')|,1},v_{|E(T_k')|,2})\\
+		\end{bmatrix},k=1,2
 			\end{gather}
-			其中，$v_{\left | E(T_{1}')\right |,1},v_{\left | E(T_{1}')\right |,2}$是由II级供水站升级成的I级供水站。此时约束条件仍是生成树$T_1$优先生成并满足
+			其任必须满足$E(T_1')\subseteq E(T_2')$，目标函数为II型管铺设总里程，即：
 			\begin{gather}
-			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \}
+			\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
 			\end{gather}
-			目标函数为II级管道的总里程
+			结合上述决策变量、目标函数、约束条件，得到以将两个升级的一级供水站为决策变量，以II级管道的总里程为目标函数，生成树$T_1$优先生成为约束条件的优化模型：
 			\begin{gather}
-			\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})=min\left \{\sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})\right\}
-			\end{gather}
-			结合上述决策变量、目标函数、约束条件，得到以两个升级后的I级供水站为决策变量，以II级管道的总里程为目标函数，生成树$T_1$优先生成为约束条件的优化模型：
-			\begin{gather}
-			min \left\{ \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2}) \right \}
+			min  \sum_{i\in E(T_2) }cost_2(v_{i1},v_{i2})
 			\end{gather}
 			\begin{gather*}
 			s.t.\left\{\begin{matrix}
-			E(T_{1})\subseteq  E(T_{2})\\ 
-			\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1) }cost_1(v_{i1},v_{i2}) \right \} 
+			E(T_{1}')\subseteq  E(T_{2}')\\ 
+			\sum_{i\in E(T_1') }cost_1(v_{i1},v_{i2})=min\left \{ 	\sum_{i\in E(T_1') }cost_1(v_{i1},v_{i2}) \right \} 
 			\end{matrix}\right.
 			\end{gather*}
-    		其思维流程图如图~\ref{lssssct}~所示：
-
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题二思维流程图}\label{lssssct}
-			\end{figure}
-
-
-		
 		\subsection{模型的求解}
-
+		深度分析问题二要求可知，问题二目标仅需要减小II级管道的使用量，当某一个二级供水站升级为一级供水站后：
+			\begin{gather*}
+			|V(T_{1}')|= |V(T_{1})|+1\\
+			|V(T_{2}')|=|V(T_{2})|
+	        \end{gather*}
+	    即一级生成树的节点数加一，且二级生成树的节点数不变。且根据式$|E(T)|=|V(T)|-1 $可知，I型管道数量加，同时II型管道数量减一。由此本组设计启发式算法，在问题一结果的基础上，断开最长的二级管道，将原生成树分割为两个生成树。分割后的两个生成树中必有一个不包含一级供水站，将该生成树中的任意一个二级站点升级为一级站点并连接该站点与一级供水网络，即可使II型管道的铺设减小量最大化，其流程图如下图~\ref{gfhd}~所示
+	        \begin{figure}[H]
+	        	\centering
+	        	\includegraphics[width=\textwidth]{figures/2163.png}
+	        	\caption{启发式算法}\label{gfhd}
+	        \end{figure}
         \subsection{实验结果及分析}
-        
-			结果如下表\ref{zhuanssssasgzai}所示：
-			\begin{table}[H]
-			\setstretch{1.4}  %设置表的行间距
-			\centering		
-			\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-			\begin{tabular}{cc}
-			\toprule[2pt]
-				\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				\\
-				\midrule[1pt]
-				xxxxxxx &   909.80\\ 
-				xxxxxxx & 	852.60\\ 
-			\bottomrule[2pt]	
-			\end{tabular}
-			\end{table}
+        连续两次执行启发式算法后，升级后的管道网络如图~\ref{vwrhbu}~所示
+		  \begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{figures/333.png}
+			\caption{升级后的二阶最小生成树}\label{gfhd}
+		\end{figure}
+        图中红点表示升级为一级供水站的二级供水站，红线表示新增设的I型管道。其中II型管道使用量为？？？，相对于问题一方案减少了？？？。
+	
+	
+		\subsection{实验结果及分析}
   
   			由表\ref{biao1}可知
 
