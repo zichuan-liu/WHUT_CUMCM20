@@ -303,12 +303,13 @@
 			from tqdm.notebook import tqdm
 			
 			class Graph(object):
-			def __init__(self, Matrix, add_edge=None):
+			def __init__(self, Matrix, add_edge=None, add_node=None):
 			self.Matrix = Matrix
 			self.nodenum = len(self.Matrix)
 			self.edgenum = self.get_edgenum()
 			self._weight_ = np.zeros((self.nodenum, self.nodenum))
 			self.add_edge = add_edge
+			self.add_node = add_node
 			
 			def get_edgenum(self):
 			count = 0
@@ -335,6 +336,7 @@
 			for j in range(self.nodenum):
 			if self._weight_[i, j]!= 0:
 			G_nx.add_edge(i, j)
+			
 			if self.add_edge!=None:
 			nx.draw_networkx(G_nx, pos[:len(self.add_edge)+1], alpha=0.85)
 			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
@@ -349,8 +351,22 @@
 			
 			def _get_edge(self):
 			edge = self.prim()
+			if self.add_node!=None:
+			for i in edge:
+			for id_j, j in enumerate(self.add_node):
+			if i[0]==j:
+			i[0] = 13+id_j
+			if i[1]==j:
+			i[1] = 13+id_j
 			for k in edge:
 			self._weight_[k[0],k[1]] = self.Matrix[k[0],k[1]]
+			if self.add_node!=None:
+			for i in edge:
+			for id_j, j in enumerate(self.add_node):
+			if i[0]==13+id_j:
+			i[0] = j
+			if i[1]==13+id_j:
+			i[1] = j
 			return self._weight_
 			
 			def prim(self, first_node = 0):
@@ -361,6 +377,7 @@
 			candidate.remove(first_node)
 			if self.add_edge!=None:
 			node = []
+			select.remove(first_node)
 			for i in self.add_edge:
 			if i[0] not in node:
 			node.append(i[0])
@@ -389,6 +406,13 @@
 			edge.append([v, u])
 			select.append(u)
 			candidate.remove(u)
+			if self.add_node!=None:
+			for i in edge:
+			for id_j, j in enumerate(self.add_node):
+			if i[0]==13+id_j:
+			i[0] = j
+			if i[1]==13+id_j:
+			i[1] = j
 			return edge
 			\end{lstlisting}
 			
@@ -402,9 +426,15 @@
 			return 0
 			return 1 if x.startswith('V') else 2
 			
-			def get_xy(i,j=0):
+			def get_xy(i,j=0, add_node = None):
 			pos = []   # 元组中的两个数字是第i（从0开始计数）个点的坐标
+			if add_node==None:
 			for k in range(j, i):
+			pos.append((data['X坐标'].loc[k], data['Y坐标'].loc[k]))
+			else:
+			for k in range(j, i):
+			pos.append((data['X坐标'].loc[k], data['Y坐标'].loc[k]))
+			for k in add_node:
 			pos.append((data['X坐标'].loc[k], data['Y坐标'].loc[k]))
 			return pos
 			
@@ -495,8 +525,184 @@
 			\end{lstlisting}
 			
 		\section{问题三代码及其可视化}
+			\subsection*{改进prim算法}
 			\begin{lstlisting}[language=python]
-
+			def prim_pro(Matrix, add_edge, first_node=0, cost=40):
+			nodenum = len(Matrix)
+			
+			select = [first_node]
+			candidate = list(range(0, nodenum))
+			candidate.remove(first_node)
+			node = []
+			for i in add_edge:
+			if i[0] not in node:
+			node.append(i[0])
+			if i[1] not in node:
+			node.append(i[1]) 
+			node_A = {}
+			for i in node:
+			node_A[i] = [0,[i]]  # 存储形式是[dis, [v,u1,u2...]]
+			for i in node:
+			select.append(i)
+			if i in candidate:
+			candidate.remove(i)
+			# 存储每次搜索到的最小生成树的边
+			edge = []+add_edge
+			loss = []
+			def min_edge(select, candidate, graph):
+			min_weight = np.inf
+			v, u = 0, 0
+			for i in select:
+			for j in candidate:
+			if min_weight > graph[i][j] and (i,j) not in loss:
+			min_weight = graph[i][j]
+			v, u = i, j
+			for x in node:
+			if v in node_A[x][1]:
+			if node_A[x][0]+min_weight<=cost:
+			node_A[x][0] = node_A[x][0]+min_weight
+			node_A[x][1].append(u)
+			else:
+			loss.append((v,u))
+			return False, v, u
+			return True, v, u
+			
+			num = len(add_edge)+1
+			test = 0
+			while test<num*(nodenum-num):
+			flag, v, u = min_edge(select, candidate, Matrix)
+			if flag:
+			edge.append([v, u])
+			select.append(u)
+			candidate.remove(u)
+			else:
+			test = test+1
+			return edge, candidate, node_A
+			\end{lstlisting}
+			\subsection*{免疫遗传算法及其可视化}
+			\begin{lstlisting}[language=python]
+			COST = 40
+			e, c, node_A = prim_pro(weight_array, edge_A, cost=COST)
+			_size = len(c)
+			_size#, c
+			
+			_weight_ = np.zeros((181,181))
+			for k in e:
+			_weight_[k[0],k[1]] = weight_array[k[0],k[1]]
+			plt.figure(figsize=(12,9)) 
+			G_nx = nx.Graph()
+			G_nx2 = nx.Graph()
+			G_nx3 = nx.Graph()
+			
+			for i in range(181):
+			for j in range(181):
+			if _weight_[i, j]!=0 and i<13 and j<13:
+			G_nx.add_edge(i, j)
+			if _weight_[i, j]!=0 and i>0 and j>0:
+			G_nx2.add_edge(i, j)
+			nx.draw_networkx(G_nx, pos[:len(edge_A)+1], alpha=0.85)
+			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
+			node_shape=".", node_size=100, style='dashed')
+			GG = nx.Graph()
+			GG.add_node(0)
+			nx.draw_networkx(GG, {0:pos[0]}, node_color='r',node_shape='*', node_size=1200
+			,label='Central pipeline')
+			p = {}
+			for i in c:
+			G_nx3.add_node(i)
+			p[i] = pos[i]
+			nx.draw_networkx(G_nx3, p, node_color='purple', node_size=120,with_labels=False,
+			node_shape=",",label='Isolated point')
+			
+			plt.show() # display
+			
+			def fun(node_B, learning = 100):
+			node_B_index = []
+			for i in range(_size):
+			if node_B[i]:
+			node_B_index.append(i+13)
+			node_A_index = list(range(0, 13))+node_B_index
+			weight_array_A = np.zeros((len(node_A_index),len(node_A_index)))
+			for id_i,i in enumerate(node_A_index):
+			for id_j,j in enumerate(node_A_index):
+			weight_array_A[id_i][id_j] = weight_array[i][j]
+			G_A = Graph(weight_array_A)
+			edge_AA = G_A.prim(first_node=0)
+			e, c, node_A = prim_pro(weight_array, edge_AA, cost=COST)
+			return np.sum(node_B)+learning*len(c)
+			
+			def mutate(node_B1, mu = 0.05):
+			l = len(node_B1)
+			for i in range(l):
+			p = np.random.random()
+			if p < mu:
+			node_B1[i] = 0 if node_B1[i]==1 else 0 
+			return node_B1
+			
+			def cross(node_B1,node_B2):
+			le = round(len(node_B1)/3)
+			temp = node_B1[:le].copy()
+			node_B1[:le] = node_B2[:le]
+			node_B2[:le] = temp
+			return node_B1,node_B2
+			
+			def select(geti):
+			sss = []
+			for i in tqdm(geti):
+			sss.append(fun(i))
+			idx = [i for i,v in sorted(enumerate(sss), key=lambda x:x[1])]
+			geti2 = []
+			for i in idx:
+			geti2.append(geti[i])
+			le = round(len(geti)*3/4)
+			# le = len(geti)-1
+			g = []
+			for i in range(le):
+			g.append(geti2[i])
+			return g, sss, idx
+			
+			add_node = [89]
+			node_A_index = list(range(0, 13))+add_node
+			weight_array_A = np.zeros((len(node_A_index),len(node_A_index)))
+			for id_i,i in enumerate(node_A_index):
+			for id_j,j in enumerate(node_A_index):
+			weight_array_A[id_i][id_j] = weight_array[i][j]
+			G_A = Graph(weight_array_A,add_node=add_node)
+			edge_AA = G_A.prim(first_node=0)
+			
+			pos_A = get_xy(13,add_node=add_node)
+			G_A.plot_matrix(pos_A)
+			e, c, node_A = prim_pro(weight_array, edge_AA, cost=COST)
+			
+			_weight_ = np.zeros((181,181))
+			for k in e:
+			_weight_[k[0],k[1]] = weight_array[k[0],k[1]]
+			plt.figure(figsize=(12,9)) 
+			G_nx = nx.Graph()
+			G_nx2 = nx.Graph()
+			G_nx3 = nx.Graph()
+			pos_A = get_xy(13,add_node=add_node)
+			for i in range(181):
+			for j in range(181):
+			if _weight_[i, j]!=0 and i<13 and j<13:
+			G_nx.add_edge(i, j)
+			if _weight_[i, j]!=0 and i>0 and j>0:
+			G_nx2.add_edge(i, j)
+			nx.draw_networkx(G_nx, pos_A, alpha=0.85)
+			nx.draw_networkx(G_nx2,pos,alpha=0.6,with_labels=False,node_color='slateblue',
+			node_shape=".", node_size=100, style='dashed')
+			GG = nx.Graph()
+			GG.add_node(0)
+			nx.draw_networkx(GG, {0:pos[0]}, node_color='r',node_shape='*', node_size=1200
+			,label='Central pipeline')
+			p = {}
+			for i in add_node:
+			G_nx3.add_node(i)
+			p[i] = pos[i]
+			nx.draw_networkx(G_nx3, p, node_color='gold', node_size=150,with_labels=False,
+			node_shape=",",label='Isolated point')
+			
+			plt.show() # display
 			\end{lstlisting}
 %			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
 %			rulesepcolor=\color{red!20!green!20!blue!20},  
