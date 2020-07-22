@@ -16,7 +16,7 @@
 
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%题目%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{基于免疫遗传算法的最小生成树模型}
+\title{基于免疫遗传与改进二阶Prim算法的\\管道铺设优化模型}
 \tihao{1} 
 
 \begin{document}
@@ -43,10 +43,10 @@
 		本文的优点为：1. 采用试探法粗略搜索与二分法精细搜索结合的方法，降低了问题的求解难度。2.以凸轮转动角度为固定步长，对不同角速度按照不同精度的时间步长求解，大大提高了求解的精确度。 3.针对智能算法求解精度方面，采用改进的蝙蝠算法，使速度权重系数自适应调整，兼顾局部搜索与全局搜索能力。
 		
 		\keywords{
-			微分方程\quad
-			微分方程\quad	
-			微分方程\quad
-			微分方程\quad
+			二阶Prim算法\quad
+			最小生成树\quad	
+			免疫遗传算法\quad
+			孤立点\quad
 		}
 	\end{abstract}
 
@@ -93,7 +93,7 @@
 		\begin{tabular}{cc}
 			\toprule[1.5pt]
 			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
-			\midrule[1pt]		
+			\midrule[0.5pt]		
 			$T_1,T_2$  & 第一、第二生成树  \\ 
 			$V_0,V_1,V_2$  & 中心、一级、二级供水站节点集合  \\ 
 			$v_0,v_1,v_2$  & 中心、一级、二级供水站节点元素  \\ 
@@ -121,7 +121,7 @@
 		
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
+				\includegraphics[width=\textwidth]{figures/chou.png}
 				\caption{问题一思维流程图}\label{lct}
 			\end{figure}
 			
@@ -208,7 +208,7 @@
        	\includegraphics[width=\textwidth]{figures/444.png}
        	\caption{一阶最小生成树}\label{sdfb}
        \end{figure}
-       图中$0$节点为中心供水站点，$1~12$节点是一级供水站点，其构成的连通图即为其最小生成树。解得所需的I型管道的最小铺设距离为$120.94km$。此时，将二级供水站并入节点集，在该生成树的基础上继续运行Prim算法，求解得到整体管道网络铺设如图~\ref{sgfhd}~所示
+       图中$0$节点为中心供水站点，$1~12$节点是一级供水站点，其构成的连通图即为其最小生成树。解得所需的I型管道的最小铺设距离为$120.94km$。此时，将二级供水站并入节点集，在该生成树的基础上继续运行Prim算法，求解得到整体管道网络铺设如图~\ref{sgfhd}~所示：
        	\begin{figure}[H]
        	\centering
        	\includegraphics[width=\textwidth]{figures/222.png}
@@ -366,15 +366,15 @@
   	\paragraph{精英库保留策略}
   	先将染色体$\left \{ \Gamma_i \right \}$以抗原适应度$F(\Gamma_i)$大小降序排列，并优先保留其前$\alpha$个染色体进入下一代，由此防止目标函数值最优的个体被舍去。之后，将剩余染色体以综合适应度$P(\Gamma_i)$排序，并将前$N-\alpha$个染色体放入下一代。
 	  
+	  \newpage
 	  免疫遗传算法流程图如图~\ref{bgrs}~所示：
 	  \begin{figure}[H]
 		\centering
 	
-		 
 		 \includegraphics[width=.8\textwidth]{figures/a31.png}
 		 \caption{	免疫遗传算法流程图}\label{bgrs}
 	 \end{figure}
-
+\newpage
   	\subsection{实验结果及分析}
   	利用改进Prim算法求出最大总里程为40km时候的孤立点如图\ref{gld}所示，其中紫色方块表述孤立点：
   	 \begin{figure}[H]

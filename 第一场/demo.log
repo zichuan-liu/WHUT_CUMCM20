@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  22 JUL 2020 16:28
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  22 JUL 2020 16:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1287,8 +1287,8 @@ Overfull \hbox (23.91301pt too wide) in paragraph at lines 93--113
  []
 
 [1]
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
+File: figures/chou.png Graphic file (type bmp)
+<figures/chou.png>
 
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/bx/n' undefined
@@ -1314,13 +1314,12 @@ Overfull \hbox (22.07654pt too wide) detected at line 310
 
 File: figures/a3.png Graphic file (type bmp)
 <figures/a3.png>
-[10] [11]
+[10] [11] [12]
 File: figures/a31.png Graphic file (type bmp)
 <figures/a31.png>
- [12]
+ [13]
 File: figures/gld.png Graphic file (type bmp)
 <figures/gld.png>
- [13]
 File: figures/ssss.png Graphic file (type bmp)
 <figures/ssss.png>
  [14]
@@ -1380,10 +1379,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 907.
  )
 (\end occurred when \iftrue on line 24 was incomplete) 
 Here is how much of TeX's memory you used:
- 30000 strings out of 492922
- 580136 string characters out of 6136751
- 884532 words of memory out of 5000000
- 33602 multiletter control sequences out of 15000+600000
+ 30004 strings out of 492922
+ 580205 string characters out of 6136751
+ 884581 words of memory out of 5000000
+ 33605 multiletter control sequences out of 15000+600000
  544844 words of font info for 142 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,16n,81p,421b,1949s stack positions out of 5000i,500n,10000p,200000b,80000s
