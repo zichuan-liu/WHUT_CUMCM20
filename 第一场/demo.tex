@@ -296,14 +296,31 @@
         \end{figure}
         
     		
-  		\subsection{结果分析}
+  	
   	\subsubsection{免疫遗传算法}
-  	\paragraph{0-1编码与}
+  	\paragraph{0-1编码}
   	执行改进二阶Prim算法，即可求得所有未能被供水的节点$\left \{ v_i^{aban} \right \}$，其中$i=1,2,\cdots,n$，$n$表示孤立节点数量，即染色体可对应编码为：
   		\begin{gather}
   		\Gamma =[\gamma_1,\gamma_2,\cdots, \gamma_n]
   		\end{gather}
     其中$\Gamma$表示升级站点的决策变量，即染色体。 $\gamma_i=\left \{ 0,1 \right \}$为孤立节点$v_i^{aban}$对应的决策值，当$\gamma_i=0$时表示函数值孤立节点$v_i^{aban}$不做修改；当$\gamma_i=1$时表示$v_i^{aban}$对应的二级供水站被升级为一级供水站。
+    	\paragraph{变异与交叉}
+    	在第g次迭代中，将染色体间两两配对,对其执行断点交叉，对其中一组染色体
+    		\begin{gather*}
+    \Gamma_i=[\gamma_1^i,\gamma_2^i,\cdots, \gamma_p^i,\gamma_{p+1}^i,\cdots,\gamma_q^i,\cdots,\gamma_n^i],\\
+    \Gamma_j=[\gamma_1^j,\gamma_2^j,\cdots, \gamma_p^j,\gamma_{p+1}^j\cdots,\gamma_q^j,\cdots,\gamma_n^j]
+    		\end{gather*}
+    	执行交叉操作，交换其中随机的一段基因片段$\left \{ \gamma_p,\gamma_{p+1},\cdots,\gamma_q\right \}$得
+    		\begin{gather*}
+    	\Gamma_i=[\gamma_1^i,\gamma_2^i,\cdots, \gamma_p^j,\gamma_{p+1}^j,\cdots,\gamma_q^j,\cdots,\gamma_n^i],\\
+    	\Gamma_j=[\gamma_1^j,\gamma_2^j,\cdots, \gamma_p^i,\gamma_{p+1}^i,\cdots,\gamma_q^i,\cdots,\gamma_n^j]
+    	\end{gather*}
+    	其中$p,q$为随机数，且有$0\leqslant p<q\leqslant n$。且生成的任意染色体 $\Gamma_i$，都存在$\varphi $的概率执行变异操作，此时选择其中随机位置的基因$\gamma_r^i$执行变异操作，使得
+    	\begin{gather*}
+       \gamma_r^i=\overline{\gamma_r^i}
+    	\end{gather*}
+    	其中$r$为随机数，且有$0\leqslant r\leqslant n$。
+
      	\paragraph{适应度计算}
     将决策变量$\Gamma$所表征的升级操作执行后，即可得到升级后点集$V_{\Gamma}$，将其带入改进后的二阶Prim算法可求得生成孤立点数量$\varphi(V_{\Gamma})$。若$\varphi(V_{\Gamma})>0$则说明任然存在孤立节点，即没有实现完全供水。基于此我们将$\varphi(V_{\Gamma})$作为惩罚因子代换功率约束条件，即决策变量$\Gamma$的抗原适应度为：
     	\begin{gather}
@@ -324,6 +341,14 @@
   	\paragraph{精英库保留策略}
   	先将染色体$\left \{ \Gamma_i \right \}$以抗原适应度$F(\Gamma_i)$大小降序排列，并优先保留其前$\alpha$个染色体进入下一代，由此防止目标函数值最优的个体被舍去。之后，将剩余染色体以综合适应度$P(\Gamma_i)$排序，并将前$N-\alpha$个染色体放入下一代。
   	
+  	免疫遗传算法流程图如图~\ref{bgrs}~
+  	  \begin{figure}[H]
+  		\centering
+  		\includegraphics[width=\textwidth]{figures/a31.png}
+  		\caption{改进二阶Prim算法流程图}\label{bgrs}
+  	\end{figure}
+  	
+  		\subsection{结果分析}
   	
   	\section{灵敏度分析}
  

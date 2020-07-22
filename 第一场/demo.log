@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  22 JUL 2020 12:19
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  22 JUL 2020 14:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1315,8 +1315,13 @@ File: figures/whut.jpg Graphic file (type bmp)
 [10] [11]
 File: figures/a3.png Graphic file (type bmp)
 <figures/a3.png>
- [12] [13] [14] [15]
-(d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+ [12] [13]
+
+LaTeX Warning: Reference `bgrs' on page 14 undefined on input line 344.
+
+File: figures/a31.png Graphic file (type bmp)
+<figures/a31.png>
+[14] [15] [16] [17] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
 
@@ -1343,16 +1348,21 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
  (./code/demo.py)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 369.
-
-[16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 369.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 394.
+ [18]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 394.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 369.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 369.
-Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: E5D404567625920FF3C6357C83E11D8F.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 394.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 394.
 
+
+Package rerunfilecheck Warning: File `demo.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `demo.out':
+(rerunfilecheck)             Before: E5D404567625920FF3C6357C83E11D8F
+(rerunfilecheck)             After:  F60D37DEE3AFC0A2DF49F36AD1DB946D.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1362,16 +1372,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 369.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 394.
  )
 (\end occurred when \iftrue on line 24 was incomplete) 
 Here is how much of TeX's memory you used:
- 29926 strings out of 492922
- 583868 string characters out of 6136751
- 853178 words of memory out of 5000000
- 33532 multiletter control sequences out of 15000+600000
+ 29931 strings out of 492922
+ 583939 string characters out of 6136751
+ 853229 words of memory out of 5000000
+ 33536 multiletter control sequences out of 15000+600000
  544836 words of font info for 141 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,16n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (19 pages).
+Output written on demo.pdf (21 pages).
