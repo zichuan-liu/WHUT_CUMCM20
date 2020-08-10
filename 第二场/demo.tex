@@ -104,110 +104,111 @@
 		\item 注：表中未说明的符号以首次出现处为准
 		\end{tablenotes}
 		\end{table}
+	\section{数据预处理}
+在正式搭建模型前，本文首先将图片进行预处理，以方便进行后续运算。经过归一化处理，？？？和？？？后，即可得到相同规格的二值化图片。
+\subsection{归一化处理}
+\subsubsection{灰度值处理}
+鉴于各个指纹图像的纹理深浅不统一，首先对每张图片做灰度值归一化处理。对于图片$P_{i}$,其第$x$行第$y$列的像素点的灰度值可表示为$P_{i}(x,y)\in[0,255]$。即当$P_{i}(x,y)=255$时，$P_{i}(x,y)$为纯白色像素点；当$P_{i}(x,y)=0$时，$P_{i}(x,y)$为纯黑色像素点。对于任意图片$P_{i}$，有
+\begin{gather*}
+	P_{i,max}=\underset{1\leqslant x\leqslant n,1\leqslant y \leqslant  m}{max}P_{i}(x,y),\\
+	P_{i,min}=\underset{1\leqslant x\leqslant n,1\leqslant y \leqslant  m}{min}P_{i}(x,y),
+\end{gather*}
+其中$n$和$m$分别表示图片的行数和列数。即	$P_{i,max}$与$P_{i,min}$分别表示图片中像素的最大灰度值和最小灰度值。对图片执行线性归一化操作如下
+\begin{gather*}
+	P_i(x,y)'=\frac{255}{P_{i,max}-P_{i,min}}(P_i(x,y)-P_{i,min})
+\end{gather*}
+即将图片$P_i$像素点灰度值线性放缩于$[0,255]$间，得到灰度值归一化图片$P_i'$。
 
+\subsubsection{外框去除与尺度统一}
+对于图片$P_{i}$，我们将去除其空白外框以方便后续学习策略运算。设定边界阈值为$threshold_N$，当图片$P_{i}$最上方的某一行和最下方的某一行的非空白像素数大于$threshold_N$时，将其定义为新的上边界或下边界，及可得到行边界位置如下
+\begin{gather*}
+	fringe_{x1}=\underset{ (\sum_{i=1}^{m} (P'(x,i)<255))>threshold_N}{max(x)},\\
+	fringe_{x2}=\underset{(\sum_{i=1}^{m} (P'(x,i)<255))>threshold_N}{min(x)}
+\end{gather*}
+其中$fringe_{x1}$与$fringe_{x2}$ 分别为新定义上边界与下边界，同理有列边界位置如下
+\begin{gather*}
+	fringe_{y1}=\underset{(\sum_{i=1}^{n} (P'(i,y)<255))>threshold_N}{min(y)},\\
+	fringe_{y2}=\underset{(\sum_{i=1}^{n} (P'(i,y)<255))>threshold_N}{max(y)}
+\end{gather*}
+其中$fringe_{y1}$与$fringe_{y2}$分别为新定义左边界与右边界。即去除外框后的图片可表示为	$P''=P'(	fringe_{x1}:	fringe_{x2},	fringe_{y1}:	fringe_{y2})$。即只保留新定义边界内的像素点并删除剩余像素点即可得到去除外框后的图片$P''_{i}$。定义标准行数为$N$,标准列数为$M$，将去除外框后的图片$P''_{i}$进行放缩处理可得归一化图片$P_{i}^s$如下
+\begin{gather*}
+	P_{i}^s(x,y)=P''_{i}(floor(\frac{fringe_{x1}-fringe_{x2}}{N}x),floor(\frac{fringe_{y2}-fringe_{y1}}{M}y))\\
+	x\in[1,N],	y\in[1,M]
+\end{gather*}
+其中$floor$表示向下取整，即通过灰度值处理、外框去除与尺度统一后即可将原始指纹图片数据$P_{i}$转换为灰度值范围与图片尺度统一的归一化图片数据$P_{i}^s(x,y)$。
+\subsection{图像强化处理}
+利用Grunward-Letnikov微分算子，构造自适应函数，采集梯度信息和计算信息熵，从而确定微分阶数。	
+为了确定自适应分数阶微分阶数$v$，需要确定每个像素的梯度$G$和信息熵$E$。
+梯度$G$反映指纹像素特征在感兴趣区域(ROI, Region of Interest)上的突变情况，取近似梯度模值为
+\begin{gather}
+	\displaystyle G[f(x,y)]=\max\begin{Bmatrix}
+		|\frac{\partial f }{\partial x}|,|\frac{\partial f}{\partial y}|
+	\end{Bmatrix}
+\end{gather}
+另一个描述图像边缘纹理变化的指标是信息熵$E$，即所有可能发生事件的信息量期望之和，其数学描述为
+\begin{gather}
+	E=-\sum_{i=1}^{n}p(x_i)\cdot log_2(p(x_i))	
+\end{gather}
+其中，$p(x_i)$是事件$x_i$发生的概率，$n$是可能发生事件的个数。对信息熵进行归一化处理，可以获得取值范围为$[0,1]$的信息熵
+\begin{gather}
+	\displaystyle E'=\frac{E-E_{min}}{E_{max}-E_{min}}
+\end{gather}
+综合梯度模值和信息熵，构造关系函数$v=w_1\cdot G+w_2\cdot E'+w_3$，即微分阶数$v$由梯度和信息熵共同决定，梯度模值和信息熵越大，反映该指纹像素需要增强的程度越大，更可能为纹理区域或边缘，分数阶微分阶数取值也越大。此问题中，可算得$v=3$。将阶数代入利用Grunward-Letnikov分数阶微分近似表达式，即
+
+\begin{gather}
+	\displaystyle\frac{\partial^v f(x,y)}{\partial x_{i}^{v}}\doteq\displaystyle\sum_{k=0}^{t-\alpha}(-1)^{k}\begin{pmatrix}
+		v \\ k
+	\end{pmatrix}f(x_i-k) 
+\end{gather}
+其中$f(x,y)$是图像坐标为$(x,y)$的像素灰度值，$t$和$\alpha$分别是微分上限和下限，$x_i(i=0,1,...,7)$是不同的偏微分方向，此处取以$x$轴正向为起始方向，顺时针旋转一周均匀分部的$8$个方向。为方便计算，对$8$个方向的分数阶偏微分近似分别保留前三项进行三层$5 \times 5$掩膜构造，并进行归一化赋权。
+
+对每个方向$x_i$，以掩膜中心点为作用点，$5\times 5$掩膜$w(x,y)$中三层权重分别为分数阶微分近似的前三项系数，则掩膜中总权重为分数阶微分近似的前三项系数与每层掩膜元素个数的乘积之和，即$4v_2-12v+8$。对权重归一化，可得中心点、第一层、第二层掩膜元素权重分别为$\displaystyle w_0=\frac{8}{4v_2-12v+8}, w_1=\frac{-v}{4v_2-12v+8}, w_2=\frac{v}{16(v-2)}$。
+在规模为$M\times N$的图像上，对距离中心点小于$\displaystyle M-\frac{n-1}{2}$和$\displaystyle N-\frac{n-1}{2}$的像素进行$n\times n$掩膜操作，其他像素进行灰度保留。输出图像可以表示为：
+\begin{gather}
+	\displaystyle g(x,y)=\sum_{s=-a}^{a}\sum_{t=-b}^{b}f(x+s,y+t)\cdot \boldmath{w}(x,y)
+\end{gather}
+其中，$w(x,y)$是构造的$5\times 5$掩膜，$a=b=\displaystyle \frac{n-1}{2}$。
+\subsubsection{滤波}
+
+\subsection{二值化处理}	  	
+\subsubsection{场方向估计}
+一般指纹图像都有较为清晰的场方向，对于图像上的每一个像素$P(x,y)$，为了确定其在该像素处脊线的方向，以该像素为中心的$9\times9$像素矩阵$u_{P(x,y)}$内，分别计算$8$个
+方向上的灰度平均值，即对于
+\begin{gather*}
+	u_{P(x,y)}=\begin{bmatrix}
+		P(x-4,y-4) & \cdots  & P(x,y-4) & \cdots  & P(x+4,y-4) \\ 
+		\vdots & \udots & \vdots  &  \ddots  & \vdots\\ 
+		P(x-4,y) & \cdots & P(x,y) &\cdots& P(x+4,y)  \\ 
+		\vdots & \ddots  & \vdots  &  \udots & \vdots\\ 
+		P(x+4,y+4) & \cdots & P(x,y+4) &\cdots& P(x+4,y+4)  
+	\end{bmatrix}
+\end{gather*}
+若$u_{P(x,y)}$中存在若干像素点超出原图像边界时，记超出边界的像素点为$P_o$并使得$\left \{ P_o \right \}=255$。并依照图？？？中的方向，分别计算$8$个方向上的灰度平均值得到$Gmean[i]$，然后将这 $8$ 个平均值按两两垂直的方向分成 $4$ 组,$0 $和 $4$ 一组、$1$ 和 $5$ 一组、$2$ 和 $6$ 一组、$3$ 和 $7$ 一组，计算
+每组中两个平均值的差值。
+\begin{gather*}
+	Gdiff[j]=\left | Gmean[j]-Gmean[j+4] \right |,j=1,2,3,4,
+\end{gather*}
+差值绝对值相差最大的方向即为脊线方向与其法向，即
+\begin{gather*}
+	iDir=\left\{\begin{matrix}arg(\underset{i}{max}(Gdiff[j])),\left | P(x,y)-\underset{i}{max}(Gdiff[j]) \right|<\left | P(x,y)-\underset{i}{max}(Gdiff[j+4]) \right|
+		\\ arg(\underset{i}{max}(Gdiff[j]))+4,otherwise
+	\end{matrix}\right.
+\end{gather*}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{figures/whut.jpg}
+	\caption{问题一思维流程图}\label{lct}
+\end{figure}   
+\subsubsection{二值化}
+得到图像每个像素处的方向场后,再依据方向场来对图像进行二值化。若像素$P(x,y)$处的脊线方向为$iDir$，先用估计方向场的方法计算该像素处在方向$iDir$和其法线$iVar=iDir+4$的灰度平均值$ Gmean[iDir]$和$ Gmean[iVar]$，基于此将该像素二值化为
+\begin{gather*}
+	P(x,y)=\left\{\begin{matrix}255, Gmean[iDir]\geqslant Gmean[iVar]
+		\\ 0,otherwise
+	\end{matrix}\right.
+\end{gather*}
+其中255为二值图像中图像背景和谷线的灰度值，0 为二值图像中图像脊线的灰度值。
 	\section{问题一模型的建立与求解}
-		\subsection{数据预处理}
-		在正式搭建模型前，本文首先将图片进行预处理，以方便进行后续运算。经过归一化处理，？？？和？？？后，即可得到相同规格的二值化图片。
-		\subsubsection{归一化处理}
-		\paragraph{灰度值处理}
-		鉴于各个指纹图像的纹理深浅不统一，首先对每张图片做灰度值归一化处理。对于图片$P_{i}$,其第$x$行第$y$列的像素点的灰度值可表示为$P_{i}(x,y)\in[0,255]$。即当$P_{i}(x,y)=255$时，$P_{i}(x,y)$为纯白色像素点；当$P_{i}(x,y)=0$时，$P_{i}(x,y)$为纯黑色像素点。对于任意图片$P_{i}$，有
-		\begin{gather*}
-		P_{i,max}=\underset{1\leqslant x\leqslant n,1\leqslant y \leqslant  m}{max}P_{i}(x,y),\\
-		P_{i,min}=\underset{1\leqslant x\leqslant n,1\leqslant y \leqslant  m}{min}P_{i}(x,y),
-		\end{gather*}
-		其中$n$和$m$分别表示图片的行数和列数。即	$P_{i,max}$与$P_{i,min}$分别表示图片中像素的最大灰度值和最小灰度值。对图片执行线性归一化操作如下
-		\begin{gather*}
-     	P_i(x,y)'=\frac{255}{P_{i,max}-P_{i,min}}(P_i(x,y)-P_{i,min})
-		\end{gather*}
-		即将图片$P_i$像素点灰度值线性放缩于$[0,255]$间，得到灰度值归一化图片$P_i'$。
-	    
-	  	\paragraph{外框去除与尺度统一}
-	  	对于图片$P_{i}$，我们将去除其空白外框以方便后续学习策略运算。设定边界阈值为$threshold_N$，当图片$P_{i}$最上方的某一行和最下方的某一行的非空白像素数大于$threshold_N$时，将其定义为新的上边界或下边界，及可得到行边界位置如下
-	    \begin{gather*}
-	  	fringe_{x1}=\underset{ (\sum_{i=1}^{m} (P'(x,i)<255))>threshold_N}{max(x)},\\
-	  	fringe_{x2}=\underset{(\sum_{i=1}^{m} (P'(x,i)<255))>threshold_N}{min(x)}
-	  	\end{gather*}
-	  	其中$fringe_{x1}$与$fringe_{x2}$ 分别为新定义上边界与下边界，同理有列边界位置如下
-	   \begin{gather*}
-	  	fringe_{y1}=\underset{(\sum_{i=1}^{n} (P'(i,y)<255))>threshold_N}{min(y)},\\
-	  	fringe_{y2}=\underset{(\sum_{i=1}^{n} (P'(i,y)<255))>threshold_N}{max(y)}
-	  	\end{gather*}
-	  	其中$fringe_{y1}$与$fringe_{y2}$分别为新定义左边界与右边界。即去除外框后的图片可表示为	$P''=P'(	fringe_{x1}:	fringe_{x2},	fringe_{y1}:	fringe_{y2})$。即只保留新定义边界内的像素点并删除剩余像素点即可得到去除外框后的图片$P''_{i}$。定义标准行数为$N$,标准列数为$M$，将去除外框后的图片$P''_{i}$进行放缩处理可得归一化图片$P_{i}^s$如下
-	  	\begin{gather*}
-	  	P_{i}^s(x,y)=P''_{i}(floor(\frac{fringe_{x1}-fringe_{x2}}{N}x),floor(\frac{fringe_{y2}-fringe_{y1}}{M}y))\\
-	  	x\in[1,N],	y\in[1,M]
-	  	\end{gather*}
-	  	其中$floor$表示向下取整，即通过灰度值处理、外框去除与尺度统一后即可将原始指纹图片数据$P_{i}$转换为灰度值范围与图片尺度统一的归一化图片数据$P_{i}^s(x,y)$。
-	  	\subsubsection{图像强化处理}
-	  	利用Grunward-Letnikov微分算子，构造自适应函数，采集梯度信息和计算信息熵，从而确定微分阶数。	
-	  	为了确定自适应分数阶微分阶数$v$，需要确定每个像素的梯度$G$和信息熵$E$。
-	  	梯度$G$反映指纹像素特征在感兴趣区域(ROI, Region of Interest)上的突变情况，取近似梯度模值为
-	  	\begin{gather}
-	  	\displaystyle G[f(x,y)]=\max\begin{Bmatrix}
-	  	|\frac{\partial f }{\partial x}|,|\frac{\partial f}{\partial y}|
-	  	\end{Bmatrix}
-	  	\end{gather}
-	  	另一个描述图像边缘纹理变化的指标是信息熵$E$，即所有可能发生事件的信息量期望之和，其数学描述为
-	  	\begin{gather}
-	  	E=-\sum_{i=1}^{n}p(x_i)\cdot log_2(p(x_i))	
-	  	\end{gather}
-	  	其中，$p(x_i)$是事件$x_i$发生的概率，$n$是可能发生事件的个数。对信息熵进行归一化处理，可以获得取值范围为$[0,1]$的信息熵
-	  	\begin{gather}
-	  	\displaystyle E'=\frac{E-E_{min}}{E_{max}-E_{min}}
-	  	\end{gather}
-	  	综合梯度模值和信息熵，构造关系函数$v=w_1\cdot G+w_2\cdot E'+w_3$，即微分阶数$v$由梯度和信息熵共同决定，梯度模值和信息熵越大，反映该指纹像素需要增强的程度越大，更可能为纹理区域或边缘，分数阶微分阶数取值也越大。此问题中，可算得$v=3$。将阶数代入利用Grunward-Letnikov分数阶微分近似表达式，即
-	  	
-	  	\begin{gather}
-	  	\displaystyle\frac{\partial^v f(x,y)}{\partial x_{i}^{v}}\doteq\displaystyle\sum_{k=0}^{t-\alpha}(-1)^{k}\begin{pmatrix}
-	  	v \\ k
-	  	\end{pmatrix}f(x_i-k) 
-	  	\end{gather}
-	  	其中$f(x,y)$是图像坐标为$(x,y)$的像素灰度值，$t$和$\alpha$分别是微分上限和下限，$x_i(i=0,1,...,7)$是不同的偏微分方向，此处取以$x$轴正向为起始方向，顺时针旋转一周均匀分部的$8$个方向。为方便计算，对$8$个方向的分数阶偏微分近似分别保留前三项进行三层$5 \times 5$掩膜构造，并进行归一化赋权。
-	  	
-	  	对每个方向$x_i$，以掩膜中心点为作用点，$5\times 5$掩膜$w(x,y)$中三层权重分别为分数阶微分近似的前三项系数，则掩膜中总权重为分数阶微分近似的前三项系数与每层掩膜元素个数的乘积之和，即$4v_2-12v+8$。对权重归一化，可得中心点、第一层、第二层掩膜元素权重分别为$\displaystyle w_0=\frac{8}{4v_2-12v+8}, w_1=\frac{-v}{4v_2-12v+8}, w_2=\frac{v}{16(v-2)}$。
-	  	在规模为$M\times N$的图像上，对距离中心点小于$\displaystyle M-\frac{n-1}{2}$和$\displaystyle N-\frac{n-1}{2}$的像素进行$n\times n$掩膜操作，其他像素进行灰度保留。输出图像可以表示为：
-	  	\begin{gather}
-	  	\displaystyle g(x,y)=\sum_{s=-a}^{a}\sum_{t=-b}^{b}f(x+s,y+t)\cdot \boldmath{w}(x,y)
-	  	\end{gather}
-  		其中，$w(x,y)$是构造的$5\times 5$掩膜，$a=b=\displaystyle \frac{n-1}{2}$。
-	  	\subsubsection{滤波}
-	    \subsubsection{二值化处理}	  	
-	    \paragraph{场方向估计}
-	    一般指纹图像都有较为清晰的场方向，对于图像上的每一个像素$P(x,y)$，为了确定其在该像素处脊线的方向，以该像素为中心的$9\times9$像素矩阵$u_{P(x,y)}$内，分别计算$8$个
-	    方向上的灰度平均值，即对于
-	    \begin{gather*}
-	  u_{P(x,y)}=\begin{bmatrix}
-	  P(x-4,y-4) & \cdots  & P(x,y-4) & \cdots  & P(x+4,y-4) \\ 
-	  \vdots & \udots & \vdots  &  \ddots  & \vdots\\ 
-	   P(x-4,y) & \cdots & P(x,y) &\cdots& P(x+4,y)  \\ 
-	   \vdots & \ddots  & \vdots  &  \udots & \vdots\\ 
-	  P(x+4,y+4) & \cdots & P(x,y+4) &\cdots& P(x+4,y+4)  
-	  \end{bmatrix}
-	    \end{gather*}
-	    若$u_{P(x,y)}$中存在若干像素点超出原图像边界时，记超出边界的像素点为$P_o$并使得$\left \{ P_o \right \}=255$。并依照图？？？中的方向，分别计算$8$个方向上的灰度平均值得到$Gmean[i]$，然后将这 $8$ 个平均值按两两垂直的方向分成 $4$ 组,$0 $和 $4$ 一组、$1$ 和 $5$ 一组、$2$ 和 $6$ 一组、$3$ 和 $7$ 一组，计算
-	    每组中两个平均值的差值。
-	     \begin{gather*}
-	  Gdiff[j]=\left | Gmean[j]-Gmean[j+4] \right |,j=1,2,3,4,
-	    \end{gather*}
-	    差值绝对值相差最大的方向即为脊线方向与其法向，即
-	     \begin{gather*}
-	  iDir=\left\{\begin{matrix}arg(\underset{i}{max}(Gdiff[j])),\left | P(x,y)-\underset{i}{max}(Gdiff[j]) \right|<\left | P(x,y)-\underset{i}{max}(Gdiff[j+4]) \right|
-	  \\ arg(\underset{i}{max}(Gdiff[j]))+4,otherwise
-	  \end{matrix}\right.
-	    \end{gather*}
-	 	\begin{figure}[H]
-	 	\centering
-	 	\includegraphics[width=\textwidth]{figures/whut.jpg}
-	 	\caption{问题一思维流程图}\label{lct}
-	 \end{figure}   
-    \paragraph{二值化}
-    得到图像每个像素处的方向场后,再依据方向场来对图像进行二值化。若像素$P(x,y)$处的脊线方向为$iDir$，先用估计方向场的方法计算该像素处在方向$iDir$和其法线$iVar=iDir+4$的灰度平均值$ Gmean[iDir]$和$ Gmean[iVar]$，基于此将该像素二值化为
-      \begin{gather*}
-    P(x,y)=\left\{\begin{matrix}255, Gmean[iDir]\geqslant Gmean[iVar]
-    	\\ 0,otherwise
-    \end{matrix}\right.
-      \end{gather*}
-      其中255为二值图像中图像背景和谷线的灰度值，0 为二值图像中图像脊线的灰度值。
+	
 		\subsection{问题描述与分析}
 			问题一要求
 		
