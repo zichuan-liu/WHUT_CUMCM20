@@ -115,46 +115,121 @@
 				\caption{问题一思维流程图}\label{lct}
 			\end{figure}
 			
-		\subsection{模型的建立}
-			\begin{gather*}
-			d(p_i,p_j)=\left | x_i-x_j \right |+\left | y_i-y_j \right | ,
-			\end{gather*}
+		\subsection{搭建卷积自编码器模型}
+		   自编码器（AutoEncoder）是一种能够通过无监督学习，学到输入数据高效表示的人工神经网络。输入数据的这一高效表示称为编码（codings），其维度一般远小于输入数据，使得自编码器可用于降维。更重要的是，自编码器可作为强大的特征检测器（feature detectors），应用于深度神经网络的预训练。我们以VGG模型\upcite{4}结构为基础，构造一个 新的卷积神经网络模型，并通过交叉验证的思想训练小样本数据，调整
+		   模型参数，得到小样本条件下最优的卷积神经网络模型。
 		
+			\subsubsection{卷积神经网络}
+			
+			\paragraph{Convolution Kernel} 在图像处理的过程中，我们经常会用到矩阵卷积来计算图像(image)的特征(feature)，矩阵卷积有两种：全卷积(full convolution)和有效值卷积(valid convolution)，其全卷积核函数的定义式为：
+			     \begin{gather}
+z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i, j} \cdot k_{u-i, v-j},
+			     \end{gather}
+			有效值卷积的定义式为：
+			\begin{gather}
+\begin{array}{c}
+z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k_{r o t i, j} \cdot \chi(i, j) \\
+\chi(i, j)=\left\{  
+\begin{array}{c}
+1,0 \leqslant i, j \leqslant n \\
+0, \text {others}
+\end{array}
+\right.  
+\end{array},
+			\end{gather}
+			其中$X$是灰度图像转换为$m\times m$阶矩阵，$K$是$n\times n$阶卷积核，一般取$3\times 3$，$K_{rot}$是由$K$转置得到。
+			
+		那么，从 Input Image 到 Output Image 的变化如下图所示：
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.5\textwidth]{figures/cnn.jpg}
+			\caption{卷积核函数示意图}
+		\end{figure}
+		可以看出，其实二维卷积一样也是加权叠加/积分。需要注意的是，其中 Convolution Kernel 进行了水平和竖直方向的翻转。
 		
-		\subsection{模型的求解}
-			\begin{algorithm}[H]
-			 	\caption{Procedure of Apriori}  
-			 	\LinesNumbered  
-			 	\setstretch{0.9}   %设置表的行间距
-			 	\KwIn{item data base: $D$\newline
-			 		minimum Support threshold: $Sup_{min}$\newline
-			 		minimum Confidence threshold: $Conf_{min}$
-			 	}
-			 	\KwOut{frequent item sets $F$}  
-			 	\textbf{Initialize} \newline
-			 	iteration $t\leftarrow 1$ \newline
-			 	The candidate FIS:$C_{t}=\varnothing$ \newline
-			 	The length of FIS:$length=1$ \newline
-			 	\For{i=1 to sizeof(D)}
-			 	{$I_{i}$=D(i)\newline
-			 		n=sizeof($I_{i}$)\newline
-			 		\For{j=1 to n}{
-			 			\If{$I_{i}(j)\notin C_{t}$ }
-			 			{$C_{t}=C_{t}\cup I_{i}(j) $}
-			 		}
-			 	}
-			 	$F_{t}=\left \{ f|f\in C_{t},Sup(f)>Sup_{min}\right \}$\newline
-			 	\While{$F\neq \varnothing$}
-			 	{ t=t+1\newline 
-			 		length=length+1\newline	
-			 		$C_{t}\leftarrow $ all candidate of FIS in $F_{t-1}$\newline
-			 		$F_{t}=\left \{ f|f\in C_{t},(Sup(f)>Sup_{min})\bigcap (Comf(f)>Conf_{min}) \right\}$\newline
-			 	}	
-			 	\Return{$F_{t-1}$} 
-			\end{algorithm} 
+			\paragraph{Pooling} 对于灰度图像的采样而言，Pooling 对于输入的 Feature Map，选择某种方式对其进行压缩。如下图，表示的就是对$2\times 2$邻域内的值，选择最大值输出到下一层，这叫做 Max-Pooling。
+				\begin{figure}[H]
+			\centering
+			\includegraphics[width=.5\textwidth]{figures/pool.png}
+			\caption{池化层Max-Pooling示意图}
+		\end{figure}
+	
+	对卷积层进行池化从而通过对 Feature Map 降维，有效减少后续层需要的参数，当其中像素在邻域发生微小位移时，Pooling Layer 的输出是不变的。这就增强了网络的鲁棒性，有一定抗扰动的作用。
+	
+	\paragraph{Activation} 激活层的正向传播主要依靠众多神经元的计算来完成的，工作过程中可以用下式来表示：
+	\begin{gather*}
+	{u_{k}=\sum_{i=1} w_{k i} x_{i}}, \\ {y_{k}=f\left(u_{k}-b_{k}\right)},
+	\end{gather*}
+	其中：$x_{i}$表示第 i 个输入； $w_{ki}$表示与第 i 输入量相连的权值；$u_{k}$表示所有输入的加权和；$b_{k}$为神经 元阈值；$ f$ 为激活函数；$y_{k}$ 为神经网络的输出。
+	
+	激活函数的种类有很多，如 $sigmoid$， $tanh$ 及$ Relu$，本文应用的是 $Relu$作为激活函数搭建两层隐含层，如式~\ref{shiw}~所示：
+	\begin{gather}\label{shiw}
+	\begin{array}{c}{f_{\text {Relu}}=\max (0, z)}\\
+	\frac{d}{d z} f_{R e L U}=\left\{\begin{array}{ll}{1,} & {z>0} \\ {0,} & {z \leqslant 0}\end{array}\right.
+	\end{array}.
+	\end{gather}
+	
+	网络的输出层使用$ softmax $函数作分类器， 式~\ref{shiq}~为第 i 个神经的输出：
+	\begin{gather*}\label{shiq}
+	f_{\text {softmax}}=\mathrm{e}^{i} / \sum_{j} \mathrm{e}^{j}.
+	\end{gather*}
+	
+			\subsubsection{卷积自动编码器}
+			普通的自编码器中，编码器和解码器中层与层之间的连
+			接方式为全连接，该编码器具有一个输入层，n个隐藏层和一个输出层，
+			
+			给定图片样本$X=\left\{ x_1,x_2,\cdots,x_nx \right\}, X\in \mathbb{R}^{n\times c\times w \times h}$，其中c为通道数。自编码器首先将$x_i$编码成$y(x_i)$再解码成$z(y_i)$，其公式L表述如下：
+				\begin{gather}
+			\begin{array}{l}
+			y(x)=Encoder\left(W_{1} x+b\right) \\
+			z(x)=Decoder\left(W_{2} y(x)+c\right)
+			\end{array}.
+			\end{gather}
+			
+			通过最小化重建误差$L(X,Z)$，我们可以获得模型参数，这里用θ表示为：
+			\begin{gather}
+			\theta=\underset{\theta}{\arg \min } L(X, Z)=\underset{\theta}{\arg \min } \frac{1}{2} \sum_{i=1}^{N}\left\|x^{(i)}-z\left(x^{(i)}\right)\right\|^{2}.
+			\end{gather}
+
+			本文卷积自编码器(ConvAutoEncoder, CAE)中的编码器部分的网络结构与卷积神
+			经网络中卷积池化部分的结构相同。首先通过编码器部分构
+			造出对应的解码器部分，在训练结束后，保留编码器部分的结
+			构和权重，在编码器后加上与卷积神经网络结构中相同的全
+			连接层来进行图像的编码与分类识别。其卷积自编码器$L(X,Z)$的具体结构如图
+			\ref{labssel}所示：
+					\begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{figures/model.png}
+				\caption{卷积自编码器CAE模型}\label{labssel}
+			\end{figure}
+		其中，Conv表示全卷积，ConvTranspose表示有效值卷积，Activation表述rule激活层，Pooling表示池化层，对应的编码输入为$Z(X)<200byte$。
 		
+	
+					将稀疏约束添加到目标函数后，自动编码器将成为稀疏的自动编码器，它考虑二值图像隐藏层的稀疏表示。 为了实现稀疏表示，本文将使用稀疏约束将重构误差最小化，加上损失函数KL散度：
+								\begin{gather}
+					 \mathrm{CAE}=L(X, Z)+\gamma \sum_{j=1}^{H_{D}} \mathrm{KL}\left(\rho \| \hat{\rho}_{j}\right),\\
+					 \mathrm{KL}\left(\rho \| \hat{\rho}_{j}\right)=\rho \log \frac{\rho}{\hat{\rho}_{j}}+(1-\rho) \log \frac{1-\rho}{1-\hat{\rho}_{j}},
+								\end{gather}
+					其中γ是稀疏项的权重，$H_D$是隐藏单元的数量，ρ是稀疏性参数，通常是一个接近零的小值。$\hat{\rho}_{j}=(1 / N) \sum_{i=1}^{N} y_{j}\left(x^{(i)}\right)$是在训练集中隐藏单元j的平均激活。
+
         \subsection{实验结果及分析}
-  
+        
+        	\begin{figure}[H]
+        	\centering
+        	\includegraphics[width=.6\textwidth]{figures/loss.png}
+        	\caption{CAE迭代过程中损失函数函数}\label{loss}
+        \end{figure}
+    
+        			\begin{figure}[H]	
+        	\centering
+        	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen.png}}
+        	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen2.png}}
+        	\caption{编码后经解码器后还原的效果图}
+        	\label{zhiwen}
+        \end{figure}
+    
+    
+
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
 			问题二要求
@@ -233,7 +308,7 @@
 		\bibitem{1}Davies S G. Touching Big Brother: How biometric technology will fuse flesh and machine[J]. Information Technology \& People, 2014, 7(4): 38-47.
 	\bibitem{2}Moses K R, Higgins P, McCabe M, et al. Automated fingerprint identification system (AFIS)[J]. Scientific Working Group on Friction Ridge Analysis Study and Technology and National institute of Justice (eds.) SWGFAST-The fingerprint sourcebook, 2011: 1-33.
 	\bibitem{3}Dror I E, Wertheim K, Fraser‐Mackenzie P, et al. The impact of human–technology cooperation and distributed cognition in forensic science: biasing effects of AFIS contextual information on human experts[J]. Journal of forensic sciences, 2012, 57(2): 343-352.
-	\bibitem{4}
+	\bibitem{4}Simonyan K, Zisserman A. Very deep convolutional networks for large-scale image recognition[J]. arXiv preprint arXiv:1409.1556, 2014.
 	\bibitem{5}
 	\end{thebibliography}
 

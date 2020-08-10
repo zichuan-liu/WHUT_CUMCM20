@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  9 AUG 2020 16:10
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  10 AUG 2020 12:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1278,12 +1278,28 @@ LaTeX Font Warning: Font shape `TU/SimSun(1)/bx/n' undefined
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
  [2]
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
+File: figures/cnn.jpg Graphic file (type bmp)
+<figures/cnn.jpg>
  [3]
+File: figures/pool.png Graphic file (type bmp)
+<figures/pool.png>
+ [4]
+File: figures/model.png Graphic file (type bmp)
+<figures/model.png>
+ [5]
+File: figures/loss.png Graphic file (type bmp)
+<figures/loss.png>
+ [6]
+File: figures/zhiwen.png Graphic file (type bmp)
+<figures/zhiwen.png>
+File: figures/zhiwen2.png Graphic file (type bmp)
+<figures/zhiwen2.png>
+File: figures/whut.jpg Graphic file (type bmp)
+<figures/whut.jpg>
+ [7]
 
-LaTeX Warning: Reference `zhuanssssasgzai' on page 4 undefined on input line 17
-6.
+LaTeX Warning: Reference `zhuanssssasgzai' on page 8 undefined on input line 25
+1.
 
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
@@ -1293,7 +1309,7 @@ File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
-[4] [5] [6] (e:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+[8] [9] [10] (e:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
 
@@ -1321,14 +1337,14 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 
 
 (./code/demo.py)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 256.
- [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 256.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 331.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 331.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 256.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 256.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 331.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 331.
 Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 25955097CF60E21D237B6DA28D8D4C8D.
+(rerunfilecheck)             Checksum: 830CD8EF18F3333419E5EBDE9F6807B8.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1336,16 +1352,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 256.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 331.
  )
 (\end occurred when \iftrue on line 24 was incomplete) 
 Here is how much of TeX's memory you used:
- 29906 strings out of 492922
- 583360 string characters out of 6136751
- 852473 words of memory out of 5000000
- 33514 multiletter control sequences out of 15000+600000
- 544860 words of font info for 144 fonts, out of 8000000 for 9000
+ 29930 strings out of 492922
+ 583548 string characters out of 6136751
+ 853271 words of memory out of 5000000
+ 33535 multiletter control sequences out of 15000+600000
+ 544836 words of font info for 141 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 61i,20n,81p,721b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,21n,81p,721b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (10 pages).
+Output written on demo.pdf (14 pages).
