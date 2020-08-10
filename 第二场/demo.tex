@@ -262,8 +262,25 @@
   
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
-			问题二要求
-
+			问题二要求给出比较不同指纹异同的方法。
+			本问中，对第一问所获得的所有行向量的每一维度进行归一化处理,分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
+			
+			
+			\begin{itemize}
+				\item 谷本系数(Tanimoto Coefficient)
+				
+				Tanimoto Coefficient主要用于计算符号度量或布尔值度量的个体间的相似度，因为个体的特征属性都是由符号度量或者布尔值标识，因此无法衡量差异具体值的大小，只能获得“是否相同”这个结果，所以Tanimoto Coefficient只关心个体间共同具有的特征是否一致这个问题。其数学描述为
+				\begin{gather}
+				T(A,B)=\frac{A\ast B}{\begin{Vmatrix}
+						A
+					\end{Vmatrix}^2+\begin{Vmatrix}
+						B
+					\end{Vmatrix}^2-A\ast B}
+				\end{gather}
+				\item 皮尔逊相关系数（Pearson Correlation Coefficient）
+				\item 马哈拉诺比斯距离（Mahalanobis Distance）
+			\end{itemize}
+			
     		其思维流程图如图~\ref{lssssct}~所示：
 
 			\begin{figure}[H]

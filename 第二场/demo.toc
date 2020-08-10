@@ -22,12 +22,12 @@
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{8}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{8}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{8}{subsection.6.4}%
-\contentsline {section}{\numberline {七、}问题三模型的建立与求解}{9}{section.7}%
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}结果分析}{9}{subsection.7.1}%
-\contentsline {section}{\numberline {八、}灵敏度分析}{9}{section.8}%
-\contentsline {section}{\numberline {九、}模型的评价}{9}{section.9}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{9}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{9}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{9}{subsection.9.3}%
-\contentsline {section}{\numberline {附录A}数据可视化的实现}{11}{appendix.A}%
+\contentsline {section}{\numberline {七、}问题三模型的建立与求解}{10}{section.7}%
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}结果分析}{10}{subsection.7.1}%
+\contentsline {section}{\numberline {八、}灵敏度分析}{10}{section.8}%
+\contentsline {section}{\numberline {九、}模型的评价}{10}{section.9}%
+\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{10}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{10}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{10}{subsection.9.3}%
+\contentsline {section}{\numberline {附录A}数据可视化的实现}{12}{appendix.A}%
 \contentsfinish 
