@@ -106,15 +106,17 @@
 
 	\section{问题一模型的建立与求解}
 		\subsection{问题描述与分析}
-			问题一要求
-		
-			其思维流程图如图~\ref{lct}~所示：
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题一思维流程图}\label{lct}
-			\end{figure}
+			问题一要求给出一种用不超过200字节来刻画描述指纹基本特征的表示方法。传统的图像压缩方法有霍夫曼压缩、Golomb编码、LZW编码、小波编码等，这些都能对指纹进行刻画。但是相对于200字节的限制而言，他们在压缩编码方向显得不敬人意。
 			
+			相较于传统的图片编码而言，通过网络编码能更有效的提高图像在细节上的依赖。在网络训练的过程中，网络只用到该向量之中少量元素，其中的大部分元素对于网络来说是没有用的。自编码器通过无监督学习来提取有用的信息，对于手写数字图片来说可能是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的，从而实现小样本编码。
+		
+%			其思维流程图如图~\ref{lct}~所示：
+%			\begin{figure}[H]
+%				\centering
+%				\includegraphics[width=\textwidth]{figures/whut.jpg}
+%				\caption{问题一思维流程图}\label{lct}
+%			\end{figure}
+%			
 		\subsection{搭建卷积自编码器模型}
 		   自编码器（AutoEncoder）是一种能够通过无监督学习，学到输入数据高效表示的人工神经网络。输入数据的这一高效表示称为编码（codings），其维度一般远小于输入数据，使得自编码器可用于降维。更重要的是，自编码器可作为强大的特征检测器（feature detectors），应用于深度神经网络的预训练。我们以VGG模型\upcite{4}结构为基础，构造一个 新的卷积神经网络模型，并通过交叉验证的思想训练小样本数据，调整
 		   模型参数，得到小样本条件下最优的卷积神经网络模型。
@@ -212,18 +214,48 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
 								\end{gather}
 					其中γ是稀疏项的权重，$H_D$是隐藏单元的数量，ρ是稀疏性参数，通常是一个接近零的小值。$\hat{\rho}_{j}=(1 / N) \sum_{i=1}^{N} y_{j}\left(x^{(i)}\right)$是在训练集中隐藏单元j的平均激活。
 
+在迭代修正的过程中，实验采用$Keras$自带优化器Adam函数进行迭代修正，如式~\ref{adam}~所示，其中$\beta_{1}$一般取0.9，$\beta_{2}$一般取0.999。
+
+\begin{gather*}\label{adam}
+\left\{\begin{array}{l}{m_{t}=\beta_{1} m_{t-1}+\left(1-\beta_{1}\right) \nabla_{w} f\left(w_{t}\right)} \\ {v_{t}=\beta_{2} v_{t-1}+\left(1-\beta_{2}\right) \nabla_{w} f\left(w_{t}\right)^{2}} \\ {\widehat{m}_{t}=\frac{m_{t}}{1-\beta_{1}^{t}}, \hat{v}_{t}=\frac{v_{t}}{1-\beta_{2}^{t}}} \\ {w_{t}=w_{t-1}-\eta \frac{\widehat{m}_{t}}{\sqrt{\hat{v}_{t}+\varepsilon}}}\end{array}\right.
+\end{gather*}
+
         \subsection{实验结果及分析}
-        
+        实验训练输入样本为 400×300的指纹图片， 具体参数设置如表所示：
+       \begin{table}[H]
+        	\setstretch{1.4}  %设置表的行间距
+        	\centering		
+        	\caption{参数设置表
+        	}
+        	\begin{tabular}{cc|cc}
+        		\toprule[1.5pt]
+        		\multicolumn{1}{m{5cm}}{\centering 参数名称}
+        		& \multicolumn{1}{m{2cm}}{\centering 值}
+        		&        		\multicolumn{1}{m{5cm}}{\centering 参数名称}
+        		& \multicolumn{1}{m{2cm}}{\centering 值}
+        		\\
+        		\midrule[1pt]
+        		迭代次数 epoch&   2000& 吞吐量 batch & 64\\ 
+        	出/入通道数 in/out& 	3/3& 编码大小 size& 200\\
+        	        学习率 lr& 0.01& 偏置 $\beta_1,\beta_2$& 0.9, 0.999\\
+      卷积核 $k_1,k_2,k_3$& 3,3,4& 池化层 padding& 1\\
+        		\bottomrule[1.5pt]	
+        	\end{tabular}
+        \end{table}
+    
+        通过上述参数设置，计算16张指纹图片KL散度的最小值，并保存其编码程序。其迭代过程中 损失函数如下图所示：
         	\begin{figure}[H]
         	\centering
         	\includegraphics[width=.6\textwidth]{figures/loss.png}
         	\caption{CAE迭代过程中损失函数函数}\label{loss}
         \end{figure}
+    可以看出，我们的模型在解码还原过程中，能明显逼近于真实的指纹图片，信息损失仅占0.04\%，对于传统的编码方法有明显的压缩能力。
     
+    本文将指纹编码过程进行还原，得到解码图像入下图所示，可以看见CAE模型编码后再还原出的指纹图像具有高精度的还原。
         			\begin{figure}[H]	
         	\centering
-        	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen.png}}
-        	\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen2.png}}
+        	\subfigure[指纹1过程过程]{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen.png}}
+        	\subfigure[指纹2解码过程]{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen2.png}}
         	\caption{编码后经解码器后还原的效果图}
         	\label{zhiwen}
         \end{figure}
