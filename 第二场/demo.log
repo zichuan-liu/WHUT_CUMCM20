@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  10 AUG 2020 20:09
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  10 AUG 2020 20:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1283,28 +1283,28 @@ t/12.05 P[]$ \TU/SimSun(1)/m/n/12.05 最 上 方 的 某 一 行 和 最 下 方
 
 [3] [4]
 
-LaTeX Font Warning: Command \boldmath invalid in math mode on input line 169.
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 171.
 
 
-LaTeX Font Warning: Command \mathversion invalid in math mode on input line 169
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 171
 .
 
 
-LaTeX Font Warning: Command \boldmath invalid in math mode on input line 169.
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 171.
 
 
-LaTeX Font Warning: Command \mathversion invalid in math mode on input line 169
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 171
 .
 
 
-Overfull \hbox (18.29158pt too wide) detected at line 196
+Overfull \hbox (18.29158pt too wide) detected at line 199
 []
  []
 
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 [5]
-Overfull \hbox (4.01262pt too wide) in paragraph at lines 203--204
+Overfull \hbox (4.01262pt too wide) in paragraph at lines 206--207
 []\TU/SimSun(1)/m/n/12.05 得 到 图 像 每 个 像 素 处 的 方 向 场 后\TU/TimesNewRoman(0)/m/n/1
 2.05 , \TU/SimSun(1)/m/n/12.05 再 依 据 方 向 场 来 对 图 像 进 行 二 值 化。|  若 像 素 $\OML/cmm
 /m/it/12.05 P\OT1/cmr/m/n/12.05 (\OML/cmm/m/it/12.05 x; y\OT1/cmr/m/n/12.05 )$
@@ -1332,7 +1332,7 @@ File: figures/whut.jpg Graphic file (type bmp)
 
 
 LaTeX Warning: Reference `zhuanssssasgzai' on page 12 undefined on input line 3
-87.
+90.
 
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
@@ -1369,7 +1369,7 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
  [16]
-Overfull \hbox (56.86859pt too wide) in paragraph at lines 535--536
+Overfull \hbox (56.86859pt too wide) in paragraph at lines 538--539
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1377,7 +1377,7 @@ Overfull \hbox (56.86859pt too wide) in paragraph at lines 535--536
  []
 
 
-Overfull \hbox (54.38431pt too wide) in paragraph at lines 538--539
+Overfull \hbox (54.38431pt too wide) in paragraph at lines 541--542
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1385,7 +1385,7 @@ Overfull \hbox (54.38431pt too wide) in paragraph at lines 538--539
  []
 
 
-Overfull \hbox (5.47635pt too wide) in paragraph at lines 539--540
+Overfull \hbox (5.47635pt too wide) in paragraph at lines 542--543
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1393,12 +1393,12 @@ Overfull \hbox (5.47635pt too wide) in paragraph at lines 539--540
  []
 
 [17]
-Overfull \hbox (78.649pt too wide) in paragraph at lines 571--572
+Overfull \hbox (78.649pt too wide) in paragraph at lines 574--575
 [][][][][][][][][][]  
  []
 
 
-Overfull \hbox (13.38087pt too wide) in paragraph at lines 572--573
+Overfull \hbox (13.38087pt too wide) in paragraph at lines 575--576
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1406,7 +1406,7 @@ Overfull \hbox (13.38087pt too wide) in paragraph at lines 572--573
  []
 
 
-Overfull \hbox (163.11507pt too wide) in paragraph at lines 573--574
+Overfull \hbox (163.11507pt too wide) in paragraph at lines 576--577
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1415,7 +1415,7 @@ Overfull \hbox (163.11507pt too wide) in paragraph at lines 573--574
  []
 
 [18] [19]
-Overfull \hbox (139.8532pt too wide) in paragraph at lines 649--650
+Overfull \hbox (139.8532pt too wide) in paragraph at lines 652--653
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1424,7 +1424,7 @@ Overfull \hbox (139.8532pt too wide) in paragraph at lines 649--650
  []
 
 
-Overfull \hbox (77.52039pt too wide) in paragraph at lines 651--652
+Overfull \hbox (77.52039pt too wide) in paragraph at lines 654--655
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1433,7 +1433,7 @@ Overfull \hbox (77.52039pt too wide) in paragraph at lines 651--652
  []
 
 
-Overfull \hbox (42.74052pt too wide) in paragraph at lines 682--683
+Overfull \hbox (42.74052pt too wide) in paragraph at lines 685--686
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1441,7 +1441,7 @@ Overfull \hbox (42.74052pt too wide) in paragraph at lines 682--683
  []
 
 [20]
-Overfull \hbox (180.73085pt too wide) in paragraph at lines 703--704
+Overfull \hbox (180.73085pt too wide) in paragraph at lines 706--707
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1450,7 +1450,7 @@ Overfull \hbox (180.73085pt too wide) in paragraph at lines 703--704
  []
 
 
-Overfull \hbox (99.42722pt too wide) in paragraph at lines 704--705
+Overfull \hbox (99.42722pt too wide) in paragraph at lines 707--708
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1459,19 +1459,19 @@ Overfull \hbox (99.42722pt too wide) in paragraph at lines 704--705
  []
 
 
-Overfull \hbox (2.76608pt too wide) in paragraph at lines 710--711
+Overfull \hbox (2.76608pt too wide) in paragraph at lines 713--714
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (45.45053pt too wide) in paragraph at lines 711--712
+Overfull \hbox (45.45053pt too wide) in paragraph at lines 714--715
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (103.71825pt too wide) in paragraph at lines 716--717
+Overfull \hbox (103.71825pt too wide) in paragraph at lines 719--720
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1480,7 +1480,7 @@ Overfull \hbox (103.71825pt too wide) in paragraph at lines 716--717
  []
 
 [21] [22]
-Overfull \hbox (27.50856pt too wide) in paragraph at lines 797--798
+Overfull \hbox (27.50856pt too wide) in paragraph at lines 800--801
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
@@ -1500,12 +1500,12 @@ Overfull \hbox (112.4912pt too wide) in paragraph at lines 126--127
  []
 
 [28])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 875.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 878.
  [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 875.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 878.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 875.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 875.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 878.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 878.
 Package rerunfilecheck Info: File `demo.out' has not changed.
 (rerunfilecheck)             Checksum: 19D60AA484AFE03A6AEE92FD3085750D.
 
@@ -1515,13 +1515,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 875.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 878.
  )
 (\end occurred when \iftrue on line 26 was incomplete) 
 Here is how much of TeX's memory you used:
  30730 strings out of 492922
  597935 string characters out of 6136751
- 900397 words of memory out of 5000000
+ 899397 words of memory out of 5000000
  34329 multiletter control sequences out of 15000+600000
  544860 words of font info for 144 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
