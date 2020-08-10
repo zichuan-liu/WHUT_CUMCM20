@@ -256,9 +256,7 @@
   
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
-			问题二要求
-
-    		其思维流程图如图~\ref{lssssct}~所示：
+		问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在使用卷积自动编码器将原始指纹图像转化成了特征编码后，图像的特征编码是以
 
 			\begin{figure}[H]
 				\centering
@@ -306,10 +304,63 @@
 			\end{figure}
 
     \section{问题三模型的建立与求解}
-  		\subsection{结果分析}
-  
-  	\section{灵敏度分析}
- 
+  	\subsection{问题描述与分析}
+  	问题三在问题二将指纹相似度量化的基础上，进一步要求将样本指纹进行类比归类，其本质是一个样本分类问题。根据第二问的相似度量化结果，可得到任意两个指纹样本间的相似程度，即可在其基础上搭建中心聚类模型以将样本指纹进行类比归类。
+  	
+    本文设计的加权相似度$S$具有非欧几里得特征(引用)，不可使用样本均值作为聚类中心，即不可使用经典中心聚类算法$k-means$算法经行样本聚类。针对该问题，我们引入$k-medoids$算法以确定样本中心点，并以模型二设计的加权相似度的平均值作为代价函数，对附件中的$16$个指纹样本进行聚类。
+  	
+  	\begin{figure}[H]
+  		\centering
+  		\includegraphics[width=\textwidth]{figures/whut.jpg}
+  		\caption{问题二思维流程图}\label{lssssct}
+  	\end{figure}
+  	\subsection{模型的建立与求解}
+  	\subsubsection{k-medoids}
+  	本文采用$k-medoids$模式选取聚类中心点，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
+  	\begin{gather}
+  J(c_1,c_2,\cdots,c_k)=\frac{1}{16}\sum _{i=1}^{16}\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j),
+  	\end{gather}
+  	其中$\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j)$表示与样本点$ \gamma_i $与$k$个聚类中心$\left \{ c_i \right \}$间的最高的相似度值，即将$\gamma _i$归入与其相似度最高的聚类中心。即将聚类中心$\left \{ c_i \right \}$作为决策变量，搜索最佳聚类中心组合，使得代价函数$J(c_1,c_2,\cdots,c_k)$达到最大值，即
+      	\begin{gather}
+      max \frac{1}{16}\sum _{i=1}^{16}\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j),\\
+      s.t.\left \{  c_j  | j\in [1,k] \right \}  \subseteq  \left \{ \gamma _i | i\in [1,16]\right \} 
+      \end{gather}
+  	鉴于该问题样本规模较小，本文采用遍历方式，输入所有聚类中心并选取代价函数值最高的聚类中心组合
+  	\subsection{实验结果及分析}
+  	
+  	结果如下表\ref{zhuanssssasgzai}所示：
+  	\begin{table}[H]
+  		\setstretch{1.4}  %设置表的行间距
+  		\centering		
+  		\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
+  		\begin{tabular}{cc}
+  			\toprule[2pt]
+  			\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
+  			& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
+  			\\
+  			\midrule[1pt]
+  			xxxxxxx &   909.80\\ 
+  			xxxxxxx & 	852.60\\ 
+  			\bottomrule[2pt]	
+  		\end{tabular}
+  	\end{table}
+  	
+  	由表\ref{biao1}可知
+  	
+  	其各个小车的运输细节图下图所示：
+  	\begin{figure}[H]
+  		\centering
+  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
+  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
+  	\end{figure}	
+  	\begin{figure}[H]	
+  		\centering
+  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
+  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
+  		\caption{xxxxxxxxxxxxxxxxxxxxxxxxx}
+  		\label{fisg}
+  	\end{figure}
+  	
   	\section{模型的评价}
 		\subsection{模型的优点}
 			\begin{itemize}                                             
