@@ -8,20 +8,20 @@
 \contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}归一化处理}{2}{subsubsection.4.1.1}% 
 \contentsline {paragraph}{灰度值处理}{2}{section*.4}% 
 \contentsline {paragraph}{外框去除与尺度统一}{3}{section*.5}% 
-\contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}二值化处理}{4}{subsubsection.4.1.2}% 
+\contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}图像强化处理}{4}{subsubsection.4.1.2}% 
+\contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}滤波}{4}{subsubsection.4.1.3}% 
+\contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}二值化处理}{4}{subsubsection.4.1.4}% 
 \contentsline {paragraph}{场方向估计}{4}{section*.6}% 
-\contentsline {paragraph}{二值化}{4}{section*.8}% 
-\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题描述与分析}{5}{subsection.4.2}% 
-\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的建立}{5}{subsection.4.3}% 
-\contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}自适应分数阶微分强化算法}{5}{subsubsection.4.3.1}% 
-\contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}滤波}{6}{subsubsection.4.3.2}% 
-\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}模型的求解}{6}{subsection.4.4}% 
+\contentsline {paragraph}{二值化}{5}{section*.8}% 
+\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题描述与分析}{6}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的建立}{6}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}模型的求解}{7}{subsection.4.4}% 
 \contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}5}实验结果及分析}{7}{subsection.4.5}% 
 \contentsline {section}{\numberline {五、}问题二模型的建立与求解}{7}{section.5}% 
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{7}{subsection.5.1}% 
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{7}{subsection.5.2}% 
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{7}{subsection.5.3}% 
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{7}{subsection.5.4}% 
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{8}{subsection.5.2}% 
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{8}{subsection.5.3}% 
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{8}{subsection.5.4}% 
 \contentsline {section}{\numberline {六、}问题三模型的建立与求解}{9}{section.6}% 
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}结果分析}{9}{subsection.6.1}% 
 \contentsline {section}{\numberline {七、}灵敏度分析}{9}{section.7}% 

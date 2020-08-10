@@ -138,7 +138,34 @@
 	  	x\in[1,N],	y\in[1,M]
 	  	\end{gather*}
 	  	其中$floor$表示向下取整，即通过灰度值处理、外框去除与尺度统一后即可将原始指纹图片数据$P_{i}$转换为灰度值范围与图片尺度统一的归一化图片数据$P_{i}^s(x,y)$。
+	  	\subsubsection{图像强化处理}
+	  	利用Grunward-Letnikov微分算子，构造自适应函数，采集梯度信息和计算信息熵，从而确定微分阶数。	
+	  	为了确定自适应分数阶微分阶数$v$，需要确定每个像素的梯度$G$和信息熵$E$。
+	  	梯度$G$反映指纹像素特征在感兴趣区域(ROI, Region of Interest)上的突变情况，取近似梯度模值为
+	  	\begin{gather}
+	  	\displaystyle G[f(x,y)]=\max\begin{Bmatrix}
+	  	|\frac{\partial f }{\partial x}|,|\frac{\partial f}{\partial y}|
+	  	\end{Bmatrix}
+	  	\end{gather}
+	  	另一个描述图像边缘纹理变化的指标是信息熵$E$，即所有可能发生事件的信息量期望之和，其数学描述为
+	  	\begin{gather}
+	  	E=-\sum_{i=1}^{n}p(x_i)\cdot log_2(p(x_i))	
+	  	\end{gather}
+	  	其中，$p(x_i)$是事件$x_i$发生的概率，$n$是可能发生事件的个数。对信息熵进行归一化处理，可以获得取值范围为$[0,1]$的信息熵
+	  	\begin{gather}
+	  	\displaystyle E'=\frac{E-E_{min}}{E_{max}-E_{min}}
+	  	\end{gather}
+	  	综合梯度模值和信息熵，构造关系函数$v=w_1\cdot G+w_2\cdot E'+w_3$，即微分阶数$v$由梯度和信息熵共同决定，梯度模值和信息熵越大，反映该指纹像素需要增强的程度越大，更可能为纹理区域或边缘，分数阶微分阶数取值也越大。此问题中，
 	  	
+	  	\begin{gather}
+	  	\displaystyle\frac{\partial^v f(x,y)}{\partial x_{i}^{v}}\doteq\displaystyle\sum_{k=0}^{x_i-v}(-1)^{k}\begin{pmatrix}
+	  	l \\ k
+	  	\end{pmatrix}f(x_i-k) 
+	  	\end{gather}
+	  	$x_i(i=0,1,...,7)$是不同的偏微分方向，此处取以$x$轴正向为起始方向，顺时针旋转一周均匀分部的8个方向。为方便计算，此处$x_i-v$取$3$。分别在$8$个方向采用分数阶微分近似掩膜，从而提高图像质量。
+	  
+	  	
+	  	\subsubsection{滤波}
 	    \subsubsection{二值化处理}	  	
 	    \paragraph{场方向估计}
 	    一般指纹图像都有较为清晰的场方向，对于图像上的每一个像素$P(x,y)$，为了确定其在该像素处脊线的方向，以该像素为中心的$9\times9$像素矩阵$u_{P(x,y)}$内，分别计算$8$个
@@ -190,32 +217,7 @@
 			\begin{gather*}
 			d(p_i,p_j)=\left | x_i-x_j \right |+\left | y_i-y_j \right | ,
 			\end{gather*}
-		\subsubsection{自适应分数阶微分强化算法}
-	利用Grunward-Letnikov微分算子，构造自适应函数，并将其应用于指纹像素掩膜；采集梯度信息和计算信息熵，从而确定微分阶数。本方法非线性加强了像素信息中的高频成分，也保留了一定的低频和直流成分，有效提高图像质量，减少掩膜耗时。
-		
-		对$\alpha \in\mathbb{R}$，定义Grunward-Letnikov分数阶微分算子
-		\begin{align}
-		 \displaystyle(_{\alpha}^{G}\textrm{D}_{t}^{\alpha}f)(t)&=\lim_{h\rightarrow 0}\frac{(\Delta _{h}^{\alpha }f)(x)}{h^{\alpha }}\\
-		 &= \displaystyle\lim_{h\rightarrow 0}\frac{1}{h^{\alpha }}\sum_{k=0}^{m}(-1)^{k}\begin{pmatrix}
-		\alpha \\ k
-		\end{pmatrix}f(t-kh)
-		\end{align}
-		其中，$\displaystyle(\Delta _{h}^{\alpha }f)(x)$是Grunward-Letnikov分数阶差分，$h$是微分步长，$\alpha$和$t$分别是微分的上限和下限，持续周期$t\in [\alpha,t]$。$m=\begin{bmatrix}\displaystyle\frac{t-\alpha}{h}\end{bmatrix}$是$\displaystyle\frac{t-\alpha}{h}$取整数，
-		$\displaystyle\begin{pmatrix}
-		\alpha \\ k
-		\end{pmatrix}=\frac{\alpha !}{k!(\alpha -k)!}$。
-		
-		对指纹信号$f(x,y)$分别对$x$和$y$进行分数阶偏微分，取最小步长$h=1$。可分别得到$f(x,y)$在$x_i$方向上的分数阶偏微分近似表达：
-		\begin{gather}
-		\displaystyle\frac{\partial^v f(x,y)}{\partial x_{i}^{v}}\doteq\displaystyle\sum_{k=0}^{x_i-v}(-1)^{k}\begin{pmatrix}
-		l \\ k
-		\end{pmatrix}f(x_i-k) 
-		\end{gather}
-		其中，$x_i(i=0,1,...,6)$是不同的偏微分方向，此处取以$x$轴正向为起始方向，顺时针旋转一周均匀分部的8个方向。为方便计算，此处$x_i-v$取$3$。分别在$8$个方向采用分数阶微分近似掩膜，从而提高图像质量。
-		
-		为了确定自适应分数阶微分阶数$v$，需要确定每个像素的梯度和信息熵，
-		
-		\subsubsection{滤波}
+	
 		
 		
 		\subsection{模型的求解}
