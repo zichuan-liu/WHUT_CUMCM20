@@ -1206,12 +1206,20 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 26.
 
+<<<<<<< HEAD
 (e:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
+=======
+(d:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
+>>>>>>> cy
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ]
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 46--46
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+>>>>>>> cy
 
  []
 
@@ -1272,6 +1280,7 @@ File: figures/AFIS.png Graphic file (type bmp)
 
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/bx/n' undefined
+<<<<<<< HEAD
 (Font)              using `TU/SimSun(1)/m/n' instead on input line 67.
 
 [1]
@@ -1282,6 +1291,14 @@ Overfull \hbox (22.64351pt too wide) in paragraph at lines 90--117
 File: figures/chou4.png Graphic file (type bmp)
 <figures/chou4.png>
 [2]
+=======
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 70.
+
+[1]
+File: figures/chou4.png Graphic file (type bmp)
+<figures/chou4.png>
+ [2]
+>>>>>>> cy
 Overfull \hbox (9.30891pt too wide) in paragraph at lines 141--142
 \OML/cmm/m/it/12.05 threshold[]$\TU/SimSun(1)/m/n/12.05 ，|  当 图 片 $\OML/cmm/m/i
 t/12.05 P[]$ \TU/SimSun(1)/m/n/12.05 最 上 方 的 某 一 行 和 最 下 方 的 某 一 行 的 非 空 白 像 素 
@@ -1331,14 +1348,43 @@ File: figures/pool.png Graphic file (type bmp)
  [9]
 File: figures/model.png Graphic file (type bmp)
 <figures/model.png>
+<<<<<<< HEAD
  [10]
 File: figures/loss.png Graphic file (type bmp)
 <figures/loss.png>
  [11]
+=======
+ [10] [11]
+File: figures/loss.png Graphic file (type bmp)
+<figures/loss.png>
+>>>>>>> cy
 File: figures/zhiwen.png Graphic file (type bmp)
 <figures/zhiwen.png>
 File: figures/zhiwen2.png Graphic file (type bmp)
 <figures/zhiwen2.png>
+<<<<<<< HEAD
+=======
+ [12] [13]
+Overfull \hbox (4.23758pt too wide) in paragraph at lines 442--444
+\TU/SimSun(1)/m/n/12.05 其 中 $\OML/cmm/m/it/12.05 ![]$\TU/SimSun(1)/m/n/12.05 ，|
+ $\OML/cmm/m/it/12.05 ![]$\TU/SimSun(1)/m/n/12.05 ，| $\OML/cmm/m/it/12.05 ![]$ 
+\TU/SimSun(1)/m/n/12.05 分 别 谷 本 系 数，|  皮 尔 逊 相 关 系 数 和 马 哈 拉 诺 比 斯 距 离 对 应 权 重 
+$\OT1/cmr/m/n/12.05 (\OML/cmm/m/it/12.05 ![]; ![]; ![] >
+ []
+
+File: figures/whut.jpg Graphic file (type bmp)
+<figures/whut.jpg>
+[14]
+File: figures/tree.png Graphic file (type bmp)
+<figures/tree.png>
+ [15]
+Overfull \hbox (34.91815pt too wide) in paragraph at lines 481--483
+[]\TU/SimSun(1)/m/n/12.05 由 图 [][]\TU/TimesNewRoman(0)/m/n/12.05 11[][] \TU/Sim
+Sun(1)/m/n/12.05 可 知，|  当 $\OML/cmm/m/it/12.05 k \OT1/cmr/m/n/12.05 = 2$ \TU/Si
+mSun(1)/m/n/12.05 时，|  指 纹 样 本 被 分 为 $[]$ 与 $[]$
+ []
+
+>>>>>>> cy
 File: figures/guo/f1.png Graphic file (type bmp)
 <figures/guo/f1.png>
 File: figures/guo/f2.png Graphic file (type bmp)
@@ -1347,7 +1393,10 @@ File: figures/guo/f3.png Graphic file (type bmp)
 <figures/guo/f3.png>
 File: figures/guo/f4.png Graphic file (type bmp)
 <figures/guo/f4.png>
+<<<<<<< HEAD
  [12]
+=======
+>>>>>>> cy
 File: figures/guo/f5.png Graphic file (type bmp)
 <figures/guo/f5.png>
 File: figures/guo/f6.png Graphic file (type bmp)
@@ -1356,6 +1405,7 @@ File: figures/guo/f7.png Graphic file (type bmp)
 <figures/guo/f7.png>
 File: figures/guo/f8.png Graphic file (type bmp)
 <figures/guo/f8.png>
+<<<<<<< HEAD
  [13]
 Overfull \hbox (4.23758pt too wide) in paragraph at lines 461--463
 \TU/SimSun(1)/m/n/12.05 其 中 $\OML/cmm/m/it/12.05 ![]$\TU/SimSun(1)/m/n/12.05 ，|
@@ -1390,11 +1440,19 @@ mSun(1)/m/n/12.05 时，|  指 纹 样 本 被 分 为 $[]$ 与 $[]$
 
 [17] [18]
 Underfull \hbox (badness 10000) in paragraph at lines 556--557
+=======
+[16] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 534--535
+>>>>>>> cy
 []\TU/TimesNewRoman(0)/m/n/12.05 Guo X, Liu X, Zhu E, et al. Deep clustering wi
 th convolutional autoen-
  []
 
+<<<<<<< HEAD
 [19] [20] (e:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+=======
+[18] [19] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+>>>>>>> cy
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
 
@@ -1420,8 +1478,13 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
+<<<<<<< HEAD
  [21]
 Overfull \hbox (56.86859pt too wide) in paragraph at lines 649--650
+=======
+ [20]
+Overfull \hbox (56.86859pt too wide) in paragraph at lines 624--625
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1429,7 +1492,11 @@ Overfull \hbox (56.86859pt too wide) in paragraph at lines 649--650
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (54.38431pt too wide) in paragraph at lines 652--653
+=======
+Overfull \hbox (54.38431pt too wide) in paragraph at lines 627--628
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1437,20 +1504,33 @@ Overfull \hbox (54.38431pt too wide) in paragraph at lines 652--653
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (5.47635pt too wide) in paragraph at lines 653--654
+=======
+Overfull \hbox (5.47635pt too wide) in paragraph at lines 628--629
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][]  
  []
 
+<<<<<<< HEAD
 [22]
 Overfull \hbox (78.649pt too wide) in paragraph at lines 685--686
+=======
+[21]
+Overfull \hbox (78.649pt too wide) in paragraph at lines 660--661
+>>>>>>> cy
 [][][][][][][][][][]  
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (13.38087pt too wide) in paragraph at lines 686--687
+=======
+Overfull \hbox (13.38087pt too wide) in paragraph at lines 661--662
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1458,7 +1538,11 @@ Overfull \hbox (13.38087pt too wide) in paragraph at lines 686--687
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (163.11507pt too wide) in paragraph at lines 687--688
+=======
+Overfull \hbox (163.11507pt too wide) in paragraph at lines 662--663
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1466,8 +1550,13 @@ Overfull \hbox (163.11507pt too wide) in paragraph at lines 687--688
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
+<<<<<<< HEAD
 [23] [24]
 Overfull \hbox (139.8532pt too wide) in paragraph at lines 763--764
+=======
+[22] [23]
+Overfull \hbox (139.8532pt too wide) in paragraph at lines 738--739
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1476,7 +1565,11 @@ Overfull \hbox (139.8532pt too wide) in paragraph at lines 763--764
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (77.52039pt too wide) in paragraph at lines 765--766
+=======
+Overfull \hbox (77.52039pt too wide) in paragraph at lines 740--741
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1485,15 +1578,24 @@ Overfull \hbox (77.52039pt too wide) in paragraph at lines 765--766
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (42.74052pt too wide) in paragraph at lines 796--797
+=======
+Overfull \hbox (42.74052pt too wide) in paragraph at lines 771--772
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
+<<<<<<< HEAD
 [25]
 Overfull \hbox (180.73085pt too wide) in paragraph at lines 817--818
+=======
+[24]
+Overfull \hbox (180.73085pt too wide) in paragraph at lines 792--793
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1502,7 +1604,11 @@ Overfull \hbox (180.73085pt too wide) in paragraph at lines 817--818
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (99.42722pt too wide) in paragraph at lines 818--819
+=======
+Overfull \hbox (99.42722pt too wide) in paragraph at lines 793--794
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1511,19 +1617,31 @@ Overfull \hbox (99.42722pt too wide) in paragraph at lines 818--819
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (2.76608pt too wide) in paragraph at lines 824--825
+=======
+Overfull \hbox (2.76608pt too wide) in paragraph at lines 799--800
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][]  
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (45.45053pt too wide) in paragraph at lines 825--826
+=======
+Overfull \hbox (45.45053pt too wide) in paragraph at lines 800--801
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][]  
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (103.71825pt too wide) in paragraph at lines 830--831
+=======
+Overfull \hbox (103.71825pt too wide) in paragraph at lines 805--806
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1531,26 +1649,43 @@ Overfull \hbox (103.71825pt too wide) in paragraph at lines 830--831
 [][][][][][][][][][][][][][][][][]  
  []
 
+<<<<<<< HEAD
 [26] [27]
 Overfull \hbox (27.50856pt too wide) in paragraph at lines 911--912
+=======
+[25] [26]
+Overfull \hbox (27.50856pt too wide) in paragraph at lines 886--887
+>>>>>>> cy
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
+<<<<<<< HEAD
 [28] (e:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 ) [29]
 (./code/tuxiang.py [30] [31]
+=======
+[27] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/02/27 1.8b listings language file
+) [28]
+(./code/tuxiang.py [29] [30]
+>>>>>>> cy
 Overfull \hbox (66.68669pt too wide) in paragraph at lines 75--76
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+<<<<<<< HEAD
 [32]
+=======
+[31]
+>>>>>>> cy
 Overfull \hbox (112.4912pt too wide) in paragraph at lines 126--127
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+<<<<<<< HEAD
 [33]) (./code/julei.py [34] [35] [36] [37] [38])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 995.
  [39]
@@ -1560,10 +1695,22 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 995.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 995.
 Package rerunfilecheck Info: File `demo.out' has not changed.
 (rerunfilecheck)             Checksum: 04BA4C2F1B0908E7DFC30C2E6217FCAA.
+=======
+[32])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 964.
+ [33]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 964.
+ (./demo.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 964.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 964.
+Package rerunfilecheck Info: File `demo.out' has not changed.
+(rerunfilecheck)             Checksum: 365C057EAE85FDC6D0E58A5EE3131932.
+>>>>>>> cy
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+<<<<<<< HEAD
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 995.
  )
 (\end occurred when \iftrue on line 26 was incomplete) 
@@ -1572,8 +1719,22 @@ Here is how much of TeX's memory you used:
  600043 string characters out of 6136751
  901851 words of memory out of 5000000
  34472 multiletter control sequences out of 15000+600000
+=======
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 964.
+ )
+(\end occurred when \iftrue on line 26 was incomplete) 
+Here is how much of TeX's memory you used:
+ 30814 strings out of 492922
+ 599926 string characters out of 6136751
+ 901918 words of memory out of 5000000
+ 34391 multiletter control sequences out of 15000+600000
+>>>>>>> cy
  544860 words of font info for 144 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,21n,81p,721b,2347s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+<<<<<<< HEAD
 Output written on demo.pdf (43 pages).
+=======
+Output written on demo.pdf (37 pages).
+>>>>>>> cy
