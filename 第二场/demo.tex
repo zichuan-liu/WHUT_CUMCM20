@@ -34,7 +34,7 @@
 		针对在小样本条件下难以有效提取指纹特征的问题，设计了一种\textbf{卷积自编码网络}的个体细微特征提取算法。首先将预处理后的图像信号用\textbf{卷积核}转化到高维特征空间，然后利用大量无标签的指纹高维样本训练卷积\textbf{自编码器}网络。在此基础上，通过损失函数\textbf{KL散度}对原始图像和解码后图像\textbf{无监督学习}，编码出最佳线性空间特征。经训练提取的指纹特征损失率仅占\textbf{0.04\%}，具有精校的还原程度。
 		
 		
-		针对问题二，建立基于质量守恒定律的泵-管-嘴系统动态稳压模型，将燃油进入和喷出的过程动态化处理。考虑柱塞和针阀升程的动态变动，建立喷油嘴流量方程和质量守恒方程。为提高角速度求解精度，以凸轮转动角度为固定步长，转动时间变动步长，采用试探法粗略搜索与二分法精细搜索的方法求解，求得凸轮最优转动角速度\textbf{0.0283rad/ms（转速270.382转/分钟）}，并得到该角速度下高压油管的密度、压力周期性变化图。对求解结果进行误差分析与灵敏度分析，考察柱塞腔残余容积变动对高压油管压力稳态的影响。
+		针对问题二，
 		
 		针对问题三，建立中心聚类模型，以问题二中的量化相似度作为代价函数，并使用$k-medoids$算法选取聚类中心点完成样本分类；对于附件中的$16$个指纹样本，基于问题二设计的加权相似度模型可计算出每两个指纹样本间的相似度。选取$k$个样本点作为聚类中心，以样本点到聚类中心的平均值作为代价函数。遍历所有聚类中心组合，可得出被分为$k$组的样本聚类结果。当$k=2$时，分组情况为？？？？；当$k=3$时，分组情况为？？？？；当$k=4$时，分组情乱为？？？？。
 		
@@ -80,22 +80,15 @@
 			\textbf{应用：} 你能否对附件中的16个指纹进行对比和归类？请给出你对比及分类的依据和结果。
 
 	\section{模型假设}
-<<<<<<< HEAD
-		\begin{itemize}                                             
-		\item [(1)]
-		\item [(2)]
-=======
 		\begin{itemize}    
 	\item [(1)] 假设附件中所有指纹图像都为清晰完整的图像，不存在由于图像压缩产生的信息损失。
 \item [(2)] 假设附件中的指纹图像特征都具有代表性，具有正常人指纹拥有的所有特征。
->>>>>>> origin/lzc
-		\item [(3)] 
-		\item [(4)] 
 		\end{itemize}
 
 	\section{符号说明}
 		\begin{table}[H]
 		\centering
+		        	\setstretch{.8}  %设置表的行间距
 		\setlength{\tabcolsep}{12mm}
 		\begin{tabular}{cc}
 			\toprule[1.5pt]
@@ -290,7 +283,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 		那么，从 Input Image 到 Output Image 的变化如下图所示：
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.5\textwidth]{figures/cnn.jpg}
+			\includegraphics[width=.35\textwidth]{figures/cnn.jpg}
 			\caption{卷积核函数示意图}
 		\end{figure}
 		可以看出，其实二维卷积一样也是加权叠加/积分。需要注意的是，其中 Convolution Kernel 进行了水平和竖直方向的翻转。
@@ -298,7 +291,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			\paragraph{Pooling} 对于灰度图像的采样而言，Pooling 对于输入的 Feature Map，选择某种方式对其进行压缩。如下图，表示的就是对$2\times 2$邻域内的值，选择最大值输出到下一层，这叫做 Max-Pooling。
 				\begin{figure}[H]
 			\centering
-			\includegraphics[width=.5\textwidth]{figures/pool.png}
+			\includegraphics[width=.45\textwidth]{figures/pool.png}
 			\caption{池化层Max-Pooling示意图}
 		\end{figure}
 	
@@ -392,7 +385,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
         通过上述参数设置，计算16张指纹图片KL散度的最小值，并保存其编码程序。其迭代过程中 损失函数如下图所示：
         	\begin{figure}[H]
         	\centering
-        	\includegraphics[width=.6\textwidth]{figures/loss.png}
+        	\includegraphics[width=.7\textwidth]{figures/loss.png}
         	\caption{CAE迭代过程中损失函数函数}\label{loss}
         \end{figure}
     可以看出，本文的模型在解码还原过程中，更逼近于真实的指纹图片，信息损失仅占0.04\%，相较于传统的编码方法有更强信息贮存能力。
@@ -411,14 +404,9 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 	\section{问题二模型的建立与求解}
 		\subsection{问题分析与相似度计算}
 
-
-问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在使用卷积自动编码器将原始指纹图像转化成了特征编码后，图像的特征编码是以能反映指纹特征的行向量存储。对各行向量的每一维度进行归一化处理，分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
-
-
 问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在问题一模型中，本文使用卷积自动编码器将原始指纹图像转化成了以向量形式储存的特征编码，即分析各个指纹间相似程度可转化为量化分析编码向量间的相似程度。
 
 设计加权相似度以量化特征向量间的相似程度。首先对各行向量的每一维度进行归一化处理，之后分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数(Pearson Correlation Coefficient)和马哈拉诺比斯距离(Mahalanobis Distance)，最后构造关系函数确定行向量的相似程度。
-
 			
 			
 			\begin{itemize}
@@ -442,49 +430,33 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 				\begin{gather}
 					P(A,B)=\frac{cov(A,B)}{\sigma_A\cdot \sigma_B}
 				\end{gather}
-				其中$cov(A,B)$是行向量$A$和$B$的协方差，$\sigma_A$和$\sigma_B$分别是$A$和$B$的元素标准差。皮尔逊相关系数绝对值越大，向量间线性相关程度越高。
+				其中$cov(A,B)$是行向量$A$和$B$的协方差，$\sigma_A$和$\sigma_B$分别是$A$和$B$的元素标准差。
 				\item \textbf{马哈拉诺比斯距离（Mahalanobis Distance）}\\
-
-				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。马氏距离越小，相似度越高。
-
 				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。马氏距离越小，表示向量间相似度越高。
-
 				\begin{gather}
 				M(A,B)=\sqrt{(A-B)^T\Sigma^{-1}(A-B)}
 				\end{gather}
 			\end{itemize}
 			其中，$\Sigma$是随机变量的协方差矩阵。
 			
-
 			构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
-			\begin{gather}
-			S(A,B)=\omega_1 T(A,B)+\omega_2 |P(A,B)|+\omega_3 \displaystyle \frac{1}{M(A,B)}
-			\end{gather}
-			满足$\omega_1+\omega_2+\omega_3=1$。关系函数值越大，表明$A$和$B$的相似度越高。
-    		其思维流程图如图~\ref{lssssct}~所示：
 			\begin{gather}
 			S(A,B)=\omega_1 T(A,B)+\omega_2/ |P(A,B)|+\omega_3 M(A,B)
 			\end{gather}
 			其中$\omega_1$，$\omega_2$，$\omega_3$分别谷本系数，皮尔逊相关系数和马哈拉诺比斯距离对应权重$(\omega_1,\omega_2,\omega_3>0)$，其满足$\omega_1+\omega_2+\omega_3=1$。$S(A,B)$值越大即表示样本编码$A$与$B$的相似程度越高。
 
 
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题二思维流程图}\label{lssssct}
-			\end{figure}
-
-				谷本系数越大，向量间相似度越高。皮尔逊相关系数绝对值越大，向量间线性相关程度越高。马氏距离越小，向量间相似度越高。构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
-	\begin{gather}
-	S(A,B)=\omega_1 T(A,B)+\omega_2 |P(A,B)|+\omega_3 \displaystyle \frac{1}{M(A,B)}
-	\end{gather}
-	满足$\omega_1+\omega_2+\omega_3=1$。关系函数值越大，表明$A$和$B$的相似度越高。
-	
-
-
 
         \subsection{实验结果及分析}
         
+        本文将$\omega_1$，$\omega_2$，$\omega_3$ 分别取 0.2、0.3和 0.5，求得距离矩阵如图\ref{lsst}所示，其中颜色越浅表示两张指纹距离越近，即相似度越高。   
+       	\begin{figure}[H]
+        	\centering
+        	\includegraphics[width=\textwidth]{figures/retu.png}
+        	\caption{距离矩阵相似度热图}\label{lsst}
+        \end{figure}
+        
+        根据上图可得，指纹对{4，7}、{1，11}、{6，13}等颜色明显较浅，其匹配的相似度较高，而如{4，13}、{4，2}等颜色较深，属于不同类型的指纹图案。
 
 
     \section{问题三模型的建立与求解}
@@ -497,7 +469,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	\begin{figure}[H]
   		\centering
   		\includegraphics[width=\textwidth]{figures/whut.jpg}
-  		\caption{问题二思维流程图}\label{lsssscst}
+  		\caption{问题三思维流程图}\label{lsssscst}
   	\end{figure}
   	\subsection{k-medoids模型的建立与求解}
   	本文采用$k-medoids$模式选取聚类中心点\upcite{14,15}，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
@@ -514,11 +486,18 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	通过$k-medoids$可得聚类结果树状图如图~\ref{bgbgbg}~所示
   	\begin{figure}[H]
   		\centering
-  		\includegraphics[width=\textwidth]{figures/tree.png}
+  		\includegraphics[width=.9\textwidth]{figures/tree.png}
   		\caption{脊线估计方向}\label{bgbgbg}
   	\end{figure}
   	由图~\ref{bgbgbg}~可知，当$k=2$时，指纹样本被分为$\left \{ 1,4,7,10,11,16 \right \}$与$\left \{ 2,3,5,6,8,9,\\
-  	12,13,14,15 \right \}$两组；当$k=4$时，样本$10$独立为一组，其余三组是$\left \{ 1,4,7,11,16 \right \}$，$\left \{ 2,3,5   \right \}$与 $\left \{ 6,8,9,12,13,14,15 \right \}$。鉴于$k=4$时代价函数值最优，本文倾向于将样本分为四类。（附图？？？）
+  	12,13,14,15 \right \}$两组；当$k=4$时，样本$10$独立为一组，其余三组是$\left \{ 2,3,5   \right \}$，$\left \{ 1,4,7,11,16 \right \}$与 $\left \{ 6,8,9,12,13,14,15 \right \}$。鉴于$k=4$时代价函数值最优，本文倾向于将样本分为四类如下图所示，并分别命名为：螺形纹
+  	、环形纹、弓形纹、箕形纹。
+  	  	\begin{figure}[H]
+  		\centering
+  		\includegraphics[width=.8\textwidth]{figures/gg.png}
+  		\caption{指纹图像的识别与分类}\label{bgssssbgbg}
+  	\end{figure}
+  	
   	
   	\section{灵敏度分析}
   本文对卷积自编码器中编码层输入的$\gamma$大小$b$做调整，得到
@@ -543,10 +522,11 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	\section{模型的评价}
 		\subsection{模型的优点}
 			\begin{itemize}                                             
-			\item [(1)] 与传统编码而言，卷积自编码器通过无监督学习来提取指纹细节依赖充分压缩指纹图像，对于指纹图片来说是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的，并且在编码后能通过解码器还原出原始图像数据。
-			\item [(2)] 	
+			\item [(1)] 卷积核函数通过无监督学习来提取指纹细节依赖充分压缩指纹图像，对于指纹图片来说是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的。
+			\item [(2)] 与传统编码而言，CAE模型用于提取“小样本”条件下相同类型、相同纹理的指纹特征，获得在“小样本”条件下超越传统方法的编码个体表征能力，并且在编码后能通过解码器还原出原始图像数据。
 			\end{itemize}
 		\subsection{模型的缺点}
+		
 
   		\subsection{模型改进}
 
@@ -1001,7 +981,8 @@ end
 			basicstyle=\ttfamily] {./code/tuxiang.py}
 	\section{第二、三问代码实现及可视化}
 \subsection*{k-medoids模型--python源代码}
-\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,rulesepcolor=\color{red!20!green!20!blue!20},  
+\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
+rulesepcolor=\color{red!20!green!20!blue!20},  
 keywordstyle=\color{blue!70!black},  
 commentstyle=\color{blue!90!},  
 basicstyle=\ttfamily] {./code/julei.py}
