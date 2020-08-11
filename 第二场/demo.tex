@@ -115,7 +115,7 @@
 \end{gather*}
 其中$n$和$m$分别表示图片的行数和列数。即	$P_{i,max}$与$P_{i,min}$分别表示图片中像素的最大灰度值和最小灰度值。对图片执行线性归一化操作如下
 \begin{gather*}
-	P_i(x,y)'=\frac{255}{P_{i,max}-P_{i,min}}(P_i(x,y)-P_{i,min})
+	P_i(x,y)'=\frac{255}{P_{i,max}-P_{i,min}}(P_i(x,y)-P_{i,min}),
 \end{gather*}
 即将图片$P_i$像素点灰度值线性放缩于$[0,255]$间，得到灰度值归一化图片$P_i'$。
 
@@ -123,17 +123,17 @@
 对于图片$P_{i}$，我们将去除其空白外框以方便后续学习策略运算。设定边界阈值为$threshold_N$，当图片$P_{i}$最上方的某一行和最下方的某一行的非空白像素数大于$threshold_N$时，将其定义为新的上边界或下边界，及可得到行边界位置如下
 \begin{gather*}
 	fringe_{x1}=\underset{ (\sum_{i=1}^{m} (P'(x,i)<255))>threshold_N}{max(x)},\\
-	fringe_{x2}=\underset{(\sum_{i=1}^{m} (P'(x,i)<255))>threshold_N}{min(x)}
+	fringe_{x2}=\underset{(\sum_{i=1}^{m} (P'(x,i)<255))>threshold_N}{min(x)},
 \end{gather*}
-其中$fringe_{x1}$与$fringe_{x2}$ 分别为新定义上边界与下边界，同理有列边界位置如下
+其中$fringe_{x1}$与$fringe_{x2}$ 分别为新定义上边界与下边界，同理有列边界位置如下：
 \begin{gather*}
 	fringe_{y1}=\underset{(\sum_{i=1}^{n} (P'(i,y)<255))>threshold_N}{min(y)},\\
-	fringe_{y2}=\underset{(\sum_{i=1}^{n} (P'(i,y)<255))>threshold_N}{max(y)}
+	fringe_{y2}=\underset{(\sum_{i=1}^{n} (P'(i,y)<255))>threshold_N}{max(y)},
 \end{gather*}
-其中$fringe_{y1}$与$fringe_{y2}$分别为新定义左边界与右边界。即去除外框后的图片可表示为	$P''=P'(	fringe_{x1}:	fringe_{x2},	fringe_{y1}:	fringe_{y2})$。即只保留新定义边界内的像素点并删除剩余像素点即可得到去除外框后的图片$P''_{i}$。定义标准行数为$N$,标准列数为$M$，将去除外框后的图片$P''_{i}$进行放缩处理可得归一化图片$P_{i}^s$如下
+其中$fringe_{y1}$与$fringe_{y2}$分别为新定义左边界与右边界。即去除外框后的图片可表示为	$P''=P'(	fringe_{x1}:	fringe_{x2},	fringe_{y1}:	fringe_{y2})$。即只保留新定义边界内的像素点并删除剩余像素点即可得到去除外框后的图片$P''_{i}$。定义标准行数为$N$,标准列数为$M$，将去除外框后的图片$P''_{i}$进行放缩处理可得归一化图片$P_{i}^s$如下：
 \begin{gather*}
-	P_{i}^s(x,y)=P''_{i}(floor(\frac{fringe_{x1}-fringe_{x2}}{N}x),floor(\frac{fringe_{y2}-fringe_{y1}}{M}y))\\
-	x\in[1,N],	y\in[1,M]
+	P_{i}^s(x,y)=P''_{i}(floor(\frac{fringe_{x1}-fringe_{x2}}{N}x),floor(\frac{fringe_{y2}-fringe_{y1}}{M}y)),\\
+	x\in[1,N],	y\in[1,M],
 \end{gather*}
 其中$floor$表示向下取整，即通过灰度值处理、外框去除与尺度统一后即可将原始指纹图片数据$P_{i}$转换为灰度值范围与图片尺度统一的归一化图片数据$P_{i}^s(x,y)$。
 \subsection{图像强化处理}
@@ -143,29 +143,31 @@
 \begin{gather}
 	\displaystyle G[f(x,y)]=\max\begin{Bmatrix}
 		|\frac{\partial f }{\partial x}|,|\frac{\partial f}{\partial y}|
-	\end{Bmatrix}
+	\end{Bmatrix}.
 \end{gather}
+
 另一个描述图像边缘纹理变化的指标是信息熵$E$，即所有可能发生事件的信息量期望之和，其数学描述为
 \begin{gather}
-	E=-\sum_{i=1}^{n}p(x_i)\cdot log_2(p(x_i))	
+	E=-\sum_{i=1}^{n}p(x_i)\cdot log_2(p(x_i)),	
 \end{gather}
 其中，$p(x_i)$是事件$x_i$发生的概率，$n$是可能发生事件的个数。对信息熵进行归一化处理，可以获得取值范围为$[0,1]$的信息熵
 \begin{gather}
-	\displaystyle E'=\frac{E-E_{min}}{E_{max}-E_{min}}
+	\displaystyle E'=\frac{E-E_{min}}{E_{max}-E_{min}}.
 \end{gather}
+
 综合梯度模值和信息熵，构造关系函数$v=w_1\cdot G+w_2\cdot E'+w_3$，即微分阶数$v$由梯度和信息熵共同决定，梯度模值和信息熵越大，反映该指纹像素需要增强的程度越大，更可能为纹理区域或边缘，分数阶微分阶数取值也越大。此问题中，可算得$v=3$。将阶数代入利用Grunward-Letnikov分数阶微分近似表达式，即
 
 \begin{gather}
 	\displaystyle\frac{\partial^v f(x,y)}{\partial x_{i}^{v}}\doteq\displaystyle\sum_{k=0}^{t-\alpha}(-1)^{k}\begin{pmatrix}
 		v \\ k
-	\end{pmatrix}f(x_i-k) 
+	\end{pmatrix}f(x_i-k), 
 \end{gather}
 其中$f(x,y)$是图像坐标为$(x,y)$的像素灰度值，$t$和$\alpha$分别是微分上限和下限，$x_i(i=0,1,...,7)$是不同的偏微分方向，此处取以$x$轴正向为起始方向，顺时针旋转一周均匀分部的$8$个方向。为方便计算，对$8$个方向的分数阶偏微分近似分别保留前三项进行三层$5 \times 5$掩膜构造，并进行归一化赋权。
 
 对每个方向$x_i$，以掩膜中心点为作用点，$5\times 5$掩膜$w(x,y)$中三层权重分别为分数阶微分近似的前三项系数，则掩膜中总权重为分数阶微分近似的前三项系数与每层掩膜元素个数的乘积之和，即$4v_2-12v+8$。对权重归一化，可得中心点、第一层、第二层掩膜元素权重分别为$\displaystyle w_0=\frac{8}{4v_2-12v+8}, w_1=\frac{-v}{4v_2-12v+8}, w_2=\frac{v}{16(v-2)}$。
 在规模为$M\times N$的图像上，对距离中心点小于$\displaystyle M-\frac{n-1}{2}$和$\displaystyle N-\frac{n-1}{2}$的像素进行$n\times n$掩膜操作，其他像素进行灰度保留。输出图像可以表示为：
 \begin{gather}
-	\displaystyle g(x,y)=\sum_{s=-a}^{a}\sum_{t=-b}^{b}f(x+s,y+t)\cdot \boldmath{w}(x,y)
+	\displaystyle g(x,y)=\sum_{s=-a}^{a}\sum_{t=-b}^{b}f(x+s,y+t)\cdot \boldmath{w}(x,y),
 \end{gather}
 其中，$w(x,y)$是构造的$5\times 5$掩膜，$a=b=\displaystyle \frac{n-1}{2}$。
 \subsubsection{滤波}
@@ -181,8 +183,9 @@
 		P(x-4,y) & \cdots & P(x,y) &\cdots& P(x+4,y)  \\ 
 		\vdots & \ddots  & \vdots  &  \udots & \vdots\\ 
 		P(x+4,y+4) & \cdots & P(x,y+4) &\cdots& P(x+4,y+4)  
-	\end{bmatrix}
+	\end{bmatrix}.
 \end{gather*}
+
 若$u_{P(x,y)}$中存在若干像素点超出原图像边界时，记超出边界的像素点为$P_o$并使得$\left \{ P_o \right \}=255$。并依照图？？？中的方向，分别计算$8$个方向上的灰度平均值得到$Gmean[i]$，然后将这 $8$ 个平均值按两两垂直的方向分成 $4$ 组,$0 $和 $4$ 一组、$1$ 和 $5$ 一组、$2$ 和 $6$ 一组、$3$ 和 $7$ 一组，计算
 每组中两个平均值的差值。
 \begin{gather*}
@@ -204,72 +207,178 @@
 \begin{gather*}
 	P(x,y)=\left\{\begin{matrix}255, Gmean[iDir]\geqslant Gmean[iVar]
 		\\ 0,otherwise
-	\end{matrix}\right.
+	\end{matrix}\right. ,
 \end{gather*}
 其中255为二值图像中图像背景和谷线的灰度值，0 为二值图像中图像脊线的灰度值。
 	\section{问题一模型的建立与求解}
 	
 		\subsection{问题描述与分析}
-			问题一要求
-		
-			其思维流程图如图~\ref{lct}~所示：
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题一思维流程图}\label{lct}
-			\end{figure}
+			问题一要求给出一种用不超过200字节来刻画描述指纹基本特征的表示方法。传统的图像压缩方法有霍夫曼压缩、Golomb编码、LZW编码、小波编码等，这些都能对指纹进行刻画。但是相对于200字节的限制而言，他们在压缩编码方向显得不尽人意。
 			
-		\subsection{模型的建立}
-			\begin{gather*}
-			d(p_i,p_j)=\left | x_i-x_j \right |+\left | y_i-y_j \right | ,
-			\end{gather*}
+			相较于传统的图片编码而言，通过网络编码能更有效的提高图像在细节上的依赖。在网络训练的过程中，网络只用到该向量之中少量元素，其中的大部分元素对于网络来说是没有用的。自编码器通过无监督学习来提取有用的信息，对于指纹图片来说是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的，从而实现小样本编码。
+		
+%			其思维流程图如图~\ref{lct}~所示：
+%			\begin{figure}[H]
+%				\centering
+%				\includegraphics[width=\textwidth]{figures/whut.jpg}
+%				\caption{问题一思维流程图}\label{lct}
+%			\end{figure}
+%			
+		\subsection{搭建卷积自编码器模型}
+		   自编码器（AutoEncoder）是一种能够通过无监督学习，学到输入数据高效表示的人工神经网络。输入数据的这一高效表示称为编码（codings），其维度一般远小于输入数据，使得自编码器可用于降维。更重要的是，自编码器可作为强大的特征检测器（feature detectors），应用于深度神经网络的预训练。我们以VGG模型\upcite{4}结构为基础，构造一个 新的卷积神经网络模型，并通过交叉验证的思想训练小样本数据，调整
+		   模型参数，得到小样本条件下最优的卷积神经网络模型。
+		
+			\subsubsection{卷积神经网络}
+			
+			\paragraph{Convolution Kernel} 在图像处理的过程中，我们经常会用到矩阵卷积来计算图像(image)的特征(feature)，矩阵卷积有两种：全卷积(full convolution)和有效值卷积(valid convolution)，其全卷积核函数的定义式为：
+			     \begin{gather}
+z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i, j} \cdot k_{u-i, v-j},
+			     \end{gather}
+			有效值卷积的定义式为：
+			\begin{gather}
+\begin{array}{c}
+z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k_{r o t i, j} \cdot \chi(i, j) \\
+\chi(i, j)=\left\{  
+\begin{array}{c}
+1,0 \leqslant i, j \leqslant n \\
+0, \text {others}
+\end{array}
+\right.  
+\end{array},
+			\end{gather}
+			其中$X$是灰度图像转换为$m\times m$阶矩阵，$K$是$n\times n$阶卷积核，一般取$3\times 3$，$K_{rot}$是由$K$转置得到。
+			
+		那么，从 Input Image 到 Output Image 的变化如下图所示：
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.5\textwidth]{figures/cnn.jpg}
+			\caption{卷积核函数示意图}
+		\end{figure}
+		可以看出，其实二维卷积一样也是加权叠加/积分。需要注意的是，其中 Convolution Kernel 进行了水平和竖直方向的翻转。
+		
+			\paragraph{Pooling} 对于灰度图像的采样而言，Pooling 对于输入的 Feature Map，选择某种方式对其进行压缩。如下图，表示的就是对$2\times 2$邻域内的值，选择最大值输出到下一层，这叫做 Max-Pooling。
+				\begin{figure}[H]
+			\centering
+			\includegraphics[width=.5\textwidth]{figures/pool.png}
+			\caption{池化层Max-Pooling示意图}
+		\end{figure}
 	
+	对卷积层进行池化从而通过对 Feature Map 降维，有效减少后续层需要的参数，当其中像素在邻域发生微小位移时，Pooling Layer 的输出是不变的。这就增强了网络的鲁棒性，有一定抗扰动的作用。
+	
+	\paragraph{Activation} 激活层的正向传播主要依靠众多神经元的计算来完成的，工作过程中可以用下式来表示：
+	\begin{gather*}
+	{u_{k}=\sum_{i=1} w_{k i} x_{i}}, \\ {y_{k}=f\left(u_{k}-b_{k}\right)},
+	\end{gather*}
+	其中：$x_{i}$表示第 i 个输入； $w_{ki}$表示与第 i 输入量相连的权值；$u_{k}$表示所有输入的加权和；$b_{k}$为神经 元阈值；$ f$ 为激活函数；$y_{k}$ 为神经网络的输出。
+	
+	激活函数的种类有很多，如 $sigmoid$， $tanh$ 及$ Relu$，本文应用的是 $Relu$作为激活函数搭建两层隐含层，如式~\ref{shiw}~所示：
+	\begin{gather}\label{shiw}
+	\begin{array}{c}{f_{\text {Relu}}=\max (0, z)}\\
+	\displaystyle \frac{d}{d z} f_{R e L U}=\left\{\begin{array}{ll}{1,} & {z>0} \\ {0,} & {z \leqslant 0}\end{array}\right.
+	\end{array}.
+	\end{gather}
+	
+	网络的输出层使用$ softmax $函数作分类器， 式~\ref{shiq}~为第 i 个神经的输出：
+	\begin{gather*}\label{shiq}
+	f_{\text {softmax}}=\mathrm{e}^{i} / \sum_{j} \mathrm{e}^{j}.
+	\end{gather*}
+	
+			\subsubsection{卷积自动编码器}
+			普通的自编码器中，编码器和解码器中层与层之间的连
+			接方式为全连接，该编码器具有一个输入层，n个隐藏层和一个输出层，
+			
+			给定图片样本$X=\left\{ x_1,x_2,\cdots,x_nx \right\}, X\in \mathbb{R}^{n\times c\times w \times h}$，其中c为通道数。自编码器首先将$x_i$编码成$y(x_i)$再解码成$z(y_i)$，其公式L表述如下：
+				\begin{gather}
+			\begin{array}{l}
+			y(x)=Encoder\left(W_{1} x+b\right) \\
+			z(x)=Decoder\left(W_{2} y(x)+c\right)
+			\end{array}.
+			\end{gather}
+			
+			通过最小化重建误差$L(X,Z)$，我们可以获得模型参数，这里用θ表示为：
+			\begin{gather}
+			\theta=\underset{\theta}{\arg \min } L(X, Z)=\underset{\theta}{\arg \min } \frac{1}{2} \sum_{i=1}^{N}\left\|x^{(i)}-z\left(x^{(i)}\right)\right\|^{2}.
+			\end{gather}
+
+			本文卷积自编码器(ConvAutoEncoder, CAE)中的编码器部分的网络结构与卷积神
+			经网络中卷积池化部分的结构相同。首先通过编码器部分构
+			造出对应的解码器部分，在训练结束后，保留编码器部分的结
+			构和权重，在编码器后加上与卷积神经网络结构中相同的全
+			连接层来进行图像的编码与分类识别。其卷积自编码器$L(X,Z)$的具体结构如图
+			\ref{labssel}所示：
+					\begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{figures/model.png}
+				\caption{卷积自编码器CAE模型}\label{labssel}
+			\end{figure}
+		其中，Conv表示全卷积，ConvTranspose表示有效值卷积，Activation表述rule激活层，Pooling表示池化层，对应的编码输入为$Z(X)<200byte$。
 		
-		
-		\subsection{模型的求解}
-			\begin{algorithm}[H]
-			 	\caption{Procedure of Apriori}  
-			 	\LinesNumbered  
-			 	\setstretch{0.9}   %设置表的行间距
-			 	\KwIn{item data base: $D$\newline
-			 		minimum Support threshold: $Sup_{min}$\newline
-			 		minimum Confidence threshold: $Conf_{min}$
-			 	}
-			 	\KwOut{frequent item sets $F$}  
-			 	\textbf{Initialize} \newline
-			 	iteration $t\leftarrow 1$ \newline
-			 	The candidate FIS:$C_{t}=\varnothing$ \newline
-			 	The length of FIS:$length=1$ \newline
-			 	\For{i=1 to sizeof(D)}
-			 	{$I_{i}$=D(i)\newline
-			 		n=sizeof($I_{i}$)\newline
-			 		\For{j=1 to n}{
-			 			\If{$I_{i}(j)\notin C_{t}$ }
-			 			{$C_{t}=C_{t}\cup I_{i}(j) $}
-			 		}
-			 	}
-			 	$F_{t}=\left \{ f|f\in C_{t},Sup(f)>Sup_{min}\right \}$\newline
-			 	\While{$F\neq \varnothing$}
-			 	{ t=t+1\newline 
-			 		length=length+1\newline	
-			 		$C_{t}\leftarrow $ all candidate of FIS in $F_{t-1}$\newline
-			 		$F_{t}=\left \{ f|f\in C_{t},(Sup(f)>Sup_{min})\bigcap (Comf(f)>Conf_{min}) \right\}$\newline
-			 	}	
-			 	\Return{$F_{t-1}$} 
-			\end{algorithm} 
-		
+	
+					将稀疏约束添加到目标函数后，自动编码器将成为稀疏的自动编码器，它考虑二值图像隐藏层的稀疏表示。 为了实现稀疏表示，本文将使用稀疏约束将重构误差最小化，加上损失函数KL散度：
+								\begin{gather}
+					 \mathrm{CAE}=L(X, Z)+\gamma \sum_{j=1}^{H_{D}} \mathrm{KL}\left(\rho \| \hat{\rho}_{j}\right),\\
+					 \mathrm{KL}\left(\rho \| \hat{\rho}_{j}\right)=\rho \log \frac{\rho}{\hat{\rho}_{j}}+(1-\rho) \log \frac{1-\rho}{1-\hat{\rho}_{j}},
+								\end{gather}
+					其中γ是稀疏项的权重，$H_D$是隐藏单元的数量，ρ是稀疏性参数，通常是一个接近零的小值。$\hat{\rho}_{j}=(1 / N) \sum_{i=1}^{N} y_{j}\left(x^{(i)}\right)$是在训练集中隐藏单元j的平均激活。
+
+在迭代修正的过程中，实验采用$Keras$自带优化器Adam函数进行迭代修正，如式~\ref{adam}~所示，其中$\beta_{1}$一般取0.9，$\beta_{2}$一般取0.999。
+
+\begin{gather*}\label{adam}
+\left\{\begin{array}{l}{m_{t}=\beta_{1} m_{t-1}+\left(1-\beta_{1}\right) \nabla_{w} f\left(w_{t}\right)} \\ {v_{t}=\beta_{2} v_{t-1}+\left(1-\beta_{2}\right) \nabla_{w} f\left(w_{t}\right)^{2}} \\ {\widehat{m}_{t}=\frac{m_{t}}{1-\beta_{1}^{t}}, \hat{v}_{t}=\frac{v_{t}}{1-\beta_{2}^{t}}} \\ {w_{t}=w_{t-1}-\eta \frac{\widehat{m}_{t}}{\sqrt{\hat{v}_{t}+\varepsilon}}}\end{array}\right.
+\end{gather*}
+
         \subsection{实验结果及分析}
-  
+        实验训练输入样本为 400×300的指纹图片， 具体参数设置如表所示：
+       \begin{table}[H]
+        	\setstretch{1.4}  %设置表的行间距
+        	\centering		
+        	\caption{参数设置表
+        	}
+        	\begin{tabular}{cc|cc}
+        		\toprule[1.5pt]
+        		\multicolumn{1}{m{5cm}}{\centering 参数名称}
+        		& \multicolumn{1}{m{2cm}}{\centering 值}
+        		&        		\multicolumn{1}{m{5cm}}{\centering 参数名称}
+        		& \multicolumn{1}{m{2cm}}{\centering 值}
+        		\\
+        		\midrule[1pt]
+        		迭代次数 epoch&   2000& 吞吐量 batch & 64\\ 
+        	出/入通道数 in/out& 	3/3& 编码大小 size& 200\\
+        	        学习率 lr& 0.01& 偏置 $\beta_1,\beta_2$& 0.9, 0.999\\
+      卷积核 $k_1,k_2,k_3$& 3,3,4& 池化层 padding& 1\\
+        		\bottomrule[1.5pt]	
+        	\end{tabular}
+        \end{table}
+    
+        通过上述参数设置，计算16张指纹图片KL散度的最小值，并保存其编码程序。其迭代过程中 损失函数如下图所示：
+        	\begin{figure}[H]
+        	\centering
+        	\includegraphics[width=.6\textwidth]{figures/loss.png}
+        	\caption{CAE迭代过程中损失函数函数}\label{loss}
+        \end{figure}
+    可以看出，我们的模型在解码还原过程中，能明显逼近于真实的指纹图片，信息损失仅占0.04\%，对于传统的编码方法有明显的压缩能力。
+    
+    本文将指纹编码过程进行还原，得到解码图像入下图所示，可以看见CAE模型编码后再还原出的指纹图像具有高精度的还原。
+        			\begin{figure}[H]	
+        	\centering
+        	\subfigure[指纹1过程过程]{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen.png}}
+        	\subfigure[指纹2解码过程]{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen2.png}}
+        	\caption{编码后经解码器后还原的效果图}
+        	\label{zhiwen}
+        \end{figure}
+    
+    
+
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
 			问题二要求给出比较不同指纹异同的方法。
-			本问中，对第一问所获得的所有行向量的每一维度进行归一化处理,分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
+			在问题一的基础上，将指纹图像输入CAE，输出能反映指纹特征的行向量。对各行向量的每一维度进行归一化处理，分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
 			
 			
 			\begin{itemize}
-				\item 谷本系数(Tanimoto Coefficient)
+				\item \textbf{谷本系数(Tanimoto Coefficient)}
 				
-				Tanimoto Coefficient主要用于计算符号度量或布尔值度量的个体间的相似度，因为个体的特征属性都是由符号度量或者布尔值标识，因此无法衡量差异具体值的大小，只能获得“是否相同”这个结果，所以Tanimoto Coefficient只关心个体间共同具有的特征是否一致这个问题。其数学描述为
+				谷本系数主要用于计算符号度量或布尔值度量的个体间的相似度，因为个体的特征属性都是由符号度量或者布尔值标识，因此无法衡量差异具体值的大小，只能获得“是否相同”这个结果，所以谷本系数只关心个体间共同具有的特征是否一致这个问题。其数学描述为
 				\begin{gather}
 				T(A,B)=\frac{A\ast B}{\begin{Vmatrix}
 						A
@@ -277,10 +386,30 @@
 						B
 					\end{Vmatrix}^2-A\ast B}
 				\end{gather}
-				\item 皮尔逊相关系数（Pearson Correlation Coefficient）
-				\item 马哈拉诺比斯距离（Mahalanobis Distance）
+				其中$\begin{Vmatrix}
+				A
+				\end{Vmatrix}^2$和$\begin{Vmatrix}
+				A
+				\end{Vmatrix}^2$分别是行向量$A$和$B$的模。
+				\item \textbf{皮尔逊相关系数（Pearson Correlation Coefficient）}\\
+				皮尔逊相关系数反应了两个变量之间的线性相关程度，它的取值在[-1, 1]之间。
+				\begin{gather}
+					P(A,B)=\frac{cov(A,B)}{\sigma_A\cdot \sigma_B}
+				\end{gather}
+				其中$cov(A,B)$是行向量$A$和$B$的协方差，$\sigma_A$和$\sigma_B$分别是$A$和$B$的元素标准差。
+				\item \textbf{马哈拉诺比斯距离（Mahalanobis Distance）}\\
+				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。
+				\begin{gather}
+				M(A,B)=\sqrt{(A-B)^T\Sigma^{-1}(A-B)}
+				\end{gather}
 			\end{itemize}
+			其中，$\Sigma$是随机变量的协方差矩阵。
 			
+			构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
+			\begin{gather}
+			S(A,B)=\omega_1 T(A,B)+\omega_2 P(A,B)+\omega_3 M(A,B)
+			\end{gather}
+			式中取$\omega_1=0.95$，$\omega_2=0.02$，$\omega_3=0.03$。
     		其思维流程图如图~\ref{lssssct}~所示：
 
 			\begin{figure}[H]
@@ -289,9 +418,7 @@
 				\caption{问题二思维流程图}\label{lssssct}
 			\end{figure}
 
-		\subsection{模型的建立}
-		
-		\subsection{模型的求解}
+		\subsection{模型的建立和求解}
 
         \subsection{实验结果及分析}
         
@@ -336,7 +463,7 @@
   	\section{模型的评价}
 		\subsection{模型的优点}
 			\begin{itemize}                                             
-			\item [(1)]
+			\item [(1)] 与传统编码而言，卷积自编码器通过无监督学习来提取指纹细节依赖充分压缩指纹图像，对于指纹图片来说是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的，并且在编码后能通过解码器还原出原始图像数据。
 			\item [(2)] 	
 			\end{itemize}
 		\subsection{模型的缺点}
@@ -355,24 +482,432 @@
 		\bibitem{1}Davies S G. Touching Big Brother: How biometric technology will fuse flesh and machine[J]. Information Technology \& People, 2014, 7(4): 38-47.
 	\bibitem{2}Moses K R, Higgins P, McCabe M, et al. Automated fingerprint identification system (AFIS)[J]. Scientific Working Group on Friction Ridge Analysis Study and Technology and National institute of Justice (eds.) SWGFAST-The fingerprint sourcebook, 2011: 1-33.
 	\bibitem{3}Dror I E, Wertheim K, Fraser‐Mackenzie P, et al. The impact of human–technology cooperation and distributed cognition in forensic science: biasing effects of AFIS contextual information on human experts[J]. Journal of forensic sciences, 2012, 57(2): 343-352.
-	\bibitem{4}
+	\bibitem{4}Simonyan K, Zisserman A. Very deep convolutional networks for large-scale image recognition[J]. arXiv preprint arXiv:1409.1556, 2014.
 	\bibitem{5}
 	\end{thebibliography}
 
 	\newpage
 	%附录
 	\appendix %%附录
-	\section{数据可视化的实现}
-		\subsection*{第一问画图--python源代码}
-			\begin{lstlisting}[language=python]
-			
-			\end{lstlisting}
-			
-		\subsection*{第二问画图--python源代码}
+	\section{数据预处理}
+\subsection*{去噪--matlab源代码}
+\begin{lstlisting}[language=matlab]
+imdata=imread('01.tif');
+imshow(imdata);
+flag=0;
+Min=min(min(imdata));
+Max=max(max(imdata));
+h=medfilt2(imdata);%去噪
+for i=1:size(imdata,1)
+for j=1:size(imdata,2)
+if (h(i,j)>200)
+h(i,j)=255;
+end
+end
+end
+h1=histeq(h);%增强
+subplot(221);imshow(imdata);
+subplot(222);imshow(h);
+subplot(223);imshow(h1);
+
+for i=1:size(imdata,1)
+for j=1:size(imdata,2)
+if (imdata(i,j)<255)
+fringe_x1=i;
+flag=1;
+break;
+end
+end
+if(flag==1)
+flag=0;
+break;
+end
+end
+for i=size(imdata,1):-1:1
+for j=1:size(imdata,2)
+if (imdata(i,j)<255)
+fringe_x2=i;
+flag=1;
+break;
+end
+end
+if(flag==1)
+flag=0;
+break;
+end
+end
+for i=1:size(imdata,2)
+for j=1:size(imdata,1)
+if (imdata(j,i)<255)
+fringe_y1=i;
+flag=1;
+break;
+end
+end
+if(flag==1)
+flag=0;
+break;
+end
+end
+for i=size(imdata,2):-1:1
+for j=1:size(imdata,1)
+if (imdata(j,i)<255)
+fringe_y2=i;
+flag=1;
+break;
+end
+end
+if(flag==1)
+flag=0;
+break;
+end
+end
+% image=imdata(  fringe_x1:   fringe_x2 ,fringe_y1:  fringe_y2);
+% subplot(224); imshow(image);
+\end{lstlisting}
+		\subsection*{处理图像--matlab源代码}
+	\begin{lstlisting}[language=matlab]
+	f=imread('16.tif');%读取图像到内存
+	%f=imresize(f,[363,312]);%该函数用于对图像做缩放处理。
+	%figure;imshow(f);
+	%用rgb2gray 将彩色图像转换为灰度图像。matlab读入图像的数据是uint8，而matlab中数值一般采用double型（64位）存储和运算。
+	%所以要先将图像转为double格式的才能运算
+	gray=double((f));
+	%转成uint8 imshow()显示图像时对double型是认为在0~1范围内即大于1时都是显示为白色，而imshow显示uint8型时是0~255范围。
+	%所以对double类型的图像显示的时候，要么归一化到0~1之间，要么将double类型的0~255数据转为uint8类型。
+	%figure;imshow(uint8(gray));
+	
+	%归一化，灰度值限制在某一范围
+	M=0;var=0;
+	%均值
+	m=size(gray,1);n=size(gray,2);
+	for x=1:m
+	for y=1:n
+	M=M+gray(x,y);
+	end
+	end
+	M1=M/(m*n);%M1为均值 所有像素总共和除以多少个像素
+	%方差
+	for x=1:m
+	for y=1:n
+	var=var+(gray(x,y)-M1).^2;
+	end;
+	end;
+	var1=var/(m*n);%计算方差最终的大小 var1
+	%归一化 ********************************
+	for x=1:m
+	for y=1:n
+	if gray(x,y)>M1
+	gray(x,y)=150+sqrt(2000*(gray(x,y)-M1)/var1);
+	else
+	gray(x,y)=150-sqrt(2000*(M1-gray(x,y))/var1);
+	end
+	end
+	end
+	%figure;imshow(uint8(gray));
+	
+	%*************************************************************************************************************
+	%归一化处理完毕后会对图像进行分割处理，目的是区分出前景色和背景色。我采用的分割为根据多区域阈值分割。
+	%多区域分割的效果取决于区域的大小，而指纹的区域分为一脊一谷最好，所以我选择3x3的区域大小。我会根据对区域多次进行求均值和方差进行分割。
+	%分割 分成多个3*3的块大小 
+	M=3;
+	H=floor(m/M);L=floor(n/M);
+	aveg1=zeros(H,L);
+	var1=zeros(H,L);
+	%计算每一块的平均值
+	for x=1:H
+	for y=1:L
+	aveg=0;var=0;
+	%每一块的均值
+	for i=1:M
+	for j=1:M
+	aveg=gray(i+(x-1)*M,j+(y-1)*M)+aveg;
+	end;
+	end;
+	aveg1(x,y)=aveg/(M*M);
+	%每一块的方差值
+	for i=1:M
+	for j=1:M
+	var=(gray(i+(x-1)*M,j+(y-1)*M)-aveg1(x,y)).^2+var;
+	end;
+	end;
+	var1(x,y)=var/(M*M);
+	end;
+	end;
+	%所有块的平均值和方差
+	Gmean=0;Vmean=0;
+	for x=1:H
+	for y=1:L
+	Gmean=Gmean+aveg1(x,y);
+	Vmean=Vmean+var1(x,y);
+	end
+	end
+	Gmean1=Gmean/(H*L);
+	Vmean1=Vmean/(H*L);
+	
+	%每一小块和整块相比，再次求均值方差
+	% 前景（黑色）
+	gtemp=0;gtotle=0;vtotle=0;vtemp=0;
+	for x=1:H
+	for y=1:L
+	if Gmean1>aveg1(x,y)%如果当前快的均值小于全局均值 就认为是前景 
+	gtemp=gtemp+1;
+	gtotle=gtotle+aveg1(x,y);
+	end
+	if Vmean1<var1(x,y)%如果当前快的方差大于全局方差 认为是前景
+	vtemp=vtemp+1;
+	vtotle=vtotle+var1(x,y);
+	end
+	end
+	end
+	% 前景均值
+	G1=gtotle/gtemp;
+	% 前景方差
+	V1=vtotle/vtemp;
+	
+	%再次与刚刚产生的值相比
+	% 求得背景（白色）均值方差 增加可靠性
+	gtemp1=0;gtotle1=0;vtotle1=0;vtemp1=0;
+	for x=1:H
+	for y=1:L
+	if G1<aveg1(x,y)%如果当前快的均值大于前景的均值 就认为是背景
+	gtemp1=gtemp1+1;
+	gtotle1=gtotle1+aveg1(x,y);
+	end
+	if 0<var1(x,y)<V1%如果当前的方差小于前景的方差 就认为是背景
+	vtemp1=vtemp1+1;
+	vtotle1=vtotle1+var1(x,y);
+	end
+	end
+	end
+	% 背景均值
+	G2=gtotle1/gtemp1;
+	% 背景方差
+	V2=vtotle1/vtemp1;
+	%我会根据对区域多次进行求均值和方差进行分割。采集到的指纹图背景的灰度值大于前景色，背景主要为低频，所以背景的方差小于前景的方差。
+	%我分别求得背景和前景的均值和方差然后会得到背景为白色 脊线为黑色。
+	%然后保存在矩阵e（二值图）中，我会根据e中位置等于1的点的八邻域点的和小于四得到背景色，达到背景和前景分离（e矩阵）。
+	%****************************************
+	%构建矩阵（H*L）
+	e=zeros(H,L);
+	for x=1:H
+	for y=1:L
+	if aveg1(x,y)>G2 && var1(x,y)<V2 %当前的小块的值 大于背景均值 且当前小块的方差小于背景方差 
+	%   背景
+	e(x,y)=1;
+	end
+	%  前景中的更接近黑色的变为白色
+	if aveg1(x,y)<G1-100 && var1(x,y)<V2
+	e(x,y)=1;
+	end
+	end
+	end
+	
+	
+	
+	
+	%该点八邻域小于四为0
+	%根据e中位置等于1的点的八邻域点的和小于四得到背景色，达到背景和前景分离（e矩阵）
+	for x=2:H-1
+	for y=2:L-1
+	if e(x,y)==1
+	if e(x-1,y) + e(x,y+1)+e(x+1,y+1)+e(x-1,y+1)+e(x+1,y)+e(x+1,y-1)+e(x,y-1)+e(x-1,y-1) <=4
+	e(x,y)=0;
+	end
+	end
+	end
+	end
+	%然后黑白反转让感兴趣的前景色变为白色（保存在Icc中），灰度图（gray）的背景值替换为小区域块的和的均值（G1）.
+	%构建m*m矩阵
+	Icc=ones(m,n);
+	for x=1:H
+	for y=1:L
+	if e(x,y)==1 %如果 当前 是 1 是我们想要的
+	for i=1:M
+	for j=1:M
+	gray(i+(x-1)*M,j+(y-1)*M)=G1;
+	Icc(i+(x-1)*M,j+(y-1)*M)=0;
+	end
+	end
+	end
+	end
+	end
+	%figure,imshow(uint8(gray));
+	%figure,imshow(Icc);
+	
+	%找指纹脊线方向并二值化
+	
+	%*******************************
+	%*噪声对图像处理的影响很大，它影响图像处理的输入、采集和处理等各个环节以及输出结果。因此，在进行其它的图像处理前，需要对图像进行去噪处理。
+	%*均值滤波方法是，对待处理的当前像素，选择一个模板，该模板为其邻近的若干个像素组成，用模板的均值来替代原像素的值的方法。
+	temp=(1/9)*[1,1,1;1,1,1;1,1,1];%模板系数  均值滤波
+	Im=gray;
+	In=zeros(m,n);
+	for a=2:m-1
+	for b=2:n-1
+	In(a,b)=Im(a-1,b-1)*temp(1,1)+Im(a-1,b)*temp(1,2)+Im(a-1,b+1)*temp(1,3)+Im(a,b-1)*temp(2,1)...
+	+Im(a,b)*temp(2,2)+Im(a,b+1)*temp(2,3)+Im(a+1,b-1)*temp(3,1)+Im(a+1,b)*temp(3,2)+Im(a+1,b+1)*temp(3,3);
+	end
+	end
+	gray=In;%平滑后的图像矩阵
+	Im=zeros(m,n);
+	%为了估计脊线的方向场，把脊线的方向场划分为八个方向，然后根据八个方向的灰度值的总和来得到脊线的方向。并对图像进行二值化。
+	%求八个方向每个方向的和
+	for x=5:m-5
+	for y=5:n-5
+	%0-7方向的和
+	sum1=gray(x,y-4)+gray(x,y-2)+gray(x,y+2)+gray(x,y+4);
+	sum2=gray(x-2,y+4)+gray(x-1,y+2)+gray(x+1,y-2)+gray(x+2,y-4);
+	sum3=gray(x-2,y+2)+gray(x-4,y+4)+gray(x+2,y-2)+gray(x+4,y-4);
+	sum4=gray(x-2,y+1)+gray(x-4,y+2)+gray(x+2,y-1)+gray(x+4,y-2);
+	sum5=gray(x-2,y)+gray(x-4,y)+gray(x+2,y)+gray(x+4,y);
+	sum6=gray(x-4,y-2)+gray(x-2,y-1)+gray(x+2,y+1)+gray(x+4,y+2);
+	sum7=gray(x-4,y-4)+gray(x-2,y-2)+gray(x+2,y+2)+gray(x+4,y+4);
+	sum8=gray(x-2,y-4)+gray(x-1,y-2)+gray(x+1,y+2)+gray(x+2,y+4);
+	sumi=[sum1,sum2,sum3,sum4,sum5,sum6,sum7,sum8];
+	%最大值
+	summax=max(sumi);
+	%最小值
+	summin=min(sumi);
+	%和 &&平均值
+	summ=sum(sumi);
+	b=summ/8;
+	
+	if(summax+summin+4*gray(x,y))> (3*b)
+	sumf=summin;
+	else
+	sumf=summax;
+	end
+	
+	if sumf>b
+	Im(x,y)=128;
+	else
+	Im(x,y)=255;
+	end
+	end
+	end
+	% imshow(Im);
+	
+	
+	%两个矩阵点乘 Icc 白色的是感兴趣的像素 黑色的 0 表示的是边缘 不感兴趣的，需要略掉
+	for i=1:m
+	for j=1:n
+	Icc(i,j)=Icc(i,j)*Im(i,j);
+	end
+	end
+	%转换为二值图
+	for i=1:m
+	for j=1:n
+	if (Icc(i,j)==128)
+	Icc(i,j)=0;
+	else
+	Icc(i,j)=1;
+	end
+	end
+	end
+	%figure;imshow(double(Icc));
+	%title('Icc');
+	
+	%去除空洞和毛刺
+	u=Icc;
+	for x=2:m-1
+	for y=2:n-1
+	if u(x,y)==0
+	%该点的4邻域点（上下左右） 如果三个或以上都是白点（1）则该点为毛刺
+	if u(x,y-1)+u(x-1,y)+u(x,y+1)+u(x+1,y)>=3
+	u(x,y)=1;
+	end
+	else
+	u(x,y)=u(x,y);
+	end
+	end
+	end
+	%figure;imshow(u);
+	%title('去除毛刺');
+	%去除空洞
+	for a=2:m-1
+	for b=2:n-1
+	if u(a,b)==1
+	%寻找端点
+	if abs(u(a,b+1)-u(a-1,b+1))+abs(u(a-1,b+1)-u(a-1,b))+abs(u(a-1,b)-u(a-1,b-1))...
+	+abs(u(a-1,b-1)-u(a,b-1))+(abs(u(a,b-1)-u(a+1,b-1)))+abs(u(a+1,b-1)-u(a+1,b))...
+	+abs(u(a+1,b)-u(a+1,b+1))+abs(u(a+1,b+1)-u(a,b+1))~=1
+	if (u(a,b+1)+u(a-1,b+1)+u(a-1,b))*(u(a,b-1)+u(a+1,b-1)+u(a+1,b))+(u(a-1,b)+u(a-1,b-1)+u(a,b-1))...
+	*(u(a+1,b)+u(a+1,b+1)+u(a,b+1))==0
+	%去除空洞
+	u(a,b)=0;
+	end
+	end
+	end
+	end
+	end
+	
+	%figure;imshow(u);
+	%title('去除空洞');
+	imdata=u;
+	for i=1:size(imdata,1)
+	flag=0;
+	for j=1:size(imdata,2)
+	if (imdata(i,j)==0)
+	flag=flag+1;
+	end
+	end
+	if(flag>=10)
+	fringe_x1=i;
+	break;
+	end
+	end
+	for i=size(imdata,1):-1:1
+	flag=0;
+	for j=1:size(imdata,2)
+	if (imdata(i,j)==0)
+	flag=flag+1;
+	end
+	end
+	if(flag>=10)
+	fringe_x2=i;
+	break;
+	end
+	end
+	for i=1:size(imdata,2)
+	flag=0;
+	for j=1:size(imdata,1)
+	if (imdata(j,i)==0)
+	flag=flag+1;
+	end
+	end
+	if(flag>=10)
+	fringe_y1=i;
+	break;
+	end
+	end
+	for i=size(imdata,2):-1:1
+	flag=0;
+	for j=1:size(imdata,1)
+	if (imdata(j,i)==0)
+	flag=flag+1;
+	end
+	end
+	if(flag>=10)
+	fringe_y2=i;
+	break;
+	end
+	end
+	image=imdata(  fringe_x1:   fringe_x2 ,fringe_y1:  fringe_y2);
+	%figure;imshow(image);
+	%title('xxx');
+	image1=imresize(image,[350,200]);
+	%figure;imshow(image1);
+	%title('xxx');
+	imwrite(image1,'result16.tif')
+
+	\end{lstlisting}
+	\section{第一问代码实现及可视化}
+		\subsection*{卷积自编码器--python源代码}
 			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
 			rulesepcolor=\color{red!20!green!20!blue!20},  
 			keywordstyle=\color{blue!70!black},  
 			commentstyle=\color{blue!90!},  
-			basicstyle=\ttfamily] {./code/demo.py}
+			basicstyle=\ttfamily] {./code/tuxiang.py}
 
 \end{document}
