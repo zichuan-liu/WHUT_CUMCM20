@@ -265,7 +265,7 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i, j} \cdot k_{u-
 			有效值卷积的定义式为：
 			\begin{gather}
 \begin{array}{c}
-z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k_{r o t i, j} \cdot \chi(i, j) \\
+z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k_{r o t i, j} \cdot \chi(i, j) \\
 \chi(i, j)=\left\{  
 \begin{array}{c}
 1,0 \leqslant i, j \leqslant n \\
@@ -302,7 +302,7 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
 	激活函数的种类有很多，如 $sigmoid$， $tanh$ 及$ Relu$，本文应用的是 $Relu$作为激活函数搭建两层隐含层，如式~\ref{shiw}~所示：
 	\begin{gather}\label{shiw}
 	\begin{array}{c}{f_{\text {Relu}}=\max (0, z)}\\
-	\frac{d}{d z} f_{R e L U}=\left\{\begin{array}{ll}{1,} & {z>0} \\ {0,} & {z \leqslant 0}\end{array}\right.
+	\displaystyle \frac{d}{d z} f_{R e L U}=\left\{\begin{array}{ll}{1,} & {z>0} \\ {0,} & {z \leqslant 0}\end{array}\right.
 	\end{array}.
 	\end{gather}
 	
@@ -398,41 +398,51 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
     
 
 	\section{问题二模型的建立与求解}
-		\subsection{问题描述与分析}
-		问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在使用卷积自动编码器将原始指纹图像转化成了特征编码后，图像的特征编码是以
+		\subsection{问题分析与相似度计算}
 
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题二思维流程图}\label{lssssct}
-			\end{figure}
+问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在使用卷积自动编码器将原始指纹图像转化成了特征编码后，图像的特征编码是以能反映指纹特征的行向量存储。对各行向量的每一维度进行归一化处理，分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
+			
+			
+			\begin{itemize}
+				\item \textbf{谷本系数(Tanimoto Coefficient)}
+				
+				谷本系数主要用于计算符号度量或布尔值度量的个体间的相似度，因为个体的特征属性都是由符号度量或者布尔值标识，因此无法衡量差异具体值的大小，只能获得“是否相同”这个结果，所以谷本系数只关心个体间共同具有的特征是否一致这个问题。其数学描述为
+				\begin{gather}
+				T(A,B)=\frac{A\ast B}{\begin{Vmatrix}
+						A
+					\end{Vmatrix}^2+\begin{Vmatrix}
+						B
+					\end{Vmatrix}^2-A\ast B}
+				\end{gather}
+				其中$\begin{Vmatrix}
+				A
+				\end{Vmatrix}^2$和$\begin{Vmatrix}
+				A
+				\end{Vmatrix}^2$分别是行向量$A$和$B$的模。
+				\item \textbf{皮尔逊相关系数（Pearson Correlation Coefficient）}\\
+				皮尔逊相关系数反应了两个变量之间的线性相关程度，它的取值在[-1, 1]之间。
+				\begin{gather}
+					P(A,B)=\frac{cov(A,B)}{\sigma_A\cdot \sigma_B}
+				\end{gather}
+				其中$cov(A,B)$是行向量$A$和$B$的协方差，$\sigma_A$和$\sigma_B$分别是$A$和$B$的元素标准差。
+				\item \textbf{马哈拉诺比斯距离（Mahalanobis Distance）}\\
+				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。
+				\begin{gather}
+				M(A,B)=\sqrt{(A-B)^T\Sigma^{-1}(A-B)}
+				\end{gather}
+			\end{itemize}
+			其中，$\Sigma$是随机变量的协方差矩阵。
+			
+			构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
+			\begin{gather}
+			S(A,B)=\omega_1 T(A,B)+\omega_2 P(A,B)+\omega_3 M(A,B)
+			\end{gather}
+			式中取$\omega_1=0.95$，$\omega_2=0.02$，$\omega_3=0.03$。
 
-		\subsection{模型的建立}
-		
-		\subsection{模型的求解}
+
 
         \subsection{实验结果及分析}
         
-			结果如下表\ref{zhuanssssasgzai}所示：
-			\begin{table}[H]
-			\setstretch{1.4}  %设置表的行间距
-			\centering		
-			\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-			\begin{tabular}{cc}
-			\toprule[2pt]
-				\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				\\
-				\midrule[1pt]
-				xxxxxxx &   909.80\\ 
-				xxxxxxx & 	852.60\\ 
-			\bottomrule[2pt]	
-			\end{tabular}
-			\end{table}
-  
-  			由表\ref{biao1}可知
-
-			其各个小车的运输细节图下图所示：
 
 
     \section{问题三模型的建立与求解}
