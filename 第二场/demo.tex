@@ -119,7 +119,7 @@ $k_i$  & 卷积核i  \\
 在正式搭建模型前，本文首先将图片进行预处理，以方便进行后续运算。经过归一化处理，图像增强处理和二值化处理后，即可得到相同规格的二值化图片，其具体流程如图~\ref{dfsg}~所示
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{figures/chou4.png}
+	\includegraphics[width=.9\textwidth]{figures/chou4.png}
 	\caption{图片数据预处理}\label{dfsg}
 \end{figure}   
 \subsection{归一化处理}
@@ -215,7 +215,7 @@ $k_i$  & 卷积核i  \\
 \end{gather*}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{figures/chou.png}
+	\includegraphics[width=.5\textwidth]{figures/chou.png}
 	\caption{脊线估计方向}\label{adf}
 \end{figure}   
 \subsubsection{二值化}
@@ -424,7 +424,7 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
 
 
     \section{问题三模型的建立与求解}
-<<<<<<< HEAD
+
   	\subsection{问题描述与分析}
   	问题三在问题二将指纹相似度量化的基础上，进一步要求将样本指纹进行类比归类，其本质是一个样本分类问题。根据第二问的相似度量化结果，可得到任意两个指纹样本间的相似程度，即可在其基础上搭建中心聚类模型以将样本指纹进行类比归类。
   	
@@ -433,11 +433,10 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
   	\begin{figure}[H]
   		\centering
   		\includegraphics[width=\textwidth]{figures/whut.jpg}
-  		\caption{问题二思维流程图}\label{lssssct}
+  		\caption{问题二思维流程图}\label{lsssscst}
   	\end{figure}
-  	\subsection{模型的建立与求解}
-  	\subsubsection{k-medoids}
-  	本文采用$k-medoids$模式选取聚类中心点，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
+  	\subsection{k-medoids模型的建立与求解}
+  	本文采用$k-medoids$模式选取聚类中心点\upcite{14,15}，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
   	\begin{gather}
   J(c_1,c_2,\cdots,c_k)=\frac{1}{16}\sum _{i=1}^{16}\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j),
   	\end{gather}
@@ -448,43 +447,7 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
       \end{gather}
   	鉴于该问题样本规模较小，本文采用遍历方式，输入所有聚类中心并选取代价函数值最高的聚类中心组合
   	\subsection{实验结果及分析}
-  	
-  	结果如下表\ref{zhuanssssasgzai}所示：
-  	\begin{table}[H]
-  		\setstretch{1.4}  %设置表的行间距
-  		\centering		
-  		\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-  		\begin{tabular}{cc}
-  			\toprule[2pt]
-  			\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-  			& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-  			\\
-  			\midrule[1pt]
-  			xxxxxxx &   909.80\\ 
-  			xxxxxxx & 	852.60\\ 
-  			\bottomrule[2pt]	
-  		\end{tabular}
-  	\end{table}
-  	
-  	由表\ref{biao1}可知
-  	
-  	其各个小车的运输细节图下图所示：
-  	\begin{figure}[H]
-  		\centering
-  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-  	\end{figure}	
-  	\begin{figure}[H]	
-  		\centering
-  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-  		\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-  		\caption{xxxxxxxxxxxxxxxxxxxxxxxxx}
-  		\label{fisg}
-  	\end{figure}
-  	
-=======
-  		\subsection{结果分析}
-  
+
   
   	\section{灵敏度分析}
   本文对卷积自编码器中编码层输入的$\gamma$大小$b$做调整，得到
@@ -506,8 +469,6 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
   	\end{figure}
   	根据上述解码后效果图可以看出：编码50字节后能还原出指纹大致轮廓，但是具体图像仍然不清晰；编码100字节能还原出微细节轮廓，但上方密集部分仍然呈现模糊状况；编码150字节后能较为清晰的还原，但还是存在少量噪声；而到200字节以上非常清晰，能通过降维后的编码数据完美的还原出原始指纹图像。
  	
- 
->>>>>>> origin/lzc
   	\section{模型的评价}
 		\subsection{模型的优点}
 			\begin{itemize}                                             
@@ -540,6 +501,8 @@ z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u, j+v} \cdot k
 	\bibitem{11}Gao L, Chen P Y, Yu S. Demonstration of convolution kernel operation on resistive cross-point array[J]. IEEE Electron Device Letters, 2016, 37(7): 870-873.
 	\bibitem{12}Guo X, Liu X, Zhu E, et al. Deep clustering with convolutional autoencoders[C]//International conference on neural information processing. Springer, Cham, 2017: 373-382.
 	\bibitem{13} 王万良, 杨小涵, 赵燕伟, 等. 采用卷积自编码器网络的图像增强算法[J]. 浙江大学学报 (工学版), 2019, 53(9): 1728-1740.
+	\bibitem{14}Arora P, Varshney S. Analysis of k-means and k-medoids algorithm for big data[J]. Procedia Computer Science, 2016, 78: 507-512.
+	\bibitem{15}Yu D, Liu G, Guo M, et al. An improved K-medoids algorithm based on step increasing and optimizing medoids[J]. Expert Systems with Applications, 2018, 92: 464-473.
 	\end{thebibliography}
 
 	\newpage
