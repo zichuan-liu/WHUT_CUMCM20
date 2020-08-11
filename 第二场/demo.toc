@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \contentsline {section}{\numberline {一、}问题重述}{1}{section.1}% 
 \contentsline {subsection}{\numberline {1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题背景}{1}{subsection.1.1}% 
 \contentsline {subsection}{\numberline {1\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}问题概述}{1}{subsection.1.2}% 
@@ -36,3 +37,5 @@
 \contentsline {section}{\numberline {附录B}第一问代码实现及可视化}{29}{appendix.B}% 
 \contentsline {section}{\numberline {附录C}第二、三问代码实现及可视化}{33}{appendix.C}% 
 \contentsfinish 
+=======
+>>>>>>> cy
