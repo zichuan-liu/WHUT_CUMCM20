@@ -95,13 +95,13 @@
 			\toprule[1.5pt]
 			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
 			\midrule[1pt]		
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$X$  & 图像矩阵  \\ 
+$P_{i}$  & 第i张图像，$i=\left\{1, 2, \cdots, 16\right\}$  \\ 
+$u_{P(x,y)}$& 像素矩阵 \\
+$(x,y)$  & 像素点位置值  \\ 
+$fringe_{x1}, fringe_{x2}$  & 图片的上下边界  \\ 
+$fringe_{y1}, fringe_{y2}$  & 图片的左右边界  \\ 
+$E$  & 信息熵  \\ 
+$iDir$  &  脊线方向 \\ 
 $\gamma$  & 编码器的图像编码  \\ 
 $b$  & 编码大小  \\ 
 $Z$  & 解码器还原的图像矩阵  \\ 
@@ -110,13 +110,17 @@ $in/out$  & 出/入通道数  \\
   	$b$  & 编码大小  \\ 
 $lr$  & 学习率  \\ 
 $k_i$  & 卷积核i  \\ 
+$T$  & 谷本系数  \\ 
+$P$  & 皮尔逊相关系数  \\ 
+$M$  &  马氏距离 \\ 
+$\left \{ c_i \right \}$  &  聚类中心 \\ 
+$\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j)$&样本点$ \gamma_i $与$\left \{ c_i \right \}$间的最高的相似度值\\
 			\bottomrule[1.5pt]
 		\end{tabular}
 		\begin{tablenotes}
 		\item 注：表中未说明的符号以首次出现处为准
 		\end{tablenotes}
 		\end{table}
-	
 	\section{数据预处理}
 在正式搭建模型前，本文首先将图片进行预处理，以方便进行后续运算。经过归一化处理，图像增强处理和二值化处理后，即可得到相同规格的二值化图片，其具体流程如图~\ref{dfsg}~所示
 \begin{figure}[H]
@@ -340,7 +344,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 				\includegraphics[width=\textwidth]{figures/model.png}
 				\caption{卷积自编码器CAE模型}\label{labssel}
 			\end{figure}
-		其中，Conv表示全卷积，ConvTranspose表示有效值卷积，Activation表述rule激活层，Pooling表示池化层，对应的编码输入为$Z(X)<200byte$。
+		其中，Conv表示全卷积，ConvTranspose表示有效值卷积，Activation表示rule激活层，Pooling表示池化层，对应的编码输入为$b(\gamma)<200byte$。
 		
 	
 					将稀疏约束添加到目标函数后，自动编码器将成为稀疏的自动编码器，它考虑二值图像隐藏层的稀疏表示。 为了实现稀疏表示，本文将使用稀疏约束将重构误差最小化，加上损失函数KL散度：
@@ -402,6 +406,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 		\subsection{问题分析与相似度计算}
 
 问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在使用卷积自动编码器将原始指纹图像转化成了特征编码后，图像的特征编码是以能反映指纹特征的行向量存储。对各行向量的每一维度进行归一化处理，分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
+
 			
 			
 			\begin{itemize}
@@ -434,12 +439,12 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			\end{itemize}
 			其中，$\Sigma$是随机变量的协方差矩阵。
 			
-			构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
-			\begin{gather}
-			S(A,B)=\omega_1 T(A,B)+\omega_2 P(A,B)+\omega_3 M(A,B)
-			\end{gather}
-			式中取$\omega_1=0.95$，$\omega_2=0.02$，$\omega_3=0.03$。
-
+				谷本系数越大，向量间相似度越高。皮尔逊相关系数绝对值越大，向量间线性相关程度越高。马氏距离越小，向量间相似度越高。构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
+	\begin{gather}
+	S(A,B)=\omega_1 T(A,B)+\omega_2 |P(A,B)|+\omega_3 \displaystyle \frac{1}{M(A,B)}
+	\end{gather}
+	满足$\omega_1+\omega_2+\omega_3=1$。关系函数值越大，表明$A$和$B$的相似度越高。
+	
 
 
         \subsection{实验结果及分析}
@@ -958,5 +963,11 @@ end
 			keywordstyle=\color{blue!70!black},  
 			commentstyle=\color{blue!90!},  
 			basicstyle=\ttfamily] {./code/tuxiang.py}
-
+	\section{第二、三问代码实现及可视化}
+\subsection*{k-medoids模型--python源代码}
+\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
+rulesepcolor=\color{red!20!green!20!blue!20},  
+keywordstyle=\color{blue!70!black},  
+commentstyle=\color{blue!90!},  
+basicstyle=\ttfamily] {./code/julei.py}
 \end{document}
