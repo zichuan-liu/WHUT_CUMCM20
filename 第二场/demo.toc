@@ -22,11 +22,11 @@
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}实验结果及分析}{12}{subsection.5.3}%
 \contentsline {section}{\numberline {六、}问题二模型的建立与求解}{14}{section.6}%
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题分析与相似度计算}{14}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}实验结果及分析}{15}{subsection.6.2}%
-\contentsline {section}{\numberline {七、}问题三模型的建立与求解}{15}{section.7}%
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{15}{subsection.7.1}%
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}实验结果及分析}{16}{subsection.6.2}%
+\contentsline {section}{\numberline {七、}问题三模型的建立与求解}{16}{section.7}%
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{16}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}k-medoids模型的建立与求解}{16}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}实验结果及分析}{16}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}实验结果及分析}{17}{subsection.7.3}%
 \contentsline {section}{\numberline {八、}灵敏度分析}{17}{section.8}%
 \contentsline {section}{\numberline {九、}模型的评价}{18}{section.9}%
 \contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{18}{subsection.9.1}%

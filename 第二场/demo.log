@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  11 AUG 2020 15:09
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  11 AUG 2020 15:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1181,16 +1181,22 @@ File: figures/zhiwen.png Graphic file (type bmp)
 <figures/zhiwen.png>
 File: figures/zhiwen2.png Graphic file (type bmp)
 <figures/zhiwen2.png>
- [13] [14]
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
+ [13]
+Underfull \hbox (badness 10000) in paragraph at lines 446--447
+
+ []
+
+[14]
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
  [15]
+File: figures/whut.jpg Graphic file (type bmp)
+<figures/whut.jpg>
+ [16]
 File: figures/tree.png Graphic file (type bmp)
 <figures/tree.png>
- [16]
-Overfull \hbox (29.34032pt too wide) in paragraph at lines 505--507
+
+Overfull \hbox (29.34032pt too wide) in paragraph at lines 520--522
 []\TU/SimSun(1)/m/n/12.05 由 图 [][]\TU/TimesNewRoman(0)/m/n/12.05 12[][] \TU/Sim
 Sun(1)/m/n/12.05 可 知，|  当 $\OML/cmm/m/it/12.05 k \OT1/cmr/m/n/12.05 = 2$ \TU/Si
 mSun(1)/m/n/12.05 时，|  指 纹 样 本 被 分 为 $[]$ 与 $[]$
@@ -1213,7 +1219,7 @@ File: figures/guo/f7.png Graphic file (type bmp)
 File: figures/guo/f8.png Graphic file (type bmp)
 <figures/guo/f8.png>
 [17] [18]
-Underfull \hbox (badness 5091) in paragraph at lines 558--559
+Underfull \hbox (badness 5091) in paragraph at lines 573--574
 []\TU/TimesNewRoman(0)/m/n/12.05 Guo X, Liu X, Zhu E, et al. Deep clustering wi
 th convolutional autoen-
  []
@@ -1245,7 +1251,7 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
  [21]
-Overfull \hbox (74.94359pt too wide) in paragraph at lines 648--649
+Overfull \hbox (74.94359pt too wide) in paragraph at lines 663--664
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1253,7 +1259,7 @@ Overfull \hbox (74.94359pt too wide) in paragraph at lines 648--649
  []
 
 
-Overfull \hbox (72.4593pt too wide) in paragraph at lines 651--652
+Overfull \hbox (72.4593pt too wide) in paragraph at lines 666--667
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1261,7 +1267,7 @@ Overfull \hbox (72.4593pt too wide) in paragraph at lines 651--652
  []
 
 
-Overfull \hbox (23.55135pt too wide) in paragraph at lines 652--653
+Overfull \hbox (23.55135pt too wide) in paragraph at lines 667--668
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1269,12 +1275,12 @@ Overfull \hbox (23.55135pt too wide) in paragraph at lines 652--653
  []
 
 [22]
-Overfull \hbox (96.724pt too wide) in paragraph at lines 684--685
+Overfull \hbox (96.724pt too wide) in paragraph at lines 699--700
 [][][][][][][][][][]  
  []
 
 
-Overfull \hbox (31.45587pt too wide) in paragraph at lines 685--686
+Overfull \hbox (31.45587pt too wide) in paragraph at lines 700--701
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1282,7 +1288,7 @@ Overfull \hbox (31.45587pt too wide) in paragraph at lines 685--686
  []
 
 
-Overfull \hbox (181.19006pt too wide) in paragraph at lines 686--687
+Overfull \hbox (181.19006pt too wide) in paragraph at lines 701--702
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1291,7 +1297,7 @@ Overfull \hbox (181.19006pt too wide) in paragraph at lines 686--687
  []
 
 [23] [24]
-Overfull \hbox (157.92819pt too wide) in paragraph at lines 762--763
+Overfull \hbox (157.92819pt too wide) in paragraph at lines 777--778
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1300,7 +1306,7 @@ Overfull \hbox (157.92819pt too wide) in paragraph at lines 762--763
  []
 
 
-Overfull \hbox (95.59538pt too wide) in paragraph at lines 764--765
+Overfull \hbox (95.59538pt too wide) in paragraph at lines 779--780
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1309,7 +1315,7 @@ Overfull \hbox (95.59538pt too wide) in paragraph at lines 764--765
  []
 
 
-Overfull \hbox (60.81552pt too wide) in paragraph at lines 795--796
+Overfull \hbox (60.81552pt too wide) in paragraph at lines 810--811
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1317,7 +1323,7 @@ Overfull \hbox (60.81552pt too wide) in paragraph at lines 795--796
  []
 
 [25]
-Overfull \hbox (198.80585pt too wide) in paragraph at lines 816--817
+Overfull \hbox (198.80585pt too wide) in paragraph at lines 831--832
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1326,7 +1332,7 @@ Overfull \hbox (198.80585pt too wide) in paragraph at lines 816--817
  []
 
 
-Overfull \hbox (117.50221pt too wide) in paragraph at lines 817--818
+Overfull \hbox (117.50221pt too wide) in paragraph at lines 832--833
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1335,19 +1341,19 @@ Overfull \hbox (117.50221pt too wide) in paragraph at lines 817--818
  []
 
 
-Overfull \hbox (20.84108pt too wide) in paragraph at lines 823--824
+Overfull \hbox (20.84108pt too wide) in paragraph at lines 838--839
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (63.52553pt too wide) in paragraph at lines 824--825
+Overfull \hbox (63.52553pt too wide) in paragraph at lines 839--840
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (121.79324pt too wide) in paragraph at lines 829--830
+Overfull \hbox (121.79324pt too wide) in paragraph at lines 844--845
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
@@ -1356,7 +1362,7 @@ Overfull \hbox (121.79324pt too wide) in paragraph at lines 829--830
  []
 
 [26] [27]
-Overfull \hbox (45.58356pt too wide) in paragraph at lines 910--911
+Overfull \hbox (45.58356pt too wide) in paragraph at lines 925--926
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
@@ -1388,25 +1394,26 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.994 \end{document}
-                    
+l.1009 \end{document}
+                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 994.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1009.
 [39]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 994.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1009.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 994.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 994.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1009.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1009.
+
 Package rerunfilecheck Info: File `demo.out' has not changed.
 (rerunfilecheck)             Checksum: ABA80C3DF22949A8AC9FCE86B0AE5E00;3703.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 994.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1009.
  )
 (\end occurred inside a group at level 1)
 
