@@ -401,7 +401,9 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 	\section{问题二模型的建立与求解}
 		\subsection{问题分析与相似度计算}
 
-问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在使用卷积自动编码器将原始指纹图像转化成了特征编码后，图像的特征编码是以能反映指纹特征的行向量存储。对各行向量的每一维度进行归一化处理，分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
+问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在问题一模型中，本文使用卷积自动编码器将原始指纹图像转化成了以向量形式储存的特征编码，即分析各个指纹间相似程度可转化为量化分析编码向量间的相似程度。
+
+设计加权相似度以量化特征向量间的相似程度。首先对各行向量的每一维度进行归一化处理，之后分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数(Pearson Correlation Coefficient)和马哈拉诺比斯距离(Mahalanobis Distance)，最后构造关系函数确定行向量的相似程度。
 			
 			
 			\begin{itemize}
@@ -418,16 +420,16 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 				其中$\begin{Vmatrix}
 				A
 				\end{Vmatrix}^2$和$\begin{Vmatrix}
-				A
-				\end{Vmatrix}^2$分别是行向量$A$和$B$的模。
+				B
+				\end{Vmatrix}^2$分别是行向量$A$和$B$的模。谷本系数越大，向量间相似度越高。
 				\item \textbf{皮尔逊相关系数（Pearson Correlation Coefficient）}\\
-				皮尔逊相关系数反应了两个变量之间的线性相关程度，它的取值在[-1, 1]之间。
+				皮尔逊相关系数反应了两个变量之间的线性相关程度，它的取值在[-1, 1]之间，其绝对值越大，向量间线性相关程度越高。
 				\begin{gather}
 					P(A,B)=\frac{cov(A,B)}{\sigma_A\cdot \sigma_B}
 				\end{gather}
 				其中$cov(A,B)$是行向量$A$和$B$的协方差，$\sigma_A$和$\sigma_B$分别是$A$和$B$的元素标准差。
 				\item \textbf{马哈拉诺比斯距离（Mahalanobis Distance）}\\
-				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。
+				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。马氏距离越小，表示向量间相似度越高。
 				\begin{gather}
 				M(A,B)=\sqrt{(A-B)^T\Sigma^{-1}(A-B)}
 				\end{gather}
@@ -436,9 +438,9 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			
 			构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
 			\begin{gather}
-			S(A,B)=\omega_1 T(A,B)+\omega_2 P(A,B)+\omega_3 M(A,B)
+			S(A,B)=\omega_1 T(A,B)+\omega_2/ |P(A,B)|+\omega_3 M(A,B)
 			\end{gather}
-			式中取$\omega_1=0.95$，$\omega_2=0.02$，$\omega_3=0.03$。
+			其中$\omega_1$，$\omega_2$，$\omega_3$分别谷本系数，皮尔逊相关系数和马哈拉诺比斯距离对应权重$(\omega_1,\omega_2,\omega_3>0)$，其满足$\omega_1+\omega_2+\omega_3=1$。$S(A,B)$值越大即表示样本编码$A$与$B$的相似程度越高。
 
 
 
