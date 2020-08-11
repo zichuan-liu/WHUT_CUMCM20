@@ -28,19 +28,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%摘要%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{abstract}
 		控制高压油管的压力变化对减小燃油量偏差，提高发动机工作效率具有重要意义。本文建立了基于质量守恒定理的微分方程稳压模型，采用二分法、试探法以及自适应权重的蝙蝠算法对模型进行求解。
-		//
+
 	
-		针对问题一，建立基于质量守恒定律的燃油流动模型，考察单向阀开启时间对压力稳定性的影响。综合考虑压力与弹性模量、密度之间的关系，提出燃油压力-密度微分方程模型和燃油流动方程。本文采用改进的欧拉方法对燃油压力-密度微分方程求得数值解；利用二分法求解压力分布。综合考虑平均绝对偏差等反映压力稳定程度的统计量，求得直接稳定于100MPa的开启时长为\textbf{0.2955ms} ，在2s、5s内到达并稳定于150MPa时开启时长为\textbf{0.7795ms}、\textbf{0.6734ms}，10s到达并稳定于150MPa的开启时长存在多解。最后对求解结果进行灵敏度分析、误差分析。
 		
-	
+		针对在小样本条件下难以有效提取指纹特征的问题，设计了一种\textbf{卷积自编码网络}的个体细微特征提取算法。首先将预处理后的图像信号用\textbf{卷积核}转化到高维特征空间，然后利用大量无标签的指纹高维样本训练卷积\textbf{自编码器}网络。在此基础上，通过损失函数\textbf{KL散度}对原始图像和解码后图像\textbf{无监督学习}，编码出最佳线性空间特征。经训练提取的指纹特征损失率仅占\textbf{0.04\%}，具有精校的还原程度。
+		
+		
 		针对问题二，建立基于质量守恒定律的泵-管-嘴系统动态稳压模型，将燃油进入和喷出的过程动态化处理。考虑柱塞和针阀升程的动态变动，建立喷油嘴流量方程和质量守恒方程。为提高角速度求解精度，以凸轮转动角度为固定步长，转动时间变动步长，采用试探法粗略搜索与二分法精细搜索的方法求解，求得凸轮最优转动角速度\textbf{0.0283rad/ms（转速270.382转/分钟）}，并得到该角速度下高压油管的密度、压力周期性变化图。对求解结果进行误差分析与灵敏度分析，考察柱塞腔残余容积变动对高压油管压力稳态的影响。
 		
-		针对问题三，对于增加一个喷油嘴的情况，改变质量守恒方程并沿用问题二的模型调整供、喷油策略，得到最优凸轮转动角速度为\textbf{0.0522rad/ms（498.726转/分钟）}；对于既增加喷油嘴又增加减压阀的情况，建立基于自适应权重的蝙蝠算法的多变量优化模型，以凸轮转动角速度、减压阀开启时长和关闭时长为参数，平均绝对偏差MAD为目标，在泵-管-嘴系统动态稳压模型的基础上进行求解，得到最优参数：\textbf{角速度0.0648 rad/ms（619.109转/分钟）}、减压阀的开启时长\textbf{2.4ms}和减压阀的关闭时长\textbf{97.6ms}。
+		针对问题三，建立中心聚类模型，以问题二中的量化相似度作为代价函数，并使用$k-medoids$算法选取聚类中心点完成样本分类；对于附件中的$16$个指纹样本，基于问题二设计的加权相似度模型可计算出每两个指纹样本间的相似度。选取$k$个样本点作为聚类中心，以样本点到聚类中心的平均值作为代价函数。遍历所有聚类中心组合，可得出被分为$k$组的样本聚类结果。当$k=2$时，分组情况为？？？？；当$k=3$时，分组情况为？？？？；当$k=4$时，分组情乱为？？？？。
+		
 		
 		本文的优点为：1. 采用试探法粗略搜索与二分法精细搜索结合的方法，降低了问题的求解难度。2.以凸轮转动角度为固定步长，对不同角速度按照不同精度的时间步长求解，大大提高了求解的精确度。 3.针对智能算法求解精度方面，采用改进的蝙蝠算法，使速度权重系数自适应调整，兼顾局部搜索与全局搜索能力。
 		
 		\keywords{
-			微分方程\quad
+			卷积自编码器\quad
 			微分方程\quad	
 			微分方程\quad
 			微分方程\quad
@@ -78,9 +80,15 @@
 			\textbf{应用：} 你能否对附件中的16个指纹进行对比和归类？请给出你对比及分类的依据和结果。
 
 	\section{模型假设}
+<<<<<<< HEAD
 		\begin{itemize}                                             
 		\item [(1)]
 		\item [(2)]
+=======
+		\begin{itemize}    
+	\item [(1)] 假设附件中所有指纹图像都为清晰完整的图像，不存在由于图像压缩产生的信息损失。
+\item [(2)] 假设附件中的指纹图像特征都具有代表性，具有正常人指纹拥有的所有特征。
+>>>>>>> origin/lzc
 		\item [(3)] 
 		\item [(4)] 
 		\end{itemize}
@@ -93,13 +101,13 @@
 			\toprule[1.5pt]
 			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
 			\midrule[1pt]		
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$b$  & 编码大小  \\ 
-$X$  & 图像矩阵  \\ 
+$P_{i}$  & 第i张图像，$i=\left\{1, 2, \cdots, 16\right\}$  \\ 
+$u_{P(x,y)}$& 像素矩阵 \\
+$(x,y)$  & 像素点位置值  \\ 
+$fringe_{x1}, fringe_{x2}$  & 图片的上下边界  \\ 
+$fringe_{y1}, fringe_{y2}$  & 图片的左右边界  \\ 
+$E$  & 信息熵  \\ 
+$iDir$  &  脊线方向 \\ 
 $\gamma$  & 编码器的图像编码  \\ 
 $b$  & 编码大小  \\ 
 $Z$  & 解码器还原的图像矩阵  \\ 
@@ -108,15 +116,24 @@ $in/out$  & 出/入通道数  \\
   	$b$  & 编码大小  \\ 
 $lr$  & 学习率  \\ 
 $k_i$  & 卷积核i  \\ 
+$T$  & 谷本系数  \\ 
+$P$  & 皮尔逊相关系数  \\ 
+$M$  &  马氏距离 \\ 
+$\left \{ c_i \right \}$  &  聚类中心 \\ 
+$\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j)$&样本点$ \gamma_i $与$\left \{ c_i \right \}$间的最高的相似度值\\
 			\bottomrule[1.5pt]
 		\end{tabular}
 		\begin{tablenotes}
 		\item 注：表中未说明的符号以首次出现处为准
 		\end{tablenotes}
 		\end{table}
-	
 	\section{数据预处理}
-在正式搭建模型前，本文首先将图片进行预处理，以方便进行后续运算。经过归一化处理，？？？和？？？后，即可得到相同规格的二值化图片。
+在正式搭建模型前，本文首先将图片进行预处理，以方便进行后续运算。经过归一化处理，图像增强处理和二值化处理后，即可得到相同规格的二值化图片，其具体流程如图~\ref{dfsg}~所示
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\textwidth]{figures/chou4.png}
+	\caption{图片数据预处理}\label{dfsg}
+\end{figure}   
 \subsection{归一化处理}
 \subsubsection{灰度值处理}
 鉴于各个指纹图像的纹理深浅不统一，首先对每张图片做灰度值归一化处理。对于图片$P_{i}$,其第$x$行第$y$列的像素点的灰度值可表示为$P_{i}(x,y)\in[0,255]$。即当$P_{i}(x,y)=255$时，$P_{i}(x,y)$为纯白色像素点；当$P_{i}(x,y)=0$时，$P_{i}(x,y)$为纯黑色像素点。对于任意图片$P_{i}$，有
@@ -147,13 +164,13 @@ $k_i$  & 卷积核i  \\
 	x\in[1,N],	y\in[1,M],
 \end{gather*}
 其中$floor$表示向下取整，即通过灰度值处理、外框去除与尺度统一后即可将原始指纹图片数据$P_{i}$转换为灰度值范围与图片尺度统一的归一化图片数据$P_{i}^s(x,y)$。
-\subsection{图像强化处理}
+\subsection{图像增强处理}
 利用Grunward-Letnikov微分算子\upcite{5}，构造自适应函数，采集梯度信息和计算信息熵，从而确定微分阶数。	
 为了确定自适应分数阶微分阶数$v$，需要确定每个像素的梯度$G$和信息熵$E$。
 梯度$G$反映指纹像素特征在感兴趣区域(ROI, Region of Interest)上的突变情况，取近似梯度模值为
 \begin{gather}
-	\displaystyle G[f(x,y)]=\max\begin{Bmatrix}
-		|\frac{\partial f }{\partial x}|,|\frac{\partial f}{\partial y}|
+	\displaystyle G[P(x,y)]=\max\begin{Bmatrix}
+		|\frac{\partial P }{\partial x}|,|\frac{\partial P}{\partial y}|
 	\end{Bmatrix}.
 \end{gather}
 
@@ -169,19 +186,19 @@ $k_i$  & 卷积核i  \\
 综合梯度模值和信息熵，构造关系函数$v=w_1\cdot G+w_2\cdot E'+w_3$，即微分阶数$v$由梯度和信息熵共同决定，梯度模值和信息熵越大，反映该指纹像素需要增强的程度越大，更可能为纹理区域或边缘，分数阶微分阶数取值也越大。此问题中，可算得$v=3$。将阶数代入利用Grunward-Letnikov分数阶微分近似表达式，即
 
 \begin{gather}
-	\displaystyle\frac{\partial^v f(x,y)}{\partial x_{i}^{v}}\doteq\displaystyle\sum_{k=0}^{t-\alpha}(-1)^{k}\begin{pmatrix}
+	\displaystyle\frac{\partial^v P(x,y)}{\partial x_{i}^{v}}\doteq\displaystyle\sum_{k=0}^{t-\alpha}(-1)^{k}\begin{pmatrix}
 		v \\ k
-	\end{pmatrix}f(x_i-k), 
+	\end{pmatrix}P(x_i-k), 
 \end{gather}
-其中$f(x,y)$是图像坐标为$(x,y)$的像素灰度值，$t$和$\alpha$分别是微分上限和下限，$x_i(i=0,1,...,7)$是不同的偏微分方向，此处取以$x$轴正向为起始方向，顺时针旋转一周均匀分部的$8$个方向。为方便计算，对$8$个方向的分数阶偏微分近似分别保留前三项进行三层$5 \times 5$掩膜构造，并进行归一化赋权。
+其中$P(x,y)$是图像坐标为$(x,y)$的像素灰度值，$t$和$\alpha$分别是微分上限和下限，$x_i(i=0,1,...,7)$是不同的偏微分方向，此处取以$x$轴正向为起始方向，顺时针旋转一周均匀分部的$8$个方向。为方便计算，对$8$个方向的分数阶偏微分近似分别保留前三项进行三层$5 \times 5$掩膜构造，并进行归一化赋权。
 
 对每个方向$x_i$，以掩膜中心点为作用点，$5\times 5$掩膜$w(x,y)$中三层权重分别为分数阶微分近似的前三项系数，则掩膜中总权重为分数阶微分近似的前三项系数与每层掩膜元素个数的乘积之和，即$4v_2-12v+8$。对权重归一化，可得中心点、第一层、第二层掩膜元素权重分别为$\displaystyle w_0=\frac{8}{4v_2-12v+8}, w_1=\frac{-v}{4v_2-12v+8}, w_2=\frac{v}{16(v-2)}$。
 在规模为$M\times N$的图像上，对距离中心点小于$\displaystyle M-\frac{n-1}{2}$和$\displaystyle N-\frac{n-1}{2}$的像素进行$n\times n$掩膜操作，其他像素进行灰度保留。输出图像可以表示为：
 \begin{gather}
-	\displaystyle g(x,y)=\sum_{s=-a}^{a}\sum_{t=-b}^{b}f(x+s,y+t)\cdot \boldmath{w}(x,y),
+	\displaystyle g(x,y)=\sum_{s=-a}^{a}\sum_{t=-b}^{b}P(x+s,y+t)\cdot \boldmath{w}(x,y),
 \end{gather}
 其中，$w(x,y)$是构造的$5\times 5$掩膜，$a=b=\displaystyle \frac{n-1}{2}$。
-\subsubsection{滤波}
+
 
 \subsection{二值化处理}	  	
 \subsubsection{场方向估计}
@@ -197,7 +214,7 @@ $k_i$  & 卷积核i  \\
 	\end{bmatrix}.
 \end{gather*}
 
-若$u_{P(x,y)}$中存在若干像素点超出原图像边界时，记超出边界的像素点为$P_o$并使得$\left \{ P_o \right \}=255$。并依照图？？？中的方向，分别计算$8$个方向上的灰度平均值得到$Gmean[i]$，然后将这 $8$ 个平均值按两两垂直的方向分成 $4$ 组,$0 $和 $4$ 一组、$1$ 和 $5$ 一组、$2$ 和 $6$ 一组、$3$ 和 $7$ 一组，计算
+若$u_{P(x,y)}$中存在若干像素点超出原图像边界时，记超出边界的像素点为$P_o$并使得$\left \{ P_o \right \}=255$。并依照图~\ref{adf}~中的方向，分别计算$8$个方向上的灰度平均值得到$Gmean[i]$，然后将这 $8$ 个平均值按两两垂直的方向分成 $4$ 组,$0 $和 $4$ 一组、$1$ 和 $5$ 一组、$2$ 和 $6$ 一组、$3$ 和 $7$ 一组，计算
 每组中两个平均值的差值。
 \begin{gather*}
 	Gdiff[j]=\left | Gmean[j]-Gmean[j+4] \right |,j=1,2,3,4,
@@ -210,8 +227,8 @@ $k_i$  & 卷积核i  \\
 \end{gather*}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{figures/whut.jpg}
-	\caption{问题一思维流程图}\label{lct}
+	\includegraphics[width=.5\textwidth]{figures/chou.png}
+	\caption{脊线估计方向}\label{adf}
 \end{figure}   
 \subsubsection{二值化}
 得到图像每个像素处的方向场后,再依据方向场来对图像进行二值化。若像素$P(x,y)$处的脊线方向为$iDir$，先用估计方向场的方法计算该像素处在方向$iDir$和其法线$iVar=iDir+4$的灰度平均值$ Gmean[iDir]$和$ Gmean[iVar]$，基于此将该像素二值化为
@@ -221,6 +238,17 @@ $k_i$  & 卷积核i  \\
 	\end{matrix}\right. ,
 \end{gather*}
 其中255为二值图像中图像背景和谷线的灰度值，0 为二值图像中图像脊线的灰度值。
+
+	经过上述处理指纹图像，得到最终结果如图所示
+	       	\begin{figure}[H]	
+		\centering
+		\subfigure[指纹原始图像]{\includegraphics[height=5cm,width=5cm]{figures/rrr.png}}
+		\subfigure[指纹预处理后]{\includegraphics[height=5cm,width=3cm]{figures/result01.png}}
+		\caption{图像预处理的效果图}
+		\label{zhiwesn}
+	\end{figure}
+	
+	
 	\section{问题一模型的建立与求解}
 	
 		\subsection{问题描述与分析}
@@ -298,7 +326,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			普通的自编码器中，编码器和解码器中层与层之间的连
 			接方式为全连接，该编码器具有一个输入层，n个隐藏层和一个输出层，
 			
-			给定图片样本$X=\left\{ x_1,x_2,\cdots,x_nx \right\}, X\in \mathbb{R}^{n\times c\times w \times h}$，其中c为通道数。自编码器首先将$x_i$编码成$y(x_i)$再解码成$z(y_i)$，其公式L表述如下：
+			给定图片样本$X=\left\{ x_1,x_2,\cdots,x_nx \right\}, X\in \mathbb{R}^{n\times c\times w \times h}$，其中c为通道数。自编码器首先将$x_i$编码成$\gamma(x_i)$再解码成$z(y_i)$，其公式L表述如下：
 				\begin{gather}
 			\begin{array}{l}
 			\gamma (x)=Encoder\left(W_{1} x+b\right) \\
@@ -322,7 +350,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 				\includegraphics[width=\textwidth]{figures/model.png}
 				\caption{卷积自编码器CAE模型}\label{labssel}
 			\end{figure}
-		其中，Conv表示全卷积，ConvTranspose表示有效值卷积，Activation表述rule激活层，Pooling表示池化层，对应的编码输入为$Z(X)<200byte$。
+		其中，Conv表示全卷积，ConvTranspose表示有效值卷积，Activation表示rule激活层，Pooling表示池化层，对应的编码输入为$b(\gamma)<200byte$。
 		
 	
 					将稀疏约束添加到目标函数后，自动编码器将成为稀疏的自动编码器，它考虑二值图像隐藏层的稀疏表示。 为了实现稀疏表示，本文将使用稀疏约束将重构误差最小化，加上损失函数KL散度：
@@ -367,10 +395,10 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
         	\includegraphics[width=.6\textwidth]{figures/loss.png}
         	\caption{CAE迭代过程中损失函数函数}\label{loss}
         \end{figure}
-    可以看出，我们的模型在解码还原过程中，能明显逼近于真实的指纹图片，信息损失仅占0.04\%，对于传统的编码方法有明显的压缩能力。
+    可以看出，本文的模型在解码还原过程中，更逼近于真实的指纹图片，信息损失仅占0.04\%，相较于传统的编码方法有更强信息贮存能力。
     
-    本文将指纹编码过程进行还原，得到解码图像入下图所示，可以看见CAE模型编码后再还原出的指纹图像具有高精度的还原。
-        			\begin{figure}[H]	
+    本文将指纹编码过程进行还原，得到解码图像入下图所示，图中的指纹图像上方数字表示迭代次数，显然随迭代次数增加，还原的指纹图像的清晰度与完整度逐渐增加；当迭代次数超过120时，图像清晰度变化几乎无法用肉眼分辨。显然经由CAE模型编码后的指纹图像可被高精度还原。
+       	\begin{figure}[H]	
         	\centering
         	\subfigure[指纹1过程过程]{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen.png}}
         	\subfigure[指纹2解码过程]{\includegraphics[height=8cm,width=7.5cm]{figures/zhiwen2.png}}
@@ -381,9 +409,10 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
     
 
 	\section{问题二模型的建立与求解}
-		\subsection{问题描述与分析}
-			问题二要求给出比较不同指纹异同的方法。
-			在问题一的基础上，将指纹图像输入CAE，输出能反映指纹特征的行向量。对各行向量的每一维度进行归一化处理，分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
+		\subsection{问题分析与相似度计算}
+
+问题二要求从第一问求得的指纹编码的角度分析各个指纹间的异同及相似程度。在使用卷积自动编码器将原始指纹图像转化成了特征编码后，图像的特征编码是以能反映指纹特征的行向量存储。对各行向量的每一维度进行归一化处理，分别计算归一化后的行向量间的谷本系数(Tanimoto Coefficient)、皮尔森相关系数（Pearson Correlation Coefficient）和马哈拉诺比斯距离（Mahalanobis Distance），最后构造关系函数确定行向量的相似程度。
+
 			
 			
 			\begin{itemize}
@@ -416,6 +445,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			\end{itemize}
 			其中，$\Sigma$是随机变量的协方差矩阵。
 			
+<<<<<<< HEAD
 			构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
 			\begin{gather}
 			S(A,B)=\omega_1 T(A,B)+\omega_2 |P(A,B)|+\omega_3 \displaystyle \frac{1}{M(A,B)}
@@ -428,37 +458,53 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 				\includegraphics[width=\textwidth]{figures/whut.jpg}
 				\caption{问题二思维流程图}\label{lssssct}
 			\end{figure}
+=======
+				谷本系数越大，向量间相似度越高。皮尔逊相关系数绝对值越大，向量间线性相关程度越高。马氏距离越小，向量间相似度越高。构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
+	\begin{gather}
+	S(A,B)=\omega_1 T(A,B)+\omega_2 |P(A,B)|+\omega_3 \displaystyle \frac{1}{M(A,B)}
+	\end{gather}
+	满足$\omega_1+\omega_2+\omega_3=1$。关系函数值越大，表明$A$和$B$的相似度越高。
+	
+>>>>>>> origin/lzc
 
-		\subsection{模型的建立和求解}
 
         \subsection{实验结果及分析}
         
-			结果如下表\ref{zhuanssssasgzai}所示：
-			\begin{table}[H]
-			\setstretch{1.4}  %设置表的行间距
-			\centering		
-			\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-			\begin{tabular}{cc}
-			\toprule[2pt]
-				\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				\\
-				\midrule[1pt]
-				xxxxxxx &   909.80\\ 
-				xxxxxxx & 	852.60\\ 
-			\bottomrule[2pt]	
-			\end{tabular}
-			\end{table}
-  
-  			由表\ref{biao1}可知
-
-			其各个小车的运输细节图下图所示：
 
 
     \section{问题三模型的建立与求解}
-  		\subsection{结果分析}
-  
-  
+
+  	\subsection{问题描述与分析}
+  	问题三在问题二将指纹相似度量化的基础上，进一步要求将样本指纹进行类比归类，其本质是一个样本分类问题。根据第二问的相似度量化结果，可得到任意两个指纹样本间的相似程度，即可在其基础上搭建中心聚类模型以将样本指纹进行类比归类。
+  	
+    本文设计的加权相似度$S$具有非欧几里得特征(引用)，不可使用样本均值作为聚类中心，即不可使用经典中心聚类算法$k-means$算法经行样本聚类。针对该问题，我们引入$k-medoids$算法以确定样本中心点，并以模型二设计的加权相似度的平均值作为代价函数，对附件中的$16$个指纹样本进行聚类。
+  	
+  	\begin{figure}[H]
+  		\centering
+  		\includegraphics[width=\textwidth]{figures/whut.jpg}
+  		\caption{问题二思维流程图}\label{lsssscst}
+  	\end{figure}
+  	\subsection{k-medoids模型的建立与求解}
+  	本文采用$k-medoids$模式选取聚类中心点\upcite{14,15}，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
+  	\begin{gather}
+  J(c_1,c_2,\cdots,c_k)=\frac{1}{16}\sum _{i=1}^{16}\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j),
+  	\end{gather}
+  	其中$\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j)$表示与样本点$ \gamma_i $与$k$个聚类中心$\left \{ c_i \right \}$间的最高的相似度值，即将$\gamma _i$归入与其相似度最高的聚类中心。即将聚类中心$\left \{ c_i \right \}$作为决策变量，搜索最佳聚类中心组合，使得代价函数$J(c_1,c_2,\cdots,c_k)$达到最大值，即
+      	\begin{gather}
+      max \frac{1}{16}\sum _{i=1}^{16}\underset{1\leqslant j\leqslant k}{Max}S(\gamma _i,c_j),\\
+      s.t.\left \{  c_j  | j\in [1,k] \right \}  \subseteq  \left \{ \gamma _i | i\in [1,16]\right \} 
+      \end{gather}
+  	鉴于该问题样本规模较小，本文采用遍历方式，输入所有聚类中心并选取代价函数值最高的聚类中心组合
+  	\subsection{实验结果及分析}
+  	通过$k-medoids$可得聚类结果树状图如图~\ref{bgbgbg}~所示
+  	\begin{figure}[H]
+  		\centering
+  		\includegraphics[width=\textwidth]{figures/tree.png}
+  		\caption{脊线估计方向}\label{bgbgbg}
+  	\end{figure}
+  	由图~\ref{bgbgbg}~可知，当$k=2$时，指纹样本被分为$\left \{ 1,4,7,10,11,16 \right \}$与$\left \{ 2,3,5,6,8,9,\\
+  	12,13,14,15 \right \}$两组；当$k=4$时，样本$10$独立为一组，其余三组是$\left \{ 1,4,7,11,16 \right \}$，$\left \{ 2,3,5   \right \}$与 $\left \{ 6,8,9,12,13,14,15 \right \}$。鉴于$k=4$时代价函数值最优，本文倾向于将样本分为四类。（附图？？？）
+  	
   	\section{灵敏度分析}
   本文对卷积自编码器中编码层输入的$\gamma$大小$b$做调整，得到
   				\begin{figure}[H]
@@ -479,7 +525,6 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	\end{figure}
   	根据上述解码后效果图可以看出：编码50字节后能还原出指纹大致轮廓，但是具体图像仍然不清晰；编码100字节能还原出微细节轮廓，但上方密集部分仍然呈现模糊状况；编码150字节后能较为清晰的还原，但还是存在少量噪声；而到200字节以上非常清晰，能通过降维后的编码数据完美的还原出原始指纹图像。
  	
- 
   	\section{模型的评价}
 		\subsection{模型的优点}
 			\begin{itemize}                                             
@@ -512,6 +557,8 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 	\bibitem{11}Gao L, Chen P Y, Yu S. Demonstration of convolution kernel operation on resistive cross-point array[J]. IEEE Electron Device Letters, 2016, 37(7): 870-873.
 	\bibitem{12}Guo X, Liu X, Zhu E, et al. Deep clustering with convolutional autoencoders[C]//International conference on neural information processing. Springer, Cham, 2017: 373-382.
 	\bibitem{13} 王万良, 杨小涵, 赵燕伟, 等. 采用卷积自编码器网络的图像增强算法[J]. 浙江大学学报 (工学版), 2019, 53(9): 1728-1740.
+	\bibitem{14}Arora P, Varshney S. Analysis of k-means and k-medoids algorithm for big data[J]. Procedia Computer Science, 2016, 78: 507-512.
+	\bibitem{15}Yu D, Liu G, Guo M, et al. An improved K-medoids algorithm based on step increasing and optimizing medoids[J]. Expert Systems with Applications, 2018, 92: 464-473.
 	\end{thebibliography}
 
 	\newpage
@@ -937,5 +984,11 @@ end
 			keywordstyle=\color{blue!70!black},  
 			commentstyle=\color{blue!90!},  
 			basicstyle=\ttfamily] {./code/tuxiang.py}
-
+	\section{第二、三问代码实现及可视化}
+\subsection*{k-medoids模型--python源代码}
+\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
+rulesepcolor=\color{red!20!green!20!blue!20},  
+keywordstyle=\color{blue!70!black},  
+commentstyle=\color{blue!90!},  
+basicstyle=\ttfamily] {./code/julei.py}
 \end{document}
