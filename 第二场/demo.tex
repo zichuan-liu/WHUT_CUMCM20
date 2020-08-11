@@ -18,7 +18,7 @@
 
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%题目%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{基于xxxxxxxx模型}
+\title{基于卷积自编码的指纹编码与k聚类模型}
 \tihao{1} 
 
 \begin{document}
@@ -31,14 +31,12 @@
 		//
 	
 		针对问题一，建立基于质量守恒定律的燃油流动模型，考察单向阀开启时间对压力稳定性的影响。综合考虑压力与弹性模量、密度之间的关系，提出燃油压力-密度微分方程模型和燃油流动方程。本文采用改进的欧拉方法对燃油压力-密度微分方程求得数值解；利用二分法求解压力分布。综合考虑平均绝对偏差等反映压力稳定程度的统计量，求得直接稳定于100MPa的开启时长为\textbf{0.2955ms} ，在2s、5s内到达并稳定于150MPa时开启时长为\textbf{0.7795ms}、\textbf{0.6734ms}，10s到达并稳定于150MPa的开启时长存在多解。最后对求解结果进行灵敏度分析、误差分析。
-		//
+		
 	
 		针对问题二，建立基于质量守恒定律的泵-管-嘴系统动态稳压模型，将燃油进入和喷出的过程动态化处理。考虑柱塞和针阀升程的动态变动，建立喷油嘴流量方程和质量守恒方程。为提高角速度求解精度，以凸轮转动角度为固定步长，转动时间变动步长，采用试探法粗略搜索与二分法精细搜索的方法求解，求得凸轮最优转动角速度\textbf{0.0283rad/ms（转速270.382转/分钟）}，并得到该角速度下高压油管的密度、压力周期性变化图。对求解结果进行误差分析与灵敏度分析，考察柱塞腔残余容积变动对高压油管压力稳态的影响。
-		//
-	
+		
 		针对问题三，对于增加一个喷油嘴的情况，改变质量守恒方程并沿用问题二的模型调整供、喷油策略，得到最优凸轮转动角速度为\textbf{0.0522rad/ms（498.726转/分钟）}；对于既增加喷油嘴又增加减压阀的情况，建立基于自适应权重的蝙蝠算法的多变量优化模型，以凸轮转动角速度、减压阀开启时长和关闭时长为参数，平均绝对偏差MAD为目标，在泵-管-嘴系统动态稳压模型的基础上进行求解，得到最优参数：\textbf{角速度0.0648 rad/ms（619.109转/分钟）}、减压阀的开启时长\textbf{2.4ms}和减压阀的关闭时长\textbf{97.6ms}。
-		//
-	
+		
 		本文的优点为：1. 采用试探法粗略搜索与二分法精细搜索结合的方法，降低了问题的求解难度。2.以凸轮转动角度为固定步长，对不同角速度按照不同精度的时间步长求解，大大提高了求解的精确度。 3.针对智能算法求解精度方面，采用改进的蝙蝠算法，使速度权重系数自适应调整，兼顾局部搜索与全局搜索能力。
 		
 		\keywords{
@@ -53,6 +51,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%目录%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\thispagestyle{empty}
 	\tableofcontents
+		\thispagestyle{empty}
 	\setcounter{page}{0}                                               
 	\newpage	%换页符
 	
@@ -80,13 +79,12 @@
 
 	\section{模型假设}
 		\begin{itemize}                                             
-		\item [(1)] 
+		\item [(1)]
 		\item [(2)]
 		\item [(3)] 
 		\item [(4)] 
 		\end{itemize}
 
-		
 	\section{符号说明}
 		\begin{table}[H]
 		\centering
@@ -95,15 +93,28 @@
 			\toprule[1.5pt]
 			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
 			\midrule[1pt]		
-			$P_n$  & 20个站点  \\ 
-			$P_n$  & 20个站点  \\ 
-		   	$P_n$  & 20个站点  \\ 
+$b$  & 编码大小  \\ 
+$b$  & 编码大小  \\ 
+$b$  & 编码大小  \\ 
+$b$  & 编码大小  \\ 
+$b$  & 编码大小  \\ 
+$b$  & 编码大小  \\ 
+$X$  & 图像矩阵  \\ 
+$\gamma$  & 编码器的图像编码  \\ 
+$b$  & 编码大小  \\ 
+$Z$  & 解码器还原的图像矩阵  \\ 
+$epoch$  & 迭代次数  \\ 
+$in/out$  & 出/入通道数  \\ 
+  	$b$  & 编码大小  \\ 
+$lr$  & 学习率  \\ 
+$k_i$  & 卷积核i  \\ 
 			\bottomrule[1.5pt]
 		\end{tabular}
 		\begin{tablenotes}
 		\item 注：表中未说明的符号以首次出现处为准
 		\end{tablenotes}
 		\end{table}
+	
 	\section{数据预处理}
 在正式搭建模型前，本文首先将图片进行预处理，以方便进行后续运算。经过归一化处理，？？？和？？？后，即可得到相同规格的二值化图片。
 \subsection{归一化处理}
@@ -137,7 +148,7 @@
 \end{gather*}
 其中$floor$表示向下取整，即通过灰度值处理、外框去除与尺度统一后即可将原始指纹图片数据$P_{i}$转换为灰度值范围与图片尺度统一的归一化图片数据$P_{i}^s(x,y)$。
 \subsection{图像强化处理}
-利用Grunward-Letnikov微分算子，构造自适应函数，采集梯度信息和计算信息熵，从而确定微分阶数。	
+利用Grunward-Letnikov微分算子\upcite{5}，构造自适应函数，采集梯度信息和计算信息熵，从而确定微分阶数。	
 为了确定自适应分数阶微分阶数$v$，需要确定每个像素的梯度$G$和信息熵$E$。
 梯度$G$反映指纹像素特征在感兴趣区域(ROI, Region of Interest)上的突变情况，取近似梯度模值为
 \begin{gather}
@@ -175,7 +186,7 @@
 \subsection{二值化处理}	  	
 \subsubsection{场方向估计}
 一般指纹图像都有较为清晰的场方向，对于图像上的每一个像素$P(x,y)$，为了确定其在该像素处脊线的方向，以该像素为中心的$9\times9$像素矩阵$u_{P(x,y)}$内，分别计算$8$个
-方向上的灰度平均值，即对于
+方向上的灰度平均值\upcite{6}，即对于
 \begin{gather*}
 	u_{P(x,y)}=\begin{bmatrix}
 		P(x-4,y-4) & \cdots  & P(x,y-4) & \cdots  & P(x+4,y-4) \\ 
@@ -213,7 +224,7 @@
 	\section{问题一模型的建立与求解}
 	
 		\subsection{问题描述与分析}
-			问题一要求给出一种用不超过200字节来刻画描述指纹基本特征的表示方法。传统的图像压缩方法有霍夫曼压缩、Golomb编码、LZW编码、小波编码等，这些都能对指纹进行刻画。但是相对于200字节的限制而言，他们在压缩编码方向显得不尽人意。
+			问题一要求给出一种用不超过200字节来刻画描述指纹基本特征的表示方法。传统的图像压缩方法有霍夫曼压缩、Golomb编码、LZW编码、小波编码等\upcite{7,8,9}，这些都能对指纹进行刻画。但是相对于200字节的限制而言，他们在压缩编码方向显得不尽人意。
 			
 			相较于传统的图片编码而言，通过网络编码能更有效的提高图像在细节上的依赖。在网络训练的过程中，网络只用到该向量之中少量元素，其中的大部分元素对于网络来说是没有用的。自编码器通过无监督学习来提取有用的信息，对于指纹图片来说是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的，从而实现小样本编码。
 		
@@ -225,12 +236,12 @@
 %			\end{figure}
 %			
 		\subsection{搭建卷积自编码器模型}
-		   自编码器（AutoEncoder）是一种能够通过无监督学习，学到输入数据高效表示的人工神经网络。输入数据的这一高效表示称为编码（codings），其维度一般远小于输入数据，使得自编码器可用于降维。更重要的是，自编码器可作为强大的特征检测器（feature detectors），应用于深度神经网络的预训练。我们以VGG模型\upcite{4}结构为基础，构造一个 新的卷积神经网络模型，并通过交叉验证的思想训练小样本数据，调整
+		   自编码器（AutoEncoder）是一种能够通过无监督学习，学到输入数据高效表示的人工神经网络。输入数据的这一高效表示称为编码（codings），其维度一般远小于输入数据，使得自编码器可用于降维\upcite{10}。更重要的是，自编码器可作为强大的特征检测器（feature detectors），应用于深度神经网络的预训练。我们以VGG模型\upcite{4}结构为基础，构造一个 新的卷积神经网络模型，并通过交叉验证的思想训练小样本数据，调整
 		   模型参数，得到小样本条件下最优的卷积神经网络模型。
 		
 			\subsubsection{卷积神经网络}
 			
-			\paragraph{Convolution Kernel} 在图像处理的过程中，我们经常会用到矩阵卷积来计算图像(image)的特征(feature)，矩阵卷积有两种：全卷积(full convolution)和有效值卷积(valid convolution)，其全卷积核函数的定义式为：
+			\paragraph{Convolution Kernel} 在图像处理的过程中，我们经常会用到矩阵卷积来计算图像(image)的特征(feature)，矩阵卷积有两种：全卷积(full convolution)和有效值卷积(valid convolution)\upcite{11}，其全卷积核函数的定义式为：
 			     \begin{gather}
 z(u, v)=\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i, j} \cdot k_{u-i, v-j},
 			     \end{gather}
@@ -290,7 +301,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			给定图片样本$X=\left\{ x_1,x_2,\cdots,x_nx \right\}, X\in \mathbb{R}^{n\times c\times w \times h}$，其中c为通道数。自编码器首先将$x_i$编码成$y(x_i)$再解码成$z(y_i)$，其公式L表述如下：
 				\begin{gather}
 			\begin{array}{l}
-			y(x)=Encoder\left(W_{1} x+b\right) \\
+			\gamma (x)=Encoder\left(W_{1} x+b\right) \\
 			z(x)=Decoder\left(W_{2} y(x)+c\right)
 			\end{array}.
 			\end{gather}
@@ -304,7 +315,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			经网络中卷积池化部分的结构相同。首先通过编码器部分构
 			造出对应的解码器部分，在训练结束后，保留编码器部分的结
 			构和权重，在编码器后加上与卷积神经网络结构中相同的全
-			连接层来进行图像的编码与分类识别。其卷积自编码器$L(X,Z)$的具体结构如图
+			连接层来进行图像的编码与分类识别\upcite{12,13}。其卷积自编码器$L(X,Z)$的具体结构如图
 			\ref{labssel}所示：
 					\begin{figure}[H]
 				\centering
@@ -338,7 +349,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
         		\toprule[1.5pt]
         		\multicolumn{1}{m{5cm}}{\centering 参数名称}
         		& \multicolumn{1}{m{2cm}}{\centering 值}
-        		&        		\multicolumn{1}{m{5cm}}{\centering 参数名称}
+        		& \multicolumn{1}{m{5cm}}{\centering 参数名称}
         		& \multicolumn{1}{m{2cm}}{\centering 值}
         		\\
         		\midrule[1pt]
@@ -390,15 +401,15 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 				A
 				\end{Vmatrix}^2$和$\begin{Vmatrix}
 				B
-				\end{Vmatrix}^2$分别是行向量$A$和$B$的模。
+				\end{Vmatrix}^2$分别是行向量$A$和$B$的模。谷本系数越大，向量间相似度越高。
 				\item \textbf{皮尔逊相关系数（Pearson Correlation Coefficient）}\\
 				皮尔逊相关系数反应了两个变量之间的线性相关程度，它的取值在[-1, 1]之间。
 				\begin{gather}
 					P(A,B)=\frac{cov(A,B)}{\sigma_A\cdot \sigma_B}
 				\end{gather}
-				其中$cov(A,B)$是行向量$A$和$B$的协方差，$\sigma_A$和$\sigma_B$分别是$A$和$B$的元素标准差。
+				其中$cov(A,B)$是行向量$A$和$B$的协方差，$\sigma_A$和$\sigma_B$分别是$A$和$B$的元素标准差。皮尔逊相关系数绝对值越大，向量间线性相关程度越高。
 				\item \textbf{马哈拉诺比斯距离（Mahalanobis Distance）}\\
-				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。
+				马氏距离是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。马氏距离越小，相似度越高。
 				\begin{gather}
 				M(A,B)=\sqrt{(A-B)^T\Sigma^{-1}(A-B)}
 				\end{gather}
@@ -407,9 +418,9 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			
 			构造关系函数如下所示，用$S(A,B)$表示CAE输出行向量$A$和$B$的相似度：
 			\begin{gather}
-			S(A,B)=\omega_1 T(A,B)+\omega_2 P(A,B)+\omega_3 M(A,B)
+			S(A,B)=\omega_1 T(A,B)+\omega_2 |P(A,B)|+\omega_3 \displaystyle \frac{1}{M(A,B)}
 			\end{gather}
-			式中取$\omega_1=0.95$，$\omega_2=0.02$，$\omega_3=0.03$。
+			满足$\omega_1+\omega_2+\omega_3=1$。关系函数值越大，表明$A$和$B$的相似度越高。
     		其思维流程图如图~\ref{lssssct}~所示：
 
 			\begin{figure}[H]
@@ -442,23 +453,32 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   			由表\ref{biao1}可知
 
 			其各个小车的运输细节图下图所示：
-			\begin{figure}[H]
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-			\end{figure}	
-			\begin{figure}[H]	
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\caption{xxxxxxxxxxxxxxxxxxxxxxxxx}
-				\label{fisg}
-			\end{figure}
+
 
     \section{问题三模型的建立与求解}
   		\subsection{结果分析}
   
+  
   	\section{灵敏度分析}
+  本文对卷积自编码器中编码层输入的$\gamma$大小$b$做调整，得到
+  				\begin{figure}[H]
+  		\centering
+  		\subfigure[$b \leq 10 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f1.png}}
+  		\subfigure[$b \leq 50 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f2.png}}
+  		\subfigure[$b \leq 100 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f3.png}}
+  		\subfigure[$b \leq 120 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f4.png}}
+  	\end{figure}	
+  	\begin{figure}[H]	
+  		\centering
+  		\subfigure[$b \leq 150 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f5.png}}
+		\subfigure[$b \leq 200 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f6.png}}
+		\subfigure[$b \leq 300 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f7.png}}
+		\subfigure[$b \leq 500 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f8.png}}
+  		\caption{编码不同字节限制后对应的解码指纹效果}
+  		\label{fisg}
+  	\end{figure}
+  	根据上述解码后效果图可以看出：编码50字节后能还原出指纹大致轮廓，但是具体图像仍然不清晰；编码100字节能还原出微细节轮廓，但上方密集部分仍然呈现模糊状况；编码150字节后能较为清晰的还原，但还是存在少量噪声；而到200字节以上非常清晰，能通过降维后的编码数据完美的还原出原始指纹图像。
+ 	
  
   	\section{模型的评价}
 		\subsection{模型的优点}
@@ -483,7 +503,15 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 	\bibitem{2}Moses K R, Higgins P, McCabe M, et al. Automated fingerprint identification system (AFIS)[J]. Scientific Working Group on Friction Ridge Analysis Study and Technology and National institute of Justice (eds.) SWGFAST-The fingerprint sourcebook, 2011: 1-33.
 	\bibitem{3}Dror I E, Wertheim K, Fraser‐Mackenzie P, et al. The impact of human–technology cooperation and distributed cognition in forensic science: biasing effects of AFIS contextual information on human experts[J]. Journal of forensic sciences, 2012, 57(2): 343-352.
 	\bibitem{4}Simonyan K, Zisserman A. Very deep convolutional networks for large-scale image recognition[J]. arXiv preprint arXiv:1409.1556, 2014.
-	\bibitem{5}
+	\bibitem{5}Scherer R, Kalla S L, Tang Y, et al. The Grünwald–Letnikov method for fractional differential equations[J]. Computers \& Mathematics with Applications, 2011, 62(3): 902-917.
+	\bibitem{6}邓正宏, 丁有军. 基于动态方向场的指纹图像增强算法[J]. 微电子学与计算机, 2005, 22(2): 70-72.
+	\bibitem{7}蓝波, 林小竹, 籍俊伟. 一种改进的 LZW 算法在图像编码中的应用[J]. 计算机工程与科学, 2006, 28(6): 55-57.
+	\bibitem{8}张旭东. 图像编码基础和小波压缩技术: 原理, 算法和标准[M]. 清华大学出版社有限公司, 2004.
+	\bibitem{9}赵利平, 林涛, 周开伦. 屏幕图像压缩中串复制位移参数的高效编码算法[J]. 计算机学报, 2017, 40(5): 1218-1228.
+	\bibitem{10}黄健航, 雷迎科. 基于边际 Fisher 深度自编码器的电台指纹特征提取[J]. 模式识别与人工智能, 2017 (2017 年 11): 1030-1038.
+	\bibitem{11}Gao L, Chen P Y, Yu S. Demonstration of convolution kernel operation on resistive cross-point array[J]. IEEE Electron Device Letters, 2016, 37(7): 870-873.
+	\bibitem{12}Guo X, Liu X, Zhu E, et al. Deep clustering with convolutional autoencoders[C]//International conference on neural information processing. Springer, Cham, 2017: 373-382.
+	\bibitem{13} 王万良, 杨小涵, 赵燕伟, 等. 采用卷积自编码器网络的图像增强算法[J]. 浙江大学学报 (工学版), 2019, 53(9): 1728-1740.
 	\end{thebibliography}
 
 	\newpage
