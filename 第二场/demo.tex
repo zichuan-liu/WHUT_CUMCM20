@@ -83,13 +83,12 @@
 		\begin{itemize}    
 	\item [(1)] 假设附件中所有指纹图像都为清晰完整的图像，不存在由于图像压缩产生的信息损失。
 \item [(2)] 假设附件中的指纹图像特征都具有代表性，具有正常人指纹拥有的所有特征。
-		\item [(3)] 
-		\item [(4)] 
 		\end{itemize}
 
 	\section{符号说明}
 		\begin{table}[H]
 		\centering
+		        	\setstretch{.8}  %设置表的行间距
 		\setlength{\tabcolsep}{12mm}
 		\begin{tabular}{cc}
 			\toprule[1.5pt]
@@ -284,7 +283,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 		那么，从 Input Image 到 Output Image 的变化如下图所示：
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.5\textwidth]{figures/cnn.jpg}
+			\includegraphics[width=.35\textwidth]{figures/cnn.jpg}
 			\caption{卷积核函数示意图}
 		\end{figure}
 		可以看出，其实二维卷积一样也是加权叠加/积分。需要注意的是，其中 Convolution Kernel 进行了水平和竖直方向的翻转。
@@ -292,7 +291,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			\paragraph{Pooling} 对于灰度图像的采样而言，Pooling 对于输入的 Feature Map，选择某种方式对其进行压缩。如下图，表示的就是对$2\times 2$邻域内的值，选择最大值输出到下一层，这叫做 Max-Pooling。
 				\begin{figure}[H]
 			\centering
-			\includegraphics[width=.5\textwidth]{figures/pool.png}
+			\includegraphics[width=.45\textwidth]{figures/pool.png}
 			\caption{池化层Max-Pooling示意图}
 		\end{figure}
 	
@@ -386,7 +385,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
         通过上述参数设置，计算16张指纹图片KL散度的最小值，并保存其编码程序。其迭代过程中 损失函数如下图所示：
         	\begin{figure}[H]
         	\centering
-        	\includegraphics[width=.6\textwidth]{figures/loss.png}
+        	\includegraphics[width=.7\textwidth]{figures/loss.png}
         	\caption{CAE迭代过程中损失函数函数}\label{loss}
         \end{figure}
     可以看出，本文的模型在解码还原过程中，更逼近于真实的指纹图片，信息损失仅占0.04\%，相较于传统的编码方法有更强信息贮存能力。
@@ -450,6 +449,14 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 
         \subsection{实验结果及分析}
         
+        本文将$\omega_1$，$\omega_2$，$\omega_3$ 分别取 0.2、0.3和 0.5，求得距离矩阵如图\ref{lsst}所示，其中颜色越浅表示两张指纹距离越近，即相似度越高。   
+       	\begin{figure}[H]
+        	\centering
+        	\includegraphics[width=\textwidth]{figures/retu.png}
+        	\caption{距离矩阵相似度热图}\label{lsst}
+        \end{figure}
+        
+        根据上图可得，指纹对{4，7}、{1，11}、{6，13}等颜色明显较浅，其匹配的相似度较高，而如{4，13}、{4，2}等颜色较深，属于不同类型的指纹图案。
 
 
     \section{问题三模型的建立与求解}
@@ -462,7 +469,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	\begin{figure}[H]
   		\centering
   		\includegraphics[width=\textwidth]{figures/whut.jpg}
-  		\caption{问题二思维流程图}\label{lsssscst}
+  		\caption{问题三思维流程图}\label{lsssscst}
   	\end{figure}
   	\subsection{k-medoids模型的建立与求解}
   	本文采用$k-medoids$模式选取聚类中心点\upcite{14,15}，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
@@ -479,11 +486,18 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	通过$k-medoids$可得聚类结果树状图如图~\ref{bgbgbg}~所示
   	\begin{figure}[H]
   		\centering
-  		\includegraphics[width=\textwidth]{figures/tree.png}
+  		\includegraphics[width=.9\textwidth]{figures/tree.png}
   		\caption{脊线估计方向}\label{bgbgbg}
   	\end{figure}
   	由图~\ref{bgbgbg}~可知，当$k=2$时，指纹样本被分为$\left \{ 1,4,7,10,11,16 \right \}$与$\left \{ 2,3,5,6,8,9,\\
-  	12,13,14,15 \right \}$两组；当$k=4$时，样本$10$独立为一组，其余三组是$\left \{ 1,4,7,11,16 \right \}$，$\left \{ 2,3,5   \right \}$与 $\left \{ 6,8,9,12,13,14,15 \right \}$。鉴于$k=4$时代价函数值最优，本文倾向于将样本分为四类。（附图？？？）
+  	12,13,14,15 \right \}$两组；当$k=4$时，样本$10$独立为一组，其余三组是$\left \{ 2,3,5   \right \}$，$\left \{ 1,4,7,11,16 \right \}$与 $\left \{ 6,8,9,12,13,14,15 \right \}$。鉴于$k=4$时代价函数值最优，本文倾向于将样本分为四类如下图所示，并分别命名为：螺形纹
+  	、环形纹、弓形纹、箕形纹。
+  	  	\begin{figure}[H]
+  		\centering
+  		\includegraphics[width=.8\textwidth]{figures/gg.png}
+  		\caption{指纹图像的识别与分类}\label{bgssssbgbg}
+  	\end{figure}
+  	
   	
   	\section{灵敏度分析}
   本文对卷积自编码器中编码层输入的$\gamma$大小$b$做调整，得到
@@ -508,10 +522,11 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	\section{模型的评价}
 		\subsection{模型的优点}
 			\begin{itemize}                                             
-			\item [(1)] 与传统编码而言，卷积自编码器通过无监督学习来提取指纹细节依赖充分压缩指纹图像，对于指纹图片来说是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的，并且在编码后能通过解码器还原出原始图像数据。
-			\item [(2)] 	
+			\item [(1)] 卷积核函数通过无监督学习来提取指纹细节依赖充分压缩指纹图像，对于指纹图片来说是颜色为黑色的像素点，将图片中的很大一部分白色像素舍弃，只提取对网络有用的信息，到达降低数据维度的目的。
+			\item [(2)] 与传统编码而言，CAE模型用于提取“小样本”条件下相同类型、相同纹理的指纹特征，获得在“小样本”条件下超越传统方法的编码个体表征能力，并且在编码后能通过解码器还原出原始图像数据。
 			\end{itemize}
 		\subsection{模型的缺点}
+		
 
   		\subsection{模型改进}
 
