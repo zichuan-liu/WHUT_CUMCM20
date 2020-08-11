@@ -464,12 +464,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   	问题三在问题二将指纹相似度量化的基础上，进一步要求将样本指纹进行类比归类，其本质是一个样本分类问题。根据第二问的相似度量化结果，可得到任意两个指纹样本间的相似程度，即可在其基础上搭建中心聚类模型以将样本指纹进行类比归类。
   	
     本文设计的加权相似度$S$具有非欧几里得特征(引用)，不可使用样本均值作为聚类中心，即不可使用经典中心聚类算法$k-means$算法经行样本聚类。针对该问题，我们引入$k-medoids$算法以确定样本中心点，并以模型二设计的加权相似度的平均值作为代价函数，对附件中的$16$个指纹样本进行聚类。
-  	
-  	\begin{figure}[H]
-  		\centering
-  		\includegraphics[width=\textwidth]{figures/whut.jpg}
-  		\caption{问题三思维流程图}\label{lsssscst}
-  	\end{figure}
+
   	\subsection{k-medoids模型的建立与求解}
   	本文采用$k-medoids$模式选取聚类中心点\upcite{14,15}，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
   	\begin{gather}
