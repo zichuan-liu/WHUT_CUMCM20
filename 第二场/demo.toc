@@ -27,12 +27,12 @@
 \contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{15}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}k-medoids模型的建立与求解}{15}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}实验结果及分析}{16}{subsection.7.3}%
-\contentsline {section}{\numberline {八、}灵敏度分析}{16}{section.8}%
+\contentsline {section}{\numberline {八、}灵敏度分析}{17}{section.8}%
 \contentsline {section}{\numberline {九、}模型的评价}{17}{section.9}%
 \contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{17}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{17}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{17}{subsection.9.3}%
-\contentsline {section}{\numberline {附录A}数据预处理}{20}{appendix.A}%
-\contentsline {section}{\numberline {附录B}第一问代码实现及可视化}{29}{appendix.B}%
-\contentsline {section}{\numberline {附录C}第二、三问代码实现及可视化}{33}{appendix.C}%
+\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{18}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{18}{subsection.9.3}%
+\contentsline {section}{\numberline {附录A}数据预处理}{21}{appendix.A}%
+\contentsline {section}{\numberline {附录B}第一问代码实现及可视化}{30}{appendix.B}%
+\contentsline {section}{\numberline {附录C}第二、三问代码实现及可视化}{34}{appendix.C}%
 \contentsfinish 
