@@ -398,7 +398,26 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
         	\label{zhiwen}
         \end{figure}
     
-    
+      	
+    \subsection{灵敏度分析}
+    本节对卷积自编码器中编码层输入的$\gamma$大小$b$做调整，得到
+    \begin{figure}[H]
+    	\centering
+    	\subfigure[$b \leq 10 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f1.png}}
+    	\subfigure[$b \leq 50 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f2.png}}
+    	\subfigure[$b \leq 100 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f3.png}}
+    	\subfigure[$b \leq 120 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f4.png}}
+    \end{figure}	
+    \begin{figure}[H]	
+    	\centering
+    	\subfigure[$b \leq 150 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f5.png}}
+    	\subfigure[$b \leq 200 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f6.png}}
+    	\subfigure[$b \leq 300 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f7.png}}
+    	\subfigure[$b \leq 500 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f8.png}}
+    	\caption{编码不同字节限制后对应的解码指纹效果}
+    	\label{fisg}
+    \end{figure}
+    根据上述解码后效果图可以看出：编码50字节后能还原出指纹大致轮廓，但是具体图像仍然不清晰；编码100字节能还原出微细节轮廓，但上方密集部分仍然呈现模糊状况；编码150字节后能较为清晰的还原，但还是存在少量噪声；而到200字节以上非常清晰，能通过降维后的编码数据完美的还原出原始指纹图像。
 
 	\section{问题二模型的建立与求解}
 		\subsection{问题分析与相似度计算}
@@ -456,15 +475,22 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
         \end{figure}
         
         根据上图可得，指纹对{4，7}、{1，11}、{6，13}等颜色明显较浅，其匹配的相似度较高，而如{4，13}、{4，2}等颜色较深，属于不同类型的指纹图案。
-
-
+    \subsection{灵敏度分析}
+    
+        \begin{figure}[H]
+    	\centering
+    	\subfigure[$\omega_i = 0.1,0.8,0.1 $]{\includegraphics[height=3cm,width=3.5cm]{figures/guo/m1.png}}
+    	\subfigure[$\omega_i = 0.2,0.5,0.3 $]{\includegraphics[height=3cm,width=3.5cm]{figures/guo/m2.png}}
+    	\subfigure[$\omega_i = 0.8,0.1,0.1 $]{\includegraphics[height=3cm,width=3.5cm]{figures/guo/m3.png}}
+    	\subfigure[$\omega_i = 0.2,0.3,0.5$]{\includegraphics[height=3cm,width=3.5cm]{figures/guo/m4.png}}
+    \end{figure}
+		
     \section{问题三模型的建立与求解}
 
   	\subsection{问题描述与分析}
   	问题三在问题二将指纹相似度量化的基础上，进一步要求将样本指纹进行类比归类，其本质是一个样本分类问题。根据第二问的相似度量化结果，可得到任意两个指纹样本间的相似程度，即可在其基础上搭建中心聚类模型以将样本指纹进行类比归类。
   	
     本文设计的加权相似度$S$具有非欧几里得特征(引用)，不可使用样本均值作为聚类中心，即不可使用经典中心聚类算法$k-means$算法经行样本聚类。针对该问题，我们引入$k-medoids$算法以确定样本中心点，并以模型二设计的加权相似度的平均值作为代价函数，对附件中的$16$个指纹样本进行聚类。
-
   	\subsection{k-medoids模型的建立与求解}
   	本文采用$k-medoids$模式选取聚类中心点\upcite{14,15}，从$16$个样本点$\left \{ \gamma_i  \right \}$中选取$k$个样本点作为聚类中心$\left \{ c_i \right \}$，即可求出代价函数为
   	\begin{gather}
@@ -515,26 +541,7 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
   		\caption{指纹图像的识别与分类}\label{bgssssbgbg}
   	\end{figure}
   	
-  	
-  	\section{灵敏度分析}
-  本文对卷积自编码器中编码层输入的$\gamma$大小$b$做调整，得到
-  				\begin{figure}[H]
-  		\centering
-  		\subfigure[$b \leq 10 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f1.png}}
-  		\subfigure[$b \leq 50 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f2.png}}
-  		\subfigure[$b \leq 100 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f3.png}}
-  		\subfigure[$b \leq 120 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f4.png}}
-  	\end{figure}	
-  	\begin{figure}[H]	
-  		\centering
-  		\subfigure[$b \leq 150 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f5.png}}
-		\subfigure[$b \leq 200 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f6.png}}
-		\subfigure[$b \leq 300 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f7.png}}
-		\subfigure[$b \leq 500 \boldsymbol{byte} $]{\includegraphics[height=3.5cm,width=3cm]{figures/guo/f8.png}}
-  		\caption{编码不同字节限制后对应的解码指纹效果}
-  		\label{fisg}
-  	\end{figure}
-  	根据上述解码后效果图可以看出：编码50字节后能还原出指纹大致轮廓，但是具体图像仍然不清晰；编码100字节能还原出微细节轮廓，但上方密集部分仍然呈现模糊状况；编码150字节后能较为清晰的还原，但还是存在少量噪声；而到200字节以上非常清晰，能通过降维后的编码数据完美的还原出原始指纹图像。
+
  	
   	\section{模型的评价}
 		\subsection{模型的优点}
@@ -543,10 +550,13 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 			\item [(2)] 与传统编码而言，CAE模型用于提取“小样本”条件下相同类型、相同纹理的指纹特征，获得在“小样本”条件下超越传统方法的编码个体表征能力，并且在编码后能通过解码器还原出原始图像数据。
 			\end{itemize}
 		\subsection{模型的缺点}
+		由于样本数据过小，CAE模型对小样本学习较为敏感，网络权重对测试指纹数据造成过拟合现象，需要更过的样本训练模型。
+
+  		\subsection{模型的总结与展望}
+		对图像压缩自编码器而言，CAE模型能对内部Encoder-Decoder结构进行优化。在深度学习前言领域，Lucas Theis等人\upcite{16}提出的压缩网络较新颖，一共有两个CNN组成。ComCNN对图像进行提取紧凑表示，再使用标准编码器对紧凑表达进行编码，RecCNN对解码结果进行图像超分辨率重建。除此之外，有损自编码器还可以加上概率模型Q进行分配熵编码比特数处理\upcite{17,18}在高斯尺度混合中应用，用于对量化的系数分配比特数，目标是要求低比特率具有小的失真，涉及失真权衡。
 		
-
-  		\subsection{模型改进}
-
+		
+		
   
   
  
@@ -571,6 +581,9 @@ z(u, v)=\displaystyle\sum_{i=-\infty}^{\infty} \sum_{j=-\infty}^{\infty} x_{i+u,
 	\bibitem{13} 王万良, 杨小涵, 赵燕伟, 等. 采用卷积自编码器网络的图像增强算法[J]. 浙江大学学报 (工学版), 2019, 53(9): 1728-1740.
 	\bibitem{14}Arora P, Varshney S. Analysis of k-means and k-medoids algorithm for big data[J]. Procedia Computer Science, 2016, 78: 507-512.
 	\bibitem{15}Yu D, Liu G, Guo M, et al. An improved K-medoids algorithm based on step increasing and optimizing medoids[J]. Expert Systems with Applications, 2018, 92: 464-473.
+		\bibitem{16} Theis L, Shi W, Cunningham A, et al. Lossy image compression with compressive autoencoders[J]. arXiv preprint arXiv:1703.00395, 2017.
+		\bibitem{17} Huszar F, Theis L, Shi W, et al. Lossy Image Compression with Compressive Autoencoders[J]. 2020.
+			\bibitem{18} Mukherjee R, Chandran S. Lossy image compression using SVD coding, compressive autoencoders, and prediction error-vector quantization[C]//2017 4th International Conference on Opto-Electronics and Applied Optics (Optronix). IEEE, 2017: 1-5.
 	\end{thebibliography}
 
 	\newpage
