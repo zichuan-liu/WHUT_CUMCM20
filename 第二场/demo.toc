@@ -20,18 +20,19 @@
 \contentsline {paragraph}{Activation}{9}{section*.11}%
 \contentsline {subsubsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}卷积自动编码器}{10}{subsubsection.5.2.2}%
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}实验结果及分析}{11}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}灵敏度分析}{13}{subsection.5.4}%
 \contentsline {section}{\numberline {六、}问题二模型的建立与求解}{13}{section.6}%
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题分析与相似度计算}{13}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}实验结果及分析}{14}{subsection.6.2}%
-\contentsline {section}{\numberline {七、}问题三模型的建立与求解}{15}{section.7}%
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{15}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}k-medoids模型的建立与求解}{15}{subsection.7.2}%
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}灵敏度分析}{15}{subsection.6.3}%
+\contentsline {section}{\numberline {七、}问题三模型的建立与求解}{16}{section.7}%
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{16}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}k-medoids模型的建立与求解}{16}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}实验结果及分析}{16}{subsection.7.3}%
-\contentsline {section}{\numberline {八、}灵敏度分析}{17}{section.8}%
-\contentsline {section}{\numberline {九、}模型的评价}{17}{section.9}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{17}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{18}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{18}{subsection.9.3}%
+\contentsline {section}{\numberline {八、}模型的评价}{18}{section.8}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{18}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{18}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的总结与展望}{18}{subsection.8.3}%
 \contentsline {section}{\numberline {附录A}数据预处理}{21}{appendix.A}%
 \contentsline {section}{\numberline {附录B}第一问代码实现及可视化}{30}{appendix.B}%
 \contentsline {section}{\numberline {附录C}第二、三问代码实现及可视化}{34}{appendix.C}%
