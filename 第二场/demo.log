@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  11 AUG 2020 18:06
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  13 AUG 2020 10:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1224,26 +1224,76 @@ File: figures/guo/m3.png Graphic file (type bmp)
 <figures/guo/m3.png>
 File: figures/guo/m4.png Graphic file (type bmp)
 <figures/guo/m4.png>
- [15]
+
+Runaway argument?
+{figure 由可视化结果可知，图(a)深色和浅色区域范围离\ETC.
+! Paragraph ended before \end  was complete.
+<to be read again> 
+                   \par 
+l.491 
+      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
 File: figures/tree.png Graphic file (type bmp)
 <figures/tree.png>
- [16]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.515 ...11,16 \right \}$与$\left \{ 2,3,5,6,8,9,\\
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.515 ...11,16 \right \}$与$\left \{ 2,3,5,6,8,9,\\
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.515 ...11,16 \right \}$与$\left \{ 2,3,5,6,8,9,\\
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.516   ^^I12,13,14,15 \right
+                              \}$两组；当$k=4$时，样本$10$独立为一组，其余三组是$\left \{ 2,3,5...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra \right.
+\rbrace ->\delimiter "5267309 
+                              
+l.516   ^^I12,13,14,15 \right \}
+                                $两组；当$k=4$时，样本$10$独立为一组，其余三组是$\left \{ 2,3,5...
+I'm ignoring a \right that had no matching \left.
+
 File: figures/gg.png Graphic file (type bmp)
 <figures/gg.png>
 
-Overfull \hbox (35.36533pt too wide) in paragraph at lines 515--522
-[]\TU/SimSun(1)/m/n/12.05 由 图 [][]\TU/TimesNewRoman(0)/m/n/12.05 12[][] \TU/Sim
-Sun(1)/m/n/12.05 可 知，|  当 $\OML/cmm/m/it/12.05 k \OT1/cmr/m/n/12.05 = 2$ \TU/Si
-mSun(1)/m/n/12.05 时，|  指 纹 样 本 被 分 为 $[]$ 与 $[]$
- []
-
-[17] [18]
 Underfull \hbox (badness 10000) in paragraph at lines 560--561
 []\TU/TimesNewRoman(0)/m/n/12.05 Guo X, Liu X, Zhu E, et al. Deep clustering wi
 th convolutional autoen-
  []
 
-[19] [20] (c:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+(c:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 
@@ -1269,7 +1319,7 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
- [21]
+
 Overfull \hbox (56.86859pt too wide) in paragraph at lines 653--654
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -1293,7 +1343,7 @@ Overfull \hbox (5.47635pt too wide) in paragraph at lines 657--658
 ][][][][][][][][]  
  []
 
-[22]
+
 Overfull \hbox (78.649pt too wide) in paragraph at lines 689--690
 [][][][][][][][][][]  
  []
@@ -1315,7 +1365,7 @@ Overfull \hbox (163.11507pt too wide) in paragraph at lines 691--692
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
-[23] [24]
+
 Overfull \hbox (139.8532pt too wide) in paragraph at lines 767--768
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -1341,7 +1391,7 @@ Overfull \hbox (42.74052pt too wide) in paragraph at lines 800--801
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
-[25]
+
 Overfull \hbox (180.73085pt too wide) in paragraph at lines 821--822
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -1380,49 +1430,104 @@ Overfull \hbox (103.71825pt too wide) in paragraph at lines 834--835
 [][][][][][][][][][][][][][][][][]  
  []
 
-[26] [27]
+
 Overfull \hbox (27.50856pt too wide) in paragraph at lines 915--916
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
-[28] (c:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+(c:/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [29]
-(./code/tuxiang.py [30] [31]
+) (./code/tuxiang.py
 Overfull \hbox (66.68669pt too wide) in paragraph at lines 75--76
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[32]
+
 Overfull \hbox (112.4912pt too wide) in paragraph at lines 126--127
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[33]) (./code/julei.py [34] [35] [36] [37] [38])
+) (./code/julei.py)
+
+! LaTeX Error: \begin{figure} on input line 482 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.999 \end{document}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 999.
- [39]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 999.
- (./demo.aux)
+(./demo.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 999.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 999.
-Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 04BA4C2F1B0908E7DFC30C2E6217FCAA;3847.
 
+
+Package rerunfilecheck Warning: File `demo.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `demo.out':
+(rerunfilecheck)             Before: 04BA4C2F1B0908E7DFC30C2E6217FCAA;3847
+(rerunfilecheck)             After:  B01FC7B06BE6A5A8505D3250163D22E8;2453.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 999.
- )
-(\end occurred when \iftrue on line 26 was incomplete) 
+! You can't use `\end' in internal vertical mode.
+\enddocument ...es \z@ \Call@AtVeryVeryEnd \@@end 
+                                                  
+l.999 \end{document}
+                    
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+! LaTeX Error: \begin{figure} on input line 482 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.999 \end{document}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.999 \end{document}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+)
+! Emergency stop.
+<*> demo.tex
+            
+*** (job aborted, no legal \end found)
+
+ 
 Here is how much of TeX's memory you used:
  22467 strings out of 479418
  439174 string characters out of 5888106
- 956018 words of memory out of 5000000
+ 1565104 words of memory out of 5000000
  39478 multiletter control sequences out of 15000+600000
  544908 words of font info for 150 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 64i,21n,86p,720b,2363s stack positions out of 5000i,500n,10000p,200000b,80000s
-
-Output written on demo.pdf (43 pages).
+ 64i,21n,86p,720b,1907s stack positions out of 5000i,500n,10000p,200000b,80000s
+Output written on demo.pdf (18 pages).
