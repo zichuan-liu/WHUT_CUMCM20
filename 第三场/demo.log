@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  12 AUG 2020 22:11
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  13 AUG 2020 22:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1272,7 +1272,7 @@ File: figures/demo.png Graphic file (type bmp)
 
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/bx/n' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 70.
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 71.
 
 [1] [2]
 File: figures/whut.jpg Graphic file (type bmp)
@@ -1280,7 +1280,7 @@ File: figures/whut.jpg Graphic file (type bmp)
  [3]
 
 LaTeX Warning: Reference `zhuanssssasgzai' on page 4 undefined on input line 17
-5.
+6.
 
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
@@ -1318,14 +1318,14 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 
 
 (./code/demo.py)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 258.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 260.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 258.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 260.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 258.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 258.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 260.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 260.
 Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 25955097CF60E21D237B6DA28D8D4C8D.
+(rerunfilecheck)             Checksum: AAE85C35F1AF16358F74D531D4A84405.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1333,14 +1333,14 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 258.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 260.
  )
 (\end occurred when \iftrue on line 24 was incomplete) 
 Here is how much of TeX's memory you used:
- 29851 strings out of 492922
- 580990 string characters out of 6136751
- 851902 words of memory out of 5000000
- 33468 multiletter control sequences out of 15000+600000
+ 29811 strings out of 492922
+ 578258 string characters out of 6136751
+ 851308 words of memory out of 5000000
+ 33428 multiletter control sequences out of 15000+600000
  540805 words of font info for 127 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,20n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s

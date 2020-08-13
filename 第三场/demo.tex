@@ -50,6 +50,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%目录%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\thispagestyle{empty}
+%	\CTEXsetup[number={\chinese{subsection}}]{subsection}
 	\tableofcontents
 	\setcounter{page}{0}                                               
 	\newpage	%换页符
@@ -83,7 +84,7 @@
 	\section{模型假设}
 		\begin{itemize}                                             
 		\item [(1)] 假设充电场景不属于时变充电方案，即传感器解节点充电时单位时间的收发数据能量不随时间改变而改变。
-		\item [(2)] 考虑移动充电器WCV可以同时为多个节点进行充电，其具有一定的充电范围，并且在此范围内充电场的能级随距离增大而递减。
+		\item [(2)] 考虑移动充电器WCV可以同时为多个节点进行充电，其具有一定的充电范围，并且在此范围内充电场的能级不随距离而发生变化。
 		\item [(3)] 
 		\item [(4)] 
 		\end{itemize}
@@ -241,6 +242,7 @@
 	\newpage
 	%附录
 	\appendix %%附录
+	\addcontentsline{toc}{section}{参考文献} %向目录中添加条目，以章的名义
 	\section{数据可视化的实现}
 		\subsection*{第一问画图--python源代码}
 			\begin{lstlisting}[language=python]
