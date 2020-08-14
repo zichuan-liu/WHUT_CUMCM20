@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  15 AUG 2020 00:24
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.28)  15 AUG 2020 00:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1262,7 +1262,7 @@ Package fontspec Info: Font family 'SimSun(1)' created for font 'SimSun' with
 (fontspec)             <->"SimSun/OT:script=hani;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-)
+ [3])
 \tf@toc=\write5
 \openout5 = `demo.toc'.
 
@@ -1287,7 +1287,7 @@ File: figures/lga.png Graphic file (type bmp)
 File: figures/cross.png Graphic file (type bmp)
 <figures/cross.png>
 
-Overfull \hbox (6.83864pt too wide) in paragraph at lines 269--270
+Overfull \hbox (6.83864pt too wide) in paragraph at lines 263--264
  []\TU/SimSun(0)/bx/n/12.05 赌 轮 选 择[] \TU/SimSun(1)/m/n/12.05 将 第 \TU/TimesNewR
 oman(0)/m/n/12.05 g \TU/SimSun(1)/m/n/12.05 代 的 染 色 体 与 其 交 叉 和 变 异 产 生 的 子 代 并
  入 同 一 解 集 $\OML/cmm/m/it/12.05 G[] \OT1/cmr/m/n/12.05 = []$\TU/SimSun(1)/m/n/1
@@ -1307,7 +1307,7 @@ File: figures/w11.png Graphic file (type bmp)
 File: figures/w22.png Graphic file (type bmp)
 <figures/w22.png>
 
-Overfull \hbox (12.09952pt too wide) in paragraph at lines 339--345
+Overfull \hbox (12.09952pt too wide) in paragraph at lines 333--339
 []\TU/SimSun(1)/m/n/12.05 取 $\OML/cmm/m/it/12.05 R \OT1/cmr/m/n/12.05 = 50\OML/
 cmm/m/it/12.05 m$\TU/SimSun(1)/m/n/12.05 ，|  求 得 总 距 离 为 $\OT1/cmr/m/n/12.05 11
 151\OML/cmm/m/it/12.05 :\OT1/cmr/m/n/12.05 7684\OML/cmm/m/it/12.05 m$\TU/SimSun
@@ -1320,7 +1320,7 @@ File: figures/ssss.png Graphic file (type bmp)
 <figures/ssss.png>
 
 
-LaTeX Warning: Reference `lssssct' on page 12 undefined on input line 363.
+LaTeX Warning: Reference `lssssct' on page 12 undefined on input line 357.
 
 File: figures/222222.png Graphic file (type bmp)
 <figures/222222.png>
@@ -1329,12 +1329,11 @@ File: figures/2333v.jpg Graphic file (type bmp)
 <figures/2333v.jpg>
 File: figures/2333r.jpg Graphic file (type bmp)
 <figures/2333r.jpg>
- [15]
 File: figures/2333R.png Graphic file (type bmp)
 <figures/2333R.png>
 File: figures/2333f.jpg Graphic file (type bmp)
 <figures/2333f.jpg>
- [16] [17] [18]
+ [15] [16] [17] [18] [19] [20]
 (e:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
@@ -1362,15 +1361,15 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
  (./code/demo.py)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 547.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 596.
 
-[19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 547.
+[21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 596.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 547.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 547.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 596.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 596.
 Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 730A54FACF58996EEBE05A4158A09FE9.
+(rerunfilecheck)             Checksum: 36AC0E0D30AB22AC6AC41BF27E7B7FBD.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1378,16 +1377,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 547.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 596.
  )
 (\end occurred when \iftrue on line 26 was incomplete) 
 Here is how much of TeX's memory you used:
- 30004 strings out of 492922
- 584637 string characters out of 6136751
- 856433 words of memory out of 5000000
- 33593 multiletter control sequences out of 15000+600000
+ 29996 strings out of 492922
+ 584012 string characters out of 6136751
+ 855983 words of memory out of 5000000
+ 33585 multiletter control sequences out of 15000+600000
  552309 words of font info for 176 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,17n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (22 pages).
+Output written on demo.pdf (25 pages).
