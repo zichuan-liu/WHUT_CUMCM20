@@ -1,11 +1,11 @@
-PWD d:/数学建模/WHUT_CUMCM20/第二场
+PWD d:/数学建模/WHUT_CUMCM20/第三场
 INPUT e:/texlive/2019/texmf.cnf
 INPUT e:/texlive/2019/texmf-dist/web2c/texmf.cnf
 INPUT e:/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT d:/数学建模/WHUT_CUMCM20/第二场/demo.tex
-OUTPUT d:/数学建模/WHUT_CUMCM20/第二场/demo.log
-INPUT d:/数学建模/WHUT_CUMCM20/第二场/whutmod.cls
-INPUT d:/数学建模/WHUT_CUMCM20/第二场/whutmod.cls
+INPUT d:/数学建模/WHUT_CUMCM20/第三场/demo.tex
+OUTPUT d:/数学建模/WHUT_CUMCM20/第三场/demo.log
+INPUT d:/数学建模/WHUT_CUMCM20/第三场/whutmod.cls
+INPUT d:/数学建模/WHUT_CUMCM20/第三场/whutmod.cls
 INPUT e:/texlive/2019/texmf-dist/tex/latex/base/article.cls
 INPUT e:/texlive/2019/texmf-dist/tex/latex/base/article.cls
 INPUT e:/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -32,8 +32,8 @@ INPUT e:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT e:/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT e:/texlive/2019/texmf-dist/tex/generic/unicode-data/UnicodeData.txt
 INPUT e:/texlive/2019/texmf-dist/tex/generic/unicode-data/UnicodeData.txt
-INPUT d:/数学建模/WHUT_CUMCM20/第二场/nul:
-INPUT d:/数学建模/WHUT_CUMCM20/第二场/nul:.tex
+INPUT d:/数学建模/WHUT_CUMCM20/第三场/nul:
+INPUT d:/数学建模/WHUT_CUMCM20/第三场/nul:.tex
 INPUT e:/texlive/2019/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 INPUT e:/texlive/2019/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 INPUT e:/texlive/2019/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
