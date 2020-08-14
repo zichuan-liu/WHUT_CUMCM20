@@ -392,9 +392,6 @@
 			\end{gather}
 			其中，$\bm F$是元素全为传感器电量阈值$f$的规格为$n \times 1$的列向量，$\bm{T_{threshold}}$是$t_1,t_2,...,t_{n}$按顺序构成的规格为$n\times 1$的列向量，$r$是充电速率。
     		
-    		
-
-		
 		
 		\subsection{模型的求解}
 		\textbf{再完善一下内容。。。}
@@ -490,7 +487,7 @@
     问题三要求设计同时派出多辆MC时各辆MC的充电路线，使得所有的MC在路上的总的能量消耗最小。由于问题只要求最小化路上的能量消耗，若多辆MC访问同一个传感器并对其充电，其路上的能量消耗必然大于每个传感器仅由一辆MC充电的方案。故当MC的充电有效距离$R=0$时，问题可被转换为多旅行商问题，同时优化四辆MC的充电路线使得总行驶路程最小。
     
     针对该多旅行商问题，我们在问题一的基础上设计了插板式编码对该分段序列类型的决策变量进行编码，并将该编码方式嵌入生命遗传算法，以总行驶路程为目标对四辆MC的充电路线进行优化求解。
-      \subsection{模型的建立}
+      \subsection{多TSP模型建立}
       当存在$4$辆MC同时执行充电任务时，总决策序列可表示为
       \begin{gather*}
       P_n=\left \{[p_{1},\cdots,p_{i}]_1,[p_{i+1},\cdots,p_{j}]_2,[p_{j+1},\cdots, p_{k}]_{3}],[p_{k+1},\cdots,p_{29}]_4\right \},
@@ -520,8 +517,8 @@
       \end{gather}
       
      
-      \subsection{模型的求解}
-      \subsubsection{插板式编码遗传算法}
+      \subsection{插板式编码遗传算法}
+
       由于问题中的决策变量$P_n$表示多个不同小型运输车的运输路径，我们将染色体变量中插入无意义基因作为隔板，例如在派遣两辆运输车时，决策变量可表示为
       \begin{gather*}
       P_n=\left \{[p_{1},p_{2},\cdots,p_{i}]_1,[p_{i+1}\cdots,p_{19}]_{2}\right \},
@@ -545,8 +542,65 @@
     
     
   		\subsection{结果分析}
+  	参数r=200, f=10, v=50
+  	？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=.8\textwidth]{figures/s3.png}
+  	\caption{四辆移动充电装置路径图}\label{ssssssssss}
+  \end{figure}
+
+移动路径（0表示数据中心）:
+  		\begin{table}[H]
+	\setstretch{1}  %设置表的行间距
+	\centering		
+	\caption{每个传感器的移动路径}\label{bissssao2}
+	\begin{tabular}{ccc}
+		\toprule[2pt]
+		\multicolumn{1}{m{2.5cm}}{\centering 传感器序号}
+		& \multicolumn{1}{m{4.5cm}}{\centering 移动路径}& \multicolumn{1}{m{2.5cm}}{\centering 耗时}
+		\\
+		\midrule[1pt]
+		1 &   [0, 1, 9, 7, 6, 11, 14, 15, 12, 8, 2, 0]& 59\\ 
+		2&  [0, 4, 21, 22, 23, 24, 28, 3, 0]
+		&66\\ 
+		3&   [0, 17, 19, 29, 26, 25, 18, 20, 0]& 77 \\ 
+		4& [0, 10, 16, 27, 13, 5, 0]& 57 \\ 
+		\bottomrule[2pt]	
+	\end{tabular}
+\end{table}
+
+电池分布：
+  		\begin{table}[H]
+  	\setstretch{1}  %设置表的行间距
+  	\centering		
+  	\caption{传感器电池最小容量分布}\label{bissao2}
+  	\begin{tabular}{cccc}
+  		\toprule[2pt]
+  		\multicolumn{1}{m{2.5cm}}{\centering 传感器序号}
+  		& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}& \multicolumn{1}{m{2.5cm}}{\centering 传感器序号}& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}
+  		\\
+  		\midrule[1pt]
+  		1 &   415.765 & 28&369.935\\ 
+  		9&   556.166& 3&494.6706\\ 
+  		7&   363.116& 17&502.970\\ 
+  		6 &   421.616& 19&686.930\\ 
+  		11 &   310.466 & 29&433.985\\ 
+  		14&   363.116& 26&510.635\\ 
+  		15 &  474.266& 25&365.00\\ 
+  		12&  368.9666& 18&433.9851\\ 
+  		8&  363.116& 20&579.6201\\ 
+  		2 &  421.616& 10&345.184\\ 
+  		4&  429.020& 16&481.3847\\ 
+  		21&  586.580& 27&[294.109 \\ 
+  		22 &  369.935& 13&350.859\\ 
+  		23 & 435.585& 5&243.0347\\ 
+  		24 & 310.850& &\\
+  		\bottomrule[2pt]	
+  	\end{tabular}
+  \end{table}
   
-  	\subsubsection{灵敏度分析}
+%  	\subsection{灵敏度分析}
  
   	\section{模型的评价}
 		\subsection{模型的优点}
@@ -565,6 +619,7 @@
 	%%参考文献
 	%\begin{thebibliography}{9}%宽度9
 	% \setlength{\itemsep}{-2mm}
+	\addcontentsline{toc}{section}{参考文献}
 	\nocite{*}		%排版未引用的参考文献
 	\begin{thebibliography}{9}%宽度9
 		\bibitem{1}Othman M F, Shazali K. Wireless sensor network applications: A study in environment monitoring system[J]. Procedia Engineering, 2015, 41: 1204-1210.
@@ -576,21 +631,21 @@
 		\bibitem{7}Yao W, Li M, Wu M Y. Inductive charging with multiple charger nodes in wireless sensor networks[C]//Asia-Pacific Web Conference. Springer, Berlin, Heidelberg, 2006: 262-270.
 	
 	\end{thebibliography}
-
-	\newpage
-	%附录
-	\appendix %%附录
-	\section{数据可视化的实现}
-		\subsection*{第一问画图--python源代码}
-			\begin{lstlisting}[language=python]
-			
-			\end{lstlisting}
-			
-		\subsection*{第二问画图--python源代码}
-			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
-			rulesepcolor=\color{red!20!green!20!blue!20},  
-			keywordstyle=\color{blue!70!black},  
-			commentstyle=\color{blue!90!},  
-			basicstyle=\ttfamily] {./code/demo.py}
+%
+%	\newpage
+%	%附录
+%	\appendix %%附录
+%	\section{数据可视化的实现}
+%		\subsection*{第一问画图--python源代码}
+%			\begin{lstlisting}[language=python]
+%			
+%			\end{lstlisting}
+%			
+%		\subsection*{第二问画图--python源代码}
+%			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
+%			rulesepcolor=\color{red!20!green!20!blue!20},  
+%			keywordstyle=\color{blue!70!black},  
+%			commentstyle=\color{blue!90!},  
+%			basicstyle=\ttfamily] {./code/demo.py}
 
 \end{document}
