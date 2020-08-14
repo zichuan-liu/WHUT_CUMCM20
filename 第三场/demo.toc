@@ -15,7 +15,7 @@
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{4}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{5}{subsection.5.2}%
 \contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{6}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{7}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}灵敏度分析}{8}{subsection.5.4}%
 \contentsline {section}{\numberline {六、}问题三模型的建立与求解}{10}{section.6}%
 \contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}结果分析}{10}{subsection.6.1}%
 \contentsline {section}{\numberline {七、}灵敏度分析}{10}{section.7}%
