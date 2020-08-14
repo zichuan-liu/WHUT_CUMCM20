@@ -162,68 +162,70 @@
   
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
-			问题二要求在问题一求得最优充电路线的基础上，给出传感器最小电池容量分布。考虑到固定周期为$T$的遍历充电模型[文献10]中能量得失分别与时间成正比，本节将充电周期划分为停留期和移动期。一个周期内，对任意一个传感器，移动期和所有停留期都以已知恒定速率耗电，仅在该传感器停驻的时期内以已知恒定速率充电。极限情况下，传感器能量消耗与补给的供需平衡对应传感器正常工作时的最小容量。分析能量得失去向和划分周期后，建立极限情况下的能量流动方程组，可知该模型是单值定解问题。求解方程组，可以求得传感器停留时间分布，推导停留时间和传感器电池容量的线性关系，可以获取最小能耗对应的传感器最小电池容量分布。
-			
-		\subsection{模型的建立}
-			\textbf{这个地方可以细化一下}。。。。。。
-			
-			周期为$T$的遍历充电模型中，移动充电器循环遍历预先规划的路径，在预定区域向传感器充电。本节将充电周期$T$划分为停留期$T_{park}$和移动期$T_{traverse}$，停留期$T_{park}$移动充电器已经进入并静止于传感器强耦合磁共振圆域，完成移动充电器向目标传感器匀速充电的过程；移动期$T_{traverse}$，移动充电器匀速移动，移动充电器停止供电。基于模型假设，不考虑停留期和移动期之间的时间间隔。根据能量得失去向和划分周期的关系，可列出能量流动表达式：
-			\begin{gather}
-			v_{consume}\cdot (T_{traverse}+\sum_{i} T_{park}^i)=v_{supply}\cdot T_{park}^i
-			\end{gather}
-			式(???)左端和右端分别用能量流动速度与能量传递时间的乘积表示耗能和供能值。
-			
-			可知当所有传感器按最小电池容量分布时，对每个传感器$s_i$，有关于移动充电器在传感器$s_i$处停留时间$t_i$的方程组：
-			\begin{gather}
-			c_{j} \cdot (L/v+\sum_{i=1}^{n}t_i)=r \cdot t_j (j=1,2,...,n),
-			\end{gather}
-			其中，$n$是传感器数目，$L$是问题一解得最小能量消耗对应的总里程，$v$是移动充电器的移动速度，$c_{j}$是第$j$个传感器已知的能量消耗速率，$r$是充电速率。式$(1)$左右分别代表一个充电周期内消耗和补给的电量，满足传感器能量消耗与补给的供需平衡。为了满足使用要求，传感器电量必须始终大于阈值$f$，同时保证所有传感器电量不小于$f$的使用要求。
-			
-			求解这个线性方程组，可得移动充电器在所有传感器的停留时间$t_i(i=1,2,...,n)$，则问题二所求的最小电量分布$\bm {V_{threshold}}$可表示为:
-			\begin{gather}
-			\begin{bmatrix}
-				v_1\\ v_2\\ \vdots\\ v_n
-			\end{bmatrix}=f\cdot \bm E+\begin{bmatrix}
-				t_1\\ t_2\\ \vdots\\ t_n
-			\end{bmatrix},
-			\end{gather}
-			其中，$E$是规格为$n\times n$的单位矩阵。或将电量分布表示为
-			\begin{gather}
-			\bm{V_{threshold}}=\bm{F}+r\cdot \bm{T_{threshold}},
-			\end{gather}
-			其中，$\bm F=f \cdot \bm E$是元素全为传感器电量阈值$f$的规格为$n \times 1$的列向量，$\bm{T_{threshold}}$是$t_1,t_2,...,t_{n}$按顺序构成的规格为$n\times 1$的列向量，$r$是充电速率。
-    		
-    		其思维流程图如图~\ref{lssssct}~所示：
+			问题二要求在问题一求得最优充电路线的基础上，给出传感器最小电池容量分布。考虑到固定周期为$T$的遍历充电模型[文献10]中能量得失分别与时间成正比，本节将充电周期划分为驻留期和移动期。一个周期内，对任意一个传感器，移动期和所有驻留期都以已知恒定速率耗电，仅在该传感器停驻的时期内以已知恒定速率充电。极限情况下，传感器能量消耗与补给的供需平衡对应传感器正常工作时的最小容量。分析能量得失去向和划分周期后，建立极限情况下的能量流动方程组，可知该模型是单值定解问题。求解方程组，可以求得传感器停留时间分布，推导停留时间和传感器电池容量的线性关系，可以获取最小能耗对应的传感器最小电池容量分布。
+			其思维流程图如图~\ref{lssssct}~所示：
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
+				\includegraphics[width=\textwidth]{figures/222222.png}
 				\caption{问题二思维流程图}\label{lssssct}
 			\end{figure}
+		
+		\subsection{模型的建立}
+			\textbf{这个地方可以细化一下}。。。。。。
+			
+			周期为$T$的遍历充电模型中，移动充电器循环遍历预先规划的路径，在预定区域向传感器充电。本节将充电周期$T$划分为驻留期$T_{park}$和移动期$T_{traverse}$，驻留期$T_{park}$移动充电器已经进入并静止于传感器强耦合磁共振圆域，完成移动充电器向目标传感器匀速充电的过程；移动期$T_{traverse}$，移动充电器匀速移动，移动充电器停止供电。基于模型假设，不考虑驻留期和移动期之间的时间间隔。根据能量得失去向和划分周期的关系，可列出无线可充电传感器网络正常工作时的能量流动表达式：
+			\begin{gather}
+			v_{consume}\cdot (T_{traverse}+\sum_{i} T_{park}^i)\leq v_{supply}\cdot T_{park}^i.
+			\end{gather}
+			式(???)左端和右端分别用能量流动速度与能量传递时间的乘积表示耗能和供能值。
+			
+			可知当所有传感器按最小电池容量分布时，传感器从移动充电器获得能量与自身消耗能量相等，即是无线可充电传感器网络正常工作的极限情况。结合已知的相关数据，对每个传感器$s_i$，有关于移动充电器在传感器$s_i$处停留时间$t_i$的$n$元线性方程组：
+			\begin{gather}
+			c_{j} \cdot (L/v+\sum_{i=1}^{n}t_i)=r \cdot t_j (j=1,2,...,n),
+			\end{gather}
+			其中，$n$是传感器数目，$L$是问题一解得最小能量消耗对应的总里程，$v$是移动充电器的移动速度，$c_{j}$是第$j$个传感器已知的能量消耗速率，$r$是充电速率。式$(1)$左右分别代表一个充电周期内消耗和补给的电量，满足传感器能量消耗与补给的供需平衡。
+			
+			求解这个线性方程组，可得移动充电器在所有传感器的停留时间$t_i(i=1,2,...,n)$，即驻留期分布。为了满足使用要求，传感器电量必须始终大于阈值$f$，同时保证所有传感器电量不小于$f$的使用要求。一个周期$T$内，传感器电池容量$T{threshold}$不低于驻留期$T_{park}$补充的能量$r \cdot T_{park}$，则无线可充电传感器网络正常工作时电量分布与驻留期的线性关系可表示为:
+			\begin{gather}
+			\left\{\begin{matrix}
+			v_1\geq f+r\cdot t_1\\ 
+			v_2\geq f+r\cdot t_2\\ 
+			\vdots \\ 
+			v_n \geq f+r\cdot t_n
+			\end{matrix}\right.,
+			\end{gather}
+			极限情况取等号，即传感器电池容量矩阵$\bm {V_{threshold}}$与驻留期矩阵$\bm {T_{threshold}}$关系为
+			\begin{gather}
+			\bm{V_{threshold}}=\bm{F}+r\cdot \bm{T_{threshold}},
+			\end{gather}
+			其中，$\bm F$是元素全为传感器电量阈值$f$的规格为$n \times 1$的列向量，$\bm{T_{threshold}}$是$t_1,t_2,...,t_{n}$按顺序构成的规格为$n\times 1$的列向量，$r$是充电速率。
+    		
+    		
 
 		
 		
 		\subsection{模型的求解}
 		\textbf{再完善一下内容。。。}
-		整理$(1)$式子，可以看出是一阶线性方程组，考虑到左边方阵直接求逆计算复杂度较大，故化简后使用$LU$分解法求解。
+		对于单值定解问题，使用矩阵分解方法分解求解。目前矩阵分解方法主要有$LU$分解、$LUP$分解、谱分解、$Cholesky$分解、$QR$分解、奇异值分解等方法。考虑到问题二目标矩阵$A$具有阶数高、是$n$阶方阵、$A$的前$rank(A)$阶顺序主子式不为$0$等特征，可以看出是一阶线性方程组，考虑到左边方阵直接求逆计算复杂度较大，故化简后使用$LU$分解法求解。$LU$分解的最大计算复杂度是$O(n^3)$，具有无需判定矩阵是否正定，浮点数操作总量都在$O(n^2)$（双重循环）等优点。整理$(1)$式子，
 		
 		化简$(1)$式，得矩阵方程
 		\begin{gather}
-		\begin{bmatrix}
-			1-\frac{r}{c_1} & 1 & ... & 1 \\ 
-			1 & 1-\frac{r}{c_2} & ... & 1\\ 
-			\vdots  & \vdots & \ddots  & \vdots \\ 
-			1 & 1 & ... & 1-\frac{r}{c_n}
-		\end{bmatrix}\begin{bmatrix}
-			t_1\\ t_2\\ \vdots\\ t_n
-		\end{bmatrix}=-\frac{L}{v}
-		\begin{bmatrix}
-			1/c_1\\ 1/c_2\\ \vdots\\ 1/c_n
-		\end{bmatrix},
+		\bm A \cdot \bm{T_{threshold}}=-L/v \cdot \bm b,
 		\end{gather}
 		或表示为
 		\begin{gather}
-		\bm A \cdot \bm{T_{threshold}}=-L/v \cdot \bm b,
+		\begin{bmatrix}
+		1-\frac{r}{c_1} & 1 & ... & 1 \\ 
+		1 & 1-\frac{r}{c_2} & ... & 1\\ 
+		\vdots  & \vdots & \ddots  & \vdots \\ 
+		1 & 1 & ... & 1-\frac{r}{c_n}
+		\end{bmatrix}\begin{bmatrix}
+		t_1\\ t_2\\ \vdots\\ t_n
+		\end{bmatrix}=-\frac{L}{v}
+		\begin{bmatrix}
+		1/c_1\\ 1/c_2\\ \vdots\\ 1/c_n
+		\end{bmatrix},
 		\end{gather}
 		其中$t_i(i=1,2,...,n)$是极限情况时，无线充电器在传感器$s_i$处的停留时间，$c_i(i=1,2,...,n)$表示传感器$s_i$能量消耗速率，$r$是已知的固定充电速率。
 		
@@ -250,10 +252,10 @@
 			\setstretch{1.4}  %设置表的行间距
 			\centering		
 			\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-			\begin{tabular}{cc}
+			\begin{tabular}{cccc}
 			\toprule[2pt]
-				\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
+				\multicolumn{1}{m{3.5cm}}{\centering xxxxxxx}
+				& \multicolumn{1}{m{3.5cm}}{\centering xxxxxxx}& \multicolumn{1}{m{3.5cm}}{\centering xxxxxxx}& \multicolumn{1}{m{3.5cm}}{\centering xxxxxxx}
 				\\
 				\midrule[1pt]
 				xxxxxxx &   909.80\\ 
@@ -263,7 +265,14 @@
 			\end{table}
   
   			由表\ref{biao1}可知
-
+			
+			对移动充电器的移动速度进行灵敏度分析，当移动充电器的移动速度增大，$30$个传感器电池容量按相同规律下降。
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{figures/2333.jpg}
+				\caption{对移动充电器移动速度的灵敏度分析}\label{lssss}
+			\end{figure}
+		
 			其各个小车的运输细节图下图所示：
 			\begin{figure}[H]
 				\centering
