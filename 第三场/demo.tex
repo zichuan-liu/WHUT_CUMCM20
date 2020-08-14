@@ -283,7 +283,29 @@
 		\end{gather}
     当个体$A_n$的剩余生命值归零，即$Hp(A_n)=0$时，我们将剔除个体$A_n$并随机生成一个新解取代其位置。
 	\subsubsection{随机梯度下降}	
-    	 当R>0时，本节采用随机梯度下降对目标函数$L(P_k)$进行寻优。
+    	 当R>0时，本节采用随机梯度下降(Stochastic Gradient Descent, SGD)对目标函数$L(P_k)$进行寻优,即：
+    	 	    \begin{gather}
+    	 \begin{matrix}
+    	 L(P,\Theta)=d(p_0,p_{1},\theta_0)+d(p_0,p_{30-k},\theta_{30})+\sum_{i=1}^{30-k}d(p_i,p_{i+1},\theta_{i}) ,\\ 
+    	 \bigtriangledown  L(P,\Theta)= \frac{1}{m}\sum_{j=1}^{m}\bigtriangledown L(p_k,\theta_{i}),
+    	 \end{matrix}
+    	 \end{gather}
+    	 其中$P$为中心位置向量，$\Theta$为参数方程圆周上的角度，$d(p_i,p_{i+1})$表示点$p_i$到点$p_{i+1}$的直线距离。对于任意更新$\Theta$可用伪代码描述：
+    	 
+    	   	\begin{algorithm}[H]
+    	 	\caption{Procedure of Stochastic Gradient Descent}
+    	 	\setstretch{.8}  %设置表的行间距
+    	 	\LinesNumbered
+    	 	\KwIn{
+    	 		Number of centers: 中心位置$P$, 角度$\Theta$, 学习率$\eta$
+    	 	}
+    	 	\KwOut{Centers: 更新后$\Theta$}
+    	 	\textbf{Initialize} $\Theta \leftarrow 0$ \newline
+    	 	 	\While{True}{
+     	 	
+      	}
+    	 	\Return {$\Theta$ }
+    	 \end{algorithm}
 
 		
     \subsection{实验结果及分析}
