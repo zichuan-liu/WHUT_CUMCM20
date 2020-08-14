@@ -114,12 +114,6 @@
 
 	\section{问题一模型的建立与求解}
 		\subsection{问题描述与分析}
-
-			问题一要求充电路线最小化移动充电器在路上的能量消耗。在周期性场景中，均以最大化驻站空闲时间比为目标，移动充电设备均从服务站（即维护站）出发，完成充电活动后回到服务站。Kurs等人\upcite{4}最先提出对网络中所有节点进行固定周期T的遍历充电模型。移动无线充电设备(Wireless Charging Vehicle, WCV)从服务站出发，依次为网络中所有节点进行点对点的无线充电，最终又回到服务站。
-			
-			根据无线传感器网络模型，每个固定位置的基站传感器节点具有通信圆域，其半径为$R$，无线充电设备在通信圆域内以固定速率$r$充电，
-
-		\subsection{模型的求解}
 		
 			问题一要求充电路线最小化移动充电器在路上的能量消耗。为使得无线传感器网络
 		(Wireless Sensor Network，	WSN)持续不断地运行，移动充电器(Mobile Charger，MC)必须在WSN的每一个生命周期中访问所有的传感器节点并对其完成充电并返回数据中心。要使得MC在路上的能量消耗最小，即使得每个周期内MC移动的路程达到最小，当MC为传统的短程有线充电设备时，该问题可被转化为传统的TSP问题。
@@ -255,7 +249,7 @@
 			\caption{顺序交叉}\label{gbf}
 		\end{figure}
 		
-		即首先选择$A1$中的一段染色体编码作为保留基因，即为图中的红色基因块部分，之后交换$A_1$与$A_2$的非保留基因段即可得到交叉子代$H_1$与$H_2$。再选取交叉个体时采用混合分组的方法，将父代均匀混合后选取所有编号为奇数的个体，与其相邻对应编号为偶数的个体，通过两种交叉方式产生交叉子代集合$\left \{ H_n \right \}$。
+		即首先选择$A1$中的一段染色体编码作为保留基因，即为图中的红色基因块部分，之后交换$A_1$与$A_2$的非保留基因段即可得到交叉子代$H_1$与$H_2$。再选取交叉个体时采用混合分组的方法，将父代均匀混合后选取所有编号为奇数的个体，与其相邻对应编号为偶数的个体进行交叉操作，即可产生交叉子代集合$\left \{ H_n \right \}$。
 	     
 		
 		
@@ -426,59 +420,7 @@
 		\caption{不同二级管道铺设最大代价}
 		\label{mgh}
 	\end{figure}
-		根据图\ref{mgh}分析可知，$0$到$70m$范围内能量圆域半径$R$变化对传感器电池容量分布几乎无影响，而移动充电器的移动速度$v$、充电速率$r$和传感器电量阈值$f$的增大会引起所有传感器电池容量下降，其中传感器电量阈值$f$增大引起的电池容量降低效应是线性的，这是由于移动充电器充电速率$r$远大于给定的传感器能量消耗速率$c_j(j=1,2,...,29)$，使得式(5)对角元系数为负值，驻留期时间$t_i(i=1,2,...,29)$线性减少效应大于传感器电量阈值$f$的增大效应。
-		
-
-			问题二要求
-
-    		其思维流程图如图~\ref{lsst}~所示：
-
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题二思维流程图}\label{lsst}
-			\end{figure}
-
-		\subsection{模型的建立}
-		
-		\subsection{模型的求解}
-
-        \subsection{实验结果及分析}
-        
-			结果如下表\ref{zhuanssssasgzai}所示：
-			\begin{table}[H]
-			\setstretch{1.4}  %设置表的行间距
-			\centering		
-			\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-			\begin{tabular}{cc}
-			\toprule[2pt]
-				\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				\\
-				\midrule[1pt]
-				xxxxxxx &   909.80\\ 
-				xxxxxxx & 	852.60\\ 
-			\bottomrule[2pt]	
-			\end{tabular}
-			\end{table}
-  
-  			由表\ref{biao1}可知
-
-			其各个小车的运输细节图下图所示：
-			\begin{figure}[H]
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-			\end{figure}	
-			\begin{figure}[H]	
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\caption{xxxxxxxxxxxxxxxxxxxxxxxxx}
-				\label{fisg}
-			\end{figure}
-
-
+		分析图\ref{mgh}(c)可知，当充电有效距离$R$在$0$到$70m$范围内变化时，传感器的电池容量分布对应变化量相当小，可认为充电有效距离几乎不对各个传感器电池容量需求造成影响。由图\ref{mgh}(a)(b)(d)可知，移动充电器的移动速度$v$、充电速率$r$和传感器电量阈值$f$与传感器电池容量负相关。其中电量阈值$f$增大将使得电池容量线性降低，是由于移动充电器充电速率$r$远大于给定的传感器能量消耗速率$c_j(j=1,2,...,29)$，使得式(5)对角元系数为负值，驻留期时间$t_i(i=1,2,...,29)$线性减少效应大于传感器电量阈值$f$的增大效应，符合实际情况。
     \section{问题三模型的建立与求解}
   		\subsection{结果分析}
   

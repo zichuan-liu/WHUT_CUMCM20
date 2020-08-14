@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  14 AUG 2020 21:29
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  14 AUG 2020 23:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1262,7 +1262,7 @@ Package fontspec Info: Font family 'SimSun(1)' created for font 'SimSun' with
 (fontspec)             <->"SimSun/OT:script=hani;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
- [3])
+)
 \tf@toc=\write5
 \openout5 = `demo.toc'.
 
@@ -1280,32 +1280,35 @@ File: figures/bufu.png Graphic file (type bmp)
  [4] [5]
 File: figures/fugai.png Graphic file (type bmp)
 <figures/fugai.png>
- [6] [7]
+ [6]
 File: figures/lga.png Graphic file (type bmp)
 <figures/lga.png>
- [8]
+ [7]
 File: figures/cross.png Graphic file (type bmp)
 <figures/cross.png>
 
-Overfull \hbox (6.83864pt too wide) in paragraph at lines 269--270
+Overfull \hbox (6.83864pt too wide) in paragraph at lines 263--264
  []\TU/SimSun(0)/bx/n/12.05 赌 轮 选 择[] \TU/SimSun(1)/m/n/12.05 将 第 \TU/TimesNewR
 oman(0)/m/n/12.05 g \TU/SimSun(1)/m/n/12.05 代 的 染 色 体 与 其 交 叉 和 变 异 产 生 的 子 代 并
  入 同 一 解 集 $\OML/cmm/m/it/12.05 G[] \OT1/cmr/m/n/12.05 = []$\TU/SimSun(1)/m/n/1
 2.05 。|
  []
 
-[9]
+[8]
 
-LaTeX Warning: Reference `lssssct' on page 10 undefined on input line 300.
+LaTeX Warning: Reference `lssssct' on page 9 undefined on input line 294.
 
 File: figures/222222.png Graphic file (type bmp)
 <figures/222222.png>
-[10] [11] [12]
-Overfull \hbox (47.99997pt too wide) in paragraph at lines 386--409
+[9] [10] [11]
+Overfull \hbox (47.99997pt too wide) in paragraph at lines 380--403
  [][] 
  []
 
-[13]
+[12]
+
+LaTeX Warning: Reference `biao1' on page 13 undefined on input line 405.
+
 File: figures/2333v.jpg Graphic file (type bmp)
 <figures/2333v.jpg>
 File: figures/2333r.jpg Graphic file (type bmp)
@@ -1314,23 +1317,7 @@ File: figures/2333R.png Graphic file (type bmp)
 <figures/2333R.png>
 File: figures/2333f.jpg Graphic file (type bmp)
 <figures/2333f.jpg>
- [14]
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
- [15]
-
-LaTeX Warning: Reference `zhuanssssasgzai' on page 16 undefined on input line 4
-48.
-
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
-[16] [17] [18] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+[13] [14] [15] [16] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
 
@@ -1356,16 +1343,15 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-
-(./code/demo.py)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 532.
- [19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 532.
+ (./code/demo.py)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 474.
+ [17]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 474.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 532.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 532.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 474.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 474.
 Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 8E977C5144075C8AF0FDF27355E2BD99.
+(rerunfilecheck)             Checksum: 1916620FB37BA59C5FD9FE0B763AF7D4.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1373,16 +1359,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 532.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 474.
  )
 (\end occurred when \iftrue on line 26 was incomplete) 
 Here is how much of TeX's memory you used:
- 29919 strings out of 492922
- 582988 string characters out of 6136751
- 856928 words of memory out of 5000000
- 33526 multiletter control sequences out of 15000+600000
+ 29917 strings out of 492922
+ 582965 string characters out of 6136751
+ 856803 words of memory out of 5000000
+ 33524 multiletter control sequences out of 15000+600000
  540813 words of font info for 128 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,17n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (23 pages).
+Output written on demo.pdf (20 pages).
