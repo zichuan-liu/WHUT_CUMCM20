@@ -115,6 +115,7 @@
 
 	\section{问题一模型的建立与求解}
 		\subsection{问题描述与分析}
+<<<<<<< HEAD
 
 
 			问题一要求充电路线最小化移动充电器在路上的能量消耗。在周期性场景中，均以最大化驻站空闲时间比为目标，移动充电设备均从服务站（即维护站）出发，完成充电活动后回到服务站。Kurs等人\upcite{4}最先提出对网络中所有节点进行固定周期T的遍历充电模型。移动无线充电设备(Wireless Charging Vehicle, WCV)从服务站出发，依次为网络中所有节点进行点对点的无线充电，最终又回到服务站。
@@ -130,15 +131,21 @@
 %
 %		\subsection{模型的求解}
 
+=======
+>>>>>>> origin/cy
 		
 			问题一要求充电路线最小化移动充电器在路上的能量消耗。为使得无线传感器网络
 		(Wireless Sensor Network，	WSN)持续不断地运行，移动充电器(Mobile Charger，MC)必须在WSN的每一个生命周期中访问所有的传感器节点并对其完成充电并返回数据中心。要使得MC在路上的能量消耗最小，即使得每个周期内MC移动的路程达到最小，当MC为传统的短程有线充电设备时，该问题可被转化为传统的TSP问题。
 		    
 		    分析整理相关文献可知(引用)，随近代无线充电技术发展，WSN的充电任务将由负载无线充电设备的移动充电器(Wireless Charging Vehicle，WCV)完成。WCV可在距离目标传感器一定范围内对其执行无线充电，且可同时对多个传感器进行无线充电，假设在此范围内充电场的能级不随距离而发生变化，并尝试优化求解在充电设备的最大充电距离为不同值时的最佳充电路线。
 		    
-		    本节首先使MC为传统的短途有线充电设备，使得可充电距离$R=0$，即将问题转化为传统TSP优化模型，使用生命遗传算法进行优化求解。之后将MC视为无线充电设备，首先使得$0<R<\frac{\alpha }{2}$($\alpha$表示所有传感器间的距离中的最小值 )，该情况下，MC在任意时刻最多只能对一个传感器进行充电，我们将梯度下降算法嵌入？？？遗传算法对该情况下的充电路径进行优化求解；当$R\geqslant \frac{\alpha }{2}$，即MC可对多个传感器同时进行充电，针对此情况我们修改？？？遗传算法的编码方式，即合并可充电区域重叠的传感器编码，求解最佳充电路径。
+		    本节首先使MC为传统的短途有线充电设备，使得可充电距离$R=0$，即将问题转化为传统TSP优化模型，使用生命遗传算法进行优化求解。之后将MC视为无线充电设备，首先使得$0<R<\frac{\alpha }{2}$($\alpha$表示所有传感器间的距离中的最小值 )，该情况下，MC在任意时刻最多只能对一个传感器进行充电，我们将梯度下降算法嵌入生命遗传算法对该情况下的充电路径进行优化求解；当$R\geqslant \frac{\alpha }{2}$，即MC可对多个传感器同时进行充电，针对此情况我们修改生命遗传算法的编码方式，即合并可充电区域重叠的传感器编码，求解最佳充电路径。问题一思维流程图如下所示
 			
-			
+		  \begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{figures/1.png}
+				\caption{问题一思维流程图}\label{asdf}
+			\end{figure}
 			%在周期性场景中，均以最大化驻站空闲时间比为目标，移动充电设备均从服务站（即维护站）出发，完成充电活动后回到服务站。Kurs等人\upcite{4}最先提出对网络中所有节点进行固定周期T的遍历充电模型。移动无线充电设备(Wireless Charging Vehicle, WCV)从服务站出发，依次为网络中所有节点进行点对点的无线充电，最终又回到服务站。
 		
 		
@@ -292,9 +299,89 @@
 		Hp(A_n)=Hp(A_n)-1,n=p,p+1,\cdots,w.
 		\end{gather}
     当个体$A_n$的剩余生命值归零，即$Hp(A_n)=0$时，我们将剔除个体$A_n$并随机生成一个新解取代其位置。
+<<<<<<< HEAD
 	\subsubsection{随机梯度下降}	
     	 当R>0时，本节采用随机梯度下降对目标函数$L(P_k)$进行寻优。
 
+=======
+    \begin{algorithm}[]
+    	\caption{The Proposed Heuristic Algorithm}
+    	\LinesNumbered
+    	\KwIn{种群规模: w ;迭代次数: T ;\\变异概率$\gamma$;初始生命值h;优质个体数量P;
+    	}
+    	\KwOut{最优解$X_{min}$}
+    	\textbf{Initialize} $g\leftarrow 0$ \newline
+    	$\triangleright$(Initialization)\newline
+    	\For{k= 1 \rm to $w$}{
+    	 $X_k$=randperm(29)\newline
+    	 	$Hp(X_k)=h$
+    	}
+    	\While{$(g\leqslant T)$}{
+    		$\triangleright$ (Crossover) \newline
+    		\For{(k=1 \rm to w-1 \rm differ by two)}{  		
+    			$\left \{ H_{k}(g),H_{k+1}(g) \right \}=Crossover(X_{k}(g),X_{k+1}(g))$\newline
+    			$Hp(H_{k}(g))=h$;	$Hp(H_{k+1}(g))=h$
+    		}
+    		$\triangleright$ (Mutation) \newline
+    		\For{(k=1 \rm to w )}{
+    			\If{rand(0,1)<$\gamma$}{
+    			$M_{k}(g)=Mutation(X_{k}(g))$\newline
+    				$Hp(M_{k}(g))=h$
+    		}
+    		}
+    		$\left \{ S_{k}(g) \right \}$ $\leftarrow $  $\left \{ V_{k}(g) \right \}$ $+$ $\left \{ X_{k}(g-1) \right \}$ \newline
+    		$\triangleright$(Roulette selection)\newline
+    		\For{($k=1$ \rm to $w$)}{
+    			$X_k(g+1)=Roulette(\left \{ S_{k}(g) \right \})$
+    		}
+    		sort ($\left \{X_k(g+1)\right \}$, $R_{k}$, $f(X_k(g+1))$\newline
+    		$\triangleright$(Hp decay)\newline
+    		\For{k=p+1 \rm to $w$}{
+    			$Hp(X_{k}(g))=Hp(X_{k}(g))-1$\newline
+    			\If{$Hp(X_{k}(g))=0$}{
+    			$X_{k}(g)$=randperm(29)
+    		}
+    		}
+    		$t\leftarrow t+1$
+    	}
+    	\Return {$argmin\left \{f( X_{k}(g)) \right \}$ }
+    \end{algorithm}
+	\subsubsection{随机梯度下降}	
+    	 当R>0时，本节采用随机梯度下降(Stochastic Gradient Descent, SGD)对目标函数$L(P_k)$进行寻优，它采用单个训练样本的损失来近似平均损失，即：
+    	 	    \begin{gather}
+    	 \begin{matrix}
+    	 L(P,\Theta)=d(p_0,p_{1},\theta_0)+d(p_0,p_{30-k},\theta_{30})+\sum_{i=1}^{30-k}d(p_i,p_{i+1},\theta_{i}) ,\\ 
+    	 \bigtriangledown  L(P,\Theta)= \frac{1}{m}\sum_{j=1}^{m}\bigtriangledown L(p_k,\theta_{i}),
+    	 \end{matrix}
+    	 \end{gather}
+    	 其中$P$为中心位置向量，$\Theta$为参数方程圆周上的角度，$d(p_i,p_{i+1})$表示点$p_i$到点$p_{i+1}$的直线距离。对于模型参数$\Theta$的更新公式如下，其中$\eta$为学习率：
+    	 
+    	 \begin{gather}
+			\theta_{t+1}=\theta_{t}-\eta \nabla L\left(\theta_{t}\right),
+    	 \end{gather}
+    	 因此随机梯度下降法用单个训练数据即可对模型参数进行一次更新，大大加快了训练速度。其伪代码如下所示：
+    	 
+    	   	\begin{algorithm}[H]
+    	 	\caption{Procedure of Stochastic Gradient Descent}
+    	 	\setstretch{1}  %设置表的行间距
+    	 	\LinesNumbered
+    	 	\KwIn{
+    	 		Number of centers: 中心位置$P$, 角度$\Theta$, 学习率$\eta$
+    	 	}
+    	 	\KwOut{Centers: 更新后$\Theta$}
+    	 	\textbf{Initialize} $\Theta \leftarrow 0$ \newline
+    	 	 	\For{ $k$ =1 \rm to $\textrm{max}$}{
+    	 	 			$\theta_{i}\leftarrow \Theta [i]$\\
+    	 	 	    	$ \bigtriangledown  L(P,\Theta)= \frac{1}{m}\sum_{j=1}^{m}\bigtriangledown L(p_k,\theta_{i})$\\
+    	 	 	\If{$\left \| \Theta  \right \|^{2}\leq precision$}{$\boldsymbol{break}$}
+     	 	   $\theta_{t+1}=\theta_{t}-\eta \nabla L\left(\theta_{t}\right)$
+      	
+      }
+    	 	\Return {$\Theta$ }
+    	 \end{algorithm}
+		
+		将求得后$\Theta$带入到目标函数$L(P_k, \Theta)$中求得最短距离后，作为适应度带入到基因中并继续执行生命遗传算法。其为代码如下所示
+>>>>>>> origin/cy
 		
     \subsection{实验结果及分析}
         对于有线充电设备，即$R=0$时，求得的最短路径如图\ref{sssssssssss}所示：
@@ -324,16 +411,13 @@
 	    由算法收敛图可知算法收敛速度较快，算法复杂度远低于遍历求解。当半径R取较小时早熟问题解决的较好，全局搜素能力较强；当R取值大于临界条件时采用随机梯度下降后收敛会出现振荡现象，但仍能搜索到局部最优解。
 	
 	\subsection{灵敏度分析}
-	？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？R越大，损失越小
-	
+       充电有效距离$R$将直接影响MC总路程$L$的优化结果，本节使得有效距离$R$在$0m$至$80m$范围内连续变化，得到总路程$L$的优化结果对应变化规律如下
 	    \begin{figure}[H]
 		\centering
 		\includegraphics[width=.8\textwidth]{figures/ssss.png}
-		\caption{充电半径R与移动规划路径之间的关系}\label{ssssssssssssss}
+		\caption{充电半径R与总路程$L$关系}\label{ssssssssssssss}
 		\end{figure}
-    
-
-  
+	由图~\ref{ssssssssssssss}~可知随有效距离$R$增加，优化结果总体呈现处下降趋势，符合实际。当有效距离$R$连续变化时，总路程$L$的全局最优解理论上应当表现为连续变化。而本文实验结果总路程$L$下降过程并不平滑，表明算法并未求解出每种状态下的全局最优解，但求解结果较为贴近于全局最优解曲线。
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
 
@@ -351,10 +435,17 @@
 			\textbf{这个地方可以细化一下}。。。。。。
 			
 			周期为$T$的遍历充电模型中，移动充电器循环遍历预先规划的路径，在预定区域向传感器充电。本节将充电周期$T$划分为驻留期$T_{park}$和移动期$T_{traverse}$，驻留期$T_{park}$移动充电器已经进入并静止于传感器强耦合磁共振圆域，完成移动充电器向目标传感器匀速充电的过程；移动期$T_{traverse}$，移动充电器匀速移动，移动充电器停止供电。基于模型假设，不考虑驻留期和移动期之间的时间间隔。根据能量得失去向和划分周期的关系，可列出无线可充电传感器网络正常工作时的能量流动表达式：
+<<<<<<< HEAD
 			\begin{gather}
 			v_{consume}\cdot (T_{traverse}+\sum_{i} T_{park}^i)\leq v_{supply}\cdot T_{park}^i.
 			\end{gather}
 			式(???)左端和右端分别用能量流动速度与能量传递时间的乘积表示耗能和供能值。
+=======
+			\begin{gather}\label{ssssssss}
+			v_{consume}\cdot (T_{traverse}+\sum_{i} T_{park}^i)\leq v_{supply}\cdot T_{park}^i.
+			\end{gather}
+			式\ref{ssssssss}左端和右端分别用能量流动速度与能量传递时间的乘积表示耗能和供能值。
+>>>>>>> origin/cy
 			
 			可知当所有传感器按最小电池容量分布时，传感器从移动充电器获得能量与自身消耗能量相等，即是无线可充电传感器网络正常工作的极限情况。结合已知的相关数据，对每个传感器$s_i$，有关于移动充电器在传感器$s_i$处停留时间$t_i$的$n$元线性方程组：
 			\begin{gather}
@@ -377,9 +468,6 @@
 			\end{gather}
 			其中，$\bm F$是元素全为传感器电量阈值$f$的规格为$n \times 1$的列向量，$\bm{T_{threshold}}$是$t_1,t_2,...,t_{n}$按顺序构成的规格为$n\times 1$的列向量，$r$是充电速率。
     		
-    		
-
-		
 		
 		\subsection{模型的求解}
 		\textbf{再完善一下内容。。。}
@@ -422,13 +510,22 @@
 		\end{gather}
 		结果如表\ref{biao2}所示：
 		\begin{table}[H]
+<<<<<<< HEAD
 			\setstretch{1.4}  %设置表的行间距
+=======
+			\setstretch{1}  %设置表的行间距
+>>>>>>> origin/cy
 			\centering		
 			\caption{传感器电池最小容量分布}\label{biao2}
 			\begin{tabular}{cccc}
 				\toprule[2pt]
+<<<<<<< HEAD
 				\multicolumn{1}{m{3.5cm}}{\centering 传感器序号}
 				& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}& \multicolumn{1}{m{3.5cm}}{\centering 传感器序号}& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}
+=======
+				\multicolumn{1}{m{2.5cm}}{\centering 传感器序号}
+				& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}& \multicolumn{1}{m{2.5cm}}{\centering 传感器序号}& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}
+>>>>>>> origin/cy
 				\\
 				\midrule[1pt]
 				2 &   5001.24202643 & 3&4801.81519446\\ 
@@ -450,15 +547,23 @@
 			\end{tabular}
 		\end{table}
 		
+<<<<<<< HEAD
 		由表\ref{biao1}可知
 		
         \subsection{灵敏度分析}
 
 
+=======
+%		由表\ref{biao2}可知
+		
+        \subsection{灵敏度分析}
+
+>>>>>>> origin/cy
 		改变移动充电器的移动速度、充电速率、能量圆域半径和传感器电量阈值，观察$30$个传感器电池容量的变化情况。
 		
 	\begin{figure}[H]
 		\centering
+<<<<<<< HEAD
 		\subfigure[最大25km，升级20个水管]{\includegraphics[height=6.5cm,width=7.5cm]{2333v.jpg}}
 		\subfigure[最大30km，升级11个水管]{\includegraphics[height=6.5cm,width=7.5cm]{2333r.jpg}}
 	\end{figure}	
@@ -471,10 +576,142 @@
 	\end{figure}
 		分析图\ref{mgh}(c)可知，当充电有效距离$R$在$0$到$70m$范围内变化时，传感器的电池容量分布对应变化量相当小，可认为充电有效距离几乎不对各个传感器电池容量需求造成影响。由图\ref{mgh}(a)、(b)、(d)可知，移动充电器的移动速度$v$、充电速率$r$和传感器电量阈值$f$与传感器电池容量负相关。其中电量阈值$f$增大将使得电池容量线性降低，是由于移动充电器充电速率$r$远大于给定的传感器能量消耗速率$c_j(j=1,2,...,29)$，使得式(5)对角元系数为负值，驻留期时间$t_i(i=1,2,...,29)$线性减少效应大于传感器电量阈值$f$的增大效应，符合实际情况。
 
+=======
+		\subfigure[改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2333v.jpg}}
+		\subfigure[改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2333r.jpg}}
+	\end{figure}	
+	\begin{figure}[H]
+		\centering
+		\subfigure[改变充电半径R]{\includegraphics[height=6.5cm,width=7.5cm]{2333R.png}}
+		\subfigure[改变最低电量f]{\includegraphics[height=6.5cm,width=7.5cm]{2333f.jpg}}
+		\caption{不同参数对各个传感器功率的影响}
+		\label{mgh}
+	\end{figure}
+
+		分析图\ref{mgh}(c)可知，当充电有效距离$R$在$0$到$70m$范围内变化时，传感器的电池容量分布对应变化量相当小，可认为充电有效距离几乎不对各个传感器电池容量需求造成影响。由图\ref{mgh}(a)(b)(d)可知，移动充电器的移动速度$v$、充电速率$r$和传感器电量阈值$f$与传感器电池容量负相关。其中电量阈值$f$增大将使得电池容量线性降低，是由于移动充电器充电速率$r$远大于给定的传感器能量消耗速率$c_j(j=1,2,...,29)$，使得式(5)对角元系数为负值，驻留期时间$t_i(i=1,2,...,29)$线性减少效应大于传感器电量阈值$f$的增大效应，符合实际情况。
+>>>>>>> origin/cy
     \section{问题三模型的建立与求解}
+    \subsection{问题描述与分析}
+    问题三要求设计同时派出多辆MC时各辆MC的充电路线，使得所有的MC在路上的总的能量消耗最小。由于问题只要求最小化路上的能量消耗，若多辆MC访问同一个传感器并对其充电，其路上的能量消耗必然大于每个传感器仅由一辆MC充电的方案。故当MC的充电有效距离$R=0$时，问题可被转换为多旅行商问题，同时优化四辆MC的充电路线使得总行驶路程最小。
+    
+    针对该多旅行商问题，我们在问题一的基础上设计了插板式编码对该分段序列类型的决策变量进行编码，并将该编码方式嵌入生命遗传算法，以总行驶路程为目标对四辆MC的充电路线进行优化求解。问题三思维流程图如下所示
+    
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=\textwidth]{figures/3.png}
+    	\caption{问题三思维流程图}\label{asdf}
+    \end{figure}
+      \subsection{多TSP模型建立}
+      当存在$4$辆MC同时执行充电任务时，总决策序列可表示为
+      \begin{gather*}
+      P_n=\left \{[p_{1},\cdots,p_{i}]_1,[p_{i+1},\cdots,p_{j}]_2,[p_{j+1},\cdots, p_{k}]_{3}],[p_{k+1},\cdots,p_{29}]_4\right \},
+      \end{gather*}
+      即将模型一中的坐标序列分割为多段，每一段分别由一辆小型运输车单独完成，定义小型运输车$k$的运输路径为：
+      \begin{gather*}
+      B_k=[p_{i},p_{i+1},\cdots,p_{j-1},p_{j}]_k,
+      \end{gather*}
+      即总路径决策变量可表示为：
+      \begin{gather*}
+      P_n=\left \{B_1,B_2,B_3,B_4\right \}.
+      \end{gather*}
+      充电路线$B_k=[p_{i},p_{i+1},\cdots,p_{j-1},p_{j}]_k$的移动路程可表示为
+      \begin{gather*}
+     L(B_k)=d(p_0,p_{i})+d(p_0,p_{j})+\sum_{r=i}^{j}d(p_r,p_{r+1}) ,
+      \end{gather*}
+      其中$p_0(x_0,y_0)$表示数据中心对应的二维坐标，目标函数可表示为$4$个MC的移动路程之和，即
+       \begin{gather}
+      L(P_n)=\sum_{i=1}^{4}L(B_i),
+      \end{gather}
+      $L(P_n)$表示充电路线$P_n$对应的总路程。 即可得到整体优化模型如下 
+      \begin{gather}
+      min L(P_n) ,\\
+      s.t.\left\{\begin{matrix}p_{i}(x_i,y_i)\in S,(1\leqslant i \leqslant 29 ,i\in Z),
+      \\ \forall i \neq j,p_i \neq p_j .
+      \end{matrix}\right.
+      \end{gather}
+      
+     
+      \subsection{插板式编码}
+
+      由于问题中的决策变量$P_n$表示多个不同小型运输车的运输路径，我们将染色体变量中插入无意义基因作为隔板，例如在派遣两辆运输车时，决策变量可表示为
+      \begin{gather*}
+      P_n=\left \{[p_{1},p_{2},\cdots,p_{i}]_1,[p_{i+1}\cdots,p_{19}]_{2}\right \},
+      \end{gather*}
+      
+      即在染色体中插入一个无意义基因作为挡板即可表示出染色体：
+      \begin{gather*}
+      A_n=[a_{n1},a_{n2},\cdots,a_{ni},\varphi ,a_{ni+1},\cdots,a_{n19}].
+      \end{gather*}
+      其中$\varphi$为无意义挡板基因。当雇佣小型运输车数量为$N$时，在染色体中插入$N-1$个挡板基因即可将染色体分成$N$段，即能分别代表每辆小车的行驶的路径。之后将无意义挡板基因作为普通基因进行交叉，变异即可优化求解每一辆小车的行驶路径。引入冗余惩罚因子$\theta$ :
+      \begin{gather}
+      \theta(P_n)=\left\{\begin{matrix}1,(\exists (Loc(\varphi_i )+1)=Loc(\varphi_{i+1} ))\vee  (\exists (Loc(\varphi_i )=0)\vee (\exists (Loc(\varphi_i )=size(A_n))
+      \\ 0,otherwise
+      \end{matrix}\right.
+      \end{gather}
+      其中$Loc(\varphi_i )$表示无意义挡板基因$\varphi_i$在染色体$A_n$中的位置，$size(A_n)$表示染色体$A_n$的维数。即当决策变量$P_n$中的挡板基因存在于其开头或末尾时，或者当两个挡板基因相邻时，表明有被雇佣车辆并没有参加运输工作，此时将惩罚因子$\theta(P_n)$置一，否则置零。 求解问题二时，我们沿用问题一的生命遗传算法进行优化计算。即将目标函数替换为：
+      \begin{gather}
+      F(P_n)= \Gamma (P_n)+\theta(P_n)M
+      \end{gather}
+      其中$M$为较大的正系数，即可达到罚函数约束功能。
+    
+    
   		\subsection{结果分析}
-  
-  	\section{灵敏度分析}
+  	设置参数r=200mA/s, f=10mA, v=50m/s，插板式编码的生命遗传算法运行实验结果结果如下图所示  	
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=.8\textwidth]{figures/s3.png}
+  	\caption{四辆移动充电装置路径图}\label{gdfsdf}
+  \end{figure}
+  如图~\ref{gdfsdf}~所示，其中四条不同颜色的闭合折线段分别表示4辆MC的充电路线，其对应的具体访问路线以及各访问路线对应的工作时长如表~\ref{bidsao2}~所示
+  		\begin{table}[H]
+	\setstretch{1}  %设置表的行间距
+	\centering		
+	\caption{每个传感器的移动路径}\label{bidsao2}
+	\begin{tabular}{ccc}
+		\toprule[2pt]
+		\multicolumn{1}{m{2.5cm}}{\centering 传感器序号}
+		& \multicolumn{1}{m{4.5cm}}{\centering 移动路径}& \multicolumn{1}{m{2.5cm}}{\centering 耗时}
+		\\
+		\midrule[1pt]
+		1 &   [0, 1, 9, 7, 6, 11, 14, 15, 12, 8, 2, 0]& 59\\ 
+		2&  [0, 4, 21, 22, 23, 24, 28, 3, 0]
+		&66\\ 
+		3&   [0, 17, 19, 29, 26, 25, 18, 20, 0]& 77 \\ 
+		4& [0, 10, 16, 27, 13, 5, 0]& 57 \\ 
+		\bottomrule[2pt]	
+	\end{tabular}
+\end{table}
+将每辆MC的充电路线作为一个独立的工作周期带入问题二模型进行运算即可得到各个传感器的电池容量分布如表~\ref{adfs}~所示
+  		\begin{table}[H]
+  	\setstretch{1}  %设置表的行间距
+  	\centering		
+  	\caption{传感器电池最小容量分布}\label{adfs}
+  	\begin{tabular}{cccc}
+  		\toprule[2pt]
+  		\multicolumn{1}{m{2.5cm}}{\centering 传感器序号}
+  		& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}& \multicolumn{1}{m{2.5cm}}{\centering 传感器序号}& \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}
+  		\\
+  		\midrule[1pt]
+  		1 &   415.765 & 28&369.935\\ 
+  		9&   556.166& 3&494.6706\\ 
+  		7&   363.116& 17&502.970\\ 
+  		6 &   421.616& 19&686.930\\ 
+  		11 &   310.466 & 29&433.985\\ 
+  		14&   363.116& 26&510.635\\ 
+  		15 &  474.266& 25&365.00\\ 
+  		12&  368.9666& 18&433.9851\\ 
+  		8&  363.116& 20&579.6201\\ 
+  		2 &  421.616& 10&345.184\\ 
+  		4&  429.020& 16&481.3847\\ 
+  		21&  586.580& 27&[294.109 \\ 
+  		22 &  369.935& 13&350.859\\ 
+  		23 & 435.585& 5&243.0347\\ 
+  		24 & 310.850& &\\
+  		\bottomrule[2pt]	
+  	\end{tabular}
+  \end{table}
+  对比问题三与问题一、二结果可知，当增加MC数量时，路上的总能量消耗相对于单个MC工作的路上总能量消耗更高，而传感器的最小电池容量的平均值将相对降低。即增派MC不能降低路上的能量消耗，但能降低传感器网络对传感器电池容量的要求。
+%  	\subsection{灵敏度分析}
  
   	\section{模型的评价}
 		\subsection{模型的优点}
@@ -495,6 +732,7 @@
 	%%参考文献
 	%\begin{thebibliography}{9}%宽度9
 	% \setlength{\itemsep}{-2mm}
+	\addcontentsline{toc}{section}{参考文献}
 	\nocite{*}		%排版未引用的参考文献
 	\begin{thebibliography}{9}%宽度9
 		\bibitem{1}Othman M F, Shazali K. Wireless sensor network applications: A study in environment monitoring system[J]. Procedia Engineering, 2015, 41: 1204-1210.
@@ -506,21 +744,21 @@
 		\bibitem{7}Yao W, Li M, Wu M Y. Inductive charging with multiple charger nodes in wireless sensor networks[C]//Asia-Pacific Web Conference. Springer, Berlin, Heidelberg, 2006: 262-270.
 	
 	\end{thebibliography}
-
-	\newpage
-	%附录
-	\appendix %%附录
-	\section{数据可视化的实现}
-		\subsection*{第一问画图--python源代码}
-			\begin{lstlisting}[language=python]
-			
-			\end{lstlisting}
-			
-		\subsection*{第二问画图--python源代码}
-			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
-			rulesepcolor=\color{red!20!green!20!blue!20},  
-			keywordstyle=\color{blue!70!black},  
-			commentstyle=\color{blue!90!},  
-			basicstyle=\ttfamily] {./code/demo.py}
+%
+%	\newpage
+%	%附录
+%	\appendix %%附录
+%	\section{数据可视化的实现}
+%		\subsection*{第一问画图--python源代码}
+%			\begin{lstlisting}[language=python]
+%			
+%			\end{lstlisting}
+%			
+%		\subsection*{第二问画图--python源代码}
+%			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
+%			rulesepcolor=\color{red!20!green!20!blue!20},  
+%			keywordstyle=\color{blue!70!black},  
+%			commentstyle=\color{blue!90!},  
+%			basicstyle=\ttfamily] {./code/demo.py}
 
 \end{document}
