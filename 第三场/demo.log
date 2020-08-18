@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  15 AUG 2020 13:35
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  15 AUG 2020 15:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -867,19 +867,11 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 14.
 Package: xeCJK-listings 2020/02/18 v3.8.2 xeCJK patch file for listings
 \l__xeCJK_listings_max_char_int=\count348
 \l__xeCJK_listings_flag_int=\count349
-) (./demo.aux)
-Runaway argument?
-{{24}{15}{ 
-! File ended while scanning use of \@newl@bel.
-<inserted text> 
-                \par 
-l.24 \begin{document}
-                     
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
+) (./demo.aux
 
+LaTeX Warning: Label `asdf' multiply defined.
+
+)
 \openout1 = `demo.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -902,7 +894,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
-ABD: EverySelectfont initializing macros
+ ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 24.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
@@ -1056,14 +1048,14 @@ Package fontspec Info: Font family 'STFangsong(0)' created for font
 
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
-LaTeX Font Info:    Calculating math sizes for size <12.05> on input line 26.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+LaTeX Font Info:    Calculating math sizes for size <12.05> on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1071,11 +1063,27 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
 
-LaTeX Warning: Reference `biao2' on page 2 undefined on input line 36.
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--50
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--36
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--46
 
  []
 
@@ -1102,37 +1110,7 @@ Package fontspec Info: Font family 'SimHei(0)' created for font 'SimHei' with
 (fontspec)             <->"SimHei/OT:script=hani;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-[2] (./demo.toc)
-\tf@toc=\write5
-\openout5 = `demo.toc'.
-
- [0]
-
-LaTeX Warning: Citation `1' on page 1 undefined on input line 65.
-
-
-LaTeX Warning: Citation `2' on page 1 undefined on input line 65.
-
-
-LaTeX Warning: Citation `4' on page 1 undefined on input line 66.
-
-
-LaTeX Warning: Citation `5' on page 1 undefined on input line 66.
-
-
-LaTeX Warning: Citation `6' on page 1 undefined on input line 66.
-
-
-LaTeX Warning: Citation `7' on page 1 undefined on input line 66.
-
-
-LaTeX Warning: Citation `3' on page 1 undefined on input line 69.
-
-
-LaTeX Warning: Citation `3' on page 1 undefined on input line 69.
-
-File: figures/demo.png Graphic file (type bmp)
-<figures/demo.png>
+[2] (./demo.toc
 
 Package fontspec Info: Could not resolve font "SimSun/BI" (it probably doesn't
 (fontspec)             exist).
@@ -1156,15 +1134,19 @@ Package fontspec Info: Font family 'SimSun(1)' created for font 'SimSun' with
 (fontspec)             <->"SimSun/OT:script=hani;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
+ [3])
+\tf@toc=\write5
+\openout5 = `demo.toc'.
+
+ [0]
+File: figures/demo.png Graphic file (type bmp)
+<figures/demo.png>
+
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/b/n' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 73.
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 66.
 
-[1]
-
-LaTeX Warning: Citation `4' on page 2 undefined on input line 121.
-
-[2]
+[1] [2]
 File: figures/1.png Graphic file (type bmp)
 <figures/1.png>
  [3] [4]
@@ -1180,17 +1162,17 @@ File: figures/lga.png Graphic file (type bmp)
 File: figures/cross.png Graphic file (type bmp)
 <figures/cross.png>
 
-Overfull \hbox (6.83864pt too wide) in paragraph at lines 286--287
- []\TU/SimSun(0)/b/n/12.05 赌 轮 选 择[] \TU/SimSun(0)/m/n/12.05 将 第 \TU/TimesNewRo
-man(0)/m/n/12.05 g \TU/SimSun(0)/m/n/12.05 代 的 染 色 体 与 其 交 叉 和 变 异 产 生 的 子 代 并 
-入 同 一 解 集 $\OML/cmm/m/it/12.05 G[] \OT1/cmr/m/n/12.05 = []$\TU/SimSun(0)/m/n/12
+Overfull \hbox (6.83864pt too wide) in paragraph at lines 282--283
+ []\TU/SimSun(0)/b/n/12.05 赌 轮 选 择[] \TU/SimSun(1)/m/n/12.05 将 第 \TU/TimesNewRo
+man(0)/m/n/12.05 g \TU/SimSun(1)/m/n/12.05 代 的 染 色 体 与 其 交 叉 和 变 异 产 生 的 子 代 并 
+入 同 一 解 集 $\OML/cmm/m/it/12.05 G[] \OT1/cmr/m/n/12.05 = []$\TU/SimSun(1)/m/n/12
 .05 。|
  []
 
 [9]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 307.
+               Default added (so using `htbp') on input line 302.
 
 [10] [11]
 File: figures/w1.png Graphic file (type bmp)
@@ -1205,11 +1187,11 @@ File: figures/w11.png Graphic file (type bmp)
 File: figures/w22.png Graphic file (type bmp)
 <figures/w22.png>
 
-Overfull \hbox (12.09952pt too wide) in paragraph at lines 404--410
-[]\TU/SimSun(0)/m/n/12.05 取 $\OML/cmm/m/it/12.05 R \OT1/cmr/m/n/12.05 = 50\OML/
-cmm/m/it/12.05 m$\TU/SimSun(0)/m/n/12.05 ，|  求 得 总 距 离 为 $\OT1/cmr/m/n/12.05 11
+Overfull \hbox (12.09952pt too wide) in paragraph at lines 398--404
+[]\TU/SimSun(1)/m/n/12.05 取 $\OML/cmm/m/it/12.05 R \OT1/cmr/m/n/12.05 = 50\OML/
+cmm/m/it/12.05 m$\TU/SimSun(1)/m/n/12.05 ，|  求 得 总 距 离 为 $\OT1/cmr/m/n/12.05 11
 151\OML/cmm/m/it/12.05 :\OT1/cmr/m/n/12.05 7684\OML/cmm/m/it/12.05 m$\TU/SimSun
-(0)/m/n/12.05 ，|  其 最 优 路 线 为 \TU/TimesNewRoman(0)/m/n/12.05 [0,2,1,9,7,6,14,11
+(1)/m/n/12.05 ，|  其 最 优 路 线 为 \TU/TimesNewRoman(0)/m/n/12.05 [0,2,1,9,7,6,14,11
 ,8,12,15,27,16, 
  []
 
@@ -1218,53 +1200,12 @@ File: figures/ssss.png Graphic file (type bmp)
 <figures/ssss.png>
 
 
-LaTeX Warning: Reference `lssssct' on page 14 undefined on input line 425.
+LaTeX Warning: Reference `lssssct' on page 14 undefined on input line 419.
 
 [14]
 File: figures/222222.png Graphic file (type bmp)
 <figures/222222.png>
-
-
-LaTeX Warning: Reference `ssssssss' on page 15 undefined on input line 447.
-
-[15] [16]
-
-LaTeX Warning: Reference `biao2' on page 17 undefined on input line 511.
-
-! Misplaced \omit.
-\multispan ->\omit 
-                   \@multispan 
-l.523 ...ulticolumn{1}{m{3.5cm}}{\centering 传感器序号}
-                                                  
-I expect to see \omit only after tab marks or the \cr of
-an alignment. Proceed, and I'll ignore this case.
-
-! Misplaced \omit.
-\multispan ->\omit 
-                   \@multispan 
-l.526 ...ulticolumn{1}{m{2.5cm}}{\centering 传感器序号}
-                                                  
-I expect to see \omit only after tab marks or the \cr of
-an alignment. Proceed, and I'll ignore this case.
-
-! Extra alignment tab has been changed to \cr.
-<template> \endtemplate 
-                        
-l.527 ^^I^^I^^I^^I&
-                    \multicolumn{1}{m{4.5cm}}{\centering 传感器最小电池容量}& \multic...
-You have given more \span or & marks than there were
-in the preamble to the \halign or \valign now in progress.
-So I'll assume that you meant to type \cr instead.
-
-
-Overfull \hbox (360.93088pt too wide) in paragraph at lines 520--548
- [][] 
- []
-
-[17]
-
-LaTeX Warning: Reference `biao1' on page 18 undefined on input line 551.
-
+ [15] [16] [17]
 File: figures/2333v.jpg Graphic file (type bmp)
 <figures/2333v.jpg>
 File: figures/2333r.jpg Graphic file (type bmp)
@@ -1273,879 +1214,41 @@ File: figures/2333R.png Graphic file (type bmp)
 <figures/2333R.png>
 File: figures/2333f.jpg Graphic file (type bmp)
 <figures/2333f.jpg>
-[18]
-
-LaTeX Warning: Reference `mgh' on page 19 undefined on input line 577.
-
-
-LaTeX Warning: Reference `mgh' on page 19 undefined on input line 577.
-
-[19]
-! Undefined control sequence.
-<argument> if\@captype 
-                       topcap
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> c@sub\@captype 
-                          
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! Undefined control sequence.
- ...essage  LaTeX Error: No counter 'sub\@captype 
-                                                  ' defined.^^J^^JSee the La...
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! LaTeX Error: No counter 'sub' defined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> theHsub\@captype 
-                            
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...after \def \csname theHsub\@captype 
-                                                  \endcsname {}\def \Hy@temp...
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ... \noexpand \csname theHsub\@captype 
-                                                  \endcsname }\cl@@ckpt \let...
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...endToMacro \csname theHsub\@captype 
-                                                  \expandafter \endcsname \e...
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...ter \@arabic \csname c@sub\@captype 
-                                                  \endcsname }
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   \c@sub 
-l.580 ^^I^^I\subfigure
-                      [改变移动速度v]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Undefined control sequence.
-<argument> if\@captype 
-                       topcap
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \else.
-\@subfloat ...subfig@bottom =\subfigtopskip \else 
-                                                  \subfig@top =\subfigtopski...
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Extra \fi.
-\@subfloat ...ubfig@bottom =\subfigbottomskip \fi 
-                                                  \leavevmode \setbox \@temp...
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-File: figures/2333v.jpg Graphic file (type bmp)
-<figures/2333v.jpg>
-! Undefined control sequence.
-<argument> ifsub\@captype 
-                          topcap
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @@thesub\@captype 
-                             
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @makesub\@captype 
-                             caption
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @thesub\@captype 
-                            
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \else.
-\@subfloat ...j \fi \egroup \box \@tempboxa \else 
-                                                  \box \@tempboxa \egroup \i...
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-
-Overfull \hbox (73.67879pt too wide) in paragraph at lines 579--580
-[]\TU/TimesNewRoman(0)/m/n/12.05 ======= [][] 
- []
-
-! Undefined control sequence.
-\@subfigcaptionlist ...}}},{\numberline{\@@thesub 
-                                                  }{\ignorespaces {改变移动速度v}}}
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @@thesub\@captype 
-                             
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @makesub\@captype 
-                             caption
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @thesub\@captype 
-                            
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \fi.
-\@subfloat ...ip \@subcaption {#1}{#2}{#3}\fi \fi 
-                                                  \vspace {\subfig@bottom }\...
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Undefined control sequence.
-<argument> if\@captype 
-                       topcap
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \else.
-\@subfloat ...\@nameuse {if\@captype topcap}\else 
-                                                  \global \advance \@nameuse...
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Undefined control sequence.
-<argument> c@\@captype 
-                       
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! You can't use `\relax' after \advance.
-<recently read> \c@ 
-                    
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-I'm forgetting what you said and not changing anything.
-
-! Extra \fi.
-\@subfloat ...e \@nameuse {c@\@captype }\m@ne \fi 
-                                                  \egroup 
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   \egroup 
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Too many }'s.
-<recently read> \egroup 
-                        
-l.580 ...ics[height=6.5cm,width=7.5cm]{2333v.jpg}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-! Undefined control sequence.
-<argument> if\@captype 
-                       topcap
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \else.
-\subfigure ...\@nameuse {if\@captype topcap}\else 
-                                                  \advance \@nameuse {c@\@ca...
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-I'm ignoring this; it doesn't match any \if.
-
-! Undefined control sequence.
-<argument> c@\@captype 
-                       
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! You can't use `\relax' after \advance.
-<recently read> \c@ 
-                    
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-I'm forgetting what you said and not changing anything.
-
-! Extra \fi.
-\subfigure ...ce \@nameuse {c@\@captype }\@ne \fi 
-                                                  \refstepcounter {sub\@capt...
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-I'm ignoring this; it doesn't match any \if.
-
-! Undefined control sequence.
-<argument> c@sub\@captype 
-                          
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no ^^A in font Times New Roman/OT:script=latn;langu
-age=dflt;mapping=tex-text;!
-
-! Undefined control sequence.
- ...essage  LaTeX Error: No counter 'sub\@captype 
-                                                  ' defined.^^J^^JSee the La...
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! LaTeX Error: No counter 'sub' defined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> theHsub\@captype 
-                            
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...after \def \csname theHsub\@captype 
-                                                  \endcsname {}\def \Hy@temp...
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ... \noexpand \csname theHsub\@captype 
-                                                  \endcsname }\cl@@ckpt \let...
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...endToMacro \csname theHsub\@captype 
-                                                  \expandafter \endcsname \e...
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...ter \@arabic \csname c@sub\@captype 
-                                                  \endcsname }
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> sub\@captype 
-                        
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   \c@sub 
-l.581 ^^I^^I\subfigure
-                      [改变充电速率r]{\includegraphics[height=6.5cm,width=7.5cm]{2...
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Undefined control sequence.
-<argument> if\@captype 
-                       topcap
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \else.
-\@subfloat ...subfig@bottom =\subfigtopskip \else 
-                                                  \subfig@top =\subfigtopski...
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Extra \fi.
-\@subfloat ...ubfig@bottom =\subfigbottomskip \fi 
-                                                  \leavevmode \setbox \@temp...
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-
-! LaTeX Error: Cannot determine size of graphic in ^^@^^@2333r.bb (no BoundingB
-ox).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-File: ^^@^^@2333r.jpg Graphic file (type bmp)
-<^^@^^@2333r.jpg>
-! Undefined control sequence.
-<argument> ifsub\@captype 
-                          topcap
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\@subfigcaptionlist ...}}},{\numberline{\@@thesub 
-                                                  }{\ignorespaces {改变移动速度v}}}
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @@thesub\@captype 
-                             
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @makesub\@captype 
-                             caption
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @thesub\@captype 
-                            
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \else.
-\@subfloat ...j \fi \egroup \box \@tempboxa \else 
-                                                  \box \@tempboxa \egroup \i...
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-
-Overfull \hbox (115.81458pt too wide) in paragraph at lines 580--581
-[]\TU/SimSun(0)/m/n/12.05 改 变 移 动 速 度 \TU/TimesNewRoman(0)/m/n/12.05 v ^^A[][] 
-
- []
-
-! Undefined control sequence.
-\@subfigcaptionlist ...}}},{\numberline{\@@thesub 
-                                                  }{\ignorespaces {改变充电速率r}}}
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @@thesub\@captype 
-                             
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @makesub\@captype 
-                             caption
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> @thesub\@captype 
-                            
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \fi.
-\@subfloat ...ip \@subcaption {#1}{#2}{#3}\fi \fi 
-                                                  \vspace {\subfig@bottom }\...
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Undefined control sequence.
-<argument> if\@captype 
-                       topcap
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Extra \else.
-\@subfloat ...\@nameuse {if\@captype topcap}\else 
-                                                  \global \advance \@nameuse...
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Undefined control sequence.
-<argument> c@\@captype 
-                       
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! You can't use `\relax' after \advance.
-<recently read> \c@ 
-                    
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-I'm forgetting what you said and not changing anything.
-
-! Extra \fi.
-\@subfloat ...e \@nameuse {c@\@captype }\m@ne \fi 
-                                                  \egroup 
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-I'm ignoring this; it doesn't match any \if.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   \egroup 
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Too many }'s.
-<recently read> \egroup 
-                        
-l.581 ...ics[height=6.5cm,width=7.5cm]{2333r.jpg}}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-! Too many }'s.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.582 ^^I\end{figure}
-                     ^^I
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-! Extra \endgroup.
-\color@endgroup ->\endgraf \endgroup 
-                                     
-l.582 ^^I\end{figure}
-                     ^^I
-Things are pretty mixed up, but I think the worst is over.
-
-! Too many }'s.
-\color@endbox ->\color@endgroup \egroup 
-                                        
-l.582 ^^I\end{figure}
-                     ^^I
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-! LaTeX Error: \begin{document} ended by \end{figure}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.582 ^^I\end{figure}
-                     ^^I
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Extra \endgroup.
-<recently read> \endgroup 
-                          
-l.582 ^^I\end{figure}
-                     ^^I
-Things are pretty mixed up, but I think the worst is over.
-
-
-! LaTeX Error: Cannot determine size of graphic in ^^@^^@2333R.bb (no 
+ [18] [19]
+File: figures/3.png Graphic file (type bmp)
+<figures/3.png>
+ [20] [21]
+File: figures/s3.png Graphic file (type bmp)
+<figures/s3.png>
+ [22] [23] [24]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 723.
+ [25]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 723.
+ (./demo.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 723.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 723.
+Package rerunfilecheck Info: File `demo.out' has not changed.
+(rerunfilecheck)             Checksum: D8DD7D2CB40E01A573CD4F70819DBBDC;3301.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 723.
+ )
+(\end occurred when \iftrue on line 25 was incomplete) 
+Here is how much of TeX's memory you used:
+ 21346 strings out of 479418
+ 419209 string characters out of 5888106
+ 734413 words of memory out of 5000000
+ 38396 multiletter control sequences out of 15000+600000
+ 552293 words of font info for 174 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 64i,18n,86p,421b,693s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on demo.pdf (29 pages).
