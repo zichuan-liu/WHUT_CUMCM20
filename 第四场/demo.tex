@@ -192,53 +192,6 @@
 			\end{gather}
 			\end{spacing}
 		\subsection{模型的求解}
-			\begin{algorithm}[H]
-			 	\caption{Procedure of Apriori}  
-			 	\LinesNumbered  
-			 	\setstretch{0.9}   %设置表的行间距
-			 	\KwIn{item data base: $D$\newline
-			 		minimum Support threshold: $Sup_{min}$\newline
-			 		minimum Confidence threshold: $Conf_{min}$
-			 	}
-			 	\KwOut{frequent item sets $F$}  
-			 	\textbf{Initialize} \newline
-			 	iteration $t\leftarrow 1$ \newline
-			 	The candidate FIS:$C_{t}=\varnothing$ \newline
-			 	The length of FIS:$length=1$ \newline
-			 	\For{i=1 to sizeof(D)}
-			 	{$I_{i}$=D(i)\newline
-			 		n=sizeof($I_{i}$)\newline
-			 		\For{j=1 to n}{
-			 			\If{$I_{i}(j)\notin C_{t}$ }
-			 			{$C_{t}=C_{t}\cup I_{i}(j) $}
-			 		}
-			 	}
-			 	$F_{t}=\left \{ f|f\in C_{t},Sup(f)>Sup_{min}\right \}$\newline
-			 	\While{$F\neq \varnothing$}
-			 	{ t=t+1\newline 
-			 		length=length+1\newline	
-			 		$C_{t}\leftarrow $ all candidate of FIS in $F_{t-1}$\newline
-			 		$F_{t}=\left \{ f|f\in C_{t},(Sup(f)>Sup_{min})\bigcap (Comf(f)>Conf_{min}) \right\}$\newline
-			 	}	
-			 	\Return{$F_{t-1}$} 
-			\end{algorithm} 
-=======
-			问题一要求
-		
-			其思维流程图如图~\ref{lct}~所示：
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题一思维流程图}\label{lct}
-			\end{figure}
-			
-		\subsection{模型的建立}
-			\begin{gather*}
-			d(p_i,p_j)=\left | x_i-x_j \right |+\left | y_i-y_j \right | ,
-			\end{gather*}
-		
-		
-		\subsection{模型的求解}
 		\subsubsection{免疫差分进化算法}
 		%\paragraph{初始化}
 		本文设计免疫差分进化算法估计微分方程组中的未知参数，定义决策向量为
