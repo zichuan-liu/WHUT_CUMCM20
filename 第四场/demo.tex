@@ -132,9 +132,9 @@
 		X_i(0)=[x_1,x_2,x_3,x_4],(i=1,2,3,\cdots,p).
 		$
 		其中第$i$个个体的第$j$维取值方式如下
-		\begin{gather}
+		\begin{gather*}
 		x_{i,j}(0)=x_{j,min}+rand(0,1)(x_{j,max}-x_{j,min}),\\i=1,2,3,\cdots,p,j=1,2,3,4
-		\end{gather}
+		\end{gather*}
 		其中$p$表示种群规模，$x_{j,max}$和$x_{j,min}$分别表示决策变量$X$第$j$维的
 		取值范围上界与下界。
 		\paragraph{变异}
@@ -143,9 +143,9 @@
 	    H_i(g)=X_{p1}(g)+F(g)*(X_{p2}(g)-X_{p3}(g))
 	    \end{gather}
 	    $F(g)\in (0,1)$是每一代中的放缩因子，其服从柯西分部如下
-	    \begin{gather}
+	    \begin{gather*}
 	    F(g)=cauchyrnd(uF,0.1)
-	    \end{gather}
+	    \end{gather*}
 	   其中$uF$是$F$的期望值，本文取值为$uF=0.5$。
 		\paragraph{交叉}
 		对第$g$代种群中第$i$个体进行交叉操作，生成交叉个体$V_i(g)$，具体表达式如下：
