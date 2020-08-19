@@ -18,6 +18,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%题目%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{基于xxxxxxxx模型}
 \tihao{1} 
+\everymath{\displaystyle} 
 
 \begin{document}
 
@@ -100,7 +101,14 @@
 
 	\section{问题一模型的建立与求解}
 		\subsection{问题描述与分析}
-			问题一要求
+			问题一要求建立确诊和死亡病例数的预测模型，并对具体防控措施进行评价，分析其对疫情传播造成的影响。
+			
+			经典SEIR模型将人群分为易感者（susceptible， S）、感染者（infected， I）、潜伏者（exposed， E）和康复人群（recovered，R )。该模型还假设人群中所有个体都有被感染的概率，当被感 染个体痊愈后，会产生抗体，即康复人群 R 不会再被感染。考虑到防治传染病的隔离措施， 模型中的人群组别新增隔离易感者（Sq）、隔离潜伏者（Eq）和隔离感染者（Iq）。鉴于隔 离感染者会立即送往定点医院隔离治疗，因此这部分人群在本模型中全部转化为住院患者H。 因此，本文修订的模型中 S、I、E 分别指隔离措施遗漏的易感者、感染者和潜伏者。隔离易 感者解除隔离后重新转变为易感者，而感染者和潜伏者均有不同程度的能力感染易感者，使 其转化为潜伏者。人群的转化关系如图 1 所示。
+			
+			
+			与经典$SIR$模型相比，此次疫情中，不同群体相互转化方式相近，
+			在基于人群的方法中，共享相同症状的宿主 按照有限数量的类（也称为仓室）建模或分组，研究人员的 主要任务是研究和比较他们的各种动力学机制。类的组 合用于建模和分析种群动力学。例如，SLIR模型将个人 分为易感、潜伏、感染或恢复四种感染状态之一[10]，通过微 分方程来确定流行病学阶段之间的转换。根据被移除的 个体是否会再次变得易感，疾病可以被模拟成SLIR或 SLIR周期。 
+			相反，面向网络的方法强调个体的异质性、个体间的 相互作用和网络结构[13]。网络中的个体被表示为节点，他 们之间的交互被表示为链接。网络节点可以用来表示个 人、地点、社区或城市的特征，模型可以结合这些特征的时 间动态，优先定义两个节点之间链接的时间帧，这是一种 常用于表示具有交互或关系模式的个人的组结构的方法[14]。 面向网络的方法适合于捕捉个体间复杂的接触模式，探索 流行病动态和评估公共卫生政策的有效性[15]。格点网络 被用来确定个体之间的距离关系。相比之下，随机网络支 持与移动个人之间的偶然接触相关的特征，以及在社交网 络中常见的低分离度。这些被认为是可靠的调查流行病 的方法，利用特定网络模型的传播动力学来调查新出现的 传染病的传播[16]。近期研究发现，社交网络的拓扑特征对 传染病的传播动力学和临界阈值有很大的影响，从而支持 了面向网络的模型无法进行的细微分析[17]。
 		
 			其思维流程图如图~\ref{lct}~所示：
 			\begin{figure}[H]
@@ -110,11 +118,74 @@
 			\end{figure}
 			
 		\subsection{模型的建立}
-			\begin{gather*}
-			d(p_i,p_j)=\left | x_i-x_j \right |+\left | y_i-y_j \right | ,
-			\end{gather*}
+			本节介绍改进的$SEIR$模型. 研究对象是感染者、潜伏者、易感者、痊愈者等，我们使用如下记号来代表每个人群的人数:
+			\begin{itemize}
+				\item $S(t)$：$t$时刻易感者的累计总数；
+				\item $E(t)$：$t$时刻潜伏者的累计总数；
+				\item $I(t)$：$t$时刻感染者的累计总数；
+				\item $S_q(t)$：$t$时刻隔离易感者的累计总数；
+				\item $E_q(t)$：$t$时刻隔离潜伏者的累计总数；
+				\item $H(t)$：$t$时刻住院患者的累计总数；
+				\item $R(t)$：$t$时刻痊愈者的累计总数。
+			\end{itemize}
 		
+			模型有以下前提：
+
+			1.潜伏者在出现明显症状前会经历$7$天的潜伏期, 一旦出现症状，潜伏者将寻求治疗，从而转为确诊的感染者；
+			
+			2.由于政府干预控制措施，部分感染者在潜伏期内尚未出现症状已被隔离，成为隔离潜伏者，在被隔离了平均$14$天后出现症状，成为确诊的感染者。
+			
+			可建立模型如下：
+			
+			定义有效接触率$\alpha$、传染率$\beta$和有效接触系数$\rho$，$\alpha$是易感人群在随机混合人群中的占比；$\beta$是有效接触。分析可知易感者$S$有三种转化途径：向隔离易感者$S_q$、隔离潜伏者$E_q$和潜伏者$E$的转化速率(单位时间$\Delta t$内，转化数量$\Delta n$与同类群体的个数$n$的比值)分别为$\rho (1-\beta)q$，$ \rho \beta q$和$\rho \beta(1-q)$。此外，确认隔离期$t_d$无症状后，隔离易感者$S_q$也可向易感者$S$以$\lambda S_{q}$的速率转化。由以上分析可建立易感者$S$转化方程：
+			\begin{gather}
+			\frac{\mathrm{d} S}{\mathrm{d} t}=-\alpha\rho [\beta +q(1-\beta)](I+\theta E)+\lambda S_{q},
+			\end{gather}
+			其中，$\theta $是潜伏者相对于感染者传播能力的比值。$\lambda$是隔离解除速率，数值取隔离期的倒数$\lambda=1/14$。
 		
+			潜伏者可以向感染者转化，易感者可向潜伏者转化，可列出潜伏者$S$的转化方程：
+			\begin{gather}
+			\frac{\mathrm{d} E}{\mathrm{d} t}=\alpha\rho\beta(1-q) (I+\theta E)-\sigma E,
+			\end{gather}
+			其中，$\sigma$为潜伏者向感染者的转化速率。
+			
+			潜伏者可以转化为感染者，感染者的流向有死亡、被治愈和被隔离。定义病死率$d$、感染者恢复率$\varsigma_I$和隔离速率$\sigma_I$，对感染者有：
+			\begin{gather}
+			\frac{\mathrm{d} I}{\mathrm{d} t}=\sigma E-(\sigma_I+d+\varsigma_I)I.
+			\end{gather}
+			
+			对于被隔离的群体，隔离易感者$S_q$与易感者相互转化；隔离潜伏者$E_q$来源于易感者，可转化为隔离感染者。定义$\delta_q$是隔离潜伏者向隔离感染者的转化速率，则有
+			\begin{gather}
+			\frac{\mathrm{d} S_q}{\mathrm{d} t}=\alpha\rho q(1-\beta)(I+\theta E)-\lambda S_q,
+			\end{gather}
+			\begin{gather}
+			\frac{\mathrm{d} E_q}{\mathrm{d} t}=\rho \alpha \beta q(I+\theta E)-\delta_q E_q.
+			\end{gather}
+			
+			对住院患者，感染者和隔离的潜伏者向住院患者的转化速率分别是$\delta_I$和$\delta_q$，住院患者流向为死亡和康复，对应系数为死亡率$d$和住院患者恢复率$\varsigma_H$。
+			\begin{gather}
+			\frac{\mathrm{d}H }{\mathrm{d} t}=\delta_I I+ \delta_q E_q-(d+\varsigma_H )H.
+			\end{gather}
+			
+			最后，痊愈者来源有感染者和住院患者，故对痊愈者有
+			\begin{gather}
+			\frac{\mathrm{d} R}{\mathrm{d} t}=\varsigma_I I+\varsigma_H H.
+			\end{gather}
+			
+			模型的总表达为：
+			\begin{spacing}{2}
+			\begin{gather}
+			\left\{\begin{array}{l}
+			\frac{\mathrm{d} S}{\mathrm{d} t}=-\alpha\rho [\beta +q(1-\beta)](I+\theta E)+\lambda S_{q},
+			\\ \frac{\mathrm{d} E}{\mathrm{d} t}=\alpha\rho\beta(1-q) (I+\theta E)-\sigma E,
+			\\ \frac{\mathrm{d} I}{\mathrm{d} t}=\sigma E-(\sigma_I+d+\varsigma_I)I,
+			\\ \frac{\mathrm{d} S_q}{\mathrm{d} t}=\alpha\rho q(1-\beta)(I+\theta E)-\lambda S_q,
+			\\ \frac{\mathrm{d} E_q}{\mathrm{d} t}=\rho \alpha \beta q(I+\theta E)-\delta_q E_q,
+			\\ \frac{\mathrm{d}H }{\mathrm{d} t}=\delta_I I+ \delta_q E_q-(d+\varsigma_H )H,
+			\\ \frac{\mathrm{d} R}{\mathrm{d} t}=\varsigma_I I+\varsigma_H H.
+			\end{array}\right.
+			\end{gather}
+			\end{spacing}
 		\subsection{模型的求解}
 			\begin{algorithm}[H]
 			 	\caption{Procedure of Apriori}  

@@ -1,7 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.28)  18 AUG 2020 10:29
 =======
 This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  15 AUG 2020 15:09
+>>>>>>> origin/qc
+=======
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  15 AUG 2020 15:09
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.28)  18 AUG 2020 10:29
+>>>>>>> origin/lzc
 >>>>>>> origin/qc
 entering extended mode
  restricted \write18 enabled.
@@ -453,6 +460,7 @@ File: ctex-name-gbk.cfg 2019/04/07 v2.4.15 Caption with encoding GBK (CTEX)
 )) (e:/texlive/2019/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 <<<<<<< HEAD
+<<<<<<< HEAD
 ) (e:/texlive/2019/texmf-dist/tex/latex/ctex/ctex-c5size.clo
 File: ctex-c5size.clo 2019/04/07 v2.4.15 c5size option (CTEX)
 ) (e:/texlive/2019/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-windows.def
@@ -465,6 +473,8 @@ File: zhwindowsfonts.tex 2019/04/07 v2.4.15 Windows font map loader for pdfTeX a
 !pdfTeX error: pdflatex.exe (file e:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map): fflush() failed (Invalid argument)
  ==> Fatal error occurred, no output PDF file produced!
 =======
+=======
+>>>>>>> origin/qc
 )
 (c:/texlive/2020/texmf-dist/tex/latex/ctex/ctex-c5size.clo
 File: ctex-c5size.clo 2019/05/29 v2.4.16 c5size option (CTEX)
@@ -1495,4 +1505,20 @@ Here is how much of TeX's memory you used:
  64i,18n,86p,421b,693s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on demo.pdf (29 pages).
+<<<<<<< HEAD
+>>>>>>> origin/qc
+=======
+=======
+) (e:/texlive/2019/texmf-dist/tex/latex/ctex/ctex-c5size.clo
+File: ctex-c5size.clo 2019/04/07 v2.4.15 c5size option (CTEX)
+) (e:/texlive/2019/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-windows.def
+File: ctex-fontset-windows.def 2019/04/07 v2.4.15 Windows fonts definition (CTEX)
+ (e:/texlive/2019/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-windowsnew.def
+File: ctex-fontset-windowsnew.def 2019/04/07 v2.4.15 Windows fonts definition for Vista or later version (CTEX)
+ (e:/texlive/2019/texmf-dist/tex/generic/ctex/zhwindowsfonts.tex
+File: zhwindowsfonts.tex 2019/04/07 v2.4.15 Windows font map loader for pdfTeX and DVIPDFMx (CTEX)
+{e:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+!pdfTeX error: pdflatex.exe (file e:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map): fflush() failed (Invalid argument)
+ ==> Fatal error occurred, no output PDF file produced!
+>>>>>>> origin/lzc
 >>>>>>> origin/qc
