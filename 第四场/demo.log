@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  19 AUG 2020 18:14
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.17)  19 AUG 2020 20:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1211,7 +1211,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 47--47
+Underfull \hbox (badness 10000) in paragraph at lines 52--52
 
  []
 
@@ -1267,50 +1267,46 @@ Package fontspec Info: Font family 'SimSun(1)' created for font 'SimSun' with
 \openout5 = `demo.toc'.
 
  [0]
-
-LaTeX Warning: Citation `2' on page 1 undefined on input line 103.
-
-
-LaTeX Warning: Citation `3' on page 1 undefined on input line 103.
-
-[1]
-File: figures/whut.jpg Graphic file (type bmp)
-<figures/whut.jpg>
+File: figures/demo.png Graphic file (type bmp)
+<figures/demo.png>
 
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/bx/n' undefined
-(Font)              using `TU/SimSun(1)/m/n' instead on input line 112.
+(Font)              using `TU/SimSun(1)/m/n' instead on input line 83.
 
-[2] [3]
-Overfull \hbox (7.54723pt too wide) in paragraph at lines 229--242
+[1] [2]
+File: figures/kkkk.png Graphic file (type bmp)
+<figures/kkkk.png>
+ [3] [4] [5] [6] [7]
+Overfull \hbox (7.54723pt too wide) in paragraph at lines 332--345
  [][] 
  []
 
 
-LaTeX Warning: Reference `sd' on page 4 undefined on input line 243.
+LaTeX Warning: Reference `sd' on page 8 undefined on input line 346.
 
 
-LaTeX Warning: Reference `label' on page 4 undefined on input line 247.
+LaTeX Warning: Reference `label' on page 8 undefined on input line 350.
 
 
-LaTeX Warning: Reference `label' on page 4 undefined on input line 249.
+LaTeX Warning: Reference `label' on page 8 undefined on input line 352.
 
 
-LaTeX Warning: Reference `asfd' on page 4 undefined on input line 251.
+LaTeX Warning: Reference `asfd' on page 8 undefined on input line 354.
 
 
-LaTeX Warning: Reference `label' on page 4 undefined on input line 253.
+LaTeX Warning: Reference `label' on page 8 undefined on input line 356.
 
 
-LaTeX Warning: Reference `label' on page 4 undefined on input line 263.
+LaTeX Warning: Reference `label' on page 8 undefined on input line 366.
 
-[4] [5] [6]
+[8] [9]
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 
 
-LaTeX Warning: Reference `zhuanssssasgzai' on page 7 undefined on input line 28
-8.
+LaTeX Warning: Reference `zhuanssssasgzai' on page 10 undefined on input line 3
+89.
 
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
@@ -1320,7 +1316,7 @@ File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
 File: figures/whut.jpg Graphic file (type bmp)
 <figures/whut.jpg>
-[7] [8] [9] [10] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+[10] [11] [12] [13] (d:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
 
@@ -1346,16 +1342,15 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             <->"FangSong/OT:script=hani;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-
-(./code/demo.py)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 365.
- [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 365.
+ (./code/demo.py)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 467.
+ [14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 467.
  (./demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 365.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 365.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 467.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 467.
 Package rerunfilecheck Info: File `demo.out' has not changed.
-(rerunfilecheck)             Checksum: 71C3DC5B3FCEB2EA01A65783543D6349.
+(rerunfilecheck)             Checksum: C8DC01F1E5547009D17BBF8D82575099.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1363,16 +1358,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 365.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 467.
  )
 (\end occurred when \iftrue on line 24 was incomplete) 
 Here is how much of TeX's memory you used:
- 29874 strings out of 492922
- 582732 string characters out of 6136751
- 861791 words of memory out of 5000000
- 33494 multiletter control sequences out of 15000+600000
- 540789 words of font info for 125 fonts, out of 8000000 for 9000
+ 29901 strings out of 492922
+ 583996 string characters out of 6136751
+ 853255 words of memory out of 5000000
+ 33520 multiletter control sequences out of 15000+600000
+ 540781 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,15n,81p,421b,1164s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on demo.pdf (14 pages).
+Output written on demo.pdf (17 pages).
