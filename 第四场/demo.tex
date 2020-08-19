@@ -29,9 +29,7 @@
 		\vspace{6pt}	%空格
 
 
-		针对问题一，建立基于质量守恒定律的燃油流动模型
-		
-		%针对问题一，建立基于质量守恒定律的燃油流动模型，考察单向阀开启时间对压力稳定性的影响。综合考虑压力与弹性模量、密度之间的关系，提出燃油压力-密度微分方程模型和燃油流动方程。本文采用改进的欧拉方法对燃油压力-密度微分方程求得数值解；利用二分法求解压力分布。综合考虑平均绝对偏差等反映压力稳定程度的统计量，求得直接稳定于100MPa的开启时长为\textbf{0.2955ms} ，在2s、5s内到达并稳定于150MPa时开启时长为\textbf{0.7795ms}、\textbf{0.6734ms}，10s到达并稳定于150MPa的开启时长存在多解。最后对求解结果进行灵敏度分析、误差分析。
+		针对问题一，	针对问题一，建立SEIR模型并使用免疫差分进化算法估计模型参数，最后调整模型参数以分析卫生措施效果。本节首先根据新冠病毒疫情改进了传统的SEIR模型，并通过免疫差分进化算法拟合预测结果与实际统计数据，估计未统计模型参数。根据美国实施居家令和提前或延后湖北省采用的严格隔离措施调整模型参数，分析预测结果的变化规律，可得出——提前采取严格隔离将大幅度降湖北省低疫情损失，反之将大幅度提高损失；若即时实施居家令将大幅度降低美国疫情损失。
 		\vspace{6pt}	%空格
 		
 
@@ -55,8 +53,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%目录%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\thispagestyle{empty}
+	\setcounter{page}{1}  
 	\tableofcontents
-	\setcounter{page}{0}                                               
 	\newpage	%换页符
 	
 
@@ -95,31 +93,39 @@
 
 	
 	\section{模型假设}
-		\begin{itemize}                                             
-		\item [(1)] 假设所有感染者与潜伏者分别具有相同的疾病传播能力，且感染者的传染能量强于潜伏者。
-		\item [(2)]假设实施严格的隔离措施与实施居家令分别能有效的提高隔离比例和降低人与之间的接触次数。
-		\item [(3)] 假设所有康复者具有病毒抗体，不会出现二次感染的情况。
-		\item [(4)] 
-		\end{itemize}
+\begin{itemize}                                             
+	\item [(1)] 假设所有感染者与潜伏者分别具有相同的疾病传播能力，且感染者的传染能量强于潜伏者。
+	\item [(2)]假设实施严格的隔离措施与实施居家令分别能有效的提高隔离比例和降低人与之间的接触次数。
+	\item [(3)] 假设所有康复者具有病毒抗体，不会出现二次感染的情况。
+	\item [(4)] 假设股票数据真实可靠，并且所选公司能反映国家的经济情况。
+\end{itemize}
 
-		
+
 	\section{符号说明}
-		\begin{table}[H]
-		\centering
-		\setlength{\tabcolsep}{12mm}
-		\begin{tabular}{cc}
-			\toprule[1.5pt]
-			\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
-			\midrule[1pt]		
-			$P_n$  & 20个站点  \\ 
-			$P_n$  & 20个站点  \\ 
-		   	$P_n$  & 20个站点  \\ 
-			\bottomrule[1.5pt]
-		\end{tabular}
-		\begin{tablenotes}
+\begin{table}[H]
+	\centering
+	\setlength{\tabcolsep}{12mm}
+	\begin{tabular}{cc}
+		\toprule[1.5pt]
+		\multicolumn{1}{m{5cm}}{\centering 符号} & \multicolumn{1}{m{5cm}}{\centering 说明} \\
+		\midrule[1pt]		
+		$S$& 易感者的累计总数\\
+		$E$&潜伏者的累计总数\\
+		$I$&感染者的累计总数\\
+		$S_q$&隔离易感者的累计总数\\
+		$E_q$&隔离潜伏者的累计总数\\
+		$H$&住院患者的累计总数\\
+		$\alpha$&有效接触率\\
+		$\beta$&传染率\\
+		$\rho$&有效接触系数\\
+		$d$&病死率\\
+		\bottomrule[1.5pt]
+	\end{tabular}
+	\begin{tablenotes}
 		\item 注：表中未说明的符号以首次出现处为准
-		\end{tablenotes}
-		\end{table}
+	\end{tablenotes}
+\end{table}
+
 
 	\section{问题一模型的建立与求解}
 		\subsection{问题描述与分析}
@@ -314,48 +320,100 @@
 
 		
         \subsection{实验结果及分析}
-        使用免疫差分进化算法可求得湖北省与美国的未统计参数如表~\ref{sdf}~所示
+        本文先后采取湖北和美国的数据预测确诊病例和死亡病例数的变化。并设立在\textbf{2020年1月22日}时两地的初值统计参数如下表所示
+                	\begin{table}[H]
+        	\setstretch{0.8}  %设置表的行间距
+        	\centering		
+        	\caption{模型统计前初值参数}\label{sdsssf}
+        	\begin{tabular}{cccc}
+        		\toprule[2pt]
+        		\multicolumn{1}{m{4cm}}{\centering 参数名称}
+        		& \multicolumn{1}{m{3cm}}{\centering 湖北省}
+        		& \multicolumn{1}{m{3cm}}{\centering 美国}
+        		& \multicolumn{1}{m{3cm}}{\centering 来源}
+        		\\
+        		\midrule[1pt]
+        		人口总数&  59170000& 310000000&goolge\\ 
+        		感染者&   786& 3&goolge\\ 
+        		尚在接受医学观察的人数&  2776& 124&参考文献\upcite{2}\\ 
+        		正在被隔离的潜伏者&  400& 10&估计值\\ 
+        		 正在住院的患者&  1186& 20&参考文献\upcite{2}\\ 
+        		 出院人数&  31& 0&google\\ 
+        		死亡人数&  3& 0&百度\\ 
+        		\bottomrule[2pt]	
+        	\end{tabular}
+        \end{table}
+        
+        使用免疫差分进化算法可求得湖北省与美国的未统计参数如表~\ref{sdf}~所示，其中初始潜伏者数量的步长为25进行遍历。
+        
         	\begin{table}[H]
         	\setstretch{1.4}  %设置表的行间距
         	\centering		
-        	\caption{未统计参数}\label{sdf}
+        	\caption{免疫差分进化算法求得的未统计参数}\label{sdf}
         	\begin{tabular}{ccc}
         		\toprule[2pt]
-        		\multicolumn{1}{m{5cm}}{\centering }
-        		& \multicolumn{1}{m{5cm}}{\centering 湖北省}
-        		& \multicolumn{1}{m{5cm}}{\centering 美国}
+        		\multicolumn{1}{m{5cm}}{\centering 参数名称}
+        		& \multicolumn{1}{m{4cm}}{\centering 湖北省}
+        		& \multicolumn{1}{m{4cm}}{\centering 美国}
         		\\
         		\midrule[1pt]
-        	日平均接触人数&   909.80\\ 
-        	接触感染概率& 	852.60\\ 
-        	初始潜伏者数量& 	852.60\\ 
-        	潜伏者与患者感染能力比& 	852.60\\
+        	日平均接触人数&   4.13& 14.28\\ 
+        	接触感染概率& 0.4384	& 0.6851\\ 
+        	初始潜伏者数量& 	125& 1100\\ 
+        	潜伏者与患者感染能力比& 1.00&1.00\\
         		\bottomrule[2pt]	
         	\end{tabular}
-        \\
-        根据该参数求得预测参数与实际统计参数可解得湖北省数据预测曲线如图~\ref{sd}~所示。其中取隔离解除速率 $\lambda =\frac{1}{14}$，潜伏者向感染者的转化速率 $\sigma=\frac{1}{7}$。取1月27日前，即严格的隔离措施执行前隔离比例$q=0.2$，取执行之后的隔离比例为$q=0.95$。
+		\end{table}
         
-        图
-        
+        根据该参数求得预测参数与实际统计参数可解得湖北省数据预测曲线如图~\ref{sd}~所示，其中取隔离解除速率 $\lambda =\frac{1}{14}$，潜伏者向感染者的转化速率 $\sigma=\frac{1}{7}$。取1月22日前，即严格的隔离措施执行前隔离比例$q=0.2$，取执行之后的隔离比例为$q=0.95$。
+        \begin{figure}[H]
+	\centering
+	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/untitled.png}}
+	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/untitled2.png}}
+	\caption{湖北省和美国两地的感染者预测曲线}\label{sd}
+\end{figure}
+
         若使严格隔离措施推后5日执行，即使得2月1日前隔离比例为$q=0.2$，之后的隔离比例为$q=0.99$，可得预测曲线如图~\ref{label}~所示
+                \begin{figure}[H]
+        	\centering
+        	\subfigure[湖北推后5日执行]{\includegraphics[height=6cm,width=7.5cm]{figures/untitled222.png}}
+        	\subfigure[美国推后5日执行]{\includegraphics[height=6cm,width=7.5cm]{figures/untitle.png}}
+        	\caption{湖北省和美国两地懈怠措施的感染者预测曲线}\label{label}
+        \end{figure}
+    
+    
+        由图可知，推后5日执行严格隔离措施将使得疫情高峰于\textbf{50天后}到来。最高感染人数将分别达到\textbf{5万人/120万人}，是原始数据的\textbf{两倍}左右。死亡人数将达到\textbf{3千/14万人}，是原始数据\textbf{的3倍}。若使严格隔离措施提前3日执行，即使得1月19日前隔离比例为$q=0.2$，之后的隔离比例为$q=0.99$，可得预测曲线如图~\ref{lasssbel}~所示
         
-        由图可知，推后5日执行严格隔离措施将使得疫情高峰于？？？日到来。最高感染人数将达到？？？，是原始数据的？？倍。死亡人数将达到？？？，是原始数据的？？倍。若使严格隔离措施提前3日执行，即使得1月24日前隔离比例为$q=0.2$，之后的隔离比例为$q=0.99$，可得预测曲线如图~\ref{label}~所示
+                        \begin{figure}[H]
+        	\centering
+        	\subfigure[湖北提前3日执行]{\includegraphics[height=6cm,width=7.5cm]{figures/untitled123.png}}
+        	\subfigure[美国执行全美实施居家令]{\includegraphics[height=6cm,width=7.5cm]{figures/untitld.png}}
+        	\caption{湖北省和美国两地及时管控措施的感染者预测曲线}\label{lasssbel}
+        \end{figure}
         
-        由图可知，推后5日执行严格隔离措施将使得疫情高峰于？？？日到来。最高感染人数将达到？？？，是原始数据的？？。死亡人数将达到？？？，是原始数据的？？。即仅提前三天执行隔离措施将大幅度降低疫情损失，而推后5日执行隔离措施将使得疫情损失大幅度增长。取隔离比例$q=0.1$可得美国测曲线如图~\ref{asfd}~所示
-        
-        若全美实施居家令，即使得日平均接触人数减半，可得可得预测曲线如图~\ref{label}~所示
-        
-        由图可知，推后5日执行严格隔离措施将使得疫情高峰于？？？日到来。最高感染人数将达到？？？，是原始数据的？？。死亡人数将达到？？？，是原始数据的？？。即若全美实施居家令将使得疫情损失大幅度降低。
+        若全美实施居家令和湖北提前3日执行，即使得日平均接触人数减半，即仅提前三天执行隔离措施将大幅度降低疫情损失，而推后5日执行隔离措施将使得疫情损失大幅度增长。取隔离比例$q=0.1$可得美国测曲线如图~\ref{lasssbel}~所示。提前3日执行严格隔离措施将使得疫情高峰于\textbf{30天后}到来。最高感染人数将分别达到\textbf{2万人/60万人}，是原始数据的0.7倍。死亡人数将达到\textbf{8百/7万人}，是原始数据的0.6倍。即若及时管控严格将使得疫情损失大幅度降低。
         
         	
         \subsection{灵敏度分析}
-        分别使得患者的日平均接触人数、接触感染概率、初始潜伏者数量以及潜伏者相对于感染者传播能力的比值上下波动$15\%$，观察最高感染人数与死亡人数值是否发生改变
+        以湖北为例，分别使得患者的日平均接触人数、接触感染概率、初始潜伏者数量以及潜伏者相对于安全措施的比值上下波动$15\%$，观察最高感染人数与死亡人数值是否发生改变。
         
-        图
+        \begin{figure}[H]
+        	\centering
+        	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/y3.png}}
+        	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/y4.png}}
+        	\caption{不同的日常安全防护对湖北的疫情影响预测}
+        \end{figure}
         
-        分析图~\ref{label}~可知
-       
-        \end{table}
+        分析图~\ref{label}~可知，随着人员之间日常接触率增大，个人日常安全防护将显得尤其重要。上图分析了有效接触系数降低对疫情发展的影响（假设诊断标准未发生变化），设置人员之间接触率$c=10.15$。有效接触系数分别取0.5、0.25和0.1时。个人日常防护措施将在保障个人安全的同时，对遏制疫情的发展起到重要作用。严格的日常安全防护有助于感染人数峰值时间的提前，并且有助于峰值人数的降低。在严格个人防护措施下($\rho=0.1$)，感染人数峰值可下降接近50\%。
+        
+
+       本文还模拟了追踪隔离措施，即追踪隔离比例下降对疫情发展的后果。如下图所示，当隔离比例下降为0.9、0.8和0.6倍时，感染人数的上升速率和峰值均会增加（假设诊断标准未发生变化，即感染人数未突跳）。尤其当取$0.6q$时，感染人数峰值提高约两倍。由此可见，严格的医学追踪隔离是防止疫情发展的有效手段。
+          \begin{figure}[H]
+        	\centering
+        	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/y1.png}}
+        	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/y2.png}}
+        	\caption{追踪隔离措施对湖北的疫情影响预测}
+        \end{figure}
         
   
 	\section{问题二模型的建立与求解}
@@ -435,22 +493,278 @@
 	\begin{thebibliography}{9}%宽度9
 		\bibitem{1}Berger D W, Herkenhoff K F, Mongey S. An seir infectious disease model with testing and conditional quarantine[R]. National Bureau of Economic Research, 2020.
 	\bibitem{2}Pandey G, Chaudhary P, Gupta R, et al. SEIR and Regression Model based COVID-19 outbreak predictions in India[J]. arXiv preprint arXiv:2004.00958, 2020.
+	\bibitem{3}Hou C, Chen J, Zhou Y, et al. The effectiveness of quarantine of Wuhan city against the Corona Virus Disease 2019 (COVID‐19): A well‐mixed SEIR model analysis[J]. Journal of medical virology, 2020.
 	\end{thebibliography}
 
 	\newpage
 	%附录
 	\appendix %%附录
-	\section{数据可视化的实现}
-		\subsection*{第一问画图--python源代码}
+	\section{问题一代码}
+		\subsection*{动力学模型--python源代码}
 			\begin{lstlisting}[language=python]
+			from scipy.optimize import dual_annealing, minimize
+			from sklearn.metrics import r2_score
+			from collections import namedtuple
+			from matplotlib import pyplot as plt
 			
+			SEIR_PARAM = namedtuple('SEIRparm', ['alpha', 'beta', 'theta'])
+			q = 0.000 # 隔离比例
+			lamada = 1/14
+			sigma = 1/7
+			deltaI=0.13
+			deltaq=0.13
+			d = 2.7*(10**(-4)) #病死率
+			gammaI=0.007  #感染者的恢复率
+			gammaH=0.014
+			
+			class SEIR(object):
+			def __init__(self, P=None):
+			self.P = P
+			
+			def _forward(self, S, E, I, Sq, Eq, H, D, C, param, max_iter):
+			alpha, beta, theta = param
+			est = dp.Table(columns=['S', 'E', 'I', 'Sq', 'Eq', 'H', 'D', 'C'])
+			for t in range(max_iter):
+			rou = S/(S+E+I+C)
+			S_ = S - alpha*rou*(beta+q*(1-beta))*(I+theta*E) + lamada*Sq
+			# S_ = S - alpha*theta*E - alpha*rou*(beta+q*(1-beta))*I + lamada*Sq
+			E_ = E + rou*alpha*beta*(1-q)*(I+theta*E) - sigma*E
+			I_ = I + sigma*E - (deltaI+d+gammaI)*I
+			Sq_ = Sq + rou*alpha*q*(1-beta)*(I+theta*E) - lamada*Sq
+			Eq_ = Eq + rou*alpha*beta*q*(I+theta*E) - deltaq*Eq
+			H_ = H + deltaI*I + deltaq*Eq - (d+gammaH)*H
+			C_ = C + gammaI*I + gammaH*H
+			D_ = D + d*(H+I)
+			S, E, I, Sq, Eq, H, D, C = S_, E_, I_, Sq_, Eq_, H_, D_, C_
+			est.append_row([S, E, I, Sq, Eq, H, D, C])
+			return est
+			
+			def _loss(self, obs, est):
+			assert len(obs) == len(est)
+			loss = ((np.log2(obs + 1) - np.log2(est + 1)) ** 2).sum() 
+			# loss = (np.abs(1-est['I']/obs['I'])+np.abs(1-est['D']/obs['D'])
+			#                 +np.abs(1-est['C']/obs['C'])).sum()
+			# print(est)
+			self.lossing.append(loss)
+			return loss
+			
+			def _optimize(self, param, s, e, i, sq, se, h, d, c, obs):
+			est = self._forward(s, e, i, sq, se, h, d, c, param, len(obs))
+			return self._loss(obs, est['I', 'D', 'C'].toarray())
+			
+			def fit(self, initS, initE, initI, initSq, initEq, initH, initD, initC, Y):
+			self.lossing = []
+			args = (initS, initE, initI, initSq, initEq, initH, initD, initC, Y['确诊', '死亡', '治愈'].toarray())
+			param = [(0, 1),] * 3
+			# result = minimize(self._optimize, [random()] * 5, args=args, bounds=param)['x']
+			result = dual_annealing(self._optimize, param, args=args, seed=30, maxiter=50)['x']
+			self.P = SEIR_PARAM(*result)
+			
+			def score(self, initS, initE, initI, initSq, initEq, initH, initD, initC, Y, plot=False):
+			est = self._forward(initS, initE, initI, initSq, initEq, initH, initD, initC, self.P, len(Y))['I', 'D', 'C']
+			loss = self._loss(Y['确诊', '死亡', '治愈'].toarray(), est.toarray())
+			est.columns = ['确诊', '死亡', '治愈']
+			r1 = r2_score(Y['治愈'], est['治愈'])
+			r2 = r2_score(Y['死亡'], est['死亡'])
+			r3 = r2_score(Y['确诊'], est['确诊'])
+			if plot:
+			self.plot_predict(Y, est)
+			print(' - 平均潜伏期为：%.2f天' % (1.0 / self.P.beta))
+			# print(' - 病毒再生基数：%.2f' % (self.P.alpha1 / self.P.beta + (self.P.alpha2 / self.P.sigma + self.P.alpha2 / self.P.gamma)/ 2))
+			print(' - 确诊R2：%.4f' % r3)
+			print(' - 死亡R2：%.4f' % r2)
+			print(' - 治愈R2：%.4f' % r1)
+			print(' - 模型R2：%.4f' % ((r1 + r2 + r3) / 3))
+			print(' - 模型总误差：%.4f' % loss)
+			return loss, (r1 + r2 + r3) / 3
+			
+			def plot_error(self):
+			# plt.rcParams['font.sans-serif'] = ['SimHei']
+			plt.plot(self.lossing, label=u'正确率')
+			plt.legend()
+			plt.show()
+			
+			def plot_predict(self, obs, est):
+			for label, color in zip(obs.keys(), ['red', 'black', 'green']):
+			# plt.rcParams['font.sans-serif'] = ['SimHei']
+			plt.plot(obs[label], color=color)
+			print(label)
+			plt.plot(est[label], color=color, alpha=0.7)
+			plt.legend()
+			plt.show()
+			
+			def predict(self, initS, initE, initI, initSq, initEq, initH, initD, initC, T):
+			
+			return self._forward(initS, initE, initI, initSq, initEq, initH, initD, initC, self.P, T)
+			
+			
+			train = data['患病','死亡','治愈']
+			train.columns = ['确诊', '死亡', '治愈']
+			train.accumulate(inplace=True)
+			
+			S = 900000000
+			I = 1
+			Sq = 200000
+			Eq = 420000
+			H = 20
+			D = 0
+			C = 0
+			
+			def searchBestParam(seir, S, I, Sq, Eq, H, D, C):
+			min_loss, max_r2, best_param, likeli_potential = float('inf'),0.0, None, 0
+			for potential in range(0, 500, 25):
+			seir.fit(S, potential, I, Sq, Eq, H, D, C, train)
+			loss, r2 = seir.score(S, potential, I, Sq, Eq, H, D, C, Y=train)
+			print(loss,r2)
+			if loss < min_loss: # and r2 > max_r2:
+			print('潜在患者：%.4f | R2：%.4f | 误差： %.6f' % (potential, r2, loss))
+			min_loss, max_r2, best_param, likeli_potential = loss, r2, seir.P, potential
+			seir.P = best_param
+			print(seir.P, likeli_potential)
+			seir.score(S, likeli_potential, I, Sq, Eq, H, D, C, Y=train, plot=True)
+			return seir, likeli_potential
+			
+			seir, potentials = searchBestParam(SEIR(), S, I, Sq, Eq, H, D, C)
+			
+			
+			def forcast(seir, T):
+			predict = seir.predict(S, potentials, I, Sq, Eq, H, D, C, T)
+			plt.plot(train['确诊'], label='确诊(真实)', color='red')
+			plt.plot(train['死亡'], label='死亡(真实)', color='black')
+			plt.plot(train['治愈'], label='治愈(真实)', color='green')
+			# plt.plot(predict['S'], label='易感(预计)', color='blue', alpha=0.5)
+			plt.plot(predict['E'], label='潜伏(预计)', color='orange', alpha=0.5)
+			plt.plot(predict['I'], label='确诊(预计)', color='red', alpha=0.5)
+			plt.plot(predict['D'], label='死亡(预计)', color='black', alpha=0.5)
+			plt.plot(predict['C'], label='治愈(预计)', color='green', alpha=0.5)
+			plt.legend()
+			plt.show()
+			forcast(seir, 30)
 			\end{lstlisting}
 			
-		\subsection*{第二问画图--python源代码}
-			\lstinputlisting[language={python},numbers=left,numberstyle=\tiny,
-			rulesepcolor=\color{red!20!green!20!blue!20},  
-			keywordstyle=\color{blue!70!black},  
-			commentstyle=\color{blue!90!},  
-			basicstyle=\ttfamily] {./code/demo.py}
+		\subsection*{免疫遗传求解--python源代码}
+\begin{lstlisting}[language=python]
+# -*- coding: cp936 -*-
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+import random
+
+# Rastrigr 函数
+def object_function(x):
+f = 0
+for i in range(0,len(x)):
+f = f + (x[i] ** 2 - (10 * math.cos(2 * np.pi * x[i])) + 10)
+return f
+# 参数
+def initpara():
+NP = 100   # 种群数量
+F = 0.6   # 缩放因子
+CR = 0.7   # 交叉概率
+generation = 2000   # 遗传代数
+len_x = 10
+value_up_range = 5.12
+value_down_range = -5.12
+return NP, F, CR, generation, len_x, value_up_range, value_down_range
+# 种群初始化
+def initialtion(NP):
+np_list = []   # 种群，染色体
+for i in range(0,NP):
+x_list = []   # 个体，基因
+for j in range(0,len_x):
+x_list.append(value_down_range + random.random() * (value_up_range - value_down_range))
+np_list.append(x_list)
+return np_list
+# 列表相减
+def substract(a_list,b_list):
+a = len(a_list)
+new_list = []
+for i in range(0,a):
+new_list.append(a_list[i]-b_list[i])
+return new_list
+# 列表相加
+def add(a_list,b_list):
+a = len(a_list)
+new_list = []
+for i in range(0,a):
+new_list.append(a_list[i]+b_list[i])
+return new_list
+# 列表的数乘
+def multiply(a,b_list):
+b = len(b_list)
+new_list = []
+for i in range(0,b):
+new_list.append(a * b_list[i])
+return new_list
+# 变异
+def mutation(np_list):
+v_list = []
+for i in range(0,NP):
+r1 = random.randint(0,NP-1)
+while r1 == i:
+r1 = random.randint(0,NP-1)
+r2 = random.randint(0,NP-1)
+while r2 == r1 | r2 == i:
+r2 = random.randint(0,NP-1)
+r3 = random.randint(0,NP-1)
+while r3 == r2 | r3 == r1 | r3 == i:
+r3 = random.randint(0,NP-1)
+
+v_list.append(add(np_list[r1], multiply(F, substract(np_list[r2],np_list[r3]))))
+return v_list
+# 交叉
+def crossover(np_list,v_list):
+u_list = []
+for i in range(0,NP):
+vv_list = []
+for j in range(0,len_x):
+if (random.random() <= CR) | (j == random.randint(0,len_x - 1)):
+vv_list.append(v_list[i][j])
+else:
+vv_list.append(np_list[i][j])
+u_list.append(vv_list)
+return u_list
+# 选择
+def selection(u_list,np_list):
+for i in range(0,NP):
+if object_function(u_list[i]) <= object_function(np_list[i]):
+np_list[i] = u_list[i]
+else:
+np_list[i] = np_list[i]
+return np_list
+# 主函数
+NP, F, CR, generation, len_x, value_up_range, value_down_range = initpara()
+np_list = initialtion(NP)
+min_x = []
+min_f = []
+xx = []
+for i in range(0,NP):
+xx.append(object_function(np_list[i]))
+min_f.append(min(xx))
+min_x.append(np_list[xx.index(min(xx))])
+for i in range(0,generation):
+v_list = mutation(np_list)
+u_list = crossover(np_list,v_list)
+np_list = selection(u_list,np_list)
+for i in range(0,NP):
+xx = []
+xx.append(object_function(np_list[i]))
+min_f.append(min(xx))
+min_x.append(np_list[xx.index(min(xx))])
+# 输出
+min_ff = min(min_f)
+min_xx = min_x[min_f.index(min_ff)]
+print('the minimum point is x ')
+print(min_xx)
+print('the minimum value is y ')
+print(min_ff)
+# 画图
+x_label = np.arange(0,generation+1,1)
+plt.plot(x_label, min_f)
+plt.xlabel('iteration')
+plt.ylabel('fx')
+plt.savefig('./iteration-f.png')
+plt.show()
+\end{lstlisting}
 
 \end{document}
