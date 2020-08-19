@@ -19,7 +19,6 @@
 \title{基于xxxxxxxx模型}
 \tihao{1} 
 \everymath{\displaystyle} 
-
 \begin{document}
 
 	\maketitle
@@ -29,11 +28,14 @@
 		控制高压油管的压力变化对减小燃油量偏差，提高发动机工作效率具有重要意义。本文建立了基于质量守恒定理的微分方程稳压模型，采用二分法、试探法以及自适应权重的蝙蝠算法对模型进行求解。
 		\vspace{6pt}	%空格
 
+
 		针对问题一，建立基于质量守恒定律的燃油流动模型
 		
 		%针对问题一，建立基于质量守恒定律的燃油流动模型，考察单向阀开启时间对压力稳定性的影响。综合考虑压力与弹性模量、密度之间的关系，提出燃油压力-密度微分方程模型和燃油流动方程。本文采用改进的欧拉方法对燃油压力-密度微分方程求得数值解；利用二分法求解压力分布。综合考虑平均绝对偏差等反映压力稳定程度的统计量，求得直接稳定于100MPa的开启时长为\textbf{0.2955ms} ，在2s、5s内到达并稳定于150MPa时开启时长为\textbf{0.7795ms}、\textbf{0.6734ms}，10s到达并稳定于150MPa的开启时长存在多解。最后对求解结果进行灵敏度分析、误差分析。
 		\vspace{6pt}	%空格
 		
+
+	
 		针对问题二，建立基于质量守恒定律的泵-管-嘴系统动态稳压模型，将燃油进入和喷出的过程动态化处理。考虑柱塞和针阀升程的动态变动，建立喷油嘴流量方程和质量守恒方程。为提高角速度求解精度，以凸轮转动角度为固定步长，转动时间变动步长，采用试探法粗略搜索与二分法精细搜索的方法求解，求得凸轮最优转动角速度\textbf{0.0283rad/ms（转速270.382转/分钟）}，并得到该角速度下高压油管的密度、压力周期性变化图。对求解结果进行误差分析与灵敏度分析，考察柱塞腔残余容积变动对高压油管压力稳态的影响。
 		\vspace{6pt}	%空格
 	
@@ -220,6 +222,124 @@
 			 	}	
 			 	\Return{$F_{t-1}$} 
 			\end{algorithm} 
+=======
+			问题一要求
+		
+			其思维流程图如图~\ref{lct}~所示：
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{figures/whut.jpg}
+				\caption{问题一思维流程图}\label{lct}
+			\end{figure}
+			
+		\subsection{模型的建立}
+			\begin{gather*}
+			d(p_i,p_j)=\left | x_i-x_j \right |+\left | y_i-y_j \right | ,
+			\end{gather*}
+		
+		
+		\subsection{模型的求解}
+		\subsubsection{免疫差分进化算法}
+		%\paragraph{初始化}
+		本文设计免疫差分进化算法估计微分方程组中的未知参数，定义决策向量为
+		\begin{gather}
+		X=[x_1,x_2,x_3,x_4],
+		\end{gather}
+		其中$x_1$、$x_2$、$x_3$和$x_4$分别表示每个患者的日平均接触人数、传染概率、初始潜伏者与患者人数比例以及潜伏者相对于感染者传播能力的比值。将目标函数定义为损失函数如下
+		\begin{gather}
+		min Loss(X)=\sum_{t=1}^T (|\frac{D_r(t)-D(t)}{D_r(t)}|+|\frac{R_r(t)-R(t)}{R_r(t)}|+|\frac{H_r(t)-H(t)}{H_r(t)}|)
+		\end{gather}
+		其中$T$表示选取数据的终止节点，即表示选取用于估计参数的数据来自疫情发生的第$1$天到第$T$天。$D_r(t)$、$R_r(t)$与$H_r(t)$分别表示疫情发生后第$t$天的死亡人数、治愈人数和医院患者人数的真实数据；$D(t)$、$R(t)$与$H(t)$分别表示其对应的由SEIR模型。损失函数$Loss$表示预测结果与实际结果间的距离，即$Loss$值越小，预测曲线就与真实曲线越接近。
+		\paragraph{种群初始化}
+		在解空间中随机产$p$个初始个体$
+		X_i(0)=[x_1,x_2,x_3,x_4],(i=1,2,3,\cdots,p).
+		$
+		其中第$i$个个体的第$j$维取值方式如下
+		\begin{gather}
+		x_{i,j}(0)=x_{j,min}+rand(0,1)(x_{j,max}-x_{j,min}),\\i=1,2,3,\cdots,p,j=1,2,3,4
+		\end{gather}
+		其中$p$表示种群规模，$x_{j,max}$和$x_{j,min}$分别表示决策变量$X$第$j$维的
+		取值范围上界与下界。
+		\paragraph{变异}
+		在第$g$次迭代中，生成变异个体$H_i(g)$，从种群中随机选取三个个体$X_{p1}(g)$,$X_{p2}(g)$和$X_{p3}(g)$，且$p_1\neq p_2\neq p_3\neq i$，生成的变异向量为
+	    \begin{gather}
+	    H_i(g)=X_{p1}(g)+F(g)*(X_{p2}(g)-X_{p3}(g))
+	    \end{gather}
+	    $F(g)\in (0,1)$是每一代中的放缩因子，其服从柯西分部如下
+	    \begin{gather}
+	    F(g)=cauchyrnd(uF,0.1)
+	    \end{gather}
+	   其中$uF$是$F$的期望值，本文取值为$uF=0.5$。
+		\paragraph{交叉}
+		对第$g$代种群中第$i$个体进行交叉操作，生成交叉个体$V_i(g)$，具体表达式如下：
+		\begin{gather}
+		v_{i,j}=\left\{\begin{matrix}h_{i,j}(g),rand(0,1)\leq cr_{i}
+		\\ x_{i,j}(g),rand(0,1)>cr_{i}
+		\end{matrix}\right.
+		\end{gather}
+     	其中$cr_{i}\in[0.1,0.6]$是个体$i$的交叉概率，参数$cr_{i}$将进行自适应调整，具体表达式如下：
+		\begin{gather}
+		cr_{i}=\left\{\begin{matrix}cr_{l}+(cr_{u}-cr_{l})\frac{Loss_{i}-Loss_{min}}{Loss_{max}-Loss_{min}} , Loss_{i}>\overline{Loss}
+		\\ cr_{l},Loss_{i}\leqslant  \overline{Loss}
+		\end{matrix}\right.
+		\end{gather}
+	    \paragraph{免疫选择}
+	    混合第$g$代的交叉个体$V(g)$与原始个体$X(g)$，得到待选组$\left \{ X '(g+1)\right \}$如下
+	    \begin{gather*}
+	    X_i '(g+1)=\left\{\begin{matrix}  X_i (g),i\leqslant p
+	    \\  V_{i-p} (g),i>p.
+	    \end{matrix}\right.
+	    \end{gather*}
+		个体 $X_a '(g+1)$和$X_b '(g+1)$的亲和度$S_{a,b}$可表示为
+		\begin{gather}
+		S_{a,b}=\sqrt{\sum _{i=1}^4( \frac{x_{i,a}-x_{i,b}}{x_{i,max}-x_{i,min}})^2}
+		\end{gather}
+		$S_{a,b}$为$X_a '(g+1)$和$X_b '(g+1)$的归一化距离，表示个体$X_a '(g+1)$和$X_b '(g+1)$的相似性。定义个体$X_i '(g+1)$的抗体浓度为$C_{i}$,即
+		\begin{gather}
+		C_{i}=\frac{1}{2p}\sum _{j=1}^{2p} N_{i,j},\\
+		N_{i,j}=\left\{\begin{matrix}1,S_{i,j}\geqslant \mu 
+		\\ 0,S_{i,j}< \mu 
+		\end{matrix}\right.
+		\end{gather}
+		$\mu(\mu\in[0,1])$为相似度阈值，即当个体$i$和$j$的亲和度$S_{i,j}\geqslant \mu$时认为个体$i$和$j$为相似个体。$C_{i}$即为$\left \{ X '(g+1)\right \}$中$X_i '(g+1)$的相似个体所占比例，$C_{i}$越大即表示$X_i '(g+1)$所在区域的个体密度越大。我们优先将损失函数$Loss$值最优的前$\sigma$个解放入下一代个体$\left \{ X(g+1)\right \}$中以防止最优解丢失。再计算剩余个体的复合适应度函数，即个体$i$的复合适应度函数可表示为
+	    \begin{gather}
+	  min F(X_i '(g+1))=\frac{Loss(X_i '(g+1))-Loss_{min}}{Loss_{max}-loss_{min}}+C_{i}
+		\end{gather}
+		即选取复合适应度函数$F$较优的剩余$p-\sigma$个个体放入下一代个体$\left \{ X(g+1)\right \}$中。重复迭代上述算法$G$次后终止算法并输出最优参数集$X_{best}$。
+		
+		
+		
+%				\begin{algorithm}[H]
+%			 	\caption{Procedure of Apriori}  
+%			 	\LinesNumbered  
+%			 	\setstretch{0.9}   %设置表的行间距
+%			 	\KwIn{item data base: $D$\newline
+%			 		minimum Support threshold: $Sup_{min}$\newline
+%			 		minimum Confidence threshold: $Conf_{min}$
+%			 	}
+%			 	\KwOut{frequent item sets $F$}  
+%			 	\textbf{Initialize} \newline
+%			 	iteration $t\leftarrow 1$ \newline
+%			 	The candidate FIS:$C_{t}=\varnothing$ \newline
+%			 	The length of FIS:$length=1$ \newline
+%			 	\For{i=1 to sizeof(D)}
+%			 	{$I_{i}$=D(i)\newline
+%			 		n=sizeof($I_{i}$)\newline
+%			 		\For{j=1 to n}{
+%			 			\If{$I_{i}(j)\notin C_{t}$ }
+%			 			{$C_{t}=C_{t}\cup I_{i}(j) $}
+%			 		}
+%			 	}
+%			 	$F_{t}=\left \{ f|f\in C_{t},Sup(f)>Sup_{min}\right \}$\newline
+%			 	\While{$F\neq \varnothing$}
+%			 	{ t=t+1\newline 
+%			 		length=length+1\newline	
+%			 		$C_{t}\leftarrow $ all candidate of FIS in $F_{t-1}$\newline
+%			 		$F_{t}=\left \{ f|f\in C_{t},(Sup(f)>Sup_{min})\bigcap (Comf(f)>Conf_{min}) \right\}$\newline
+%			 	}	
+%			 	\Return{$F_{t-1}$} 
+%			\end{algorithm} 
+
 		
         \subsection{实验结果及分析}
   

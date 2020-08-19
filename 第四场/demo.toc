@@ -7,18 +7,25 @@
 \contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{2}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{3}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{5}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{5}{subsection.4.4}%
-\contentsline {section}{\numberline {5}问题二模型的建立与求解}{5}{section.5}%
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{5}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{6}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{6}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{6}{subsection.5.4}%
-\contentsline {section}{\numberline {6}问题三模型的建立与求解}{7}{section.6}%
-\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}结果分析}{7}{subsection.6.1}%
-\contentsline {section}{\numberline {7}灵敏度分析}{7}{section.7}%
-\contentsline {section}{\numberline {8}模型的评价}{7}{section.8}%
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{7}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{7}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{7}{subsection.8.3}%
-\contentsline {section}{\numberline {附录A}数据可视化的实现}{9}{appendix.A}%
+\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}模型的建立}{5}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}5}模型的求解}{6}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}免疫差分进化算法}{6}{subsubsection.4.5.1}%
+\contentsline {paragraph}{种群初始化}{6}{section*.5}%
+\contentsline {paragraph}{变异}{6}{section*.6}%
+\contentsline {paragraph}{交叉}{7}{section*.7}%
+\contentsline {paragraph}{免疫选择}{7}{section*.8}%
+\contentsline {subsection}{\numberline {4\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}6}实验结果及分析}{8}{subsection.4.6}%
+\contentsline {section}{\numberline {5}问题二模型的建立与求解}{8}{section.5}%
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}问题描述与分析}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的建立}{8}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型的求解}{8}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}4}实验结果及分析}{8}{subsection.5.4}%
+\contentsline {section}{\numberline {6}问题三模型的建立与求解}{10}{section.6}%
+\contentsline {subsection}{\numberline {6\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}结果分析}{10}{subsection.6.1}%
+\contentsline {section}{\numberline {7}灵敏度分析}{10}{section.7}%
+\contentsline {section}{\numberline {8}模型的评价}{10}{section.8}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{10}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{10}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{10}{subsection.8.3}%
+\contentsline {section}{\numberline {附录A}数据可视化的实现}{12}{appendix.A}%
 \contentsfinish 
