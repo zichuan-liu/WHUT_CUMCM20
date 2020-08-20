@@ -284,40 +284,7 @@
 	  min F(X_i '(g+1))=\frac{Loss(X_i '(g+1))-Loss_{min}}{Loss_{max}-loss_{min}}+C_{i}
 		\end{gather}
 		即选取复合适应度函数$F$较优的剩余$p-\sigma$个个体放入下一代个体$\left \{ X(g+1)\right \}$中。重复迭代上述算法$G$次后终止算法并输出最优参数集$X_{best}$。
-		
-		
-		
-%				\begin{algorithm}[H]
-%			 	\caption{Procedure of Apriori}  
-%			 	\LinesNumbered  
-%			 	\setstretch{0.9}   %设置表的行间距
-%			 	\KwIn{item data base: $D$\newline
-%			 		minimum Support threshold: $Sup_{min}$\newline
-%			 		minimum Confidence threshold: $Conf_{min}$
-%			 	}
-%			 	\KwOut{frequent item sets $F$}  
-%			 	\textbf{Initialize} \newline
-%			 	iteration $t\leftarrow 1$ \newline
-%			 	The candidate FIS:$C_{t}=\varnothing$ \newline
-%			 	The length of FIS:$length=1$ \newline
-%			 	\For{i=1 to sizeof(D)}
-%			 	{$I_{i}$=D(i)\newline
-%			 		n=sizeof($I_{i}$)\newline
-%			 		\For{j=1 to n}{
-%			 			\If{$I_{i}(j)\notin C_{t}$ }
-%			 			{$C_{t}=C_{t}\cup I_{i}(j) $}
-%			 		}
-%			 	}
-%			 	$F_{t}=\left \{ f|f\in C_{t},Sup(f)>Sup_{min}\right \}$\newline
-%			 	\While{$F\neq \varnothing$}
-%			 	{ t=t+1\newline 
-%			 		length=length+1\newline	
-%			 		$C_{t}\leftarrow $ all candidate of FIS in $F_{t-1}$\newline
-%			 		$F_{t}=\left \{ f|f\in C_{t},(Sup(f)>Sup_{min})\bigcap (Comf(f)>Conf_{min}) \right\}$\newline
-%			 	}	
-%			 	\Return{$F_{t-1}$} 
-%			\end{algorithm} 
-
+	
 		
         \subsection{实验结果及分析}
         本文先后采取湖北和美国的数据预测确诊病例和死亡病例数的变化。并设立在\textbf{2020年1月22日}时两地的初值统计参数如下表所示
@@ -418,55 +385,62 @@
   
 	\section{问题二模型的建立与求解}
 		\subsection{问题描述与分析}
-			问题二要求
+			问题二要求收集某方面经济数据并说明起影响， 资本市场是现代市场经济的重要组成部分，是实施国家发展战略、调整产业结构的重要平台和手段，本文根据2020年1月22日至7月10日的A股日历史K线数据进行预测。
+			
+			
 
-    		其思维流程图如图~\ref{lssssct}~所示：
+    		我国股票市场较全面地反映了疫情对投资者情绪、流动性需求和实体经济产生冲击所形成的影响。今年市场A股走势如图~\ref{lssssssct}~所示。例如。 1 月 23 日当天沪深 300 指数大幅下跌，同时成交额放大。 1 月 24 日至 2 月 2 日之间是春节假期，股市没有交易，但是这一阶段全国范围内的新增感染人数不断攀升， 投资者的情绪不断累积，加之疫情已经开始冲击实体经济，所以在 2 月 3 日股市开始交易后，沪深 300 指数有一个更大幅度的下探，成交量也激增。
 
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=\textwidth]{figures/whut.jpg}
-				\caption{问题二思维流程图}\label{lssssct}
+				\includegraphics[width=.8\textwidth]{figures/A1.png}
+				\caption{A股主要指数走势对比图}\label{lssssssct}
 			\end{figure}
 
-		\subsection{模型的建立}
+
+如图~\ref{lssssdddssct}~所示，纵观 2019 年，制造业 PMI 一直在 50 这个“荣枯线”上下浮动， 而疫情的爆发使 PMI 在 2020 年 2 月创下了一个极低值， 消费者信心指数和消费者预期指数同样降幅巨大。 东东方财富数据显示，截至 2020 年4 月 30 日，A 股 3832 家上市公司中有 3523 家披露了 2020 年一季报，A股上市公司一季度合计实现营业收入 10.59 万亿元，同比下降 7.91\%，其中主板营收增速下滑7.89\%，中小板总营收下滑 5.25\%，创业板下滑 10.82\%。由此可见，疫情对经济的影响及其巨大，为此本节采用大盘股市的数据进行预测。
+
+		\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{figures/A2.png}
+	\caption{采购经理人指数, 消费者预期指数变化图}
+	\label{lssssdddssct}
+\end{figure}
+		\subsection{模型的建立与求解}
 		
-		\subsection{模型的求解}
+
 
         \subsection{实验结果及分析}
         
-			结果如下表\ref{zhuanssssasgzai}所示：
-			\begin{table}[H]
-			\setstretch{1.4}  %设置表的行间距
-			\centering		
-			\caption{xxxxxxxxxxxxxxxxxxxxx}\label{biao1}
-			\begin{tabular}{cc}
-			\toprule[2pt]
-				\multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				& \multicolumn{1}{m{5cm}}{\centering xxxxxxx}
-				\\
-				\midrule[1pt]
-				xxxxxxx &   909.80\\ 
-				xxxxxxx & 	852.60\\ 
-			\bottomrule[2pt]	
-			\end{tabular}
-			\end{table}
-  
-  			由表\ref{biao1}可知
+        当中国大陆逐步开始复工复产时，国外疫情开始恶化。 由于疫情爆发等原因，美股在 3 月份四次熔断，对我国的股市造成了不小冲击，沪深 300 指数经历了剧烈的下跌，成交额和融资交易量都呈现下降的态势。 这是在国外疫情形
+        势恶化和国内实体经济遭受冲击的共同作用下形成的。下图是疫情对我国股市的影响。
+        \begin{figure}[H]
+        	\centering
+        	\includegraphics[width=.8\textwidth]{figures/A6.png}
+        	\caption{沪深 300 指数与全国新冠肺炎
+        		新增感染人数走势对照图}
+        \end{figure}
+        
+        
+       就于国外经济体美国而言，本节以苹果的股票价格2020年1月22日至2020年7月20日为例（代码AAPL）进行分析，并对八月股市走向做预测。对于AAPL，今年行情如图\ref{lssssddsssssdssct}所示，从这里我们可以得到大多数股票之间的分布近似正相关。
+   
+    \begin{figure}[H]
+   	\centering
+   	\subfigure[AAPL移动平滑图]{\includegraphics[height=6cm,width=7.5cm]{figures/A3.png}}
+   	\subfigure[竞争股票间相关程度]{\includegraphics[height=6cm,width=7.5cm]{figures/A4.png}}
+   	\caption{疫情条件下，AAPL股市走向与同行业竞争对比}        	\label{lssssddsssssdssct}
+   \end{figure}
 
-			其各个小车的运输细节图下图所示：
-			\begin{figure}[H]
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-			\end{figure}	
-			\begin{figure}[H]	
-				\centering
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\subfigure{\includegraphics[height=8cm,width=7.5cm]{figures/whut.jpg}}
-				\caption{xxxxxxxxxxxxxxxxxxxxxxxxx}
-				\label{fisg}
-			\end{figure}
+通过建立的 SVR 模型，首先以美国疫情条件下每天的发病人数，死亡人数，治愈人数和股市平滑值作为模型的输入变量，然后对苹果股价闭盘股市八月份序列最小优化支持向量回归预测，最终得到预测结果：
+           \begin{figure}[H]
+   	\centering
+   	\includegraphics[width=.8\textwidth]{figures/A5.png}
+   	\caption{AAPL八月股价预测图}
+   \end{figure}
 
+模型分析结果表明股票价格与传染病人数是成反比，这与世界各地经济与传染病实际情况实相符的。经济衰退不会持续太久，然后就会复苏。因此，我们可以在经济低迷时买进股票，在经济好转时卖出。 其中股价每增加10元，传染病人数就减少200人左右。通过对预测结果从均方根误差、平均相对误差绝对值和纳什效率系数三个方面进行验证模型，发现预测误差均接近于5\%，说明了模型的预测效果比较精准、可信度高。
+
+	
     \section{问题三模型的建立与求解}
   		\subsection{结果分析}
   
@@ -476,13 +450,12 @@
 		\subsection{模型的优点}
 			\begin{itemize}                                             
 			\item [(1)]
-			\item [(2)] 	
+			\item [(2)]通过序列最小优化算法作为样本的训 练算法，进而建立序列最小优化支持向量回归模型，从而减小算法复杂度，提高算法的 求解速度。
+			
+				
 			\end{itemize}
 		\subsection{模型的缺点}
 
-  		\subsection{模型改进}
-
-  
   
  
 	\newpage	%换页符
