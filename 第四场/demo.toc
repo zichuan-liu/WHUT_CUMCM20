@@ -22,7 +22,7 @@
 \contentsline {section}{\numberline {7}灵敏度分析}{16}{section.7}% 
 \contentsline {section}{\numberline {8}模型的评价}{16}{section.8}% 
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{16}{subsection.8.1}% 
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{16}{subsection.8.2}% 
-\contentsline {section}{\numberline {附录A}问题一代码}{18}{appendix.A}% 
-\contentsline {section}{\numberline {附录B}问题二代码}{23}{appendix.B}% 
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{17}{subsection.8.2}% 
+\contentsline {section}{\numberline {附录A}问题一代码}{19}{appendix.A}% 
+\contentsline {section}{\numberline {附录B}问题二代码}{24}{appendix.B}% 
 \contentsfinish 
