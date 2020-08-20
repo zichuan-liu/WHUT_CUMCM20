@@ -406,10 +406,21 @@
 	\caption{采购经理人指数, 消费者预期指数变化图}
 	\label{lssssdddssct}
 \end{figure}
-		\subsection{模型的建立与求解}
-		
+		\subsection{股市回归模型的建立与求解}
+		针对疫情对股票的影响，本文采用基于序列最小最优化(Sequential Minimal Optimization, SMO)的支持向量回归机(Support Vactor Regression, SVR)对股票进行预测，其模型后文简称SMO-SVR。SVR的基本思想是寻找一个最优分类而使得所有训练样本离该最优分类面的误差最小。参考 Kate Childs 等 人的文章\upcite{5}，建立出多维传染病决策向量与经济股市之间的 SMO-SVR 模型。
 
-
+		给定训练样本$D=\left\{\left(x_{1}, y_{1}\right),\left(x_{1}, y_{1}\right), \ldots \ldots,\left(x_{m}, y_{m}\right)\right\}
+		$，其中$x_i$为特征向量，本文取发病人数、死亡人数、治愈人数和股市平滑值对股价$y_i$进行预测。对于SVR问题可形式化为
+				\begin{gather}
+\min _{w, b} \frac{1}{2}\|w\|^{2}+C \sum_{i=1}^{m} l_{\epsilon}\left(f\left(x_{i}\right), y_{i}\right),
+		\end{gather}
+		其中C为正则化常数，lϵ是不敏感损失(insensitive loss)函数:
+				\begin{gather*}
+l_{\epsilon}(z)=\left\{\begin{array}{cc}
+0, & \text { if }|z| \leq \epsilon ,\\
+|z|-\epsilon, & \text { otherwise }.
+\end{array}\right.
+\end{gather*}
         \subsection{实验结果及分析}
         
         当中国大陆逐步开始复工复产时，国外疫情开始恶化。 由于疫情爆发等原因，美股在 3 月份四次熔断，对我国的股市造成了不小冲击，沪深 300 指数经历了剧烈的下跌，成交额和融资交易量都呈现下降的态势。 这是在国外疫情形
@@ -468,6 +479,7 @@
 	\bibitem{2}Pandey G, Chaudhary P, Gupta R, et al. SEIR and Regression Model based COVID-19 outbreak predictions in India[J]. arXiv preprint arXiv:2004.00958, 2020.
 	\bibitem{3}Hou C, Chen J, Zhou Y, et al. The effectiveness of quarantine of Wuhan city against the Corona Virus Disease 2019 (COVID‐19): A well‐mixed SEIR model analysis[J]. Journal of medical virology, 2020.
 	\bibitem{4}陈友鹏, 陈璟华. 基于鲸鱼优化参数的最小二乘支持向量机短期负荷预测方法[J]. 计算机工程, 2020, 37(03): 75-81.
+	\bibitem{5}Childs K, Cannon M, Davis C, et al. Reply to:“Is resistance to direct-acting antivirals in sub-Saharan Africa a threat to HCV elimination? Recommendations for action”[J]. Journal of Hepatology, 2020, 72(3): 585-586.
 	\end{thebibliography}
 
 	\newpage
