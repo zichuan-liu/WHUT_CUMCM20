@@ -152,16 +152,22 @@
 				\item $H(t)$：$t$时刻住院患者的累计总数；
 				\item $R(t)$：$t$时刻痊愈者的累计总数。
 			\end{itemize}
+		该基于人群模型有以下前提：
 		
-			模型有以下前提：
-
-			1.潜伏者在出现明显症状前会经历$7$天的潜伏期, 一旦出现症状，潜伏者将寻求治疗，从而转为确诊的感染者；
-			
-			2.由于政府干预控制措施，部分感染者在潜伏期内尚未出现症状已被隔离，成为隔离潜伏者，在被隔离了平均$14$天后出现症状，成为确诊的感染者。
-			
-			可建立模型如下：
-			
-			定义有效接触率$\alpha$、传染率$\beta$和有效接触系数$\rho$，$\alpha$是易感人群在随机混合人群中的占比；$\beta$是有效接触。分析可知易感者$S$有三种转化途径：向隔离易感者$S_q$、隔离潜伏者$E_q$和潜伏者$E$的转化速率(单位时间$\Delta t$内，转化数量$\Delta n$与同类群体的个数$n$的比值)分别为$\rho (1-\beta)q$，$ \rho \beta q$和$\rho \beta(1-q)$。此外，确认隔离期$t_d$无症状后，隔离易感者$S_q$也可向易感者$S$以$\lambda S_{q}$的速率转化。由以上分析可建立易感者$S$转化方程：
+		1.潜伏者在出现明显症状前会经历$7$天的潜伏期, 一旦出现症状，潜伏者将寻求治疗，从而转为确诊的感染者；
+		
+		2.由于政府干预控制措施，部分感染者在潜伏期内尚未出现症状已被隔离，成为隔离潜伏者，在被隔离了平均$14$天后出现症状，成为确诊的感染者。
+		
+		3.模型求解过程中不考虑迁入迁出的影响，满足总人群数守恒，即
+		\begin{gather*}
+		\frac{\mathrm{d} S}{\mathrm{d} t}+\frac{\mathrm{d} E}{\mathrm{d} t}+\frac{\mathrm{d} I}{\mathrm{d} t}+\frac{\mathrm{d} H}{\mathrm{d} t}+\frac{\mathrm{d} E_q}{\mathrm{d} t}+\frac{\mathrm{d} S_q}{\mathrm{d} t}=0.
+		\end{gather*}
+		可建立模型如下：
+		
+		定义接触率$\alpha$、传染率$\beta$和有效接触系数$\rho$。分析可知，有效接触系数$\rho=S/(S+E+I+H)$是易感人群在随机均匀混合人群中的占比。记单个感染者个体$I_j$在$\Delta t$时间内接触和传染均匀混合个体分别为事件$A$和事件$B$。单个感染者个体$I_j$在$\Delta t$时间内接触的均匀混合个体数记为$\alpha=P(A)$，即有效接触率。将传染率定义为单个感染者个体在接触易感者的条件下传染给该易感人群的条件概率，记为$\beta=P(B|A)$。由条件概率公式，$\alpha \cdot \beta=P(A)\cdot P(B|A)=P(AB)$是单个感染者个体接触并感染易感者的概率，称为有效感染概率。
+		
+		分析可知易感者$S$有三种转化途径：向隔离易感者$S_q$、隔离潜伏者$E_q$和潜伏者$E$的转化速率(单位时间$\Delta t$内，转化数量$\Delta n$与同类群体的个数$n$的比值)分别为$\rho (1-\beta)q$，$ \rho \beta q$和$\rho \beta(1-q)$。此外，确认隔离期$t_d$无症状后，隔离易感者$S_q$也可向易感者$S$以$\lambda S_{q}$的速率转化。由以上分析可建立易感者$S$转化方程：
+		
 			\begin{gather}
 			\frac{\mathrm{d} S}{\mathrm{d} t}=-\alpha\rho [\beta +q(1-\beta)]S(I+\theta E)+\lambda S_{q},
 			\end{gather}
@@ -314,7 +320,7 @@
         使用免疫差分进化算法可求得湖北省与美国的未统计参数如表~\ref{sdf}~所示，其中初始潜伏者数量的步长为25进行遍历。
         
         	\begin{table}[H]
-        	\setstretch{1.4}  %设置表的行间距
+        	\setstretch{1.5}  %设置表的行间距
         	\centering		
         	\caption{免疫差分进化算法求得的未统计参数}\label{sdf}
         	\begin{tabular}{ccc}
@@ -335,8 +341,8 @@
         根据该参数求得预测参数与实际统计参数可解得湖北省数据预测曲线如图~\ref{sd}~所示，其中取隔离解除速率 $\lambda =\frac{1}{14}$，潜伏者向感染者的转化速率 $\sigma=\frac{1}{7}$。取1月22日前，即严格的隔离措施执行前隔离比例$q=0.2$，取执行之后的隔离比例为$q=0.95$。
         \begin{figure}[H]
 	\centering
-	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/untitled.png}}
-	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/untitled2.png}}
+	\subfigure{\includegraphics[height=6.5cm,width=7.5cm]{figures/untitled.png}}
+	\subfigure{\includegraphics[height=6.5cm,width=7.5cm]{figures/untitled2.png}}
 	\caption{湖北省和美国两地的感染者预测曲线}\label{sd}
 \end{figure}
 
@@ -377,8 +383,8 @@
        本文还模拟了追踪隔离措施，即追踪隔离比例下降对疫情发展的后果。如下图所示，当隔离比例下降为0.9、0.8和0.6倍时，感染人数的上升速率和峰值均会增加（假设诊断标准未发生变化，即感染人数未突跳）。尤其当取$0.6q$时，感染人数峰值提高约两倍。由此可见，严格的医学追踪隔离是防止疫情发展的有效手段。
           \begin{figure}[H]
         	\centering
-        	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/y1.png}}
-        	\subfigure{\includegraphics[height=6cm,width=7.5cm]{figures/y2.png}}
+        	\subfigure{\includegraphics[height=5cm,width=7.5cm]{figures/y1.png}}
+        	\subfigure{\includegraphics[height=5cm,width=7.5cm]{figures/y2.png}}
         	\caption{追踪隔离措施对湖北的疫情影响预测}
         \end{figure}
         
@@ -455,9 +461,7 @@ l_{\epsilon}(z)=\left\{\begin{array}{cc}
 
 	
     \section{问题三模型的建立与求解}
-  		\subsection{结果分析}
-  
-  	\section{灵敏度分析}
+
  
   	\section{模型的评价}
 		\subsection{模型的优点}
