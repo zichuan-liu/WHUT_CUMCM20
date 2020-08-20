@@ -24,4 +24,5 @@
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{15}{subsection.8.1}% 
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{16}{subsection.8.2}% 
 \contentsline {section}{\numberline {附录A}问题一代码}{18}{appendix.A}% 
+\contentsline {section}{\numberline {附录B}问题二代码}{23}{appendix.B}% 
 \contentsfinish 

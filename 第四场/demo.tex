@@ -450,7 +450,7 @@
 		\subsection{模型的优点}
 			\begin{itemize}                                             
 			\item [(1)]
-			\item [(2)]通过序列最小优化算法作为样本的训 练算法，进而建立序列最小优化支持向量回归模型，从而减小算法复杂度，提高算法的 求解速度。
+			\item [(2)]通过序列最小优化算法作为样本的训 练算法，进而建立序列最小优化支持向量回归模型，从而减小算法复杂度，提高算法的求解速度。
 			
 				
 			\end{itemize}
@@ -467,6 +467,7 @@
 		\bibitem{1}Berger D W, Herkenhoff K F, Mongey S. An seir infectious disease model with testing and conditional quarantine[R]. National Bureau of Economic Research, 2020.
 	\bibitem{2}Pandey G, Chaudhary P, Gupta R, et al. SEIR and Regression Model based COVID-19 outbreak predictions in India[J]. arXiv preprint arXiv:2004.00958, 2020.
 	\bibitem{3}Hou C, Chen J, Zhou Y, et al. The effectiveness of quarantine of Wuhan city against the Corona Virus Disease 2019 (COVID‐19): A well‐mixed SEIR model analysis[J]. Journal of medical virology, 2020.
+	\bibitem{4}陈友鹏, 陈璟华. 基于鲸鱼优化参数的最小二乘支持向量机短期负荷预测方法[J]. 计算机工程, 2020, 37(03): 75-81.
 	\end{thebibliography}
 
 	\newpage
@@ -739,5 +740,139 @@ plt.ylabel('fx')
 plt.savefig('./iteration-f.png')
 plt.show()
 \end{lstlisting}
+	\section{问题二代码}
+\subsection*{SMO-SVR模型--python源代码}
+\begin{lstlisting}[language=python]
+! pip install pandas_datareader
 
+import pandas as pd
+import datetime
+import pandas_datareader.data as web
+from pandas import Series, DataFrame
+
+start = datetime.datetime(2020, 1, 22)
+
+end = datetime.datetime(2020, 7, 20)
+
+df = web.DataReader("AAPL", 'yahoo', start, end)
+
+df.tail()
+
+import matplotlib.pyplot as plt
+from matplotlib import style
+
+# Adjusting the size of matplotlib
+close_px = df['Adj Close']
+mavg = close_px.rolling(window=10).mean()
+import matplotlib as mpl
+mpl.rc('figure', figsize=(8, 7))
+
+mpl.__version__
+
+# Adjusting the style of matplotlib
+
+style.use('ggplot')
+
+close_px.plot(label='AAPL')
+
+mavg.plot(label='mavg')
+
+plt.legend()
+
+rets = close_px / close_px.shift(1) - 1
+
+rets.plot(label='return')
+
+dfcomp = web.DataReader(['AAPL', 'GE', 'GOOG', 'IBM', 'MSFT'],'yahoo',start=start,end=end)['Adj Close']
+
+retscomp = dfcomp.pct_change()
+
+corr = retscomp.corr()
+
+plt.scatter(retscomp.AAPL, retscomp.GE)
+
+plt.xlabel('Returns AAPL')
+
+plt.ylabel('Returns GE')
+
+pd.plotting.scatter_matrix(retscomp, diagonal='kde', figsize=(10, 10))
+
+plt.imshow(corr, cmap='hot', interpolation='none')
+plt.colorbar()
+
+plt.xticks(range(len(corr)), corr.columns)
+plt.yticks(range(len(corr)), corr.columns)
+
+dfreg = df.loc[:,['Adj Close','Volume']]
+
+dfreg['HL_PCT'] = (df['High'] - df['Low']) / df['Close'] * 100.0
+
+dfreg['PCT_change'] = (df['Close'] - df['Open']) / df['Open'] * 100.0
+
+import math
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.linear_model import Ridge
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+from sklearn import preprocessing
+# Drop missing value
+dfreg.fillna(value=-99999, inplace=True)
+
+# We want to separate 1 percent of the data to forecast
+forecast_out = int(math.ceil(0.1 * len(dfreg)))
+
+# Separating the label here, we want to predict the AdjClose
+
+forecast_col = 'Adj Close'
+dfreg['label'] = dfreg[forecast_col].shift(-forecast_out)
+
+X = np.array(dfreg.drop(['label'], 1))
+
+# Scale the X so that everyone can have the same distribution for linear regression
+X = preprocessing.scale(X)
+
+# Finally We want to find Data Series of late X and early X (train) for model generation and evaluation
+X_lately = X[-forecast_out:]
+X = X[:-forecast_out]
+
+# Separate label and identify it as y
+y = np.array(dfreg['label'])
+y = y[:-forecast_out]
+
+# Linear regression
+clfreg = LinearRegression(n_jobs=-1)
+clfreg.fit(X, y)
+
+# Quadratic Regression 2
+clfpoly2 = make_pipeline(PolynomialFeatures(2), Ridge())
+clfpoly2.fit(X, y)
+
+# Quadratic Regression 3
+clfpoly3 = make_pipeline(PolynomialFeatures(3), Ridge())
+clfpoly3.fit(X, y)
+
+forecast_set = clfpoly2.predict(X_lately)
+dfreg['Forecast'] = np.nan
+
+last_date = dfreg.iloc[-1].name
+
+last_unix = last_date
+
+next_unix = last_unix + datetime.timedelta(days=1)
+
+for i in forecast_set:
+
+next_date = next_unix
+next_unix += datetime.timedelta(days=1)
+dfreg.loc[next_date] = [np.nan for _ in range(len(dfreg.columns)-1)]+[i]
+
+dfreg['Adj Close'].tail(500).plot()
+dfreg['Forecast'].tail(500).plot()
+plt.legend(loc=4)
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.show()
+\end{lstlisting}
 \end{document}
