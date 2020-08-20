@@ -23,7 +23,7 @@
 \contentsline {section}{\numberline {7}灵敏度分析}{10}{section.7}%
 \contentsline {section}{\numberline {8}模型的评价}{10}{section.8}%
 \contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}1}模型的优点}{10}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{10}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{10}{subsection.8.3}%
-\contentsline {section}{\numberline {附录A}数据可视化的实现}{12}{appendix.A}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}2}模型的缺点}{11}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8\tmspace +\thinmuskip {.1667em}.\tmspace +\thinmuskip {.1667em}3}模型改进}{11}{subsection.8.3}%
+\contentsline {section}{\numberline {附录A}数据可视化的实现}{13}{appendix.A}%
 \contentsfinish 
