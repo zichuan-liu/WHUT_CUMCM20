@@ -1,0 +1,200 @@
+\section{问题二模型的建立与求解}
+	  \subsection{问题描述与分析}
+
+	 问题二本质是一个预测与综合评价问题，题目要求结合不同地区和职业分类统计的数据，预测2019年传染病防控排名前3位的重点区域和重点人群。首先将附件中不同地区与不同职业的发病人数、死亡人数数据，带入问题一的\textbf{灰色马尔科夫模型}中。预测出2019年各省与各职业的发病人数、死亡人数，并计算出每个地区和每种职业对应的发病人数\textbf{增长率、死亡人数增长率和死亡率}。并将上述五个指标带入\textbf{TOPSIS综合评价模型}，分别选取排序前三位的省市和人群作为重点防控区域和人群。其问题二思维流程图如图~\ref{lctcc}~所示：
+	 \begin{figure}[H]
+	 	\centering
+	 	\includegraphics[width=.5\textwidth]{figures/lctcc.png}
+	 	\caption{问题二思维流程图}\label{lctcc}
+	 \end{figure}
+	  \subsection{模型的建立}
+	  根据各年数据的不同对第一问的灰色马尔可夫模型进行修正，得：
+	  \begin{gather}
+\left\{\begin{matrix}
+\overline{x}(k) =\widehat{x}(k)-\eta\\
+\widehat{X}(k+1)=[X^{(0)}(1)-\frac{u}{a}]e^{-ak}+\frac{u}{a},k=1,2,\cdots,6\\ 
+\eta =\begin{bmatrix}
+p_{E1} & p_{E2} & p_{E3}
+\end{bmatrix} \cdot \begin{bmatrix}
+\overline{E}_{1} & \overline{E}_{2} & \overline{E}_{3}
+\end{bmatrix}^{T}
+\end{matrix}\right.
+	  \end{gather}
+	 式中：第$k$年的患病或死亡人数据修正后预测值为$\overline{x}(k)$，$\widehat{x}(k)$为传统GM(1,1)的预测值，$\eta$为第$k$年GM(1,1)的误差期望值。
+	     \subsubsection{预测评价指标计算}
+	     
+	     
+	     
+	  将附件中$20$个职业2004年，2007年，2010年，2013年和2016年的患病人数数据$X_{i}=[x_{i1},x_{i2},x_{i3},x_{i4},x_{i5}](i=1,2,\cdots,20)$，带入后，得到预测结果：
+     \begin{gather*}
+      X_{i}=[x_{i1},x_{i2},x_{i3},x_{i4},x_{i5},x_{i6}](i=1,2,\cdots,20)
+     \end{gather*}
+     
+     同理，将死亡人数数据$X_{i}'=[x_{i1}',x_{i2}',x_{i3}',x_{i4}',x_{i5}'](i=1,2,\cdots,20)$带入得到预测结果$X_{i}'=[x_{i1}',x_{i2}',x_{i3}',x_{i4}',x_{i5}',x_{i6}'](i=1,2,\cdots,20)$。
+
+
+     则预测中2019年发病人数增长率$ \delta_{i}$、死亡人数增长率 $ \delta _{i}'$和患病人口死亡率$\eta_{i}$分别为：
+      \begin{gather}
+      \left\{\begin{matrix}
+      \delta _{i}=\frac{x_{i6}-x_{i5}}{x_{i5}} \times 100\%\\ 
+      \delta '_{i} =\frac{x_{i6}'-x_{i5}'}{x_{i5}'} \times 100\%\\ 
+      \eta_{i} =\frac{x_{i6}'}{x_{i6}} \times 100\%
+      \end{matrix}\right.
+      \end{gather}
+      得到各个人群的决策属性向量：
+      \begin{gather*}
+      d_{i}=[x_{i6},x_{i6}', \delta_{i} , \delta _{i}',\eta_{i} ]
+      \end{gather*}
+      
+      同理，将全国各省即直辖市各年患病人口与死亡人口数据带入模型可得各个地区的决策属性向量$d_{i}'(i=1,2,\cdots,31)$。
+    \subsubsection{TOPSIS法}
+    设职业多属性决策矩阵$A=(a_{ij})_{20 \times 5}$可表示为：
+     \begin{gather*}
+  A= [d_{1}^{T},d_{2}^{T},\cdot,,d_{20}^{T}]^{T}
+    \end{gather*}
+    将$A$标准化可得规范化决策矩阵$B=(b_{ij})_{20 \times 5}$，其中：
+     \begin{gather*}
+   b_{ij}=a_{ij}/\sqrt{\sum_{i=1}^{20}a_{ij}^{2}},i=1,2,\cdots,20;j=1,2,\cdots,5
+    \end{gather*}
+    
+    假定\textbf{患病人数和死亡人数增长率高的区域更需要重点防控}，构造权重向量：
+     \begin{gather}
+     W=[0.15,0.3,0.15,0.3,0.1]
+    \end{gather}
+    即可求得加权规范矩阵为$C=(c_{ij})_{20 \times 5}$、正理想解$C^{*}=[c_{1}^{*},c_{2}^{*},c_{3}^{*},c_{4}^{*},c_{5}^{*}]$、负理想解$C^{0}=[c_{1}^{0},c_{2}^{0},c_{3}^{0},c_{4}^{0},c_{5}^{0}]$，其中：
+     \begin{gather*}
+     \left\{\begin{matrix}
+     c_{ij}=w_{j} \cdot b_{ij} ,i=1,2,\cdots,20;j=1,2,\cdots,5\\
+c_{j}^{*}=\underset{i}{max}(c_{ij}) ,j=1,2,\cdots,5\\
+c_{j}^{0}=\underset{i}{min}(c_{ij}) ,j=1,2,\cdots,5
+     \end{matrix}\right.
+     \end{gather*}
+    
+    计算各职业属性决策向量到正理想解和负理想解的距离。备选职业属性决策向量$d_{i}$到正理想解的距离为与到负理想解的距离为：
+    \begin{gather*}
+    \left\{\begin{matrix}
+    s_{j}^{*}=\sqrt{\sum_{j=1}^{n}(c_{ij}-c_{j}^*)^{2}},i=1,2,\cdots,20\\
+    s_{j}^{0}=\sqrt{\sum_{j=1}^{n}(c_{ij}-c_{j}^{0})^{2}},i=1,2,\cdots,20
+     \end{matrix}\right.
+    \end{gather*}
+    计算各方案的综合评价指数：
+    \begin{gather}
+    f_{i}^{*}=s_{j}^{0}/(s_{j}^{0}+s_{j}^{*}),i=1,2,\cdots,20
+    \end{gather}
+
+    按$f_{i}^{*}$由大到小排列求得重点防控人群次序。同理将各地区决策向量$d_{i}'(i=1,2,\cdots,31)$带入TOPSIS模型可得重点防控地区次序即可。
+
+    \subsection{模型的求解}
+
+ 
+         将各职业的患病人数与死亡人数的数据，带入灰度马尔科夫模型得到预测值如表~\ref{zhdsaiye1}~、~\ref{zhiye2}~所示：
+    \begin{table}[H]
+    	\centering\caption{各职业发病数预测结果}\label{zhdsaiye1}
+    	\begin{tabular}{ccccccc}
+    		\toprule[1.5pt]
+    		\multicolumn{1}{m{2cm}}{\centering 职业}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2004}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2007}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2010}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2013}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2016}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2019}
+    		\\
+    		\midrule[0.5pt]	
+    		幼托儿童 &   2239 & 1416.433 &	552.277 &	218.444& 	86.402& 	34.175 \\ 
+    		散居儿童&  6179  &  3759.599&	2454.325	&1638.953&	1094.463&730.862\\ 
+    		学生 &  61578  & 65186.262 &	50766.106 &	40071.014 &	31629.098 	&24965.674  \\
+    		$\cdots$ &  $\cdots$ &  $\cdots$&  $\cdots$&  $\cdots$&  $\cdots$&  $\cdots$   \\   
+    		家政、家务 & 54916& 67490.081&78063.992&91181.696&106503.671 &124400.317 \\ 
+    		其他 & 34028 &54221.751 &	40402.927 &	29919.473 &	22156.188&16407.263  \\
+    		\bottomrule[1.5pt]	
+    	\end{tabular}
+    \end{table}
+
+    \begin{table}[H]
+    	\centering\caption{各职业死亡数预测结果}\label{zhiye2}
+    	\begin{tabular}{ccccccc}
+    		\toprule[1.5pt]
+    		\multicolumn{1}{m{2cm}}{\centering 职业}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2004}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2007}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2010}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2013}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2016}
+    		& \multicolumn{1}{m{1.8cm}}{\centering 2019}
+    		\\
+    		\midrule[0.5pt]	
+    		幼托儿童 &  2&1.858&	1.012&0.571&	0.323&0.182
+    		\\ 
+    		散居儿童& 9	 &14.193&	10.118&	7.270 &	5.223&3.753
+    		\\ 
+    		学生 & 22 &	38.123 &30.824 &24.931 &20.164& 16.309   \\
+    		$\cdots$ &  $\cdots$ &  $\cdots$&  $\cdots$&  $\cdots$&  $\cdots$&  $\cdots$   \\   
+    		家政、家务 &  133&	244.727 &	271.116 &	301.405 &	335.077 &	372.512 \\ 
+    		其他 &  46&	143.799 &	101.315 &	70.427 &	48.956 	&34.031 \\
+    		\bottomrule[1.5pt]	
+    	\end{tabular}
+    \end{table}
+    
+    计算出正理想解与负理想解分别为：
+\begin{gather*}
+\begin{matrix}
+C^{0}=[0.0066,0.0048,0.0653,0.0261,0.0331]\\
+C^{*}=[-0.1856,-0.1847,-0.0809,-0.1163,-0.0929]
+\end{matrix}
+\end{gather*}
+    即求得$20$种职业综合评价指数如图~\ref{oc}~所示：
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=.9\textwidth]{figures/oc.png}
+    	\caption{人群综合评价指数}\label{oc}
+    \end{figure}
+	由图~\ref{oc}~可知防控排名前$3$位的\textbf{职业分别为农民、家政家务和退休人员}。
+
+
+    
+   同理，将各地区患病人数与死亡人数预测值带入模型，得到2019年预测值见附件。计算出正理想解与负理想解$
+   C^{*}$、$C^{0}$。即可求得$31$个地区综合评价指数如图~\ref{area}~所示：
+   \begin{figure}[H]
+   	\centering
+   	\includegraphics[width=\textwidth]{figures/area.png}
+   	\caption{地区综合评价指数}\label{area}
+   \end{figure}
+   由图~\ref{area}~可知防控排名前$3$位的\textbf{地区分别为新疆，西藏和青海}。
+
+
+\subsection{结果分析}
+农民、家政家务和退休人员的发病人数、死亡人数灰色马尔科夫预测曲线如下图所示：
+	\begin{figure}[H]
+	\begin{minipage}[t]{0.5\linewidth}
+		%并排插图时，线宽很重要，自己慢慢试，俩张图就不要超过0.5，三张图不要超过0.33之类的，自己看着办
+		\centering
+		\includegraphics[width=\textwidth]{figures/Figure_6.png}
+		\caption{职业前三每年发病人数}\label{sanrenf}
+	\end{minipage}
+	\hfill%分栏的意思吧
+	\begin{minipage}[t]{0.5\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/sannrens.png}
+		\caption{职业前三每年死亡人数}\label{sannrens}
+	\end{minipage}
+\end{figure}
+
+由图~\ref{sanrenf}~和图~\ref{sannrens}~可知医护人员等人群各项患病指标最低，而家政家务从业人员发病人数和死亡人数都处于上升趋势，且\textbf{上升率较高}，属于重点防控人群。农民发病人数和死亡人数都虽处于下降趋势但其\textbf{患病人口基数较大}导致其综合评价指数较高，属于重点防控人群。退休人口发病人数和死亡人数的增长率和基数都不大，但其发病后死亡较高，也属于重点防控人群。
+
+新疆，西藏和青海的灰色马尔科夫预测曲线如下图所示：
+	\begin{figure}[H]
+	\begin{minipage}[t]{0.5\linewidth}
+		%并排插图时，线宽很重要，自己慢慢试，俩张图就不要超过0.5，三张图不要超过0.33之类的，自己看着办
+		\centering
+		\includegraphics[width=\textwidth]{figures/Figure_5.png}
+		\caption{前三省份每年发病人数}\label{Figure_5}
+	\end{minipage}
+	\hfill%分栏的意思吧
+	\begin{minipage}[t]{0.5\linewidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/Figure_1.png}
+		\caption{前三省份每年死亡人数}\label{Figure_6}
+	\end{minipage}
+\end{figure}
+由图~\ref{Figure_5}~和图~\ref{Figure_6}~可知沿海城市的患病人数及死亡人数相对较低，而新疆，西藏和青海的\textbf{发病人数和死亡人数都处于整体上升趋势}，尤其是新疆还有相对于其它二者较大的患病人口基数，都属于重点防控区域。

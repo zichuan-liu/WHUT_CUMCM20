@@ -64,6 +64,14 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{listings}
 \RequirePackage{xcolor}
 \RequirePackage{hyperref}
+\RequirePackage{metalogo}
+\RequirePackage{float}
+\RequirePackage{subfigure}
+\RequirePackage{url}
+\RequirePackage{setspace}
+\RequirePackage{booktabs}
+\RequirePackage{threeparttable}
+\RequirePackage{graphics}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -224,7 +232,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 		{\zihao{2} \bfseries 第 {\;\color{red}\mcm@tokens@team} 组}\\[5pt]
 		\begin{tabular}{w{l}{28ex}w{c}{20ex}}
 			{\fs \zihao{3} \textbf{姓名}} & {\fs \zihao{3} \textbf{方向}} \\
-			{\fs \zihao{-3} \color{red}\mcm@tokens@membera （组长）} & {\fs \zihao{-3} \mcm@tokens@joba}\\
+			{\fs \zihao{-3} \color{red}\mcm@tokens@membera} & {\fs \zihao{-3} \mcm@tokens@joba}\\
 			{\fs \zihao{-3} \color{red}\mcm@tokens@memberb} & {\fs \zihao{-3} \mcm@tokens@jobb}\\
 			{\fs \zihao{-3} \color{red}\mcm@tokens@memberc} & {\fs \zihao{-3} \mcm@tokens@jobc}\\
 		\end{tabular}
@@ -249,7 +257,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 \setcounter{secnumdepth}{3}
 \def\@seccntformat#1{\csname the#1\endcsname\ }
-\renewcommand\thesection{\chinese{section}、}
+%\renewcommand\thesection{\chinese{section}、}%%%%%%%%%%%%%%%%%%一、节%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand\thesubsection{\arabic{section}\thinspace.\thinspace\arabic{subsection}}
 \renewcommand\thesubsubsection{\thesubsection\thinspace.\thinspace\arabic{subsubsection}}
 \renewcommand\section{\@startsection{section}{1}{\z@}%

@@ -1,0 +1,75 @@
+% Casper Ti. Vector's biblatex style
+%
+% Copyright (c) 2012-2018 Casper Ti. Vector
+%
+% This work may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License, either version 1.3 of this license or (at
+% your option) any later version.
+% The latest version of this license is in
+%   https://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX version
+% 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% The current maintainer of this work is Casper Ti. Vector.
+%
+% This work consists of the following files:
+%   caspervector.bbx
+%   caspervector.cbx
+%   caspervector-ay.bbx
+%   caspervector-ay.cbx
+%   blx-caspervector-base.def
+%   blx-caspervector-gbk.def
+%   blx-caspervector-utf8.def
+
+\ProvidesFile{caspervector-ay.bbx}%
+	[2018/06/29 v0.3.3 Casper Ti. Vector's author-year biblatex bibstyle]
+
+\RequireBibliographyStyle{authoryear-comp}
+\input{blx-caspervector-base.def}
+\appto\bbx@opt@mergedate@maximum{\renewbibmacro*{bbx:ifmergeddate}[2]{%
+	\iflabeldateisdate{#1}{#2}%
+}\togglefalse{bbx:bfdate}}
+\appto\bbx@opt@mergedate@compact{\renewbibmacro*{bbx:ifmergeddate}[2]{%
+	\iflabeldateisdate{#1}{#2}%
+}\togglefalse{bbx:bfdate}}
+\appto\bbx@opt@mergedate@basic{\renewbibmacro*{bbx:ifmergeddate}[2]{%
+	\ifboolexpr{
+		test {\iflabeldateisdate} and
+		not test {\ifdateshavedifferentprecision{label}{}}
+	}{#1}{#2}%
+}\toggletrue{bbx:bfdate}}
+\appto\bbx@opt@mergedate@minimum{\renewbibmacro*{bbx:ifmergeddate}[2]{%
+	\ifboolexpr{
+		test {\iflabeldateisdate} and test {\iffieldundef{extradate}} and
+		not test {\ifdateshavedifferentprecision{label}{}}
+	}{#1}{#2}%
+}\toggletrue{bbx:bfdate}}
+\appto\bbx@opt@mergedate@false%
+	{\renewbibmacro*{bbx:ifmergeddate}[2]{#2}\toggletrue{bbx:bfdate}}
+\renewbibmacro*{date}{\usebibmacro{bbx:ifmergeddate}{}{\printdate}}
+
+\ExecuteBibliographyOptions%
+	{labeldate = year, mergedate = basic, dashed = false, sorting = ecnyt}
+\DeclareNameAlias{author}{default}
+\DeclareNameAlias{editor}{default}
+\DeclareNameAlias{translator}{default}
+
+\newbibmacro*{ayedtrans}[1]{%
+	\ifboolexpr{test {\iftoggle{blx@use#1}} and not test {\ifnameundef{#1}}}{%
+		\usebibmacro{bbx:dashcheck}{\bibnamedash}{%
+			\printnames{#1}%
+			\bbx@cetext%
+				{\printtext{\bbx@byspace{#1}}}{\setunit{\printdelim{#1typedelim}}}%
+			\usebibmacro{bbx:savehash}%
+		}\bbx@cetext{\printtext{\@nameuse{bbx@cn#1}}}{\usebibmacro{#1strg}}%
+		\setunit{\printdelim{nameyeardelim}}\clearname{#1}%
+	}{%
+		\global\undef\bbx@lasthash
+		\usebibmacro{labeltitle}\setunit*{\printdelim{nonameyeardelim}}%
+	}\usebibmacro{date+extradate}%
+}
+\renewbibmacro*{editor}{\usebibmacro{ayedtrans}{editor}}
+\renewbibmacro*{translator}{\usebibmacro{ayedtrans}{translator}}
+
+% vim:ft=tex:ts=2:sw=2
